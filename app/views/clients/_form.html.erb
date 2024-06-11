@@ -1,0 +1,242 @@
+<%= form_with(model: client) do |form| %>
+  <% if client.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+        <% client.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :firstname, style: "display: block" %>
+    <%= form.text_field :firstname %>
+  </div>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :phone, style: "display: block" %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div>
+    <%= form.label :address, style: "display: block" %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :zip_code, style: "display: block" %>
+    <%= form.text_field :zip_code %>
+  </div>
+
+  <div>
+    <%= form.label :city, style: "display: block" %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div>
+    <%= form.label :country, style: "display: block" %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div>
+    <%= form.label :birthdate, style: "display: block" %>
+    <%= form.date_field :birthdate %>
+  </div>
+
+  <div>
+    <%= form.label :how_do_you_know_us, style: "display: block" %>
+    <%= form.text_area :how_do_you_know_us %>
+  </div>
+
+  <div>
+    <%= form.label :notes, style: "display: block" %>
+    <%= form.text_area :notes %>
+  </div>
+
+  <div>
+    <%= form.label :lash_desired_effect, style: "display: block" %>
+    <%= form.text_area :lash_desired_effect %>
+  </div>
+
+  <div>
+    <%= form.label :lash_face_diagnostic, style: "display: block" %>
+    <%= form.text_area :lash_face_diagnostic %>
+  </div>
+
+  <div>
+    <%= form.label :lash_asymmetry_diagnostic, style: "display: block" %>
+    <%= form.text_area :lash_asymmetry_diagnostic %>
+  </div>
+
+  <div>
+    <%= form.label :lash_eyelid_morphology_diagnostic, style: "display: block" %>
+    <%= form.text_area :lash_eyelid_morphology_diagnostic %>
+  </div>
+
+  <div>
+    <%= form.label :lash_alignment_morphology_diagnostic, style: "display: block" %>
+    <%= form.text_area :lash_alignment_morphology_diagnostic %>
+  </div>
+
+  <div>
+    <%= form.label :lash_proportion_morphology_diagnostic, style: "display: block" %>
+    <%= form.text_field :lash_proportion_morphology_diagnostic %>
+  </div>
+
+  <div>
+    <%= form.label :lash_thickness_diagnostic, style: "display: block" %>
+    <%= form.text_field :lash_thickness_diagnostic %>
+  </div>
+
+  <div>
+    <%= form.label :lash_length_diagnostic, style: "display: block" %>
+    <%= form.number_field :lash_length_diagnostic %>
+  </div>
+
+  <div>
+    <%= form.label :lash_curvature_diagnostic, style: "display: block" %>
+    <%= form.check_box :lash_curvature_diagnostic %>
+  </div>
+
+  <div>
+    <%= form.label :lash_style, style: "display: block" %>
+    <%= form.text_area :lash_style %>
+  </div>
+
+  <div>
+    <%= form.label :lash_notes, style: "display: block" %>
+    <%= form.text_area :lash_notes %>
+  </div>
+
+  <div>
+    <%= form.label :lash_mapping, style: "display: block" %>
+    <%= form.text_area :lash_mapping %>
+  </div>
+
+  <div>
+    <%= form.label :lash_event, style: "display: block" %>
+    <%= form.text_area :lash_event %>
+  </div>
+
+  <div>
+    <%= form.label :lash_texture, style: "display: block" %>
+    <%= form.check_box :lash_texture %>
+  </div>
+
+  <div>
+    <%= form.label :lash_density, style: "display: block" %>
+    <%= form.text_area :lash_density %>
+  </div>
+
+  <div>
+    <%= form.label :lash_extensions_brand, style: "display: block" %>
+    <%= form.text_area :lash_extensions_brand %>
+  </div>
+
+  <div>
+    <%= form.label :lash_extensions_curvature, style: "display: block" %>
+    <%= form.text_area :lash_extensions_curvature %>
+  </div>
+
+  <div>
+    <%= form.label :lash_extensions_thickness, style: "display: block" %>
+    <%= form.number_field :lash_extensions_thickness %>
+  </div>
+
+  <div>
+    <%= form.label :lash_extensions_glue, style: "display: block" %>
+    <%= form.text_area :lash_extensions_glue %>
+  </div>
+
+  <div>
+    <%= form.label :lash_extensions_pretreatment_superbonder, style: "display: block" %>
+    <%= form.check_box :lash_extensions_pretreatment_superbonder %>
+  </div>
+
+  <div>
+    <%= form.label :lash_extensions_pretreatment_booster, style: "display: block" %>
+    <%= form.check_box :lash_extensions_pretreatment_booster %>
+  </div>
+
+  <div>
+    <%= form.label :health_diabetes, style: "display: block" %>
+    <%= form.check_box :health_diabetes %>
+  </div>
+
+  <div>
+    <%= form.label :health_pregnancy, style: "display: block" %>
+    <%= form.check_box :health_pregnancy %>
+  </div>
+
+  <div>
+    <%= form.label :health_dry_eyes, style: "display: block" %>
+    <%= form.check_box :health_dry_eyes %>
+  </div>
+
+  <div>
+    <%= form.label :health_teary_eyes, style: "display: block" %>
+    <%= form.check_box :health_teary_eyes %>
+  </div>
+
+  <div>
+    <%= form.label :health_allergy, style: "display: block" %>
+    <%= form.check_box :health_allergy %>
+  </div>
+
+  <div>
+    <%= form.label :health_contact_lenses, style: "display: block" %>
+    <%= form.check_box :health_contact_lenses %>
+  </div>
+
+  <div>
+    <%= form.label :health_surgery, style: "display: block" %>
+    <%= form.check_box :health_surgery %>
+  </div>
+
+  <div>
+    <%= form.label :health_chemotherapy, style: "display: block" %>
+    <%= form.check_box :health_chemotherapy %>
+  </div>
+
+  <div>
+    <%= form.label :health_eyes_allergy, style: "display: block" %>
+    <%= form.check_box :health_eyes_allergy %>
+  </div>
+
+  <div>
+    <%= form.label :health_itch, style: "display: block" %>
+    <%= form.check_box :health_itch %>
+  </div>
+
+  <div>
+    <%= form.label :health_first_application, style: "display: block" %>
+    <%= form.check_box :health_first_application %>
+  </div>
+
+  <div>
+    <%= form.label :health_lie_down, style: "display: block" %>
+    <%= form.check_box :health_lie_down %>
+  </div>
+
+  <div>
+    <%= form.label :health_notes, style: "display: block" %>
+    <%= form.text_area :health_notes %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
