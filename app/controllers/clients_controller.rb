@@ -3,16 +3,18 @@ class ClientsController < ApplicationController
 
   def index
     if params[:search].present?
-      @clients = Client.where('name LIKE ? OR firstname LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+      search_term = "%#{params[:search].downcase}%"
+      @clients = Client.where('LOWER(name) LIKE ? OR LOWER(firstname) LIKE ?', search_term, search_term)
     else
       @clients = []
     end
-
+  
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @clients }
     end
   end
+  
 
   # GET /clients/1
   def show
