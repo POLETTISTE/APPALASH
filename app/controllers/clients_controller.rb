@@ -1,9 +1,13 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[show edit update destroy]
 
-  # GET /clients
   def index
-    @clients = Client.all
+    if params[:search].present?
+      @clients = Client.where('name LIKE ? OR firstname LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+    else
+      @clients = []
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @clients }
@@ -16,6 +20,16 @@ class ClientsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @client }
     end
+  end
+
+  # GET /clients/new
+  def new
+    @client = Client.new
+  end
+
+  # GET /clients/1/edit
+  def edit
+    # @client is set by the before_action
   end
 
   # POST /clients
@@ -58,7 +72,6 @@ class ClientsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
 
   private
 
