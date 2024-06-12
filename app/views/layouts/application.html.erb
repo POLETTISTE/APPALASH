@@ -9,9 +9,15 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= render 'partials/navbar' %>
+    <div id="main">
+      <div class="main-left">
+        <%= render 'partials/side-menu' %>
+      </div>
+      <div class="main-right">
+        <%= render 'partials/navbar' %>
+        <%= yield %>
+      </div>
+    </div>
     <%= render 'partials/footer' %>
-    <%= render 'partials/side-menu' %>
-    <%= yield %>
   </body>
 </html>
