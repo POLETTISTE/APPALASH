@@ -1,20 +1,14 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[show edit update destroy]
 
+  # GET /clients
   def index
-    if params[:search].present?
-      search_term = "%#{params[:search].downcase}%"
-      @clients = Client.where('LOWER(name) LIKE ? OR LOWER(firstname) LIKE ?', search_term, search_term)
+    if params[:query].present?
+      @clients = Client.search_by_name_and_firstname(params[:query])
     else
-      @clients = []
-    end
-  
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @clients }
+      @clients = Client.all
     end
   end
-  
 
   # GET /clients/1
   def show
@@ -22,16 +16,6 @@ class ClientsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @client }
     end
-  end
-
-  # GET /clients/new
-  def new
-    @client = Client.new
-  end
-
-  # GET /clients/1/edit
-  def edit
-    # @client is set by the before_action
   end
 
   # POST /clients
@@ -75,9 +59,9 @@ class ClientsController < ApplicationController
     end
   end
 
+
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_client
     @client = Client.find(params[:id])
   end

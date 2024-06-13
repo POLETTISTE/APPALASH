@@ -1,7 +1,9 @@
-Rails.application.routes.draw do
-  root "home#index"
+# frozen_string_literal: true
 
-    get 'offers', to: 'home#offers'
+Rails.application.routes.draw do
+  root 'home#index'
+
+  get 'offers', to: 'home#offers'
 
   resources :clients
   # get 'home/index'

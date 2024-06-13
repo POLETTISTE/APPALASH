@@ -1,24 +1,16 @@
-<p style="color: green"><%= notice %></p>
 <h1>Clients</h1>
-<%= link_to "ACCUEIL", root_path %>
-<%= form_with url: clients_path, method: :get, local: true, id: "search_form" do %>
-  <%= label_tag :search, "Search for a client:" %>
-  <%= text_field_tag :search, params[:search], id: "search_input" %>
+<%= form_tag clients_path, method: "GET" do %>
+  <%= text_field_tag :query, params[:query], placeholder: "Enter name or firstname..." %>
+  <%= submit_tag "Search", class:"btn btn-primary" %>
 <% end %>
 <div id="clients">
-  <% if @clients.any? %>
-    <% @clients.each do |client| %>
-      <div class="card-client">
+  <% @clients.each do |client| %>
+    <%= link_to client_path(client), class: "card-client" do %>
+      <div>
         <%= client.name %>
         <%= client.firstname %>
-        <p>
-          <%= link_to "VOIR LE CLIENT", client %>
-        </p>
       </div>
     <% end %>
-  <% else %>
-    <p>No clients found</p>
   <% end %>
 </div>
-<%= link_to "+ AJOUTER UN CLIENT", new_client_path %>
-<%= javascript_include_tag "clients_search" %>
+<%= link_to "+ Add Client", new_client_path %>

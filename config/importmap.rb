@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Pin JavaScript packages by running ./bin/importmap
 
 pin 'application', preload: true
