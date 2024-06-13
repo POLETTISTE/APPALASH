@@ -1,12 +1,23 @@
+# frozen_string_literal: true
+
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[show edit update destroy]
 
+  # GET clients/new
+  def new
+    @client = Client.new
+  end
+
   # GET /clients
   def index
-    if params[:query].present?
-      @clients = Client.search_by_name_and_firstname(params[:query])
-    else
-      @clients = Client.all
+    @clients = if params[:query].present?
+                 Client.search_by_personnal_information(params[:query])
+               else
+                 Client.all
+               end
+    respond_to do |format|
+      format.html
+      format.json { render json: @clients }
     end
   end
 
@@ -24,7 +35,7 @@ class ClientsController < ApplicationController
 
     if @client.save
       respond_to do |format|
-        format.html { redirect_to @client, notice: "Client was successfully created." }
+        format.html { redirect_to @client, notice: 'Client was successfully created.' }
         format.json { render json: @client, status: :created, location: @client }
       end
     else
@@ -39,7 +50,7 @@ class ClientsController < ApplicationController
   def update
     if @client.update(client_params)
       respond_to do |format|
-        format.html { redirect_to @client, notice: "Client was successfully updated." }
+        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
         format.json { render json: @client, status: :ok, location: @client }
       end
     else
@@ -54,33 +65,38 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: "Client was successfully destroyed." }
+      format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-
   private
 
   def set_client
-    @client = Client.find(params[:id])
+    @client = Client.find_by(id: params[:id])
+    return if @client
+
+    redirect_to clients_url, alert: 'Client not found.'
   end
 
-  # Only allow a list of trusted parameters through.
   def client_params
     params.require(:client).permit(
-      :name, :firstname, :email, :phone, :address, :zip_code, :city, :country, 
-      :birthdate, :how_do_you_know_us, :notes, :lash_desired_effect, 
-      :lash_face_diagnostic, :lash_asymmetry_diagnostic, :lash_eyelid_morphology_diagnostic, 
-      :lash_alignment_morphology_diagnostic, :lash_proportion_morphology_diagnostic, 
-      :lash_thickness_diagnostic, :lash_length_diagnostic, :lash_curvature_diagnostic, 
-      :lash_style, :lash_notes, :lash_mapping, :lash_event, :lash_texture, 
-      :lash_density, :lash_extensions_brand, :lash_extensions_curvature, 
-      :lash_extensions_thickness, :lash_extensions_glue, :lash_extensions_pretreatment_superbonder, 
-      :lash_extensions_pretreatment_booster, :health_diabetes, :health_pregnancy, 
-      :health_dry_eyes, :health_teary_eyes, :health_allergy, :health_contact_lenses, 
-      :health_surgery, :health_chemotherapy, :health_eyes_allergy, :health_itch, 
-      :health_first_application, :health_lie_down, :health_notes
+      :name, :firstname, :email, :phone, :address, :zip_code, :city, :country,
+      :birthdate, :how_do_you_know_us, :notes,
+      lash_attributes: %i[
+        desired_effect face_diagnostic asymmetry_diagnostic
+        eyelid_morphology_diagnostic alignment_morphology_diagnostic
+        proportion_morphology_diagnostic thickness_diagnostic
+        length_diagnostic curvature_diagnostic style notes
+        mapping event texture density extensions_brand
+        extensions_curvature extensions_thickness extensions_glue
+        extensions_pretreatment_superbonder extensions_pretreatment_booster
+      ],
+      health_attributes: %i[
+        diabetes pregnancy dry_eyes teary_eyes allergy contact_lenses
+        surgery chemotherapy eyes_allergy itch first_application
+        lie_down notes
+      ]
     )
   end
 end

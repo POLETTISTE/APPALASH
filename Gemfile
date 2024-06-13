@@ -76,6 +76,6 @@ end
 
 gem 'bootstrap', '~> 5.2'
 gem 'country_select'
+gem 'pg_search'
 gem 'sassc-rails'
 gem 'simple_form'
-gem "pg_search"
