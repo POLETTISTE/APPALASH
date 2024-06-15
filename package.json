@@ -5,7 +5,5 @@
   "repository": "git@github.com:POLETTISTE/lash_app_rails.git",
   "author": "POLETTI Stéphane <polettistephane@msn.com>",
   "license": "MIT",
-  "dependencies": {
-    "axios": "^1.7.2"
-  }
+  "dependencies": {}
 }

@@ -1,7 +1,7 @@
 <h1>Clients</h1>
 <%= form_tag clients_path, method: "GET" do %>
   <%= text_field_tag :query, params[:query], placeholder: "Enter name or firstname..." %>
-  <%= submit_tag "Search", class:"btn btn-primary" %>
+  <%= submit_tag "Rechercher", class:"btn btn-primary" %>
 <% end %>
 <div id="clients">
   <% @clients.each do |client| %>
@@ -14,3 +14,5 @@
   <% end %>
 </div>
 <%= link_to "+ Add Client", new_client_path %>
+<div data-controller="hello" class="mt-5">
+</div>

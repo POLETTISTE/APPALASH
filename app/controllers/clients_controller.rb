@@ -10,11 +10,13 @@ class ClientsController < ApplicationController
 
   # GET /clients
   def index
-    @clients = if params[:query].present?
-                 Client.search_by_personnal_information(params[:query])
-               else
-                 Client.all
-               end
+    @clients =
+      if params[:query].present?
+        Client.search_by_personnal_information(params[:query])
+      else
+        Client.all
+      end
+
     respond_to do |format|
       format.html
       format.json { render json: @clients }
