@@ -17,7 +17,7 @@
   <%= form.input :zip_code, label: "Zip Code" %>
   <%= form.input :city, label: "City" %>
   <%= form.input :country, label: "Country" %>
-  <%= form.input :birthdate, as: :date, label: "Birthdate" %>
+  <%= form.input :birthdate, label: "Birthdate",  as: :string, input_html: { data: { controller: "datepicker" } } %>
   <%= form.input :how_do_you_know_us, collection: how_do_you_know_us_options, as: :select, label: "How Do You Know Us?" %>
   <%= form.input :notes, as: :text, label: "Notes" %>
   <%= form.input :lash_desired_effect, collection: lash_desired_effect_options, as: :select, label: "Lash Desired Effect" %>
