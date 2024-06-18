@@ -76,6 +76,7 @@ end
 
 gem 'bootstrap', '~> 5.2'
 gem 'country_select'
+gem 'dotenv-rails'
 gem 'pg_search'
 gem 'sassc-rails'
 gem 'simple_form'
