@@ -65,6 +65,9 @@ class ClientsController < ApplicationController
 
   # DELETE /clients/1
   def destroy
+    if @client.photo.attached?
+      @client.photo.purge
+    end
     @client.destroy
     respond_to do |format|
       format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
@@ -83,7 +86,7 @@ class ClientsController < ApplicationController
 
   def client_params
     params.require(:client).permit(
-      :name, :firstname, :email, :phone, :address, :zip_code, :city, :country,
+      :photo, :name, :firstname, :email, :phone, :address, :zip_code, :city, :country,
       :birthdate, :how_do_you_know_us, :notes,
       lash_attributes: %i[
         desired_effect face_diagnostic asymmetry_diagnostic
