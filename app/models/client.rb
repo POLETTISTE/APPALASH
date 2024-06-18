@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Client < ApplicationRecord
+
+  self.primary_key = 'id'
+
   has_one_attached :photo
 
   include PgSearch::Model

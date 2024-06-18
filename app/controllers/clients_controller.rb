@@ -50,6 +50,9 @@ class ClientsController < ApplicationController
 
   # PATCH/PUT /clients/1
   def update
+    if client_params[:photo].present? && @client.photo.attached?
+      @client.photo.purge # Delete the existing photo
+    end
     if @client.update(client_params)
       respond_to do |format|
         format.html { redirect_to @client, notice: 'Client was successfully updated.' }
@@ -65,6 +68,9 @@ class ClientsController < ApplicationController
 
   # DELETE /clients/1
   def destroy
+   if @client.photo.attached? #=> true/false
+  @client.photo.purge #=> Destroy the photo
+   end
     @client.destroy
     respond_to do |format|
       format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
