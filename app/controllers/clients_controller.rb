@@ -65,9 +65,6 @@ class ClientsController < ApplicationController
 
   # DELETE /clients/1
   def destroy
-    if @client.photo.attached?
-      @client.photo.purge
-    end
     @client.destroy
     respond_to do |format|
       format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
