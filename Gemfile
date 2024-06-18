@@ -75,6 +75,7 @@ group :test do
 end
 
 gem 'bootstrap', '~> 5.2'
+gem 'cloudinary'
 gem 'country_select'
 gem 'dotenv-rails'
 gem 'pg_search'
