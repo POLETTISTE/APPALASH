@@ -1,7 +1,13 @@
 @import "bootstrap";
 @import "./clients";
 @import "./side-menu";
+@import "./partials/navbar";
+@import "./partials/footer";
 
 #main {
   display: flex;
+}
+
+.main-right {
+  width: 100%;
 }
