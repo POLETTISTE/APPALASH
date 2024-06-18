@@ -5,6 +5,8 @@ class Client < ApplicationRecord
   self.primary_key = 'id' #uuid 
 
   has_one_attached :photo
+  attr_accessor :remove_photo
+
 
   include PgSearch::Model
 

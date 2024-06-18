@@ -37,7 +37,7 @@ class ClientsController < ApplicationController
 
     if @client.save
       respond_to do |format|
-        format.html { redirect_to @client, notice: 'Client was successfully created.' }
+        format.html { redirect_to @client, alert: 'Cliente enregistrée' }
         format.json { render json: @client, status: :created, location: @client }
       end
     else
@@ -49,22 +49,30 @@ class ClientsController < ApplicationController
   end
 
   # PATCH/PUT /clients/1
-  def update
-    if client_params[:photo].present? && @client.photo.attached?
-      @client.photo.purge # Delete the existing photo
+def update
+  @client = Client.find(params[:id])
+
+  if client_params[:remove_photo] == 'true'
+    @client.photo.purge
+  end
+
+  if client_params[:photo].present? && @client.photo.attached?
+    @client.photo.purge # Delete the existing photo
+  end
+
+  if @client.update(client_params.except(:remove_photo))
+    respond_to do |format|
+      format.html { redirect_to @client, alert: 'Cliente enregistrée' }
+      format.json { render json: @client, status: :ok, location: @client }
     end
-    if @client.update(client_params)
-      respond_to do |format|
-        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
-        format.json { render json: @client, status: :ok, location: @client }
-      end
-    else
-      respond_to do |format|
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @client.errors, status: :unprocessable_entity }
-      end
+  else
+    respond_to do |format|
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @client.errors, status: :unprocessable_entity }
     end
   end
+end
+
 
   # DELETE /clients/1
   def destroy
@@ -73,7 +81,7 @@ class ClientsController < ApplicationController
    end
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
+      format.html { redirect_to clients_url, alert: 'Cliente supprimée' }
       format.json { head :no_content }
     end
   end
@@ -84,12 +92,12 @@ class ClientsController < ApplicationController
     @client = Client.find_by(id: params[:id])
     return if @client
 
-    redirect_to clients_url, alert: 'Client not found.'
+    redirect_to clients_url, alert: 'Cliente introuvable'
   end
 
   def client_params
     params.require(:client).permit(
-      :photo, :name, :firstname, :email, :phone, :address, :zip_code, :city, :country,
+      :photo, :remove_photo, :name, :firstname, :email, :phone, :address, :zip_code, :city, :country,
       :birthdate, :how_do_you_know_us, :notes,
       lash_attributes: %i[
         desired_effect face_diagnostic asymmetry_diagnostic

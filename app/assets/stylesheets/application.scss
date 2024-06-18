@@ -11,3 +11,29 @@
 .main-right {
   width: 100%;
 }
+
+.alert {
+  // background-color: red;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50px;
+
+  /* Additional styling */
+  animation: fadeOut 4s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1; /* Start with full opacity */
+    // background-color: greenyellow;
+  }
+  90% {
+    opacity: 1; /* Start with full opacity */
+    // background-color: greenyellow;
+  }
+  100% {
+    opacity: 0; /* End with no opacity (completely invisible) */
+    // display: none; /* Hide the element after animation completes */
+  }
+}

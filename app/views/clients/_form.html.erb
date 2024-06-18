@@ -1,12 +1,19 @@
 <%= simple_form_for(@client) do |form| %>
   <% if @client.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
+      <h2><%= pluralize(@client.errors.count, "error") %> Impossible de sauvegarder ce client</h2>
       <ul>
         <% @client.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
+    </div>
+  <% end %>
+  <% if @client.photo.attached? %>
+    <div>
+      <%= image_tag @client.photo,id: 'current-photo', alt: "Current Photo", style: "max-width: 200px;" %>
+      <%= form.hidden_field :remove_photo, value: false, id: 'remove_photo' %>
+      <%= button_tag 'Remove Photo',id: 'remove-photo-btn', type: 'button', class: 'btn btn-danger', onclick: "removePhoto();" %>
     </div>
   <% end %>
   <%= form.input :photo, as: :file %>
@@ -57,3 +64,10 @@
   <%= form.input :health_notes, as: :text, label: "Health Notes" %>
   <%= form.button :submit %>
 <% end %>
+<script>
+  function removePhoto() {
+    document.getElementById('remove_photo').value = true;
+    document.getElementById('remove-photo-btn').style.display = 'none';
+    document.getElementById('current-photo').style.display = 'none';
+  }
+</script>
