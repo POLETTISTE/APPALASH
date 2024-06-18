@@ -77,7 +77,7 @@ end
   # DELETE /clients/1
   def destroy
    if @client.photo.attached? #=> true/false
-  @client.photo.purge #=> Destroy the photo
+      @client.photo.purge #=> Destroy the photo
    end
     @client.destroy
     respond_to do |format|
