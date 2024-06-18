@@ -1,6 +1,8 @@
 <p style="color: green"><%= notice %></p>
 <% if @client.photo.present? %>
   <%= cl_image_tag @client.photo.key, height: 300, width: 400, crop: :fill %>
+<%else%>
+  <%= image_tag "client/client_photo_profil.png", height: 300, width: 400 %>
 <% end %>
 <%= render @client %>
 <div>
