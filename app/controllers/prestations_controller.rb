@@ -33,7 +33,7 @@ class PrestationsController < ApplicationController
 
     if @prestation.save
       respond_to do |format|
-        format.html { redirect_to @prestation, notice: 'Prestation enregistrée' }
+        format.html { redirect_to @prestation, alert: 'Prestation enregistrée' }
         format.json { render json: @prestation, status: :created, location: @prestation }
       end
     else
@@ -48,7 +48,7 @@ class PrestationsController < ApplicationController
   def update
     if @prestation.update(prestation_params)
       respond_to do |format|
-        format.html { redirect_to @prestation, notice: 'Prestation enregistrée' }
+        format.html { redirect_to @prestation, alert: 'Prestation enregistrée' }
         format.json { render json: @prestation, status: :ok, location: @prestation }
       end
     else
@@ -63,7 +63,7 @@ class PrestationsController < ApplicationController
   def destroy
     @prestation.destroy
     respond_to do |format|
-      format.html { redirect_to prestations_url, notice: 'Prestation supprimée' }
+      format.html { redirect_to prestations_url, alert: 'Prestation supprimée' }
       format.json { head :no_content }
     end
   end
