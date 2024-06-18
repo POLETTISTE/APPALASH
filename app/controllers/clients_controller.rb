@@ -49,36 +49,33 @@ class ClientsController < ApplicationController
   end
 
   # PATCH/PUT /clients/1
-def update
-  @client = Client.find(params[:id])
+  def update
+    # @client = Client.find(params[:id])
 
-  if client_params[:remove_photo] == 'true'
-    @client.photo.purge
-  end
+    @client.photo.purge if client_params[:remove_photo] == 'true'
 
-  if client_params[:photo].present? && @client.photo.attached?
-    @client.photo.purge # Delete the existing photo
-  end
-
-  if @client.update(client_params.except(:remove_photo))
-    respond_to do |format|
-      format.html { redirect_to @client, alert: 'Cliente enregistrée' }
-      format.json { render json: @client, status: :ok, location: @client }
+    if client_params[:photo].present? && @client.photo.attached?
+      @client.photo.purge # Delete the existing photo
     end
-  else
-    respond_to do |format|
-      format.html { render :edit, status: :unprocessable_entity }
-      format.json { render json: @client.errors, status: :unprocessable_entity }
+
+    if @client.update(client_params.except(:remove_photo))
+      respond_to do |format|
+        format.html { redirect_to @client, alert: 'Cliente enregistrée' }
+        format.json { render json: @client, status: :ok, location: @client }
+      end
+    else
+      respond_to do |format|
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @client.errors, status: :unprocessable_entity }
+      end
     end
   end
-end
-
 
   # DELETE /clients/1
   def destroy
-   if @client.photo.attached? #=> true/false
+    if @client.photo.attached? #=> true/false
       @client.photo.purge #=> Destroy the photo
-   end
+    end
     @client.destroy
     respond_to do |format|
       format.html { redirect_to clients_url, alert: 'Cliente supprimée' }
