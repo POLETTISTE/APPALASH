@@ -71,6 +71,7 @@ GEM
     autoprefixer-rails (10.4.16.0)
       execjs (~> 2)
     base64 (0.2.0)
+    bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
@@ -98,6 +99,12 @@ GEM
     country_select (9.0.0)
       countries (> 5.0, < 7.0)
     crass (1.0.6)
+    dartsass-sprockets (3.1.0)
+      railties (>= 4.0.0)
+      sassc-embedded (~> 1.69)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     date (3.3.4)
     debug (1.9.2)
       irb (~> 1.10)
@@ -125,6 +132,12 @@ GEM
     formatador (1.1.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-protobuf (4.27.1-x86_64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.27.1-x86_64-linux)
+      bigdecimal
+      rake (>= 13)
     guard (2.18.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -250,14 +263,12 @@ GEM
     rexml (3.3.0)
       strscan
     rubyzip (2.3.2)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
+    sass-embedded (1.77.5-x86_64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+    sass-embedded (1.77.5-x86_64-linux-gnu)
+      google-protobuf (>= 3.25, < 5.0)
+    sassc-embedded (1.76.0)
+      sass-embedded (~> 1.76)
     selenium-webdriver (4.21.1)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
@@ -312,6 +323,7 @@ DEPENDENCIES
   capybara
   cloudinary
   country_select
+  dartsass-sprockets
   debug
   dotenv-rails
   guard-livereload (~> 2.5, >= 2.5.2)
@@ -321,7 +333,6 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-livereload
   rails (~> 7.0.8, >= 7.0.8.3)
-  sassc-rails
   selenium-webdriver
   simple_form
   sprockets-rails

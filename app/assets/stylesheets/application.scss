@@ -1,3 +1,4 @@
+$pink: rgb(255, 0, 179); // Defining a variable
 @import "bootstrap";
 // @import "./variables/colors";
 @import "./clients";
@@ -5,7 +6,11 @@
 @import "./partials/navbar";
 @import "./partials/footer";
 
-$pink: rgb(255, 0, 179); // Defining a variable
+.side-menu {
+  background-color: $pink;
+  width: 50px;
+  height: 400px;
+}
 
 #main {
   display: flex;
