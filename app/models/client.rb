@@ -4,7 +4,6 @@ class Client < ApplicationRecord
   has_one_attached :photo
   # uuid
   self.primary_key = 'id'
-  attr_accessor :remove_photo
   
 
 

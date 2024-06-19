@@ -52,13 +52,7 @@ class ClientsController < ApplicationController
   def update
     # @client = Client.find(params[:id])
 
-    @client.photo.purge if client_params[:remove_photo] == 'true'
-
-    if client_params[:photo].present? && @client.photo.attached?
-      @client.photo.purge # Delete the existing photo
-    end
-
-    if @client.update(client_params.except(:remove_photo))
+    if @client.update(client_params)
       respond_to do |format|
         format.html { redirect_to @client, alert: 'Cliente enregistrée' }
         format.json { render json: @client, status: :ok, location: @client }
@@ -94,7 +88,7 @@ class ClientsController < ApplicationController
 
   def client_params
     params.require(:client).permit(
-      :photo, :remove_photo, :name, :firstname, :email, :phone, :address, :zip_code, :city, :country,
+      :photo, :name, :firstname, :email, :phone, :address, :zip_code, :city, :country,
       :birthdate, :how_do_you_know_us, :notes,
       lash_attributes: %i[
         desired_effect face_diagnostic asymmetry_diagnostic
