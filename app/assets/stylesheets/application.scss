@@ -1,9 +1,11 @@
 @import "bootstrap";
-@import "./variables/colors";
+// @import "./variables/colors";
 @import "./clients";
 @import "./side-menu";
 @import "./partials/navbar";
 @import "./partials/footer";
+
+$pink: rgb(255, 0, 179); // Defining a variable
 
 #main {
   display: flex;
