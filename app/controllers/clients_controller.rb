@@ -68,7 +68,7 @@ class ClientsController < ApplicationController
   private
 
   def set_client
-    @client = Client.find(params[:id])
+    @client = Client.find(id: params[:id])
     redirect_to clients_url, alert: 'Client not found' unless @client
   end
 
