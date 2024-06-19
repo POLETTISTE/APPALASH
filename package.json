@@ -1,9 +1,0 @@
-{
-  "name": "lash_app",
-  "version": "1.0.0",
-  "private": true,
-  "repository": "git@github.com:POLETTISTE/lash_app_rails.git",
-  "author": "POLETTI Stéphane <polettistephane@msn.com>",
-  "license": "MIT",
-  "dependencies": {}
-}
