@@ -52,6 +52,11 @@ class ClientsController < ApplicationController
   def update
     # @client = Client.find(params[:id])
 
+
+    if client_params[:photo].present? && @client.photo.attached?
+      @client.photo.purge # Delete the existing photo
+    end
+
     if @client.update(client_params)
       respond_to do |format|
         format.html { redirect_to @client, alert: 'Cliente enregistrée' }

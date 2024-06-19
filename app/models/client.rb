@@ -14,4 +14,8 @@ class Client < ApplicationRecord
                   using: {
                     tsearch: { prefix: true } # <-- now `superman batm` will return something!
                   }
+
+  # Validations
+  validates :name, presence: true
+  validates :firstname, presence: true
 end
