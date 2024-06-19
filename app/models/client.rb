@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class Client < ApplicationRecord
+  has_one_attached :photo
   # uuid
   self.primary_key = 'id'
-
-  has_one_attached :photo
   attr_accessor :remove_photo
+  
+
 
   include PgSearch::Model
 
