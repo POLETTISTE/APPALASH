@@ -2,7 +2,7 @@
 
 class CreatePrestations < ActiveRecord::Migration[7.0]
   def change
-    create_table :prestations, id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
+    create_table :prestations do |t|
       t.string :name
       t.integer :price
 

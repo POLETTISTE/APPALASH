@@ -1,5 +1,5 @@
 # lib/tasks/clean_active_storage.rake
-
+# used to clean orphaned attachments, created when used uuid for client model and have buggs with active record
 namespace :active_storage do
     desc 'Delete orphaned attachments'
     task purge_orphaned: :environment do

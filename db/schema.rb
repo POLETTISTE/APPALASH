@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_135629) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "clients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "clients", force: :cascade do |t|
     t.string "name"
     t.string "firstname"
     t.string "email"
@@ -92,7 +92,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_135629) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "prestations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "prestations", force: :cascade do |t|
     t.string "name"
     t.integer "price"
     t.datetime "created_at", null: false
