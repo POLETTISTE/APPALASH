@@ -53,7 +53,7 @@ class ClientsController < ApplicationController
     # @client = Client.find(params[:id])
 
 
-    if client_params[:photo].present? && @client.photo.attached?
+    if @client.photo.attached?
       @client.photo.purge # Delete the existing photo
     end
 
