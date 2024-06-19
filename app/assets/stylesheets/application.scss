@@ -1,9 +1,9 @@
 @import "bootstrap";
+@import "./variables/colors";
 @import "./clients";
 @import "./side-menu";
 @import "./partials/navbar";
 @import "./partials/footer";
-@import "./variables/colors";
 
 #main {
   display: flex;
