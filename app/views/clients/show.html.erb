@@ -1,5 +1,5 @@
 <p style="color: green"><%= notice %></p>
-<% if @client.photo.present? %>
+<% if @client.photo.attached? %>
   <%= cl_image_tag @client.photo.key, height: 100, width: 100, crop: :fill , style: "border-radius: 50%;"%>
 <%else%>
   <%= image_tag "client/client_photo_profil.png", height: 100, width: 100 ,crop: :fill , style: "border-radius: 50%; background-color: tomato;"%>

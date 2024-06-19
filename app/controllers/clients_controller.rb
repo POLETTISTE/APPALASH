@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[show edit update destroy]
 
@@ -10,13 +8,7 @@ class ClientsController < ApplicationController
 
   # GET /clients
   def index
-    @clients =
-      if params[:query].present?
-        Client.search_by_personnal_information(params[:query])
-      else
-        Client.all
-      end
-
+    @clients = Client.all
     respond_to do |format|
       format.html
       format.json { render json: @clients }
@@ -37,7 +29,7 @@ class ClientsController < ApplicationController
 
     if @client.save
       respond_to do |format|
-        format.html { redirect_to @client, alert: 'Cliente enregistrée' }
+        format.html { redirect_to @client, notice: 'Client was successfully created.' }
         format.json { render json: @client, status: :created, location: @client }
       end
     else
@@ -50,16 +42,9 @@ class ClientsController < ApplicationController
 
   # PATCH/PUT /clients/1
   def update
-    # @client = Client.find(params[:id])
-
-
-    if @client.photo.attached?
-      @client.photo.purge # Delete the existing photo
-    end
-
     if @client.update(client_params)
       respond_to do |format|
-        format.html { redirect_to @client, alert: 'Cliente enregistrée' }
+        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
         format.json { render json: @client, status: :ok, location: @client }
       end
     else
@@ -72,12 +57,10 @@ class ClientsController < ApplicationController
 
   # DELETE /clients/1
   def destroy
-    if @client.photo.attached? #=> true/false
-      @client.photo.purge #=> Destroy the photo
-    end
+    @client.photo.purge if @client.photo.attached?
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, alert: 'Cliente supprimée' }
+      format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -85,10 +68,8 @@ class ClientsController < ApplicationController
   private
 
   def set_client
-    @client = Client.find_by(id: params[:id])
-    return if @client
-
-    redirect_to clients_url, alert: 'Cliente introuvable'
+    @client = Client.find(params[:id])
+    redirect_to clients_url, alert: 'Client not found' unless @client
   end
 
   def client_params
@@ -111,4 +92,6 @@ class ClientsController < ApplicationController
       ]
     )
   end
+
+
 end

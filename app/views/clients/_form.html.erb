@@ -1,12 +1,10 @@
 <%= simple_form_for(@client) do |form| %>
   <% if @client.photo.attached? %>
-    <div>
-      <%= image_tag @client.photo,id: 'current-photo', alt: "Current Photo", style: "max-width: 200px;" %>
-      <%= form.hidden_field :remove_photo, value: false, id: 'remove_photo' %>
-      <%= button_tag 'Remove Photo',id: 'remove-photo-btn', type: 'button', class: 'btn btn-danger', onclick: "removePhoto();" %>
-    </div>
+    <p>photo attachee</p>
+  <% else %>
+    <p>pas de photo attachee</p>
   <% end %>
-  <%= form.input :photo, as: :file %>
+  <%= form.input :photo, as: :file, input_html: { accept: 'image/jpeg, image/png' } %>
   <%= form.input :name, label: "Name", required: true %>
   <%= form.input :firstname, label: "First Name", required: true %>
   <%= form.input :email, label: "Email" %>
@@ -54,10 +52,3 @@
   <%= form.input :health_notes, as: :text, label: "Health Notes" %>
   <%= form.button :submit %>
 <% end %>
-<script>
-  function removePhoto() {
-    document.getElementById('remove_photo').value = true;
-    document.getElementById('remove-photo-btn').style.display = 'none';
-    document.getElementById('current-photo').style.display = 'none';
-  }
-</script>
