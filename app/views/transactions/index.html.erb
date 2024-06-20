@@ -9,5 +9,8 @@
   <% end %>
 </div>
 <%= link_to "+ Add Transaction", new_transaction_path %>
-<div data-controller="hello" class="mt-5">
+<%# <div data-controller="hello" class="mt-5">
+</div> %>
+<div>TOTAL DES TRANSACTIONS : 
+  <p> <%= @transactions_total_price %> </p>
 </div>

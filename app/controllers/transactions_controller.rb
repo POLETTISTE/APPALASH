@@ -24,6 +24,8 @@ class TransactionsController < ApplicationController
 
   def index
     @transactions = Transaction.all
+    @transactions_total_price = format('%.2f', @transactions.sum(:total_price))
+
     respond_to do |format|
       format.html
       format.json { render json: @transactions }
@@ -36,6 +38,7 @@ class TransactionsController < ApplicationController
       format.json { render json: @transaction }
     end
   end
+
 
   private
 
