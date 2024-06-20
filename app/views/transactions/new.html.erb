@@ -1,4 +1,4 @@
-<%= form_with(model: @transaction, local: true) do |form| %>
+<%= form_with(model: @transaction, local: true, data: { controller: "checkbox-new-form-transaction" }) do |form| %>
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
@@ -15,7 +15,7 @@
   </div>
   <div class="field">
     <%= form.label :client_id %>
-    <%= form.collection_select :client_id, @clients, :id, :name, prompt: 'Select a client' %>
+    <%= form.collection_select :client_id, @clients, :id, :name, { prompt: 'Select a client' }, { required: true } %>
   </div>
   <div class="field">
     <%= form.label :prestations %>
@@ -24,7 +24,7 @@
         <div>
           <% checked = params[:transaction] && params[:transaction][:prestations]&.any? { |p| p[:name] == prestation.name } %>
           <%= check_box_tag 'transaction[prestations][][name]', prestation.name, checked, id: "transaction_prestations_name_#{prestation.id}", class: "prestation-name-checkbox", data: { target: "transaction_prestations_price_#{prestation.id}" } %>
-          <%= check_box_tag 'transaction[prestations][][price]', prestation.price, checked, id: "transaction_prestations_price_#{prestation.id}" %>
+          <%= check_box_tag 'transaction[prestations][][price]', prestation.price, checked, id: "transaction_prestations_price_#{prestation.id}", style:"display: none" %>
           <%= prestation.name %> - <%= prestation.price %>
           <% if checked %>
             <%= hidden_field_tag 'transaction[prestations][][name]', prestation.name %>
@@ -38,18 +38,4 @@
     <%= form.submit %>
   </div>
 <% end %>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.prestation-name-checkbox').forEach(function (checkbox) {
-      checkbox.addEventListener('change', function () {
-        var targetCheckboxId = checkbox.dataset.target;
-        var targetCheckbox = document.getElementById(targetCheckboxId);
-        if (checkbox.checked) {
-          targetCheckbox.checked = true;
-        } else {
-          targetCheckbox.checked = false;
-        }
-      });
-    });
-  });
-</script>
+<%# <div data-controller="checkbox" class="mt-5"></div> %>
