@@ -1,0 +1,13 @@
+<h1>Transactions</h1>
+<div id="transactions">
+  <% @transactions.each do |transaction| %>
+    <%= link_to transaction_path(transaction), class: "card-transaction" do %>
+      <div>
+        <%= transaction.id %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<%= link_to "+ Add Transaction", new_transaction_path %>
+<div data-controller="hello" class="mt-5">
+</div>

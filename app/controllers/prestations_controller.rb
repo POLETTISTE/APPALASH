@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PrestationsController < ApplicationController
   before_action :set_prestation, only: %i[show edit update destroy]
 
@@ -24,8 +26,7 @@ class PrestationsController < ApplicationController
   end
 
   # GET /prestations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /prestations
   def create
@@ -72,10 +73,10 @@ class PrestationsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_prestation
-    @prestation = Prestation.find_by(id: params[:id])
-    unless @prestation
-      redirect_to prestations_url, alert: 'Prestation introuvable'
-    end
+    @prestation = Prestation.find(params[:id])
+    return if @prestation
+
+    redirect_to prestations_url, alert: 'Prestation introuvable'
   end
 
   # Only allow a list of trusted parameters through.

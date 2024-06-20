@@ -1,0 +1,35 @@
+<%= form_with(model: @transaction, local: true) do |form| %>
+  <% if @transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+      <ul>
+        <% @transaction.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date %>
+  </div>
+  <div class="field">
+    <%= form.label :client_id %>
+    <%= form.collection_select :client_id, @clients, :id, :name, prompt: 'Select a client' %>
+  </div>
+  <div class="field">
+    <%= form.label :prestations %>
+    <div id="prestations">
+      <% @prestations.each do |prestation| %>
+        <div>
+          <%= check_box_tag 'transaction[prestations][][name]', prestation.name %>
+          <%= prestation.name %> - <%= prestation.price %>
+          <%= hidden_field_tag 'transaction[prestations][][price]', prestation.price %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

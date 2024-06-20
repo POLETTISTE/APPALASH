@@ -1,0 +1,13 @@
+<p>
+  <strong>Date:</strong>
+  <p><%= @transaction.date %></p>
+  <p>CLIENT ID : <%= @transaction.client_id %></p>
+  <p><strong>Client:</strong>  <%= @transaction.client.name %> <%= @transaction.client.firstname %></p>
+</p>
+<h2>Prestations:</h2>
+<ul>
+  <% @transaction.prestations.each do |prestation| %>
+    <li><%= "#{prestation['name']} - #{prestation['price']}" %></li>
+  <% end %>
+</ul>
+<p>PRIX TOTAL : <%= @transaction.total_price %></p>
