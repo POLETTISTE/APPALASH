@@ -22,9 +22,14 @@
     <div id="prestations">
       <% @prestations.each do |prestation| %>
         <div>
-          <%= check_box_tag 'transaction[prestations][][name]', prestation.name %>
+          <% checked = params[:transaction] && params[:transaction][:prestations]&.any? { |p| p[:name] == prestation.name } %>
+          <%= check_box_tag 'transaction[prestations][][name]', prestation.name, checked, id: "transaction_prestations_name_#{prestation.id}", class: "prestation-name-checkbox", data: { target: "transaction_prestations_price_#{prestation.id}" } %>
+          <%= check_box_tag 'transaction[prestations][][price]', prestation.price, checked, id: "transaction_prestations_price_#{prestation.id}" %>
           <%= prestation.name %> - <%= prestation.price %>
-          <%= hidden_field_tag 'transaction[prestations][][price]', prestation.price %>
+          <% if checked %>
+            <%= hidden_field_tag 'transaction[prestations][][name]', prestation.name %>
+            <%= hidden_field_tag 'transaction[prestations][][price]', prestation.price %>
+          <% end %>
         </div>
       <% end %>
     </div>
@@ -33,3 +38,18 @@
     <%= form.submit %>
   </div>
 <% end %>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.prestation-name-checkbox').forEach(function (checkbox) {
+      checkbox.addEventListener('change', function () {
+        var targetCheckboxId = checkbox.dataset.target;
+        var targetCheckbox = document.getElementById(targetCheckboxId);
+        if (checkbox.checked) {
+          targetCheckbox.checked = true;
+        } else {
+          targetCheckbox.checked = false;
+        }
+      });
+    });
+  });
+</script>
