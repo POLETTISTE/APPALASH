@@ -3,14 +3,18 @@
   <% @transactions.each do |transaction| %>
     <%= link_to transaction_path(transaction), class: "card-transaction" do %>
       <div>
-        <%= transaction.id %>
+        <% if transaction.client.photo.attached? %>
+          <%= cl_image_tag transaction.client.photo.key, alt: "#{transaction.client.firstname}'s photo", style: 'max-width: 100%; height: 20px; border-radius: 50%;' %>
+        <% else %>
+          <%= image_tag "default_photo.png", alt: "#{transaction.client.firstname}'s photo", style: 'max-width: 100%; height: 20px; border-radius: 50%;' %>
+        <% end %>
+        <%= "#{transaction.date} - #{transaction.client.name} #{transaction.client.firstname}" %>
       </div>
     <% end %>
   <% end %>
 </div>
 <%= link_to "+ Add Transaction", new_transaction_path %>
-<%# <div data-controller="hello" class="mt-5">
-</div> %>
-<div>TOTAL DES TRANSACTIONS : 
-  <p> <%= @transactions_total_price %> </p>
+<div>
+  TOTAL DES TRANSACTIONS :
+  <p><%= format('%.2f', @transactions_total_price) %></p>
 </div>

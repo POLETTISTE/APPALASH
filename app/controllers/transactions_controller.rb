@@ -24,7 +24,7 @@ class TransactionsController < ApplicationController
 
   def index
     @transactions = Transaction.all
-    @transactions_total_price = format('%.2f', @transactions.sum(:total_price))
+    @transactions_total_price = @transactions.sum(:total_price)
 
     respond_to do |format|
       format.html
