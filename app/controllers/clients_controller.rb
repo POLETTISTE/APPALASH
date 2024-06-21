@@ -31,7 +31,7 @@ class ClientsController < ApplicationController
 
     if @client.save
       respond_to do |format|
-        format.html { redirect_to @client, notice: 'Client was successfully created.' }
+        format.html { redirect_to @client, alert: 'Client was successfully created.' }
         format.json { render json: @client, status: :created, location: @client }
       end
     else
@@ -46,7 +46,7 @@ class ClientsController < ApplicationController
   def update
     if @client.update(client_params)
       respond_to do |format|
-        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
+        format.html { redirect_to @client, alert: 'Client was successfully updated.' }
         format.json { render json: @client, status: :ok, location: @client }
       end
     else
@@ -62,7 +62,7 @@ class ClientsController < ApplicationController
     @client.photo.purge if @client.photo.attached?
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
+      format.html { redirect_to clients_url, alert: 'Client was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

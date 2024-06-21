@@ -1,0 +1,14 @@
+.card-transaction {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  &:hover {
+    background-color: rgb(227, 227, 218);
+  }
+  &-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+}

@@ -1,20 +1,20 @@
-<h1>Transactions</h1>
 <div id="transactions">
-  <% @transactions.each do |transaction| %>
-    <%= link_to transaction_path(transaction), class: "card-transaction" do %>
-      <div>
+  <h1>Transactions</h1>
+  <div class="transactions-list">
+    <% @transactions.each do |transaction| %>
+      <%= link_to transaction_path(transaction), class: "card-transaction" do %>
         <% if transaction.client.photo.attached? %>
-          <%= cl_image_tag transaction.client.photo.key, alt: "#{transaction.client.firstname}'s photo", style: 'max-width: 100%; height: 20px; border-radius: 50%;' %>
+          <%= cl_image_tag transaction.client.photo.key, alt: "#{transaction.client.firstname}'s photo", class: "card-transaction-image" %>
         <% else %>
-          <%= image_tag "default_photo.png", alt: "#{transaction.client.firstname}'s photo", style: 'max-width: 100%; height: 20px; border-radius: 50%;' %>
+          <%= image_tag "default_photo.png", alt: "#{transaction.client.firstname}'s photo", class: "card-transaction-image" %>
         <% end %>
         <%= "#{transaction.date} - #{transaction.client.name} #{transaction.client.firstname}" %>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
-<%= link_to "+ Add Transaction", new_transaction_path %>
-<div>
-  TOTAL DES TRANSACTIONS :
-  <p><%= format('%.2f', @transactions_total_price) %></p>
+  </div>
+  <%= link_to "+ Add Transaction", new_transaction_path %>
+  <div>
+    TOTAL DES TRANSACTIONS :
+    <p><%= format('%.2f', @transactions_total_price) %></p>
+  </div>
 </div>

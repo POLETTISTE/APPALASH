@@ -15,7 +15,7 @@
   </div>
   <div class="field">
     <%= form.label :client_id %>
-    <%= form.collection_select :client_id, @clients, :id, :name, { prompt: 'Select a client' }, { required: true } %>
+    <%= form.collection_select :client_id, @clients, :id, :full_name, prompt: 'Select a client' %>
   </div>
   <div class="field">
     <%= form.label :prestations %>

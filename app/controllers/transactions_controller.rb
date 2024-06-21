@@ -11,7 +11,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
     if @transaction.save
       respond_to do |format|
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+        format.html { redirect_to transactions_url, alert: 'Transaction was successfully created.' }
         format.json { render json: @transaction, status: :created, location: @transaction }
       end
     else
