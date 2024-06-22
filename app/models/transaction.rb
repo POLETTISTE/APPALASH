@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Transaction < ApplicationRecord
   belongs_to :client
 
@@ -10,5 +12,4 @@ class Transaction < ApplicationRecord
   def calculate_total_price
     self.total_price = prestations.sum { |p| p['price'].to_f }
   end
-
 end

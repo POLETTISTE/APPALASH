@@ -1,0 +1,15 @@
+<div data-search-clients-target="list">
+  <p class="h3">
+    <% if params[:query].blank? %>
+      <%= pluralize clients.count, "client" %> available
+    <% else %>
+      <%= pluralize clients.count, "result" %> for <code><%= params[:query] %></code>
+    <% end %>
+  </p>
+  <div class="clients">
+    <% clients.each do |client| %>
+      <%#= render "client_infos", client: client %>
+      <%= client.name %>
+    <% end %>
+  </div>
+</div>

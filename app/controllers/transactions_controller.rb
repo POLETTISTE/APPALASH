@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[show edit update destroy]
 
@@ -39,7 +41,6 @@ class TransactionsController < ApplicationController
     end
   end
 
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -48,6 +49,6 @@ class TransactionsController < ApplicationController
   end
 
   def transaction_params
-    params.require(:transaction).permit(:date, :client_id, prestations: [:name, :price])
+    params.require(:transaction).permit(:date, :client_id, prestations: %i[name price])
   end
 end

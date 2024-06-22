@@ -1,18 +1,21 @@
-<h1>Clients</h1>
-<%= form_tag clients_path, method: "GET" do %>
-  <%= text_field_tag :query, params[:query], placeholder: "Enter name or firstname..." %>
-  <%= submit_tag "Rechercher", class:"btn btn-primary" %>
-<% end %>
-<div id="clients">
-  <% @clients.each do |client| %>
-    <%= link_to client_path(client), class: "card-client" do %>
-      <div>
-        <%= client.name %>
-        <%= client.firstname %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1 class="h2 my-3 d-flex justify-content-center">clients to watch 🍿</h1>
+      <div data-controller="search-clients">
+        <%= form_with url: clients_path, method: :get, html: {class: "mb-4", data: {search_clients_target: "form"}} do |f| %>
+          <%= f.label :query, "Type a movie title" %>
+          <%= f.text_field :query,
+                           class: "form-control",
+                           value: params[:query],
+                           data: {
+                             search_clients_target: "searchInput",
+                             action: "keyup->search-clients#update"
+                            }
+                           %>
+        <% end %>
+        <%= render "list-clients", clients: @clients %>
       </div>
-    <% end %>
-  <% end %>
-</div>
-<%= link_to "+ Add Client", new_client_path %>
-<%# <div data-controller="hello" class="mt-5"> %>
+    </div>
+  </div>
 </div>

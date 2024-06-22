@@ -11,9 +11,14 @@ class ClientsController < ApplicationController
   # GET /clients
   def index
     @clients = Client.all
+    if params[:query].present?
+      @clients = @clients.where("name ILIKE ?", "%#{params[:query]}%")
+    end
     respond_to do |format|
       format.html
       format.json { render json: @clients }
+      format.text { render partial: "clients/list-clients", locals: {clients: @clients}, formats: [:html] }
+
     end
   end
 
