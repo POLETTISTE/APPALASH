@@ -52,6 +52,8 @@ class ClientsController < ApplicationController
     if @client.update(client_params)
       respond_to do |format|
         format.html { redirect_to @client, alert: 'Client was successfully updated.' }
+        format.text { render partial: "clients/client_infos", locals: {client: @client}, formats: [:html] }
+
         format.json { render json: @client, status: :ok, location: @client }
       end
     else

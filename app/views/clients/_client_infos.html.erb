@@ -1,0 +1,23 @@
+<div class="client-card" data-controller="edit-client" data-edit-client-target="card">
+  <%= cl_image_tag client.photo.key, alt: "#{client.firstname}'s photo"  %>
+  <div class="client-infos <%= 'd-none' if client.errors.any? %>" data-edit-client-target="infos">
+    <h2><%= client.name %><small> (<%= client.firstname %>)</small></h2>
+    <button aria-label="Edit client" data-action="click->edit-client#displayForm">
+      EDITER
+      <%# <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->edit-client#displayForm"></i> %>
+    </button>
+  </div>
+  <%= simple_form_for client,
+    html: {
+      class: client.errors.any? ? "" : "d-none",
+      data: {
+        edit_client_target: "form",
+        action: "submit->edit-client#update"
+      }
+    } do |f|
+  %>
+  <%= f.input :name %>
+  <%= f.input :firstname %>
+  <%= f.submit "Update client", class: "btn btn-sm btn-primary btn-block mt-2" %>
+<% end %>
+</div>
