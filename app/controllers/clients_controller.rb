@@ -8,22 +8,26 @@ class ClientsController < ApplicationController
     @client = Client.new
   end
 
-  # GET /clients
-  def index
-    if params[:query].present?
-      query = "%#{params[:query]}%"
-      @clients = Client.where('name ILIKE ? OR firstname ILIKE ? OR email ILIKE ? OR phone ILIKE ?',
-                              query, query, query, query)
+# GET /clients
+def index
+  @clients = []
+  if params[:query].present?
+    if params[:query] == "*"
+      @clients = Client.all
     else
-      # Assign an empty array if no query is present
-      @clients = []
-    end
-    respond_to do |format|
-      format.html
-      format.json { render json: @clients }
-      format.text { render partial: 'clients/list', locals: { clients: @clients }, formats: [:html] }
+      query = "%#{params[:query]}%"
+      @clients = Client.where('name ILIKE ? OR firstname ILIKE ? OR email ILIKE ? OR phone ILIKE ?', 
+                              query, query, query, query)
     end
   end
+
+  respond_to do |format|
+    format.html
+    format.json { render json: @clients }
+    format.text { render partial: 'clients/list', locals: { clients: @clients }, formats: [:html] }
+  end
+end
+
 
   # GET /clients/1
   def show
