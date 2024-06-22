@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :clients
   resources :prestations
   resources :transactions
+  resources :dashboard
 
   # Catch-all route for handling routing errors
   match '*path', to: 'application#not_found', via: :all
