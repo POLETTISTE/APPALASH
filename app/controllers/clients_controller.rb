@@ -18,7 +18,7 @@ class ClientsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @clients }
-      format.text { render partial: "clients/list-clients", locals: {clients: @clients}, formats: [:html] }
+      format.text { render partial: "clients/list", locals: {clients: @clients}, formats: [:html] }
     end
   end
 

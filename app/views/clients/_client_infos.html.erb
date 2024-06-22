@@ -1,7 +1,9 @@
 <div class="client-card" data-controller="edit-client" data-edit-client-target="card">
   <%= cl_image_tag client.photo.key, alt: "#{client.firstname}'s photo"  %>
   <div class="client-infos <%= 'd-none' if client.errors.any? %>" data-edit-client-target="infos">
-    <h2><%= client.name %><small> (<%= client.firstname %>)</small></h2>
+    <%= link_to client_path(client), class: "client-link" do %>
+      <h2><%= client.name %><small> (<%= client.firstname %>)</small></h2>
+    <% end %>
     <button aria-label="Edit client" data-action="click->edit-client#displayForm">
       EDITER
       <%# <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->edit-client#displayForm"></i> %>

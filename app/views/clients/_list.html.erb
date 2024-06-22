@@ -1,9 +1,13 @@
 <div data-search-clients-target="list">
   <p class="h3">
     <% if params[:query].blank? %>
-      <%= pluralize clients.count, "client" %> available
+      <%= pluralize clients.count, "cliente" %> <%#= pluralize_verb clients.count, "corresponde" %>
     <% else %>
-      <%= pluralize clients.count, "result" %> for <code><%= params[:query] %></code>
+      <% if clients.count == 0 %>
+        <%= "aucun résultat" %> pour <code><%= params[:query] %></code>
+      <% else %>
+        <%= pluralize clients.count, "résultat" %> pour <code><%= params[:query] %></code>
+      <% end %>
     <% end %>
   </p>
   <div class="clients">
