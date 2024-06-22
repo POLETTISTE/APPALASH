@@ -1,12 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1 class="h2 my-3 d-flex justify-content-center">clients to watch 🍿</h1>
+      <h1 class="h2 my-3 d-flex justify-content-center">CLIENTES</h1>
       <div data-controller="search-clients">
         <%= form_with url: clients_path, method: :get, html: {class: "mb-4", data: {search_clients_target: "form"}} do |f| %>
-          <%= f.label :query, "Type a movie title" %>
+          <%= f.label :query, "Rechercher cliente" %>
           <%= f.text_field :query,
                            class: "form-control",
+                           placeholder: "rechercher par nom / prénom / téléphone / email",
                            value: params[:query],
                            data: {
                              search_clients_target: "searchInput",

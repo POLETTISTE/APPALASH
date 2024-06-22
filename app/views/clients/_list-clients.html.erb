@@ -9,7 +9,9 @@
   <div class="clients">
     <% clients.each do |client| %>
       <%#= render "client_infos", client: client %>
-      <%= client.name %>
+      <p>
+        <%= "#{client.name} - #{client.firstname} - #{client.email} - #{client.phone} " %>
+      </p>
     <% end %>
   </div>
 </div>

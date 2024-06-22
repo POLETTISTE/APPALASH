@@ -12,13 +12,13 @@ class ClientsController < ApplicationController
   def index
     @clients = Client.all
     if params[:query].present?
-      @clients = @clients.where("name ILIKE ?", "%#{params[:query]}%")
+      query = "%#{params[:query]}%"
+      @clients = @clients.where("name ILIKE ? OR firstname ILIKE ? OR email ILIKE ? OR phone ILIKE ?", query, query, query, query)
     end
     respond_to do |format|
       format.html
       format.json { render json: @clients }
       format.text { render partial: "clients/list-clients", locals: {clients: @clients}, formats: [:html] }
-
     end
   end
 
