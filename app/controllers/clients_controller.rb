@@ -10,22 +10,25 @@ class ClientsController < ApplicationController
 
   # GET /clients
   def index
-    @clients = Client.all
     if params[:query].present?
       query = "%#{params[:query]}%"
-      @clients = @clients.where("name ILIKE ? OR firstname ILIKE ? OR email ILIKE ? OR phone ILIKE ?", query, query, query, query)
+      @clients = Client.where('name ILIKE ? OR firstname ILIKE ? OR email ILIKE ? OR phone ILIKE ?',
+                              query, query, query, query)
+    else
+      # Assign an empty array if no query is present
+      @clients = []
     end
     respond_to do |format|
       format.html
       format.json { render json: @clients }
-      format.text { render partial: "clients/list", locals: {clients: @clients}, formats: [:html] }
+      format.text { render partial: 'clients/list', locals: { clients: @clients }, formats: [:html] }
     end
   end
 
   # GET /clients/1
   def show
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @client }
     end
   end
@@ -52,7 +55,7 @@ class ClientsController < ApplicationController
     if @client.update(client_params)
       respond_to do |format|
         format.html { redirect_to @client, alert: 'Client was successfully updated.' }
-        format.text { render partial: "clients/client_infos", locals: {client: @client}, formats: [:html] }
+        format.text { render partial: 'clients/client_infos', locals: { client: @client }, formats: [:html] }
 
         format.json { render json: @client, status: :ok, location: @client }
       end

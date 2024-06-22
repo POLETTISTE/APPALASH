@@ -1,7 +1,7 @@
 <div data-search-clients-target="list">
   <p class="h3">
     <% if params[:query].blank? %>
-      <%= pluralize clients.count, "cliente" %> <%#= pluralize_verb clients.count, "corresponde" %>
+      <%#= pluralize clients.count, "cliente" = pluralize_verb clients.count, "corresponde" %>
     <% else %>
       <% if clients.count == 0 %>
         <%= "aucun résultat" %> pour <code><%= params[:query] %></code>
@@ -13,9 +13,6 @@
   <div class="clients">
     <% clients.each do |client| %>
       <%= render "client_infos", client: client %>
-      <%# <p> %>
-      <%#= "#{client.name} - #{client.firstname} - #{client.email} - #{client.phone} " %>
-      <%# </p> %>
     <% end %>
   </div>
 </div>
