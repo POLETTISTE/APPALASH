@@ -5,7 +5,7 @@
     <%= image_tag "client/client_photo_profil.png", crop: :fill , style: "background-color: tomato;"%>
   <% end %>
   <div class="client-infos <%= 'd-none' if client.errors.any? %>" data-edit-client-target="infos">
-    <h2><%= client.name %><small> (<%= client.firstname %>)</small></h2>
+    <%= link_to "#{client.name} #{client.firstname}".html_safe, client_path(client) %>
     <button aria-label="Edit client" data-action="click->edit-client#displayForm">
       EDITER
       <%# <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->edit-client#displayForm"></i> %>
