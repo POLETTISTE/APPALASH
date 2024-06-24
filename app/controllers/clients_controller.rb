@@ -54,11 +54,11 @@ class ClientsController < ApplicationController
 
   # PATCH/PUT /clients/1
   def update
+    ensure_fields_exist
     if @client.update(client_params)
       respond_to do |format|
         format.html { redirect_to @client, alert: 'Client was successfully updated.' }
         format.text { render partial: 'clients/client_infos', locals: { client: @client }, formats: [:html] }
-
         format.json { render json: @client, status: :ok, location: @client }
       end
     else
@@ -105,5 +105,26 @@ class ClientsController < ApplicationController
         lie_down notes
       ]
     )
+  end
+  def ensure_fields_exist
+    client_params.each_key do |field|
+      next if @client.respond_to?(field)
+
+      add_field_to_schema(field)
+    end
+  end
+
+  def add_field_to_schema(field)
+    field_type = Client.columns_hash[field.to_s]&.type || :string
+    @client.class.connection.add_column(@client.class.table_name, field, field_type)
+    @client.class.reset_column_information
+  end
+
+  def perform_update
+    if @client.update(client_params)
+      render json: @client
+    else
+      render json: { errors: @client.errors }, status: :unprocessable_entity
+    end
   end
 end

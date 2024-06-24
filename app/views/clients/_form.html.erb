@@ -9,14 +9,14 @@
     <% end %>
   <% end %>
   <%= form.input :photo, as: :file, input_html: { accept: 'image/jpeg, image/png' } %>
-  <%= form.input :name, label: "Name", required: true %>
-  <%= form.input :firstname, label: "First Name", required: true %>
-  <%= form.input :email, label: "Email" %>
-  <%= form.input :phone, label: "Phone" %>
-  <%= form.input :address, label: "Address" %>
-  <%= form.input :zip_code, label: "Zip Code" %>
-  <%= form.input :city, label: "City" %>
-  <%= form.input :country, label: "Country" %>
+  <%= form.input :name, label: "Nom", required: true %>
+  <%= form.input :firstname, label: "Prénom", required: true %>
+  <%= form.input :email, label: "email" %>
+  <%= form.input :phone, label: "téléphone" %>
+  <%= form.input :address, label: "adresse" %>
+  <%= form.input :zip_code, label: "code postal" %>
+  <%= form.input :city, label: "ville" %>
+  <%= form.input :country, label: "Pays" %>
   <%= form.input :birthdate, label: "Birthdate",  as: :string, input_html: { data: { controller: "datepicker" } } %>
   <%= form.input :how_do_you_know_us, collection: how_do_you_know_us_options, as: :select, label: "How Do You Know Us?" %>
   <%= form.input :notes, as: :text, label: "Notes" %>
