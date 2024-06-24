@@ -3,7 +3,7 @@
 class HomeController < ApplicationController
   layout 'home'
 
-  def index; end
+  def welcome; end
 
   def offers; end
 end
