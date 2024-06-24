@@ -76,6 +76,7 @@ group :test do
 end
 
 gem 'bootstrap'
+gem 'chartkick'
 gem 'cloudinary'
 gem 'country_select'
 gem 'dotenv-rails'
