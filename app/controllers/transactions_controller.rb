@@ -25,7 +25,7 @@ class TransactionsController < ApplicationController
   end
 
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.order(date: :desc).all
     @transactions_total_price = @transactions.sum(:total_price)
 
     respond_to do |format|
