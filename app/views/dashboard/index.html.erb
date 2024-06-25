@@ -1,2 +1,10 @@
-index dashboard
-<%= pie_chart Client.group(:name).count %>
+<h1>INDEX DASHBOARD</h1>
+<%#= pie_chart Client.group(:name).count %>
+<div id="dashboard">
+  <div data-controller="barchart" class="dashboard-barchart">
+    <canvas id="bar-chart" data-barchart-target="myBarChart" width="400" height="450"></canvas>
+  </div>
+  <div data-controller="donutschart" class="dashboard-donutschart">DONUTS
+    <canvas id="donuts-chart" data-barchart-target="myDonutsChart" width="400" height="450"></canvas>
+  </div>
+</div>
