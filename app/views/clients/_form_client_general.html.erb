@@ -9,17 +9,17 @@
     <% end %>
   <% end %>
   <%= form.input :photo, as: :file, input_html: { accept: 'image/jpeg, image/png' } %>
-  <%= form.input :name, label: "Nom", required: true %>
-  <%= form.input :firstname, label: "Prénom", required: true %>
-  <%= form.input :email, label: "email" %>
-  <%= form.input :phone, label: "téléphone" %>
-  <%= form.input :address, label: "adresse" %>
-  <%= form.input :zip_code, label: "code postal" %>
-  <%= form.input :city, label: "ville" %>
-  <%= form.input :country, label: "Pays" %>
-  <%= form.input :birthdate, label: "Date de naissance",  as: :string, input_html: { data: { controller: "datepicker" } } %>
-  <%= form.input :how_do_you_know_us, collection: how_do_you_know_us_options, as: :select, label: "Comment vous nous avez connu ? ?" %>
-  <%= form.input :notes, as: :text, label: "Notes" %>
+  <%= form.input :name, label: t('simple_form.labels.client.name'), required: true %>
+  <%= form.input :firstname, label: t('simple_form.labels.client.firstname'), required: true %>
+  <%= form.input :email, label: t('simple_form.labels.client.email') %>
+  <%= form.input :phone, label: t('simple_form.labels.client.phone') %>
+  <%= form.input :address, label: t('simple_form.labels.client.address') %>
+  <%= form.input :zip_code, label: t('simple_form.labels.client.zip_code') %>
+  <%= form.input :city, label: t('simple_form.labels.client.city')  %>
+  <%= form.input :country, label: t('simple_form.labels.client.country')  %>
+  <%= form.input :birthdate, label: t('simple_form.labels.client.birthdate') ,  as: :string, input_html: { data: { controller: "datepicker" } } %>
+  <%= form.input :how_do_you_know_us, collection: how_do_you_know_us_options, as: :select, label: t('simple_form.labels.client.how_do_you_know_us') %>
+  <%= form.input :notes, as: :text, label: t('simple_form.labels.client.notes')  %>
   <%#= form.input :lash_desired_effect, collection: lash_desired_effect_options, as: :select, label: "Lash Desired Effect" %>
   <%#= form.input :lash_face_diagnostic, collection: lash_face_diagnostic_options, as: :select, label: "Lash Face Diagnostic" %>
   <%#= form.input :lash_asymmetry_diagnostic,collection: lash_asymmetry_diagnostic_options, as: :select,label: "Lash Asymmetry Diagnostic" %>

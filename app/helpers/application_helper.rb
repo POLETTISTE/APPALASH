@@ -2,8 +2,8 @@
 
 # app/helpers/application_helper.rb
 module ApplicationHelper
-  def client_name
+  def full_user_name
     client = Client.find_by(id: 12) # Assuming client with ID 12
-    client&.name
+    client.firstname + ' ' + client.name
   end
 end

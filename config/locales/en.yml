@@ -30,9 +30,64 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  welcome: "Welcome here!"
-  navbar_username: "hello %{client_name}"
+  hello: "Hello "
+  welcome: "Welcome"
+  navbar_full_username_html: "Hello <strong>%{full_user_name}</strong> !"
+
+  # page clients/form/options
+  client_options:
+    how_do_you_know_us_options:
+      google: "Google"
+      planity: "Planity"
+      social_networks: "Social Networks"
+      friend: "Friend / Family"
+      other: "Other"
+    lash_desired_effect_options:
+      light: "Light"
+      intermediate: "Intermediate"
+      intense: "Intense"
+    lash_face_diagnostic_options:
+      round: "Round"
+      square: "Square"
+      oval: "Oval"
+    lash_asymmetry_diagnostic_options:
+      almond: "Almond"
+      round: "Round"
+    lash_eyelid_morphology_diagnostic_options:
+      large: "Large"
+      small: "Small"
+      droopy: "Droopy"
+    lash_alignment_morphology_diagnostic_options:
+      descending: "Descending"
+      aligned: "Aligned"
+      ascending: "Ascending"
+    lash_proportion_morphology_diagnostic_options:
+      close: "Close"
+      equal: "Equal"
+      wide: "Wide"
+    lash_density_options:
+      high: "High"
+      medium: "Medium"
+      low: "Low"
+    lash_style_options:
+      natural: "Natural"
+      squirrel: "Squirrel"
+      dolly: "Dolly"
+      cat_eye: "Cat Eye"
+    lash_extensions_brand_options:
+      london_lash: "London Lash"
+      une_pause_poudree: "Une Pause Poudrée"
+      lexcellence: "L'excellence"
+    lash_extensions_curvature_options:
+      c: "C"
+      cc: "CC"
+      d: "D"
+      l: "L"
+    lash_extensions_glue_options:
+      no_constraint: "No Constraint"
+      lady_bond: "Lady Bond"
+      lexcellence: "L'excellence"
+
   # /offers
   offers_and_subscription: "offers and subscription"
 
