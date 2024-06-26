@@ -14,8 +14,7 @@ class DashboardController < ApplicationController
       format.json do
         render json: { client_counts: @clients_group_by_name,
                        client_know_us: @clients_how_do_you_know_us,
-                       clients: @clients
-                      }
+                       clients: @clients }
       end
     end
   end

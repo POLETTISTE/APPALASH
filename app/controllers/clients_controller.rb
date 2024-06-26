@@ -10,17 +10,8 @@ class ClientsController < ApplicationController
 
   # GET /clients
   def index
-    
-    @clients = []
-
-    if params[:query].present?
-      @clients = if params[:query] == '*'
-                   Client.all
-                 else
-                   Client.search_by_general_informations(params[:query])
-                 end
-    end
-
+    @clients = Client.all.order('UPPER(name)')
+    params[:query].present? && @clients = Client.search_by_general_informations(params[:query])
     respond_to do |format|
       format.html
       format.json { render json: Client.all }

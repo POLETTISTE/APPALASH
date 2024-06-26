@@ -12,9 +12,8 @@ pin 'bootstrap', to: 'bootstrap.min.js', preload: true
 pin '@popperjs/core', to: 'popper.js', preload: true
 pin 'flatpickr' # @4.6.13
 pin 'flatpickr/l10n/fr', to: 'https://ga.jspm.io/npm:flatpickr@4.6.13/dist/l10n/fr.js'
-pin "chartkick", to: "chartkick.js"
-pin "Chart.bundle", to: "Chart.bundle.js"
+pin 'chartkick', to: 'chartkick.js'
+pin 'Chart.bundle', to: 'Chart.bundle.js'
 
-pin "chart.js", to: "https://ga.jspm.io/npm:chart.js@4.2.0/dist/chart.js"
-pin "@kurkle/color", to: "https://ga.jspm.io/npm:@kurkle/color@0.3.2/dist/color.esm.js"
-
+pin 'chart.js', to: 'https://ga.jspm.io/npm:chart.js@4.2.0/dist/chart.js'
+pin '@kurkle/color', to: 'https://ga.jspm.io/npm:@kurkle/color@0.3.2/dist/color.esm.js'
