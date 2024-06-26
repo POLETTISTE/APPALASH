@@ -45,6 +45,8 @@ export default class extends Controller {
               pinkColor,
               "rgb(215, 5, 6)",
               "rgb(215, 105, 6)",
+              "rgb(255, 255, 255)",
+              "rgb(25, 255, 255)",
             ],
             hoverOffset: 4,
           },
