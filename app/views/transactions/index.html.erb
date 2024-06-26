@@ -6,7 +6,7 @@
         <% if transaction.client.photo.attached? %>
           <%= cl_image_tag transaction.client.photo.key, alt: "#{transaction.client.firstname}'s photo", class: "card-transaction-image" %>
         <% else %>
-          <%= image_tag "default_photo.png", alt: "#{transaction.client.firstname}'s photo", class: "card-transaction-image" %>
+          <%= image_tag "client/client_photo_profil.png", crop: :fill , style: "background-color: tomato;", class: "card-transaction-image"%>
         <% end %>
         <%= "#{transaction.date} - #{transaction.client.name} #{transaction.client.firstname}" %>
       <% end %>

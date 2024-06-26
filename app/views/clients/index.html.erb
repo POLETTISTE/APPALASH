@@ -1,7 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1 class="h2 my-3 d-flex justify-content-center"><%= Client.all.count %> CLIENTES</h1>
       <div data-controller="search-clients">
         <%= form_with url: clients_path, method: :get, html: {class: "mb-4", data: {search_clients_target: "form"}} do |f| %>
           <%= f.label :query, "Rechercher cliente" %>

@@ -2,6 +2,7 @@
 
 class Transaction < ApplicationRecord
   belongs_to :client
+  validates :client_id, presence: true
 
   # serialize :prestations, Array
 

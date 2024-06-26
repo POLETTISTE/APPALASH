@@ -10,6 +10,7 @@ class ClientsController < ApplicationController
 
   # GET /clients
   def index
+    
     @clients = []
 
     if params[:query].present?
@@ -22,7 +23,7 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @clients }
+      format.json { render json: Client.all }
       format.text { render partial: 'clients/list', locals: { clients: @clients }, formats: [:html] }
     end
   end
@@ -41,7 +42,7 @@ class ClientsController < ApplicationController
 
     if @client.save
       respond_to do |format|
-        format.html { redirect_to @client, alert: 'Client was successfully created.' }
+        format.html { redirect_to @client, alert: "création réussie pour #{@client.firstname} #{@client.name}" }
         format.json { render json: @client, status: :created, location: @client }
       end
     else
@@ -57,7 +58,7 @@ class ClientsController < ApplicationController
     ensure_fields_exist
     if @client.update(client_params)
       respond_to do |format|
-        format.html { redirect_to @client, alert: 'Client was successfully updated.' }
+        format.html { redirect_to @client, alert: "modification réussie pour #{@client.firstname} #{@client.name}" }
         format.text { render partial: 'clients/client_infos', locals: { client: @client }, formats: [:html] }
         format.json { render json: @client, status: :ok, location: @client }
       end
