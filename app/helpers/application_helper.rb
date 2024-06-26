@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
+# app/helpers/application_helper.rb
 module ApplicationHelper
-  # Custom méthode pluralize pour mettre "ent" à la fin d'un verbe
-  # def pluralize_verb(count, singular)
-  #   count == 1 ? singular : "#{singular}nt"
-  # end
+  def client_name
+    client = Client.find_by(id: 12) # Assuming client with ID 12
+    client&.name
+  end
 end

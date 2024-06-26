@@ -1,12 +1,13 @@
+<%= t('.title') %>
 <div class="container">
   <div class="row">
     <div class="col">
       <div data-controller="search-clients">
         <%= form_with url: clients_path, method: :get, html: {class: "mb-4", data: {search_clients_target: "form"}} do |f| %>
-          <%= f.label :query, "Rechercher cliente" %>
+          <%= f.label :query, t('.search') %>
           <%= f.text_field :query,
                            class: "form-control",
-                           placeholder: "rechercher par nom / prénom / téléphone / email",
+                           placeholder: t('.placeholder'),
                            value: params[:query],
                            data: {
                              search_clients_target: "searchInput",
@@ -19,4 +20,4 @@
     </div>
   </div>
 </div>
-<%= link_to "+ nouvelle cliente", new_client_path, class: "link-clients" %>
+<%= link_to t('.new'), new_client_path, class: "link-clients" %>

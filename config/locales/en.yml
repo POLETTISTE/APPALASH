@@ -31,3 +31,24 @@
 
 en:
   hello: "Hello world"
+  welcome: "Welcome here!"
+  navbar_username: "hello %{client_name}"
+  # /offers
+  offers_and_subscription: "offers and subscription"
+
+  #page clients
+  clients:
+    index:
+      title: "List of clients"
+      search: "Search..."
+      placeholder: "Search by name / firstname / email/ phone"
+      new: "add new client"
+
+  #page dashboard
+  dashboard:
+    index:
+      title: "Dashboard"
+      clients:
+        zero: "%{count} client"
+        one: "%{count}client"
+        other: "%{count} clients"

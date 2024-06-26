@@ -1,5 +1,5 @@
-      
-<h1 class="h2 my-3 d-flex justify-content-center"><%= Client.all.count %> CLIENTES</h1>
+<%= t('.title') %>
+<h1 class="h2 my-3 d-flex justify-content-center"><%= t('.clients', count: @clients.size)%> </h1>
 <%#= pie_chart Client.group(:name).count %>
 <div id="dashboard">
   <div data-controller="barchart" class="dashboard-barchart">

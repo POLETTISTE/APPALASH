@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
     @transactions = Transaction.all
     @clients_group_by_name = @clients.group(:name).count
     @clients_how_do_you_know_us = @clients.group(:how_do_you_know_us).count
+    
     # Respond with JSON for client counts
     respond_to do |format|
       format.html

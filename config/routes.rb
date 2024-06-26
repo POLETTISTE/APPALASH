@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  scope '(:locale)', locale: /fr|es|de/ do
+
   root 'home#welcome'
 
   get 'offers', to: 'home#offers'
@@ -10,9 +12,7 @@ Rails.application.routes.draw do
   resources :transactions
   resources :dashboard
 
-  # Catch-all route for handling routing errors
-  match '*path', to: 'application#not_found', via: :all
-
+  end
   # get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
