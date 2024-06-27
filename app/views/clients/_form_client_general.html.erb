@@ -8,7 +8,7 @@
       <%= image_tag "client/client_photo_profil.png", height: 100, width: 100, crop: :fill, style: "border-radius: 50%; background-color: tomato;" %>
     <% end %>
   <% end %>
-  <%= form.input :photo, as: :file, input_html: { accept: 'image/jpeg, image/png' } %>
+  <%= form.input :photo, as: :file, input_html: { accept: 'image/jpeg, image/png', capture: 'camera' } %>
   <%= form.input :name, label: t('simple_form.labels.client.name'), required: true %>
   <%= form.input :firstname, label: t('simple_form.labels.client.firstname'), required: true %>
   <%= form.input :email, label: t('simple_form.labels.client.email') %>
