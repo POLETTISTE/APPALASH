@@ -106,7 +106,11 @@ en:
       search: "Search..."
       placeholder: "Search by name / firstname / email/ phone"
       new: "add new client"
-
+    list:
+      list_with_query:
+        zero: "%{count} results found for '%{query}'"
+        one: "%{count} result found for '%{query}'"
+        other: "%{count} results found for '%{query}'"
     client:
       name: "name"
       firstname: "firstname"

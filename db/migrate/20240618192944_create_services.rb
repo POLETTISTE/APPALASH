@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreatePrestations < ActiveRecord::Migration[7.0]
+class CreateServices < ActiveRecord::Migration[7.0]
   def change
-    create_table :prestations do |t|
+    create_table :services do |t|
       t.string :name
       t.float :price
 

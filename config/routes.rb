@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'offers', to: 'home#offers'
 
   resources :clients
-  resources :prestations
+  resources :services
   resources :transactions
   resources :dashboard
 

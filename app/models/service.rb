@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Prestation < ApplicationRecord
+class Service < ApplicationRecord
   self.primary_key = 'id'
 
   def name_with_price
