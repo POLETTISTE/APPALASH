@@ -1,7 +1,7 @@
-<%= form_with(model: @transaction, local: true, data: { controller: "checkbox-new-form-transaction" }) do |form| %>
+<%= simple_form_for(@transaction, html: { data: { controller: "checkbox-new-form-transaction" } }) do |f| %>
   <% if @transaction.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@transaction.errors.count, "error") %> <%= t('.prohibited')%>:</h2>
+      <h2><%= pluralize(@transaction.errors.count, "error") %> <%= t('.prohibited') %>:</h2>
       <ul>
         <% @transaction.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,12 +10,10 @@
     </div>
   <% end %>
   <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date %>
+    <%= f.input :date,   as: :string, input_html: { data: { controller: "datepicker" } } %>
   </div>
   <div class="field">
-    <%= form.label :client_id %>
-    <%= form.collection_select :client_id, @clients, :id, :full_name, { prompt: 'Select a client' }, { required: true } %>
+    <%= f.input :client_id, collection: @clients, prompt: 'Select a client', required: true, label_method: :full_name, value_method: :id %>
     <% if @transaction.errors[:client_id].any? %>
       <div class="error-message">
         <%= @transaction.errors[:client_id].join(", ") %>
@@ -23,13 +21,13 @@
     <% end %>
   </div>
   <div class="field">
-    <%= form.label :services %>
+    <%= f.label :services %>
     <div id="services">
       <% @services.each do |service| %>
         <div>
           <% checked = params[:transaction] && params[:transaction][:services]&.any? { |p| p[:name] == service.name } %>
           <%= check_box_tag 'transaction[services][][name]', service.name, checked, id: "transaction_services_name_#{service.id}", class: "service-name-checkbox", data: { target: "transaction_services_price_#{service.id}" } %>
-          <%= check_box_tag 'transaction[services][][price]', service.price, checked, id: "transaction_services_price_#{service.id}", style:"display: none" %>
+          <%= check_box_tag 'transaction[services][][price]', service.price, checked, id: "transaction_services_price_#{service.id}", style: "display: none" %>
           <%= service.name %> - <%= service.price %>
           <% if checked %>
             <%= hidden_field_tag 'transaction[services][][name]', service.name %>
@@ -40,7 +38,6 @@
     </div>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= f.button :submit %>
   </div>
 <% end %>
-<%# <div data-controller="checkbox" class="mt-5"></div> %>
