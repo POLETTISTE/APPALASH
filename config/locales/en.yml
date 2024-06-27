@@ -103,32 +103,43 @@ en:
   # /offers
   offers_and_subscription: "offers and subscription"
 
-  #page clients + controller create html
+  #  controller create/update/delete html
   clients:
     create:
       success: "Creation successful for %{firstname} %{name}"
       error: "There was an error creating the client."
+    update:
+      success: "Update successful for %{firstname} %{name}"
+      error: "There was an error updating the client."
+    destroy:
+      success: "Delete successful for %{firstname} %{name}"
+      error: "There was an error deleting the client."
 
+    #clients/index.html.erb
     index:
       title: "List of clients"
       search: "Search..."
       placeholder: "Search by name / firstname / email/ phone"
       new: "add new client"
 
+    #clients/edit.html.erb
     edit:
       title: "Edit client"
       cancel: "Cancel"
       find: "Find a client"
 
+    #clients/_list.html.erb
     list:
       list_with_query:
         zero: "%{count} result found for '%{query}'"
         one: "%{count} result found for '%{query}'"
         other: "%{count} results found for '%{query}'"
 
+    #clients/_client_infos.html.erb
     client_infos:
       edit: "edit"
 
+    #clients/_client.html.erb
     client:
       name: "name"
       firstname: "firstname"

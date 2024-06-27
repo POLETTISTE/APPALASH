@@ -63,8 +63,9 @@ class ServicesController < ApplicationController
   # DELETE /services/1
   def destroy
     @service.destroy
+    alert_message = 'service supprimée'
     respond_to do |format|
-      format.html { redirect_to services_url, alert: 'service supprimée' }
+      format.html { redirect_to services_url, alert: alert_message }
       format.json { head :no_content }
     end
   end

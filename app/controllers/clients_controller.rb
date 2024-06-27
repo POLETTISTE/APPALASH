@@ -50,14 +50,18 @@ class ClientsController < ApplicationController
   def update
     ensure_fields_exist
     if @client.update(client_params)
+      alert_message = t('clients.update.success', firstname: @client.firstname, name: @client.name)
+
       respond_to do |format|
-        format.html { redirect_to @client, alert: "modification réussie pour #{@client.firstname} #{@client.name}" }
+        format.html { redirect_to @client, alert: alert_message }
         format.text { render partial: 'clients/client_infos', locals: { client: @client }, formats: [:html] }
         format.json { render json: @client, status: :ok, location: @client }
       end
     else
+      alert_error_message = t('clients.update.error')
+
       respond_to do |format|
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit,alert: alert_error_message, status: :unprocessable_entity }
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
     end
@@ -68,7 +72,9 @@ class ClientsController < ApplicationController
     @client.photo.purge if @client.photo.attached?
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, alert: 'Client was successfully destroyed.' }
+      alert_message = t('clients.destroy.success', firstname: @client.firstname, name: @client.name)
+
+      format.html { redirect_to clients_url, alert: alert_message }
       format.json { head :no_content }
     end
   end
