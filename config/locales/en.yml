@@ -32,6 +32,10 @@
 en:
   hello: "Hello "
   welcome: "Welcome"
+  dashboard_h1: "Dashboard"
+  clients_h1: "Clients"
+  services_h1: "Services"
+  transactions_h1: "Transactions"
   navbar_full_username_html: "Hello <strong>%{full_user_name}</strong> !"
   navbar_link_personnals_informations: "Personnal informations"
   navbar_link_subscription: "Subscription"
@@ -40,7 +44,7 @@ en:
   sidebar_link_dashboard: "Dashboard"
   sidebar_link_clients: "Clients"
   sidebar_link_services: "Services"
-  sidebar_link_transactions: "Invoices"
+  sidebar_link_transactions: "Transactions"
 
   # page clients/form/options
   client_options:
@@ -106,11 +110,21 @@ en:
       search: "Search..."
       placeholder: "Search by name / firstname / email/ phone"
       new: "add new client"
+
+    edit:
+      title: "Edit client"
+      cancel: "Cancel"
+      find: "Find a client"
+
     list:
       list_with_query:
-        zero: "%{count} results found for '%{query}'"
+        zero: "%{count} result found for '%{query}'"
         one: "%{count} result found for '%{query}'"
         other: "%{count} results found for '%{query}'"
+
+    client_infos:
+      edit: "edit"
+
     client:
       name: "name"
       firstname: "firstname"
@@ -157,7 +171,14 @@ en:
       health_first_application: "health first application"
       health_lie_down: "health lie down"
       health_notes: "health notes"
-
+  services:
+    service:
+      name: "name"
+      price: "price"
+    new:
+      title: "New service"
+    edit:
+      title: "Edit service"
   #page dashboard
   dashboard:
     index:
@@ -166,3 +187,12 @@ en:
         zero: "%{count} client"
         one: "%{count}client"
         other: "%{count} clients"
+  transactions:
+    index:
+      total: "Total Amount of Transactions"
+    new:
+      prohibited: "prohibited this transaction from being saved"
+    show:
+      date: "date"
+      client: "client"
+      total_price: "total price"

@@ -1,13 +1,13 @@
 <p>
-  <strong>Date:</strong>
+  <strong><%= t('.date') %>:</strong>
   <p><%= @transaction.date %></p>
   <p>CLIENT ID : <%= @transaction.client_id %></p>
-  <p><strong>Client:</strong>  <%= @transaction.client.name %> <%= @transaction.client.firstname %></p>
+  <p><strong><%= t('.client') %>:</strong>  <%= @transaction.client.name %> <%= @transaction.client.firstname %></p>
 </p>
-<h2>Prestations:</h2>
+<h2><%= t('services_h1') %>:</h2>
 <ul>
-  <% @transaction.prestations.each do |prestation| %>
-    <li><%= "#{prestation['name']} - #{prestation['price']}" %></li>
+  <% @transaction.services.each do |service| %>
+    <li><%= "#{service['name']} - #{service['price']}" %></li>
   <% end %>
 </ul>
-<p>PRIX TOTAL : <%= @transaction.total_price %></p>
+<p><%= t('.total_price') %>: <%= @transaction.total_price %></p>

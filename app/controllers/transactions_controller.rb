@@ -6,7 +6,7 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
     @clients = Client.all
-    @prestations = Prestation.all
+    @services = Service.all
   end
 
   def create
@@ -49,6 +49,6 @@ class TransactionsController < ApplicationController
   end
 
   def transaction_params
-    params.require(:transaction).permit(:date, :client_id, prestations: %i[name price])
+    params.require(:transaction).permit(:date, :client_id, services: %i[name price])
   end
 end

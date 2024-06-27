@@ -1,5 +1,5 @@
 <div id="transactions">
-  <h1>Transactions</h1>
+  <h1><%= t('transactions_h1') %></h1>
   <div class="transactions-list">
     <% @transactions.each do |transaction| %>
       <%= link_to transaction_path(transaction), class: "card-transaction" do %>
@@ -14,7 +14,7 @@
   </div>
   <%= link_to "+ Add Transaction", new_transaction_path %>
   <div>
-    TOTAL DES TRANSACTIONS :
+    <%= t('.total') %>
     <p><%= format('%.2f', @transactions_total_price) %></p>
   </div>
 </div>

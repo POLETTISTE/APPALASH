@@ -4,7 +4,7 @@
 class DashboardController < ApplicationController
   def index
     @clients = Client.all
-    @prestations = Prestation.all
+    @services = Service.all
     @transactions = Transaction.all
     @clients_group_by_name = @clients.group(:name).count
     @clients_how_do_you_know_us = @clients.group(:how_do_you_know_us).count

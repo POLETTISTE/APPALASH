@@ -1,7 +1,7 @@
-<h1>MODIFIER</h1>
+<h1><%= t(".title")%></h1>
 <%= render 'form_client_general', client: @client %>
 <br>
 <div>
-  <%= link_to "Annuler", @client %> |
-  <%= link_to "Rechercher un client", clients_path %>
+  <%= link_to  t(".cancel"), @client %> |
+  <%= link_to  t(".find"), clients_path %>
 </div>

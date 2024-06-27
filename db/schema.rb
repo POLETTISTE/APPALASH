@@ -102,7 +102,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_20_071641) do
   create_table "transactions", force: :cascade do |t|
     t.date "date"
     t.bigint "client_id", null: false
-    t.json "prestations", default: []
+    t.json "services", default: []
     t.float "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
