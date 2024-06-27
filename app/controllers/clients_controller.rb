@@ -32,13 +32,15 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
 
     if @client.save
+      alert_message = t('clients.create.success', firstname: @client.firstname, name: @client.name)
       respond_to do |format|
-        format.html { redirect_to @client, alert: "création réussie pour #{@client.firstname} #{@client.name}" }
+        format.html { redirect_to @client, alert: alert_message }
         format.json { render json: @client, status: :created, location: @client }
       end
     else
+      alert_error_message = t('clients.create.error')
       respond_to do |format|
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, alert: alert_error_message, status: :unprocessable_entity }
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
     end

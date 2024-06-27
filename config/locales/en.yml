@@ -103,8 +103,12 @@ en:
   # /offers
   offers_and_subscription: "offers and subscription"
 
-  #page clients
+  #page clients + controller create html
   clients:
+    create:
+      success: "Creation successful for %{firstname} %{name}"
+      error: "There was an error creating the client."
+
     index:
       title: "List of clients"
       search: "Search..."
