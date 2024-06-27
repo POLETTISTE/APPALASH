@@ -3,9 +3,6 @@
 <div id="services">
   <% @services.each do |service| %>
     <%= render service %>
-    <p>
-      <%= link_to "Show this service", service %>
-    </p>
   <% end %>
 </div>
-<%= link_to "New service", new_service_path %>
+<%= link_to t("button.new", model: Service.model_name.human.downcase), new_service_path %>

@@ -1,10 +1,14 @@
-<div id="<%= dom_id service %>">
-  <p>
-    <strong><%= t('.name') %>:</strong>
-    <%= service.name %>
-  </p>
-  <p>
-    <strong><%= t('.price') %>:</strong>
-    <%= service.price %>
-  </p>
+<div id="<%= dom_id(service) %>">
+  <%= link_to service_path(service) do %>
+    <div class="card-service">
+      <p>
+        <strong><%= t('.name') %>:</strong>
+        <%= service.name %>
+      </p>
+      <p>
+        <strong><%= t('.price') %>:</strong>
+        <%= '%.2f' % service.price %>
+      </p>
+    </div>
+  <% end %>
 </div>

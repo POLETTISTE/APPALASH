@@ -10,6 +10,12 @@
 @import "./partials/footer";
 @import "./transactions";
 
+a {
+  text-decoration: none;
+  color: rgb(70, 63, 63);
+  font-weight: 700;
+}
+
 #main {
   display: flex;
 }

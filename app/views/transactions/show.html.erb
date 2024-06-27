@@ -6,8 +6,8 @@
 <h2><%= t('services_h1') %>:</h2>
 <ul>
   <% @transaction.services.each do |service| %>
-    <li><%= "#{service['name']} - #{service['price']}" %></li>
+    <li><%= "#{service['name']} - #{'%.2f' % service['price']}" %></li>
   <% end %>
 </ul>
-<p><%= t('.total_price') %>: <%= @transaction.total_price %></p>
+<p><%= t('.total_price') %>: <%= '%.2f' % @transaction.total_price %></p>
 <%= button_to "Destroy this transaction", @transaction, method: :delete %>

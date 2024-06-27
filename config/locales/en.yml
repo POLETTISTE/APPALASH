@@ -48,18 +48,19 @@ en:
   sidebar_link_transactions: "Transactions"
 
   # buttons
+  # links
+
   button:
     save: Save
     edit: Edit
     update: Update
     cancel: Cancel
     delete: Delete
-    goback: Go Back
+    goback: "Back"
+    goto: "Go to %{model}"
     find: Find
     new: "add new %{model}"
-  # links
-  link:
-    goto: "Go to %{model}"
+
   # modals
   modal:
     delete: Delete this %{model}?
