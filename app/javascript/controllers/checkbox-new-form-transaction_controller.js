@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   connect() {
     this.element
-      .querySelectorAll(".prestation-name-checkbox")
+      .querySelectorAll(".service-name-checkbox")
       .forEach((checkbox) => {
         checkbox.addEventListener("change", this.checkboxChanged.bind(this));
       });
