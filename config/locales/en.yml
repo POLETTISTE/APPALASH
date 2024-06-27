@@ -46,6 +46,11 @@ en:
   sidebar_link_services: "Services"
   sidebar_link_transactions: "Transactions"
 
+  buttons:
+    save: Save
+    cancel: Cancel
+    delete: Delete
+
   # page clients/form/options
   client_options:
     how_do_you_know_us_options:

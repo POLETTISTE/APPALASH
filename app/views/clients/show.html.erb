@@ -8,5 +8,5 @@
 <div>
   <%= link_to "Edit this client", edit_client_path(@client) , class:"btn btn-warning" %>
   <%= link_to "Back to clients", clients_path %>
-  <%= button_to "Destroy this client", @client, method: :delete, class:"btn btn-danger"%>
+  <%= button_to t('buttons.delete'), @client, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
 </div>
