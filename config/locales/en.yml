@@ -46,10 +46,19 @@ en:
   sidebar_link_services: "Services"
   sidebar_link_transactions: "Transactions"
 
-  buttons:
+  # buttons/ links
+  button:
     save: Save
+    edit: Edit
+    update: Update
     cancel: Cancel
     delete: Delete
+    goback: Go Back
+    find: Find
+    new: "add new %{model}"
+
+  modal:
+    delete: Delete this %{model}?
 
   # page clients/form/options
   client_options:
@@ -125,13 +134,10 @@ en:
       title: "List of clients"
       search: "Search..."
       placeholder: "Search by name / firstname / email/ phone"
-      new: "add new client"
 
     #clients/edit.html.erb
     edit:
       title: "Edit client"
-      cancel: "Cancel"
-      find: "Find a client"
 
     #clients/_list.html.erb
     list:
@@ -140,9 +146,12 @@ en:
         one: "%{count} result found for '%{query}'"
         other: "%{count} results found for '%{query}'"
 
+    #clients/show.html.erb
+    show:
+      delete: "Are you sure you want to delete %{instance_firstname} %{instance_name} ?"
+
     #clients/_client_infos.html.erb
     client_infos:
-      edit: "edit"
 
     #clients/_client.html.erb
     client:

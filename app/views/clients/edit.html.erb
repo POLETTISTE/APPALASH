@@ -2,6 +2,6 @@
 <%= render 'form_client_general', client: @client %>
 <br>
 <div>
-  <%= link_to  t(".cancel"), @client %> |
-  <%= link_to  t(".find"), clients_path %>
+  <%= link_to  t("button.goback"), @client, class: "btn btn-primary" %>
+  <%= link_to t("button.find", model: Client.model_name.human.downcase), clients_path, class: "btn btn-secondary" %>
 </div>

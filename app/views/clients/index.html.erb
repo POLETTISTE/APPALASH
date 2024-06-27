@@ -20,4 +20,4 @@
     </div>
   </div>
 </div>
-<%= link_to t('.new'), new_client_path, class: "link-clients" %>
+<%= link_to t('button.new', model: Client.model_name.human.downcase), new_client_path, class: "link-clients" %>

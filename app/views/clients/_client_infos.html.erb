@@ -7,7 +7,7 @@
   <div class="client-infos <%= 'd-none' if client.errors.any? %>" data-edit-client-target="infos">
     <%= link_to "#{client.name} #{client.firstname}".html_safe, client_path(client) %>
     <button aria-label="Edit client" data-action="click->edit-client#displayForm">
-      <%= t('.edit') %>
+      <%= t('button.edit') %>
       <%# <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->edit-client#displayForm"></i> %>
     </button>
   </div>
@@ -22,6 +22,6 @@
   %>
   <%= f.input :name %>
   <%= f.input :firstname %>
-  <%= f.submit "Update client", class: "btn btn-sm btn-primary btn-block mt-2" %>
+  <%= f.submit t('button.update'), class: "btn btn-sm btn-primary btn-block mt-2" %>
 <% end %>
 </div>
