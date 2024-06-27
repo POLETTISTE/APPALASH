@@ -11,3 +11,4 @@
   <% end %>
 </ul>
 <p><%= t('.total_price') %>: <%= @transaction.total_price %></p>
+<%= button_to "Destroy this transaction", @transaction, method: :delete %>
