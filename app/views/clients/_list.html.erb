@@ -1,7 +1,7 @@
 <div data-search-clients-target="list">
   <p>
     <% if params[:query].present? %>
-      <%= t('.list_with_query', count: @clients.size, query: params[:query]) %>
+      <%= t('.list_with_query_html', count: @clients.size, query: params[:query]) %>
     <% end %>
   </p>
   <div class="clients">
