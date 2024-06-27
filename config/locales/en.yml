@@ -32,6 +32,7 @@
 en:
   hello: "Hello "
   welcome: "Welcome"
+  accueil_h1: "Accueil"
   dashboard_h1: "Dashboard"
   clients_h1: "Clients"
   services_h1: "Services"
@@ -46,7 +47,7 @@ en:
   sidebar_link_services: "Services"
   sidebar_link_transactions: "Transactions"
 
-  # buttons/ links
+  # buttons
   button:
     save: Save
     edit: Edit
@@ -56,7 +57,10 @@ en:
     goback: Go Back
     find: Find
     new: "add new %{model}"
-
+  # links
+  link:
+    goto: "Go to %{model}"
+  # modals
   modal:
     delete: Delete this %{model}?
 

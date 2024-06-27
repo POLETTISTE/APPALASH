@@ -1,5 +1,5 @@
-<%= link_to "VOIR LES CLIENTS", clients_path %>
-<%= link_to "VOIR LES OFFRES", offers_path %>
+<%= link_to t('link.goto', model: Client.model_name.human.downcase), clients_path, class: "link-clients" %>
+<%= link_to t('link.goto', model: "offers"), offers_path, class: "link-clients" %>
 <h1><%= t('hello') %>
 </h1>
 <%= t('welcome') %>
