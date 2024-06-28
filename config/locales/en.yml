@@ -59,7 +59,7 @@ en:
     goback: "Back"
     goto: "Go to %{model}"
     find: Find
-    new: "add new %{model}"
+    new: "+ add new %{model}"
 
   # modals
   modal:
