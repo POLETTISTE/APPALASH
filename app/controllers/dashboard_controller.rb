@@ -6,6 +6,14 @@ class DashboardController < ApplicationController
     @clients = Client.all
     @services = Service.all
     @transactions = Transaction.all
+    authorize @clients
+    authorize @services
+    authorize @transactions
+    @clients = policy_scope(Client)
+    @services = policy_scope(Service)
+    @clients = policy_scope(Transaction)
+
+
     @clients_group_by_name = @clients.group(:name).count
     @clients_how_do_you_know_us = @clients.group(:how_do_you_know_us).count
 

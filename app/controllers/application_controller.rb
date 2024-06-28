@@ -1,13 +1,15 @@
-# app/controllers/application_controller.rb
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
-  around_action :switch_locale
   before_action :authenticate_user!
-
+  
   include Pundit::Authorization
-
+  
   # Pundit: allow-list approach
-  after_action :verify_authorized, except: :index, unless: :skip_pundit?
-  after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
+  after_action :verify_authorized,  unless: :skip_pundit?
+  after_action :verify_policy_scoped, unless: :skip_pundit?
+  
+  around_action :switch_locale
 
   def switch_locale(&action)
     locale = params[:locale] || I18n.default_locale
@@ -21,10 +23,7 @@ class ApplicationController < ActionController::Base
   private
 
   def skip_pundit?
-    devise_controller? || home_controller?
+    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
 
-  def home_controller?
-    params[:controller] == 'home'
-  end
 end

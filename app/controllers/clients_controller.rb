@@ -3,9 +3,15 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[show edit update destroy]
 
+  include Pundit
+
   # GET clients/new
   def new
     @client = Client.new
+    authorize @client
+    @clients = policy_scope(Client)
+
+
   end
 
 
@@ -13,6 +19,8 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     @client.user = current_user
+    authorize @client
+    @clients = policy_scope(Client)
 
     if @client.save
       alert_message = t('clients.create.success', firstname: @client.firstname, name: @client.name)
@@ -31,17 +39,24 @@ class ClientsController < ApplicationController
 
   # GET /clients
   def index
-    @clients = Client.all.order('UPPER(name)')
-    params[:query].present? && @clients = Client.search_by_general_informations(params[:query])
+    @clients = policy_scope(Client).order('UPPER(name)')
+    authorize @clients
+  
+    if params[:query].present?
+      @clients = @clients.search_by_general_informations(params[:query])
+    end
+  
     respond_to do |format|
       format.html
-      format.json { render json: Client.all }
+      format.json { render json: @clients }
       format.text { render partial: 'clients/list', locals: { clients: @clients }, formats: [:html] }
     end
   end
+  
 
   # GET /clients/1
   def show
+
     respond_to do |format|
       format.html
       format.json { render json: @client }
@@ -86,6 +101,9 @@ class ClientsController < ApplicationController
 
   def set_client
     @client = Client.find(params[:id])
+    authorize @client
+    @clients = policy_scope(Client)
+
     redirect_to clients_url, alert: 'Client not found' unless @client
   end
 
