@@ -30,7 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello "
+  hello: "Hello %{name}"
   welcome: "Welcome"
   accueil_h1: "Accueil"
   dashboard_h1: "Dashboard"

@@ -5,7 +5,7 @@ class ServicesController < ApplicationController
 
   # GET /services/new
   def new
-    @service= Service.new
+    @service = Service.new
   end
 
   # GET /services
@@ -30,12 +30,12 @@ class ServicesController < ApplicationController
 
   # POST /services
   def create
-    @service= Service.new(service_params)
+    @service = Service.new(service_params)
 
     if @service.save
       respond_to do |format|
         format.html { redirect_to @service, alert: 'service enregistrée' }
-        format.json { render json: @service, status: :created, location: @service}
+        format.json { render json: @service, status: :created, location: @service }
       end
     else
       respond_to do |format|
@@ -50,7 +50,7 @@ class ServicesController < ApplicationController
     if @service.update(service_params)
       respond_to do |format|
         format.html { redirect_to @service, alert: 'service enregistrée' }
-        format.json { render json: @service, status: :ok, location: @service}
+        format.json { render json: @service, status: :ok, location: @service }
       end
     else
       respond_to do |format|
@@ -74,7 +74,7 @@ class ServicesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_service
-    @service= Service.find(params[:id])
+    @service = Service.find(params[:id])
     return if @service
 
     redirect_to services_url, alert: 'service introuvable'

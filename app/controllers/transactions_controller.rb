@@ -41,14 +41,14 @@ class TransactionsController < ApplicationController
     end
   end
 
-    # DELETE /services/1
-    def destroy
-      @transaction.destroy
-      respond_to do |format|
-        format.html { redirect_to transactions_url, alert: 'transaction supprimée' }
-        format.json { head :no_content }
-      end
+  # DELETE /services/1
+  def destroy
+    @transaction.destroy
+    respond_to do |format|
+      format.html { redirect_to transactions_url, alert: 'transaction supprimée' }
+      format.json { head :no_content }
     end
+  end
 
   private
 

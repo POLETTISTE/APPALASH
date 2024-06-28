@@ -10,10 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
   <body>
-    <% if alert.present? %>
-      <p class="alert alert-light" role="alert">
-        <%= alert %></p>
-    <% end %>
+    <%= render "shared/flashes" %>
     <div id="main">
       <div class="main-left">
         <%= render 'partials/side-menu' %>
