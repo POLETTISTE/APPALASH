@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # # frozen_string_literal: true
 
 # app/helpers/clients_helper.rb
@@ -54,16 +56,6 @@ module ClientsHelper
     I18n.t('client_options.lash_extensions_glue_options').values
   end
 end
-
-
-
-
-
-
-
-
-
-
 
 # # app/helpers/clients_helper.rb
 # module ClientsHelper

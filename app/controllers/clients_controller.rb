@@ -61,7 +61,7 @@ class ClientsController < ApplicationController
       alert_error_message = t('clients.update.error')
 
       respond_to do |format|
-        format.html { render :edit,alert: alert_error_message, status: :unprocessable_entity }
+        format.html { render :edit, alert: alert_error_message, status: :unprocessable_entity }
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
     end
@@ -106,6 +106,7 @@ class ClientsController < ApplicationController
       ]
     )
   end
+
   def ensure_fields_exist
     client_params.each_key do |field|
       next if @client.respond_to?(field)

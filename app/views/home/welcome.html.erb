@@ -1,5 +1,11 @@
+<%# if user_signed_in? %>
+<%# else %>
 <%= link_to t('link.goto', model: Client.model_name.human.downcase), clients_path, class: "link-clients" %>
 <%= link_to t('link.goto', model: "offers"), offers_path, class: "link-clients" %>
-<h1><%= t('hello') %>
-</h1>
-<%= t('welcome') %>
+<%= t('welcome') %><% if user_signed_in? %>
+  <h1><%= t('hello', name: current_user.email) %></h1>
+<% else %>
+  <h2>You are not logged in</h2>
+<% end %>
+<%= link_to 'se connecter', new_user_session_path, class: "link-clients" %>
+<%# end %>
