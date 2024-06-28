@@ -31,7 +31,7 @@ class ServicesController < ApplicationController
   # POST /services
   def create
     @service = Service.new(service_params)
-
+    @service.user = current_user
     if @service.save
       respond_to do |format|
         format.html { redirect_to @service, alert: 'service enregistrée' }

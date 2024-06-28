@@ -8,6 +8,27 @@ class ClientsController < ApplicationController
     @client = Client.new
   end
 
+
+  # POST /clients
+  def create
+    @client = Client.new(client_params)
+    @client.user = current_user
+
+    if @client.save
+      alert_message = t('clients.create.success', firstname: @client.firstname, name: @client.name)
+      respond_to do |format|
+        format.html { redirect_to @client, alert: alert_message }
+        format.json { render json: @client, status: :created, location: @client }
+      end
+    else
+      alert_error_message = t('clients.create.error')
+      respond_to do |format|
+        format.html { render :new, alert: alert_error_message, status: :unprocessable_entity }
+        format.json { render json: @client.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /clients
   def index
     @clients = Client.all.order('UPPER(name)')
@@ -27,24 +48,6 @@ class ClientsController < ApplicationController
     end
   end
 
-  # POST /clients
-  def create
-    @client = Client.new(client_params)
-
-    if @client.save
-      alert_message = t('clients.create.success', firstname: @client.firstname, name: @client.name)
-      respond_to do |format|
-        format.html { redirect_to @client, alert: alert_message }
-        format.json { render json: @client, status: :created, location: @client }
-      end
-    else
-      alert_error_message = t('clients.create.error')
-      respond_to do |format|
-        format.html { render :new, alert: alert_error_message, status: :unprocessable_entity }
-        format.json { render json: @client.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # PATCH/PUT /clients/1
   def update
