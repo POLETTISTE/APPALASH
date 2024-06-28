@@ -1,14 +1,7 @@
 class ClientPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      # user.admin? ? scope.all : scope.where(user: user)
-      scope.where(user: user)
-
-      # if user.admin?
-      #   scope.all # Admin can see all clients
-      # else
-      #   scope.where(user_id: user.id) # Regular users can only see their own clients
-      # end
+      user.admin? ? scope.all : scope.where(user: user)
     end
   end
 
@@ -17,8 +10,7 @@ class ClientPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user
-
+    record.user == user || user.admin?
   end
 
   def create?
@@ -30,8 +22,7 @@ class ClientPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user
-
+    record.user == user || user.admin?
   end
 
   def edit?
@@ -39,7 +30,6 @@ class ClientPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.user == user
-
+    record.user == user || user.admin?
   end
 end
