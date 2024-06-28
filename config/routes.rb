@@ -5,19 +5,18 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /fr|es|de/ do
     authenticated :user do
       root to: 'dashboard#index', as: :authenticated_root
+      # You can add other routes accessible only when authenticated here
     end
 
-    root to: 'home#welcome'
-
-    get 'offers', to: 'home#offers'
+    unauthenticated do
+      root to: 'home#welcome'
+      get 'offers', to: 'home#offers'
+      # Define other routes accessible only when not authenticated here
+    end
 
     resources :clients
     resources :services
     resources :transactions
     resources :dashboard
   end
-  # get 'home/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
 end
