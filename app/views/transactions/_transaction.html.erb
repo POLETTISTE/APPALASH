@@ -1,0 +1,28 @@
+<div id="<%= dom_id(transaction) %>">
+  <%= link_to transaction_path(transaction) do %>
+    <div class="card-transaction">
+      <%= link_to transaction_path(transaction), class: "card-transaction" do %>
+        <% if transaction.client.photo.attached? %>
+          <%= cl_image_tag transaction.client.photo.key, alt: "#{transaction.client.firstname}'s photo", class: "card-transaction-image" %>
+        <% else %>
+          <%= image_tag "client/client_photo_profil.png", crop: :fill , style: "background-color: tomato;", class: "card-transaction-image"%>
+        <% end %>
+        <% if current_user.admin? %>
+          <p><%= transaction.user.email %></p>
+        <% end %>
+        <p>
+          <strong><%= t('.date') %>:</strong>
+          <%= transaction.date %>
+        </p>
+        <p>
+          <strong><%= t('.client_firstname') %>:</strong>
+          <%= transaction.client.firstname %>
+        </p>
+        <p>
+          <strong><%= t('.client_name') %>:</strong>
+          <%= transaction.client.name %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -23,7 +23,7 @@ class TransactionsController < ApplicationController
     @transactions = policy_scope(Transaction)
 
     if @transaction.save
-      alert_message = t('transactions.create.success', name: @transaction.client.name)
+      alert_message = t('transactions.create.success', firstname: @transaction.client.firstname, name: @transaction.client.name)
 
       respond_to do |format|
         format.html { redirect_to transactions_url, alert: alert_message }
@@ -58,12 +58,11 @@ class TransactionsController < ApplicationController
   end
 
   def destroy
-    authorize @transaction
     if @transaction.destroy
-      alert_message = t('transactions.destroy.success')
+      alert_message = t('transactions.destroy.success', firstname: @transaction.client.firstname, name: @transaction.client.name)
 
       respond_to do |format|
-        format.html { redirect_to transactions_url, notice: alert_message }
+        format.html { redirect_to transactions_url, alert: alert_message }
         format.json { head :no_content }
       end
     else
@@ -82,8 +81,9 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
     authorize @transaction
     @transactions = policy_scope(Transaction)
-  rescue ActiveRecord::RecordNotFound
-    redirect_to transactions_url, alert: 'Transaction not found'
+    rescue ActiveRecord::RecordNotFound
+      alert_error_message = t('.not_found')
+      redirect_to transactions_url, alert: alert_error_message unless @transaction
   end
 
   def transaction_params

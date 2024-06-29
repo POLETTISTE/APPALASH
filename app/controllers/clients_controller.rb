@@ -99,8 +99,9 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
     authorize @client
     @clients = policy_scope(Client)
-
-    redirect_to clients_url, alert: 'Client not found' unless @client
+  rescue ActiveRecord::RecordNotFound
+    alert_error_message = t('.not_found')
+    redirect_to clients_url, alert: alert_error_message unless @client
   end
 
   def client_params

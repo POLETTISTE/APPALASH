@@ -95,8 +95,9 @@ class ServicesController < ApplicationController
     @service = Service.find(params[:id])
     authorize @service
     @services = policy_scope(Service)
-
-    redirect_to services_url, alert: 'service introuvable' unless @service
+  rescue ActiveRecord::RecordNotFound
+    alert_error_message = t('.not_found')
+    redirect_to services_url, alert: alert_error_message unless @service
   end
 
   # Only allow a list of trusted parameters through.

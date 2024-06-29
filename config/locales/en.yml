@@ -130,9 +130,21 @@ en:
     update:
       success: "Update successful for %{firstname} %{name}"
       error: "There was an error updating the client."
+      not_found: "client not found"
+
+    #clients/edit.html.erb
+    edit:
+      title: "Edit client"
+      
+    #clients/show.html.erb
+    show:
+      not_found: "client not found"
+      delete: "Are you sure you want to delete %{instance_firstname} %{instance_name} ?"
+
     destroy:
       success: "Delete successful for %{firstname} %{name}"
       error: "There was an error deleting the client."
+      not_found: "client not found"
 
     #clients/index.html.erb
     index:
@@ -140,20 +152,12 @@ en:
       search: "Search..."
       placeholder: "Search by name / firstname / email/ phone"
 
-    #clients/edit.html.erb
-    edit:
-      title: "Edit client"
-
     #clients/_list.html.erb
     list:
       list_with_query_html:
         zero: "%{count} result found for <code><strong>'%{query}'</strong></code>"
         one: "%{count} result found for <code><strong>'%{query}'</strong></code>"
         other: "%{count} results found for <code><strong>'%{query}'</strong></code>"
-
-    #clients/show.html.erb
-    show:
-      delete: "Are you sure you want to delete %{instance_firstname} %{instance_name} ?"
 
     #clients/_client_infos.html.erb
     client_infos:
@@ -214,14 +218,34 @@ en:
         one: "%{count}client"
         other: "%{count} clients"
   transactions:
+    transaction:
+      date: "date"
+      client_name: "client name"
+      client_firstname: "client firstname"
+      total_price: "total price"
+
+    create:
+      success: "Creation successful the transaction with %{firstname} %{name}"
+      error: "There was an error creating the transaction."
+    update:
+      success: "Update successful the transaction with %{firstname} %{name}"
+      error: "There was an error updating the transaction."
+      not_found: "transaction not found"
+    show:
+      not_found: "transaction not found"
+
+    destroy:
+      success: "Delete successful the transaction with %{firstname} %{name}"
+      error: "There was an error deleting the transaction."
+      not_found: "transaction not found"
+
     index:
       total: "Total Amount of Transactions"
     new:
       prohibited: "prohibited this transaction from being saved"
     show:
-      date: "date"
-      client: "client"
-      total_price: "total price"
+    not_found: "transaction not found"
+
   #  service controller create/update/delete html
   services:
     service:
@@ -237,6 +261,11 @@ en:
     update:
       success: "Update successful for %{name} "
       error: "There was an error updating the service."
+      not_found: "service not found"
+    show:
+      not_found: "service not found"
+
     destroy:
       success: "Delete successful for %{name}"
       error: "There was an error deleting the service."
+      not_found: "service not found"
