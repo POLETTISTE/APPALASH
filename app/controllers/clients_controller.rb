@@ -43,7 +43,8 @@ class ClientsController < ApplicationController
     authorize @clients
   
     if params[:query].present?
-      @clients = @clients.search_by_general_informations(params[:query])
+      search_results = Client.search_by_general_informations(params[:query])
+      @clients = current_user.admin? ? search_results : search_results.where(user: current_user)
     end
   
     respond_to do |format|

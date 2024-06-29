@@ -1,4 +1,7 @@
 <div class="client-card" data-controller="edit-client" data-edit-client-target="card">
+  <% if current_user.admin? %>
+    <p><%= client.user.email %></p>
+  <% end %>
   <% if client.photo.attached? %>
     <%= cl_image_tag client.photo.key,  crop: :fill, gravity: :face %>
   <%else%>
