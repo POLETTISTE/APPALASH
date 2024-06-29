@@ -10,10 +10,7 @@ class ClientsController < ApplicationController
     @client = Client.new
     authorize @client
     @clients = policy_scope(Client)
-
-
   end
-
 
   # POST /clients
   def create
@@ -41,29 +38,26 @@ class ClientsController < ApplicationController
   def index
     @clients = policy_scope(Client).order('UPPER(name)')
     authorize @clients
-  
+
     if params[:query].present?
       search_results = Client.search_by_general_informations(params[:query])
       @clients = current_user.admin? ? search_results : search_results.where(user: current_user)
     end
-  
+
     respond_to do |format|
       format.html
       format.json { render json: @clients }
       format.text { render partial: 'clients/list', locals: { clients: @clients }, formats: [:html] }
     end
   end
-  
 
   # GET /clients/1
   def show
-
     respond_to do |format|
       format.html
       format.json { render json: @client }
     end
   end
-
 
   # PATCH/PUT /clients/1
   def update

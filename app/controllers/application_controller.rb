@@ -2,13 +2,13 @@
 
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  
+
   include Pundit::Authorization
-  
+
   # Pundit: allow-list approach
-  after_action :verify_authorized,  unless: :skip_pundit?
+  after_action :verify_authorized, unless: :skip_pundit?
   after_action :verify_policy_scoped, unless: :skip_pundit?
-  
+
   around_action :switch_locale
 
   def switch_locale(&action)
@@ -25,5 +25,4 @@ class ApplicationController < ActionController::Base
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
-
 end

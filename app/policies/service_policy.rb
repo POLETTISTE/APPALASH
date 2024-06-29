@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ServicePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      user.admin? ? scope.all : scope.where(user: user)
+      user.admin? ? scope.all : scope.where(user:)
     end
   end
 
@@ -32,5 +34,4 @@ class ServicePolicy < ApplicationPolicy
   def destroy?
     record.user == user || user.admin?
   end
-
 end

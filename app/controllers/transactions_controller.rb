@@ -12,7 +12,7 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
     @transaction.user = current_user
-    
+
     if @transaction.save
       respond_to do |format|
         format.html { redirect_to transactions_url, alert: 'Transaction was successfully created.' }
