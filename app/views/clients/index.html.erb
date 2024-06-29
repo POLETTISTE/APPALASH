@@ -2,6 +2,9 @@
 <div class="container">
   <div class="row">
     <div class="col">
+      <% if policy(@clients).create? %>
+        <%= link_to t('button.new', model: Client.model_name.human.downcase), new_client_path, class: "btn btn-primary" %>
+      <% end %>
       <div data-controller="search-clients">
         <%= form_with url: clients_path, method: :get, html: {class: "mb-4", data: {search_clients_target: "form"}} do |f| %>
           <%= f.label :query, t('.search') %>
@@ -20,4 +23,3 @@
     </div>
   </div>
 </div>
-<%= link_to t('button.new', model: Client.model_name.human.downcase), new_client_path, class: "link-clients" %>

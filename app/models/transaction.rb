@@ -8,7 +8,15 @@ class Transaction < ApplicationRecord
   # serialize :prestations, Array
 
   before_save :calculate_total_price
-
+  include PgSearch::Model
+  pg_search_scope :search_by_general_informations,
+                  against: %i[name firstname email phone],
+                  associated_against: {
+                    user: :email
+                  },
+                  using: {
+                    tsearch: { prefix: true }
+                  }
   private
 
   def calculate_total_price

@@ -205,14 +205,6 @@ en:
       health_first_application: "health first application"
       health_lie_down: "health lie down"
       health_notes: "health notes"
-  services:
-    service:
-      name: "name"
-      price: "price"
-    new:
-      title: "New service"
-    edit:
-      title: "Edit service"
   #page dashboard
   dashboard:
     index:
@@ -230,3 +222,21 @@ en:
       date: "date"
       client: "client"
       total_price: "total price"
+  #  service controller create/update/delete html
+  services:
+    service:
+      name: "name"
+      price: "price"
+    new:
+      title: "New service"
+    edit:
+      title: "Edit service"
+    create:
+      success: "Creation successful for %{name}"
+      error: "There was an error creating the service."
+    update:
+      success: "Update successful for %{name} "
+      error: "There was an error updating the service."
+    destroy:
+      success: "Delete successful for %{name}"
+      error: "There was an error deleting the service."

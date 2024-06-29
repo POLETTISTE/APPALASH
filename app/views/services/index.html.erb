@@ -1,8 +1,10 @@
 <p style="color: green"><%= notice %></p>
 <h1><%= t('services_h1') %></h1>
+<% if policy(@services).create? %>
+  <%= link_to t("button.new", model: Service.model_name.human.downcase), new_service_path, class: "btn btn-primary"  %>
+<% end %>
 <div id="services">
   <% @services.each do |service| %>
     <%= render service %>
   <% end %>
 </div>
-<%= link_to t("button.new", model: Service.model_name.human.downcase), new_service_path %>

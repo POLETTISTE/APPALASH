@@ -2,6 +2,8 @@
 
 class Service < ApplicationRecord
   belongs_to :user
+  validates :name, presence: true
+  validates :price, presence: true
 
   self.primary_key = 'id'
 

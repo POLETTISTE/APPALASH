@@ -3,8 +3,6 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[show edit update destroy]
 
-  include Pundit
-
   # GET clients/new
   def new
     @client = Client.new
@@ -58,6 +56,9 @@ class ClientsController < ApplicationController
       format.json { render json: @client }
     end
   end
+
+  # GET /clients/1/edit
+  def edit; end
 
   # PATCH/PUT /clients/1
   def update

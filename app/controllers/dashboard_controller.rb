@@ -1,17 +1,14 @@
 # frozen_string_literal: true
 
-# app/controllers/dashboard_controller.rb
 class DashboardController < ApplicationController
   def index
-    @clients = Client.all
-    @services = Service.all
-    @transactions = Transaction.all
+    @clients = policy_scope(Client.all)
+    @services = policy_scope(Service.all)
+    @transactions = policy_scope(Transaction.all)
+
     authorize @clients
     authorize @services
     authorize @transactions
-    @clients = policy_scope(Client)
-    @services = policy_scope(Service)
-    @clients = policy_scope(Transaction)
 
     @clients_group_by_name = @clients.group(:name).count
     @clients_how_do_you_know_us = @clients.group(:how_do_you_know_us).count
