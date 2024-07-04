@@ -32,6 +32,8 @@
 en:
   hello: "Hello %{name}"
   welcome: "Welcome"
+  link_go_to: "Go to %{model}"
+
   accueil_h1: "Accueil"
   dashboard_h1: "Dashboard"
   clients_h1: "Clients"
