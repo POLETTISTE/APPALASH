@@ -14,12 +14,17 @@ Rails.application.configure do
   config.eager_load = false
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.asset_host = 'http://localhost:3000'
+
   config.action_mailer.delivery_method = :smtp
 
   # mail catcher
+  # https://www.youtube.com/watch?v=nun18zM8Gq0
   config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025 }
   config.action_mailer.raise_delivery_errors = false
+
   
+
   # Show full error reports.
   config.consider_all_requests_local = true
   # config.consider_all_requests_local = false
