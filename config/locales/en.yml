@@ -135,7 +135,7 @@ en:
     #clients/edit.html.erb
     edit:
       title: "Edit client"
-      
+
     #clients/show.html.erb
     show:
       not_found: "client not found"
@@ -223,6 +223,7 @@ en:
       client_name: "client name"
       client_firstname: "client firstname"
       total_price: "total price"
+      not_found: "transaction not found"
 
     create:
       success: "Creation successful the transaction with %{firstname} %{name}"
@@ -232,6 +233,10 @@ en:
       error: "There was an error updating the transaction."
       not_found: "transaction not found"
     show:
+      date: "date"
+      client: "client"
+      client_firstname: "client firstname"
+      total_price: "total price"
       not_found: "transaction not found"
 
     destroy:
@@ -243,8 +248,6 @@ en:
       total: "Total Amount of Transactions"
     new:
       prohibited: "prohibited this transaction from being saved"
-    show:
-    not_found: "transaction not found"
 
   #  service controller create/update/delete html
   services:
