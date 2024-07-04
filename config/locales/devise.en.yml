@@ -21,24 +21,76 @@ en:
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
+        welcome: "welcome"
+        confirm_instructions: "You can confirm your account email through the link below:"
+        confirm_button: "Confirm my account"
       reset_password_instructions:
         subject: "Reset password instructions"
+        welcome: "welcome"
+        request: "Someone has requested a link to change your password. You can do this through the link below."
+        link: "Change my password"
+        ignore: "If you didn't request this, please ignore this email."
+        notice: "Your password won't change until you access the link above and create a new one."
       unlock_instructions:
         subject: "Unlock instructions"
+        welcome: "welcome"
+        locked": "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
+        click_here_to_unlock: "Click the link below to unlock your account:"
+        link: "Unlock my account"
       email_changed:
+        welcome: "welcome"
+        unconfirmed: "We're contacting you to notify you that your email is being changed to "
+        confirmed: "We're contacting you to notify you that your email has been changed to "
         subject: "Email Changed"
       password_change:
+        welcome: "welcome"
         subject: "Password Changed"
+        notify: "We're contacting you to notify you that your password has been changed."
     omniauth_callbacks:
       failure: 'Could not authenticate you from %{kind} because "%{reason}".'
       success: "Successfully authenticated from %{kind} account."
     passwords:
+      edit:
+        title: "Change your password"
+        input_label: "New password"
+        min_chars: " characters minimum"
+        autocomplete: "new-password"
+        input_label_confirm: "Confirm your new password"
+        change: "Change my password"
+      new:
+        title: "Forgot your password?"
+        autocomplete: "Email"
+        reset: "Send me reset password instructions"
+
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
       send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
       updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
     registrations:
+      edit:
+        title: "Edit"
+        waiting_confirmation: "Currently waiting confirmation for: "
+        blank: "leave it blank if you don't want to change it"
+        autocomplete_new_password: "new-password"
+        current_password: "we need your current password to confirm your changes"
+        autocomplete_current_password: "current-password"
+        submit: "Update"
+        cancel: "Cancel my account"
+        unhappy: "Unhappy?"
+        unhappy_confirm: "Are you sure?"
+        cancel_button: "Cancel my account"
+        back: "back"
+      new:
+        title: "Sign up"
+        label_email: "Email"
+        label_password: "Password"
+        label_password_confirmation: "Password Confirmation"
+        autocomplete_email: "email"
+        min_chars: " characters minimum"
+        autocomplete_new_password: "new-password"
+        submit: "Sign up"
+
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
@@ -48,13 +100,33 @@ en:
       updated: "Your account has been updated successfully."
       updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again."
     sessions:
+      new:
+        title: "Log in"
+        label_email: "Email"
+        autocomplete_email: "email"
+        label_password: "Password"
+        autocomplete_current_password: "current-password"
+        submit: "Log in"
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
     unlocks:
+      title: "Resend unlock instructions"
+      label_email: "Email"
+      autocomplete_email: "Email"
+      resend_btn: "Resend unlock instructions"
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+    shared:
+      links:
+        login: "Log in"
+        btn_signed_up: "Sign up"
+        forgot_your_password: "Forgot your password?"
+        confirmation_instructions: "Didn't receive confirmation instructions?"
+        unlock_instructions: "Didn't receive unlock instructions?"
+        btn_sign_in: "Sign in with"
+
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"

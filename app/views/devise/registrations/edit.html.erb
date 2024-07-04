@@ -1,35 +1,27 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
+<h2><%= t('.title')%> <%= resource_name.to_s.humanize %></h2>
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
-
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
-
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <p><%= t('.waiting_confirmation') %><%= resource.unconfirmed_email %></p>
     <% end %>
-
     <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
+                hint: t('.blank'),
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: t('.autocomplete_new_password') } %>
     <%= f.input :password_confirmation,
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: t('.autocomplete_new_password') } %>
     <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
+                hint: t('.current_password'),
                 required: true,
-                input_html: { autocomplete: "current-password" } %>
+                input_html: { autocomplete: t('.autocomplete_current_password') } %>
   </div>
-
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit, t('.submit') %>
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+<h3><%= t('.cancel') %></h3>
+<div><%= t('.unhappy') %> <%= button_to t('.cancel_button'), registration_path(resource_name), data: { confirm: t('.unhappy_confirm'), turbo_confirm: t('.unhappy_confirm') }, method: :delete %></div>
+<%= link_to t('.back'), :back %>
