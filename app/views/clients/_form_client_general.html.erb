@@ -1,14 +1,20 @@
-<%= simple_form_for(@client) do |form| %>
+<%= simple_form_for(@client, html: {data: {controller: "photo-preview"}}) do |form| %>
   <% if !@client.id %>
     <%# <p>Client does not exist</p> %>
   <% else %>
-    <% if @client.photo.attached? %>
-      <%= cl_image_tag @client.photo.key, height: 100, width: 100, crop: :thumb, gravity: :face, style: "border-radius: 50%;" %>
-    <% else %>
-      <%= image_tag "client/client_photo_profil.png", height: 100, width: 100, crop: :fill, style: "border-radius: 50%; background-color: tomato;" %>
-    <% end %>
+    <div id="existing-photo">
+      <% if @client.photo.attached? %>
+        <%= cl_image_tag @client.photo.key, height: 100, width: 100, crop: :thumb, gravity: :face, style: "border-radius: 50%;" %>
+        <%# else %>
+        <%#= image_tag "client/client_photo_profil.png", height: 100, width: 100, crop: :fill, style: "border-radius: 50%; background-color: tomato;", id: "default-photo" %>
+      <% end %>
+    </div>
   <% end %>
-  <%= form.input :photo, as: :file, input_html: { accept: 'image/jpeg, image/png' } %>
+  <div id="photo-preview-container">
+    <%= image_tag "", width: 300, class: "d-none image-preview", id: "preview-image", data: { photo_preview_target: "preview" } %>
+    <button type="button" id="remove-photo" class="d-none" data-action="photo-preview#removePreview">Remove</button>
+  </div>
+  <%= form.input :photo, as: :file, input_html: { accept: 'image/jpeg, image/png', class: 'd-none', id: 'photo-input', data: { photo_preview_target: "input", action: "change->photo-preview#displayPreview" }}, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo'  %>
   <%= form.input :name, label: t('simple_form.labels.client.name'), required: true %>
   <%= form.input :firstname, label: t('simple_form.labels.client.firstname'), required: true %>
   <%= form.input :email, label: t('simple_form.labels.client.email') %>

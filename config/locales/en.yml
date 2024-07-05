@@ -152,7 +152,7 @@ en:
     index:
       title: "List of clients"
       search: "Search..."
-      placeholder: "Search by name / firstname / email/ phone"
+      placeholder: "Search by name / firstname / email / phone"
 
     #clients/_list.html.erb
     list:

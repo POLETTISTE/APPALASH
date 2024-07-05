@@ -36,7 +36,7 @@ class ClientsController < ApplicationController
   def index
     @clients = policy_scope(Client).order('UPPER(name)')
     authorize @clients
-    @users = current_user.admin? ? User.all : User.where(id: current_user.id)
+    @users = current_user.admin? ? User.all : []
 
     if params[:query].present?
       search_results = Client.search_by_general_informations(params[:query])
@@ -44,7 +44,13 @@ class ClientsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json { render json: {  users: @users, clients: @clients } }
+      format.json do
+        if current_user.admin?
+          render json: { users: @users, clients: @clients }
+        else
+          render json: { clients: @clients }
+        end
+      end
       format.text { render partial: 'clients/list', locals: { clients: @clients }, formats: [:html] }
     end
   end
