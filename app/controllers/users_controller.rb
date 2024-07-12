@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_authorized, only: [:edit, :update]
+  after_action :verify_authorized, only: %i[edit update]
   layout 'website', only: [:show]
 
   def show
@@ -27,7 +29,7 @@ class UsersController < ApplicationController
 
     existing_user = User.find_by(website: user_params[:website])
     if existing_user && existing_user != @user
-      flash[:alert] = "Website already exists"
+      flash[:alert] = 'Website already exists'
       redirect_to edit_user_profile_path(@user.website)
       return
     end

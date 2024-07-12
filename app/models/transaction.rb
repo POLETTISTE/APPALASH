@@ -17,6 +17,7 @@ class Transaction < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
+
   private
 
   def calculate_total_price

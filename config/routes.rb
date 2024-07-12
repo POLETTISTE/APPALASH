@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /fr|es|de/ do
     authenticated :user do
       root to: 'dashboard#index', as: :authenticated_root
-        # get '*path', to: 'dashboard#index'
+      # get '*path', to: 'dashboard#index'
       # You can add other routes accessible only when authenticated here
     end
 
@@ -34,5 +34,4 @@ Rails.application.routes.draw do
   get '/mywebsite/:website', to: 'users#show', as: 'user_profile'
   get '/mywebsite/:website/edit', to: 'users#edit', as: 'edit_user_profile'
   patch '/mywebsite/:website', to: 'users#update'
-
 end

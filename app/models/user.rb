@@ -11,5 +11,4 @@ class User < ApplicationRecord
          :confirmable
 
   validates :website, presence: true, uniqueness: true
-
 end

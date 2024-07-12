@@ -10,7 +10,6 @@ class ServicesController < ApplicationController
     @services = policy_scope(Service)
   end
 
-
   # POST /services
   def create
     @service = Service.new(service_params)
@@ -28,7 +27,7 @@ class ServicesController < ApplicationController
     else
       alert_error_message = t('services.create.error')
       respond_to do |format|
-        format.html { render :new,  alert: alert_error_message,status: :unprocessable_entity }
+        format.html { render :new, alert: alert_error_message, status: :unprocessable_entity }
         format.json { render json: @service.errors, status: :unprocessable_entity }
       end
     end
@@ -56,7 +55,6 @@ class ServicesController < ApplicationController
   # GET /services/1/edit
   def edit; end
 
-
   # PATCH/PUT /services/1
   def update
     ensure_fields_exist
@@ -64,14 +62,14 @@ class ServicesController < ApplicationController
       alert_message = t('services.update.success', name: @service.name)
 
       respond_to do |format|
-        format.html { redirect_to @service,  alert: alert_message}
+        format.html { redirect_to @service,  alert: alert_message }
         format.json { render json: @service, status: :ok, location: @service }
       end
     else
       alert_error_message = t('serrvices.update.error')
 
       respond_to do |format|
-        format.html { render :edit, alert: alert_error_message,status: :unprocessable_entity }
+        format.html { render :edit, alert: alert_error_message, status: :unprocessable_entity }
         format.json { render json: @service.errors, status: :unprocessable_entity }
       end
     end

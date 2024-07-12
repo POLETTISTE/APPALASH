@@ -16,7 +16,7 @@ module LashAppRails
 
     # https://www.mintbit.com/blog/custom-404-500-error-pages-in-rails
     # https://www.youtube.com/watch?v=moeJ_0WQZxo&t=308s
-    config.exceptions_app = self.routes
+    config.exceptions_app = routes
 
     # Configuration for the application, engines, and railties goes here.
     #

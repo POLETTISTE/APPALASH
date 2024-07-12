@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[show edit update destroy]
 
@@ -10,10 +12,10 @@ class TransactionsController < ApplicationController
     authorize @transaction
     authorize @services
 
-    if params[:query].present?
-      search_results = Client.search_by_general_informations(params[:query])
-      @clients = current_user.admin? ? search_results : search_results.where(user: current_user)
-    end
+    return unless params[:query].present?
+
+    search_results = Client.search_by_general_informations(params[:query])
+    @clients = current_user.admin? ? search_results : search_results.where(user: current_user)
   end
 
   def create
@@ -23,7 +25,8 @@ class TransactionsController < ApplicationController
     @transactions = policy_scope(Transaction)
 
     if @transaction.save
-      alert_message = t('transactions.create.success', firstname: @transaction.client.firstname, name: @transaction.client.name)
+      alert_message = t('transactions.create.success', firstname: @transaction.client.firstname,
+                                                       name: @transaction.client.name)
 
       respond_to do |format|
         format.html { redirect_to transactions_url, alert: alert_message }
@@ -59,7 +62,8 @@ class TransactionsController < ApplicationController
 
   def destroy
     if @transaction.destroy
-      alert_message = t('transactions.destroy.success', firstname: @transaction.client.firstname, name: @transaction.client.name)
+      alert_message = t('transactions.destroy.success', firstname: @transaction.client.firstname,
+                                                        name: @transaction.client.name)
 
       respond_to do |format|
         format.html { redirect_to transactions_url, alert: alert_message }
@@ -81,9 +85,9 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
     authorize @transaction
     @transactions = policy_scope(Transaction)
-    rescue ActiveRecord::RecordNotFound
-      alert_error_message = t('.not_found')
-      redirect_to transactions_url, alert: alert_error_message unless @transaction
+  rescue ActiveRecord::RecordNotFound
+    alert_error_message = t('.not_found')
+    redirect_to transactions_url, alert: alert_error_message unless @transaction
   end
 
   def transaction_params
