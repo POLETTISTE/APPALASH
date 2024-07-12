@@ -13,8 +13,8 @@ class UsersController < ApplicationController
     else
       redirect_to errors_not_found_path
     end
-  rescue Pundit::NotAuthorizedError
-    redirect_to errors_not_authorized_path
+  # rescue Pundit::NotAuthorizedError
+  #   redirect_to errors_not_authorized_path
   end
 
   def edit
