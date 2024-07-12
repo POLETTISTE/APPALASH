@@ -1,0 +1,6 @@
+<!-- app/views/users/show.html.erb -->
+<h1><%= @user.website %>'s Profile</h1>
+<!-- Display user information -->
+<% if policy(@user).edit? %>
+  <%= link_to 'Edit Profile', edit_user_profile_path(@user.website), class: 'btn btn-primary' %>
+<% end %>

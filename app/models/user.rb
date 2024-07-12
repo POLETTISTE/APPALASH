@@ -9,4 +9,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable
+
+  validates :website, presence: true, uniqueness: true
+
 end

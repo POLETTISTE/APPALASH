@@ -30,4 +30,9 @@ Rails.application.routes.draw do
   get '/500', to: 'errors#internal_server'
   get '/406', to: 'errors#unacceptable'
   get '/422', to: 'errors#unprocessable'
+
+  get '/mywebsite/:website', to: 'users#show', as: 'user_profile'
+  get '/mywebsite/:website/edit', to: 'users#edit', as: 'edit_user_profile'
+  patch '/mywebsite/:website', to: 'users#update'
+
 end

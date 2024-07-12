@@ -4,5 +4,6 @@
     <%= link_to t("sidebar_link_clients"), clients_path, class: "link-clients" %>
     <%= link_to t("sidebar_link_services"), services_path, class: "link-services" %>
     <%= link_to t("sidebar_link_transactions"), transactions_path, class: "link-transactions" %>
+    <%= link_to t("sidebar_link_user-website"), user_profile_path(current_user.website), class: "link-profile" %>
   </div>
 <% end %>
