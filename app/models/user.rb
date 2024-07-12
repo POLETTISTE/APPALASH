@@ -10,5 +10,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-  validates :website, presence: true, uniqueness: true
+  validates :website, uniqueness: true
 end
