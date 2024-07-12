@@ -1,18 +1,19 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_authorized, only: [:show, :edit, :update]
-
+  after_action :verify_authorized, only: [:edit, :update]
   layout 'website', only: [:show]
 
   def show
     @user = find_user_by_website
 
     if @user
-      authorize @user
+      authorize @user # Ensure authorization is performed
       # Continue with action logic for authorized user
     else
-      redirect_to 'errors_not_found_path'
+      redirect_to errors_not_found_path
     end
+  rescue Pundit::NotAuthorizedError
+    redirect_to errors_not_authorized_path
   end
 
   def edit

@@ -6,7 +6,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    true # Allow everyone to view user profiles
+    user.present? # Allow access if user is logged in
   end
 
   def edit?
