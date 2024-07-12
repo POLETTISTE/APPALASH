@@ -9,35 +9,50 @@ class UsersController < ApplicationController
     @user = find_user_by_website
 
     if @user
-      authorize @user
+      authorize @user # Ensure authorization is performed
+      # Continue with action logic for authorized user
     else
       redirect_to errors_not_found_path
     end
-  # rescue Pundit::NotAuthorizedError
-  #   redirect_to errors_not_authorized_path
+  rescue Pundit::NotAuthorizedError
+    redirect_to errors_not_found_path
   end
 
   def edit
     @user = find_user_by_website
-    authorize @user
+
+    if @user
+      authorize @user
+    else
+      redirect_to errors_not_found_path
+    end
+  rescue Pundit::NotAuthorizedError
+    redirect_to root_path
   end
 
   def update
     @user = find_user_by_website
-    authorize @user
 
-    existing_user = User.find_by(website: user_params[:website])
-    if existing_user && existing_user != @user
-      flash[:alert] = 'Website already exists'
-      redirect_to edit_user_profile_path(@user.website)
-      return
-    end
+    if @user
+      authorize @user
 
-    if @user.update(user_params)
-      redirect_to user_profile_path(@user.website), notice: 'Profile updated successfully.'
+      existing_user = User.find_by(website: user_params[:website])
+      if existing_user && existing_user != @user
+        flash[:alert] = "Website already exists"
+        redirect_to edit_user_profile_path(@user.website)
+        return
+      end
+
+      if @user.update(user_params)
+        redirect_to user_profile_path(@user.website), notice: 'Profile updated successfully.'
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to errors_not_found_path
     end
+  rescue Pundit::NotAuthorizedError
+    redirect_to root_path
   end
 
   private
