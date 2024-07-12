@@ -21,6 +21,13 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
   end
 
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:website, :other_attributes])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:website, :other_attributes])
+  end
+
   private
 
   def skip_pundit?

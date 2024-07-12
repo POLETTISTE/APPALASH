@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: %i[edit update]
   after_action :verify_authorized, only: %i[edit update]
   layout 'website', only: [:show]
 
@@ -9,8 +9,7 @@ class UsersController < ApplicationController
     @user = find_user_by_website
 
     if @user
-      authorize @user # Ensure authorization is performed
-      # Continue with action logic for authorized user
+      authorize @user
     else
       redirect_to errors_not_found_path
     end

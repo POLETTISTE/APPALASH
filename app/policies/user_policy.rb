@@ -8,7 +8,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    user.present? # Allow access if user is logged in
+    true
   end
 
   def edit?
