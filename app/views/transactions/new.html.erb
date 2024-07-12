@@ -36,7 +36,7 @@
             <%= service.name %> - <%= '%.2f' % service.price %>
             <% if checked %>
               <%= hidden_field_tag 'transaction[services][][name]', service.name %>
-              <%= hidden_field_tag 'transaction[services][][price]', service.price %>
+              <%= hidden_field_tag 'transaction[services][][price]', service.price  %>
             <% end %>
           </div>
         <% end %>
