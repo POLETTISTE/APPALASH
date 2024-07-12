@@ -7,17 +7,15 @@ Rails.application.routes.draw do
   get 'errors/unacceptable'
   devise_for :users
   scope '(:locale)', locale: /fr|es|de/ do
+    get 'offers', to: 'home#offers', as: :offers
+
     authenticated :user do
       root to: 'dashboard#index', as: :authenticated_root
-      # get '*path', to: 'dashboard#index'
-      # You can add other routes accessible only when authenticated here
     end
 
     unauthenticated do
-      root to: 'home#welcome'
-      get 'offers', to: 'home#offers'
-      # get '*path', to: 'home#welcome'
-      # Define other routes accessible only when not authenticated here
+      root to: 'home#home'
+      get 'home', to: 'home#home'
     end
 
     resources :clients
@@ -31,7 +29,7 @@ Rails.application.routes.draw do
   get '/406', to: 'errors#unacceptable'
   get '/422', to: 'errors#unprocessable'
 
-  get '/mywebsite/:website', to: 'users#show', as: 'user_profile'
-  get '/mywebsite/:website/edit', to: 'users#edit', as: 'edit_user_profile'
-  patch '/mywebsite/:website', to: 'users#update'
+  get '/home/:website', to: 'users#show', as: 'user_profile'
+  get '/home/:website/edit', to: 'users#edit', as: 'edit_user_profile'
+  patch '/home/:website', to: 'users#update'
 end

@@ -1,4 +1,6 @@
-<!-- app/views/users/show.html.erb -->
+<% if policy(@user).edit? %>
+  <%= link_to 'Root', root_path, class: 'btn btn-primary' %>
+<% end %><!-- app/views/users/show.html.erb -->
 <h1><%= @user.website %>'s Profile</h1>
 <!-- Display user information -->
 <% if policy(@user).edit? %>
