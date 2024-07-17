@@ -10,5 +10,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-  validates :website, uniqueness: true
+  # can be null but not empty
+  validates :website, uniqueness: true, allow_nil: true, presence: true
 end
