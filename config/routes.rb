@@ -32,5 +32,4 @@ Rails.application.routes.draw do
   get '/home/:website', to: 'users#show', as: 'user_profile'
   get '/home/:website/edit', to: 'users#edit', as: 'edit_user_profile'
   patch '/home/:website', to: 'users#update'
-
 end

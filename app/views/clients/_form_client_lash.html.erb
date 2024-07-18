@@ -1,0 +1,20 @@
+<%= simple_form_for @client do |form| %>
+  <%= form.simple_fields_for :lash do |lf| %>
+    <%= lf.input :desired_effect, collection: lash_desired_effect_options, as: :select, label: "Lash Desired Effect" %>
+    <%= lf.input :face_diagnostic, collection: lash_face_diagnostic_options, as: :select, label: "Lash Face Diagnostic" %>
+    <%= lf.input :asymmetry_diagnostic, collection: lash_asymmetry_diagnostic_options, as: :select, label: "Lash Asymmetry Diagnostic" %>
+    <%= lf.input :eyelid_morphology_diagnostic, collection: lash_eyelid_morphology_diagnostic_options, as: :select, label: "Lash Eyelid Morphology Diagnostic" %>
+    <%= lf.input :alignment_morphology_diagnostic, collection: lash_alignment_morphology_diagnostic_options, as: :select, label: "Lash Alignment Morphology Diagnostic" %>
+    <%= lf.input :proportion_morphology_diagnostic, collection: lash_proportion_morphology_diagnostic_options, as: :select, label: "Lash Proportion Morphology Diagnostic" %>
+    <%= lf.input :thickness_diagnostic, label: "Lash Thickness Diagnostic" %>
+    <%= lf.input :length_diagnostic, as: :integer, label: "Lash Length Diagnostic" %>
+    <%= lf.input :curvature_diagnostic, as: :boolean, label: "Lash Curvature Diagnostic" %>
+    <%= lf.input :style, collection: lash_style_options, as: :select, label: "Lash Style" %>
+    <%= lf.input :notes, as: :text, label: "Lash Notes" %>
+    <%= lf.input :mapping, as: :text, label: "Lash Mapping" %>
+    <%= lf.input :event, as: :text, label: "Lash Event" %>
+    <%= lf.input :texture, as: :boolean, label: "Lash Texture" %>
+    <%= lf.input :density, collection: lash_density_options, as: :select, label: "Lash Density" %>
+  <% end %>
+  <%= form.button :submit, class: "btn btn-success" %>
+<% end %>

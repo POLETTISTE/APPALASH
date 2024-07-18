@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class WebsiteTest < ActiveSupport::TestCase
+class LashTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

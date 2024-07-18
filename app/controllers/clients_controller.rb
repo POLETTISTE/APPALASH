@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
+# app/controllers/clients_controller.rb
+
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[show edit update destroy]
 
   # GET clients/new
   def new
     @client = Client.new
+    @client.build_lash
     authorize @client
     @clients = policy_scope(Client)
   end
@@ -42,6 +45,7 @@ class ClientsController < ApplicationController
       search_results = Client.search_by_general_informations(params[:query])
       @clients = current_user.admin? ? search_results : search_results.where(user: current_user)
     end
+
     respond_to do |format|
       format.html
       format.json do
@@ -64,7 +68,9 @@ class ClientsController < ApplicationController
   end
 
   # GET /clients/1/edit
-  def edit; end
+  def edit
+    @client.build_lash unless @client.lash
+  end
 
   # PATCH/PUT /clients/1
   def update
@@ -118,15 +124,8 @@ class ClientsController < ApplicationController
         desired_effect face_diagnostic asymmetry_diagnostic
         eyelid_morphology_diagnostic alignment_morphology_diagnostic
         proportion_morphology_diagnostic thickness_diagnostic
-        length_diagnostic curvature_diagnostic style notes
-        mapping event texture density extensions_brand
-        extensions_curvature extensions_thickness extensions_glue
-        extensions_pretreatment_superbonder extensions_pretreatment_booster
-      ],
-      health_attributes: %i[
-        diabetes pregnancy dry_eyes teary_eyes allergy contact_lenses
-        surgery chemotherapy eyes_allergy itch first_application
-        lie_down notes
+        length_diagnostic curvature_diagnostic style
+        notes mapping event texture density
       ]
     )
   end
@@ -143,13 +142,5 @@ class ClientsController < ApplicationController
     field_type = Client.columns_hash[field.to_s]&.type || :string
     @client.class.connection.add_column(@client.class.table_name, field, field_type)
     @client.class.reset_column_information
-  end
-
-  def perform_update
-    if @client.update(client_params)
-      render json: @client
-    else
-      render json: { errors: @client.errors }, status: :unprocessable_entity
-    end
   end
 end

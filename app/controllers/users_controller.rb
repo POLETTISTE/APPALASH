@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   after_action :verify_authorized, only: %i[edit update]
   layout 'website', only: [:show]
 
-
   def show
     @user = find_user_by_website
 
@@ -33,20 +32,20 @@ class UsersController < ApplicationController
 
   def update
     @user = find_user_by_website
-  
+
     if @user
       authorize @user
-  
+
       # Check if there's already a user with the updated website
       if user_params[:website].present? && user_params[:website] != @user.website
         existing_user = User.find_by(website: user_params[:website])
         if existing_user && existing_user != @user
-          flash[:alert] = "Website already exists"
+          flash[:alert] = 'Website already exists'
           redirect_to edit_user_profile_path(@user.website)
           return
         end
       end
-  
+
       if @user.update(user_params)
         redirect_to user_profile_path(@user.website), notice: 'Profile updated successfully.'
       else
