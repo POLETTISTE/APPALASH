@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get 'errors/internal_server'
   get 'errors/unprocessable'
   get 'errors/unacceptable'
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   scope '(:locale)', locale: /fr|es|de/ do
     get 'offers', to: 'home#offers', as: :offers
 
