@@ -36,6 +36,13 @@ class ApplicationPolicy
     false
   end
 
+  def update_website?
+    false
+  end
+  def edit_website?
+    update_website?
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user

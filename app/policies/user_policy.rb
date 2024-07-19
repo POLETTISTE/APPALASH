@@ -7,15 +7,15 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  def show?
+  def show_website?
     true
   end
 
-  def edit?
+  def edit_website?
     user && (user.admin? || user == record) # Allow owner or admin to edit
   end
 
-  def update?
-    edit? # Defer to edit? for update permissions
+  def update_website?
+    edit_website? # Defer to edit? for update permissions
   end
 end

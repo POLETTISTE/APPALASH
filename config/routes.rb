@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get '/406', to: 'errors#unacceptable'
   get '/422', to: 'errors#unprocessable'
 
-  get '/home/:website', to: 'users#show', as: 'user_profile'
-  get '/home/:website/edit', to: 'users#edit', as: 'edit_user_profile'
-  patch '/home/:website', to: 'users#update'
+  get '/home/:website', to: 'users#show_website', as: 'user_profile'
+  get '/home/:website/edit', to: 'users#edit_website', as: 'edit_user_profile'
+  patch '/home/:website', to: 'users#update_website', as: 'update_user_profile'
 end

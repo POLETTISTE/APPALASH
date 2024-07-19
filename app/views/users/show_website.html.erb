@@ -1,8 +1,8 @@
-<% if policy(@user).edit? %>
+<% if policy(@user).edit_website? %>
   <%= link_to 'Root', root_path, class: 'btn btn-primary' %>
 <% end %><!-- app/views/users/show.html.erb -->
 <h1><%= @user.website %>'s Profile</h1>
 <!-- Display user information -->
-<% if policy(@user).edit? %>
+<% if policy(@user).edit_website? %>
   <%= link_to 'Edit Profile', edit_user_profile_path(@user.website), class: 'btn btn-primary' %>
 <% end %>

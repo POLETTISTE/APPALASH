@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   after_action :verify_authorized, only: %i[edit update]
   layout 'website', only: [:show]
 
-  def show
+  def show_website
     @user = find_user_by_website
 
     if @user
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     redirect_to errors_not_found_path
   end
 
-  def edit
+  def edit_website
     @user = find_user_by_website
 
     if @user
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def update
+  def update_website
     @user = find_user_by_website
 
     if @user
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
       if @user.update(user_params)
         redirect_to user_profile_path(@user.website), notice: 'Profile updated successfully.'
       else
-        render :edit
+        render :edit_website
       end
     else
       redirect_to errors_not_found_path

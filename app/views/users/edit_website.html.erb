@@ -1,5 +1,5 @@
 <h1>Edit Profile</h1>
-<%= form_for @user, url: user_profile_path, method: :patch, data: { turbo: "true" } do |f| %>
+<%= form_for @user, url: update_user_profile_path(@user.website), method: :patch, data: { turbo: "true" } do |f| %>
   <!-- Display error messages -->
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -23,12 +23,9 @@
     <%= f.text_field :website %>
   </div>
   <!-- Other fields here -->
-  <!-- Submit button -->
   <div>
     <%= f.submit "Update Profile" %>
   </div>
 <% end %>
-<!-- Back to profile link -->
 <%= link_to 'Back to Profile', user_profile_path(@user.website), class: 'btn btn-secondary' %>
-<!-- Turbo Streams to update the form without full page reload -->
 <%= turbo_stream_from "user_form" %>
