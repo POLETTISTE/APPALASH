@@ -33,7 +33,7 @@ en:
   hello: "Hello %{name}"
   welcome: "Welcome"
   link_go_to: "Go to %{model}"
-
+  lash_global_info: "Lash informations"
   accueil_h1: "Accueil"
   dashboard_h1: "Dashboard"
   clients_h1: "Clients"
