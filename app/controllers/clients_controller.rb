@@ -5,10 +5,11 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[show edit update destroy]
 
-  # GET clients/new
+  # GET /clients/new
   def new
     @client = Client.new
     @client.build_lash
+    @client.build_extension
     authorize @client
     @clients = policy_scope(Client)
   end
@@ -70,6 +71,7 @@ class ClientsController < ApplicationController
   # GET /clients/1/edit
   def edit
     @client.build_lash unless @client.lash
+    @client.build_extension unless @client.extension
   end
 
   # PATCH/PUT /clients/1
@@ -126,6 +128,10 @@ class ClientsController < ApplicationController
         proportion_morphology_diagnostic thickness_diagnostic
         length_diagnostic curvature_diagnostic style
         notes mapping event texture density
+      ],
+      extension_attributes: %i[
+        lash_extensions_brand lash_extensions_curvature
+        lash_extensions_thickness lash_extensions_glue
       ]
     )
   end

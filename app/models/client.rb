@@ -5,13 +5,16 @@ class Client < ApplicationRecord
   has_one_attached :photo
   has_many :transactions, dependent: :destroy
   has_one :lash, dependent: :destroy
+  has_one :extension, dependent: :destroy
 
   accepts_nested_attributes_for :lash # Make sure this line is present
+  accepts_nested_attributes_for :extension # Make sure this line is present
 
   validates :name, presence: true
   validates :firstname, presence: true
 
   after_create :create_lash
+  after_create :create_extension
 
   def as_json(options = {})
     super(options.merge(except: [:lash_attributes],
@@ -37,5 +40,9 @@ class Client < ApplicationRecord
 
   def create_lash
     create_lash!
+  end
+
+  def create_extension
+    create_extension!
   end
 end

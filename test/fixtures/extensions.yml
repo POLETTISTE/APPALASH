@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lash_extensions_brand: MyText
+  lash_extensions_curvature: MyText
+  lash_extensions_thickness: 1
+  lash_extensions_glue: MyText
+  client: one
+
+two:
+  lash_extensions_brand: MyText
+  lash_extensions_curvature: MyText
+  lash_extensions_thickness: 1
+  lash_extensions_glue: MyText
+  client: two

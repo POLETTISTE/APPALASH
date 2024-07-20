@@ -1,4 +1,4 @@
-<div id="<%= dom_id client %>">
+<div id="<%= dom_id(client) %>">
   <p>
     <strong><%= t(".name") %></strong>
     <%= client.name %>
@@ -105,8 +105,29 @@
       <strong><%= t(".lash_density") %></strong>
       <%= client.lash.density %>
     </p>
-    <!-- Add other lash attributes as needed -->
   <% else %>
     <p><em><%= t(".no_lash_information") %></em></p>
+  <% end %>
+  <% if client.extension %>
+    <h3><%= t("extension_info") %></h3>
+    <p>
+      <strong><%= t(".extension_brand") %></strong>
+      <%= client.extension.lash_extensions_brand %>
+    </p>
+    <p>
+      <strong><%= t(".extension_curvature") %></strong>
+      <%= client.extension.lash_extensions_curvature %>
+    </p>
+    <p>
+      <strong><%= t(".extension_thickness") %></strong>
+      <%= client.extension.lash_extensions_thickness %>
+    </p>
+    <p>
+      <strong><%= t(".extension_glue") %></strong>
+      <%= client.extension.lash_extensions_glue %>
+    </p>
+    <!-- Add other extension attributes as needed -->
+  <% else %>
+    <p><em><%= t(".no_extension_information") %></em></p>
   <% end %>
 </div>
