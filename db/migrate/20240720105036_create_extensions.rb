@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateExtensions < ActiveRecord::Migration[7.1]
   def change
     create_table :extensions do |t|

@@ -39,6 +39,7 @@ class ApplicationPolicy
   def update_website?
     false
   end
+
   def edit_website?
     update_website?
   end

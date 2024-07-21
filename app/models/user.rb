@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Associations
   has_many :services, dependent: :destroy
@@ -28,17 +30,17 @@ class User < ApplicationRecord
   end
 
   def only_one_admin
-    if admin? && User.where(admin: true).exists?
-      errors.add(:admin, 'There can only be one admin user.')
-    end
+    return unless admin? && User.where(admin: true).exists?
+
+    errors.add(:admin, 'There can only be one admin user.')
   end
 
   private
 
   def ensure_single_admin
-    if admin? && User.where(admin: true).exists? && !admin_changed?(from: false, to: true)
-      errors.add(:admin, 'There can only be one admin user.')
-      throw(:abort)
-    end
+    return unless admin? && User.where(admin: true).exists? && !admin_changed?(from: false, to: true)
+
+    errors.add(:admin, 'There can only be one admin user.')
+    throw(:abort)
   end
 end

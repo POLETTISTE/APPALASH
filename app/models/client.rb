@@ -17,9 +17,10 @@ class Client < ApplicationRecord
   after_create :create_extension
 
   def as_json(options = {})
-    super(options.merge(except: [:lash_attributes],
-                        include: { lash: { only: Lash.attribute_names - %w[id
-                                                                           client_id created_at updated_at] } }))
+    super(options.merge(except: %i[lash_attributes extension_attributes],
+                        include: { lash: { only: Lash.attribute_names - %w[id client_id created_at updated_at] },
+                                   extension: { only: Extension.attribute_names - %w[id client_id created_at
+                                                                                     updated_at] } }))
   end
 
   include PgSearch::Model
