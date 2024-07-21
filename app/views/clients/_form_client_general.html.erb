@@ -32,10 +32,26 @@
   <% end %>
   <%# Fields for Extension %>
   <%= form.simple_fields_for :extension do |ef| %>
-    <%= ef.input :lash_extensions_brand, label: "Extension Brand" %>
-    <%= ef.input :lash_extensions_curvature, label: "Extension Curvature" %>
-    <%= ef.input :lash_extensions_thickness, as: :integer, label: "Extension Thickness" %>
-    <%= ef.input :lash_extensions_glue, label: "Extension Glue" %>
+    <%= ef.input :brand, label: "Extension Brand" %>
+    <%= ef.input :curvature, label: "Extension Curvature" %>
+    <%= ef.input :thickness, as: :integer, label: "Extension Thickness" %>
+    <%= ef.input :glue, label: "Extension Glue" %>
+  <% end %>
+  <%# Fields for Health %>
+  <%= form.simple_fields_for :health do |hf| %>
+    <%= hf.input :diabetes, as: :boolean, label: "Diabetes" %>
+    <%= hf.input :pregnancy, as: :boolean, label: "Pregnancy" %>
+    <%= hf.input :dry_eyes, as: :boolean, label: "Dry Eyes" %>
+    <%= hf.input :teary_eyes, as: :boolean, label: "Teary Eyes" %>
+    <%= hf.input :allergy, as: :boolean, label: "Allergy" %>
+    <%= hf.input :contact_lenses, as: :boolean, label: "Contact Lenses" %>
+    <%= hf.input :surgery, as: :boolean, label: "Surgery" %>
+    <%= hf.input :chemotherapy, as: :boolean, label: "Chemotherapy" %>
+    <%= hf.input :eyes_allergy, as: :boolean, label: "Eyes Allergy" %>
+    <%= hf.input :itch, as: :boolean, label: "Itch" %>
+    <%= hf.input :first_application, as: :boolean, label: "First Application" %>
+    <%= hf.input :lie_down, as: :boolean, label: "Lie Down" %>
+    <%= hf.input :notes, as: :text, label: "Health Notes" %>
   <% end %>
   <%= form.button :submit, class: "btn btn-success" %>
 <% end %>

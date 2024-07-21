@@ -10,6 +10,7 @@ class ClientsController < ApplicationController
     @client = Client.new
     @client.build_lash
     @client.build_extension
+    @client.build_health
     authorize @client
     @clients = policy_scope(Client)
   end
@@ -72,6 +73,7 @@ class ClientsController < ApplicationController
   def edit
     @client.build_lash unless @client.lash
     @client.build_extension unless @client.extension
+    @client.build_health unless @client.health
   end
 
   # PATCH/PUT /clients/1
@@ -130,8 +132,14 @@ class ClientsController < ApplicationController
         notes mapping event texture density
       ],
       extension_attributes: %i[
-        lash_extensions_brand lash_extensions_curvature
-        lash_extensions_thickness lash_extensions_glue
+        brand curvature
+        thickness glue
+      ],
+      health_attributes: %i[
+        diabetes pregnancy dry_eyes teary_eyes
+        allergy contact_lenses surgery chemotherapy
+        eyes_allergy itch first_application lie_down
+        notes
       ]
     )
   end

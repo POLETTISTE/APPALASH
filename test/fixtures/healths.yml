@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  health_diabetes: false
+  health_pregnancy: false
+  health_dry_eyes: false
+  health_teary_eyes: false
+  health_allergy: false
+  health_contact_lenses: false
+  health_surgery: false
+  health_chemotherapy: false
+  health_eyes_allergy: false
+  health_itch: false
+  health_first_application: false
+  health_lie_down: false
+  health_notes: MyText
+  user: one
+
+two:
+  health_diabetes: false
+  health_pregnancy: false
+  health_dry_eyes: false
+  health_teary_eyes: false
+  health_allergy: false
+  health_contact_lenses: false
+  health_surgery: false
+  health_chemotherapy: false
+  health_eyes_allergy: false
+  health_itch: false
+  health_first_application: false
+  health_lie_down: false
+  health_notes: MyText
+  user: two
