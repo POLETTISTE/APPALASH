@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <% if policy(@clients).create? %>
+      <% if policy(Client).create? %>
         <%= link_to t('button.new', model: Client.model_name.human.downcase), new_client_path, class: "btn btn-primary" %>
       <% end %>
       <div data-controller="search-clients">

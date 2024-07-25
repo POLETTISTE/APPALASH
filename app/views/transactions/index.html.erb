@@ -1,6 +1,6 @@
 <div id="transactions">
   <h1><%= t('transactions_h1') %></h1>
-  <% if policy(@transactions).create? %>
+  <% if policy(Transaction).create? %>
     <%= link_to t("button.new", model: Transaction.model_name.human.downcase), new_transaction_path, class: "btn btn-primary"  %>
   <% end %>
   <div class="transactions-list">

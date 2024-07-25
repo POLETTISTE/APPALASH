@@ -21,7 +21,7 @@ en:
       unconfirmed: "You have to confirm your email address before continuing."
     mailer:
       confirmation_instructions:
-        subject: "Confirmation instructions"
+        subject: "Confirmation instructions Appalash"
         welcome: "welcome"
         confirm_instructions: "You can confirm your account email through the link below:"
         confirm_button: "Confirm my account"

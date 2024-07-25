@@ -10,7 +10,7 @@
     </div>
   <% end %>
   <% if @services === []%>
-    <% if policy(@services).create? %>
+    <% if policy(Service).create? %>
       <%= link_to t("button.new", model: Service.model_name.human.downcase), new_service_path, class: "btn btn-primary"  %>
     <% end %>
   <% else %>

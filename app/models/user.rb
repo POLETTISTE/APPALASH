@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class User < ApplicationRecord
   # Associations
   has_many :services, dependent: :destroy
@@ -19,9 +17,7 @@ class User < ApplicationRecord
                       }
 
   validate :validate_website_format
-  validate :only_one_admin, if: :admin_changed?
-
-  before_save :ensure_single_admin
+  validate :ensure_single_admin, if: :admin_changed?
 
   def validate_website_format
     return if website.blank? || website.match(/\A\S+\z/)
@@ -29,18 +25,11 @@ class User < ApplicationRecord
     errors.add(:website, 'is not valid. Please ensure no spaces are included.')
   end
 
-  def only_one_admin
-    return unless admin? && User.where(admin: true).exists?
-
-    errors.add(:admin, 'There can only be one admin user.')
-  end
-
   private
 
   def ensure_single_admin
-    return unless admin? && User.where(admin: true).exists? && !admin_changed?(from: false, to: true)
-
-    errors.add(:admin, 'There can only be one admin user.')
-    throw(:abort)
+    if admin? && User.where(admin: true).where.not(id: id).exists?
+      errors.add(:admin, 'There can only be one admin user.')
+    end
   end
 end
