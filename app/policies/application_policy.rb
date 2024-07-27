@@ -36,6 +36,9 @@ class ApplicationPolicy
     false
   end
 
+  def show_website?
+    false
+  end
   def update_website?
     false
   end

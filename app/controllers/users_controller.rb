@@ -1,15 +1,14 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: %i[edit update]
-  after_action :verify_authorized, only: %i[edit update]
-  layout 'website', only: [:show]
+  before_action :authenticate_user!, only: %i[edit_website update_website]
+  after_action :verify_authorized, only: %i[edit_website update_website]
+  layout 'website', only: [:show_website]
 
   def show_website
     @services = policy_scope(Service.all)
-
     @user = find_user_by_website
 
     if @user
-      authorize @user
+      authorize @user, policy_class: UserPolicy
     else
       redirect_to errors_not_found_path
     end
@@ -21,7 +20,7 @@ class UsersController < ApplicationController
     @user = find_user_by_website
 
     if @user
-      authorize @user
+      authorize @user, policy_class: UserPolicy
     else
       redirect_to errors_not_found_path
     end
@@ -33,7 +32,7 @@ class UsersController < ApplicationController
     @user = find_user_by_website
 
     if @user
-      authorize @user
+      authorize @user, policy_class: UserPolicy
 
       if user_params[:website].present? && user_params[:website] != @user.website
         existing_user = User.find_by(website: user_params[:website])
@@ -63,6 +62,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:website, :other_attributes)
+    params.require(:user).permit(:website, :name, :firstname)
   end
 end

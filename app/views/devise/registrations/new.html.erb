@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col">
       <h2><%= t('.title') %></h2>
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo:false}) do |f| %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
         <%= f.error_notification %>
         <div class="form-inputs">
           <%= f.input :email,
                 label: t('.label_email'),
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: t('.autocomplete_email') }%>
+                input_html: { autocomplete: t('.autocomplete_email') } %>
           <%= f.input :password,
                 label: t('.label_password'),
                 required: true,
@@ -19,6 +19,19 @@
                 label: t('.label_password_confirmation'),
                 required: true,
                 input_html: { autocomplete: t('.autocomplete_new_password') } %>
+          <!-- New Fields -->
+          <%= f.input :name,
+                label: t('.label_name'),
+                required: false,
+                input_html: { autocomplete: t('.autocomplete_name') } %>
+          <%= f.input :firstname,
+                label: t('.label_firstname'),
+                required: false,
+                input_html: { autocomplete: t('.autocomplete_firstname') } %>
+          <%= f.input :website,
+                label: t('.label_website'),
+                required: true,
+                input_html: { autocomplete: t('.autocomplete_website') } %>
         </div>
         <div class="form-actions">
           <%= f.button :submit, t('.submit') %>

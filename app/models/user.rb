@@ -3,7 +3,6 @@ class User < ApplicationRecord
   has_many :services, dependent: :destroy
   has_many :clients, dependent: :destroy
   has_many :transactions, dependent: :destroy
-  # has_one :website, dependent: :destroy
 
   # Devise modules
   devise :database_authenticatable, :registerable,
@@ -11,7 +10,6 @@ class User < ApplicationRecord
          :confirmable
 
   # Validations
-  # validates :path, presence: true / create table Website (id, path)
   validates :website, presence: true, uniqueness: true, allow_nil: true,
                       format: {
                         without: /\s/, # Ensure no spaces
@@ -21,6 +19,8 @@ class User < ApplicationRecord
   validate :validate_website_format
   validate :ensure_single_admin, if: :admin_changed?
 
+  # before_validation :set_default_website, on: :create
+
   def validate_website_format
     return if website.blank? || website.match(/\A\S+\z/)
 
@@ -28,6 +28,19 @@ class User < ApplicationRecord
   end
 
   private
+
+  # def set_default_website
+  #   if website.blank?
+  #     self.website = generate_unique_website
+  #   end
+  # end
+
+  # def generate_unique_website
+  #   loop do
+  #     random_string = SecureRandom.alphanumeric(18) # Adjust length as needed
+  #     break random_string unless User.exists?(website: random_string)
+  #   end
+  # end
 
   def ensure_single_admin
     if admin? && User.where(admin: true).where.not(id: id).exists?

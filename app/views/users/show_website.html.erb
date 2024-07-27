@@ -11,4 +11,5 @@
 <% end %>
 <% if policy(@user).edit_website? %>
   <%= link_to 'Edit Profile', edit_user_profile_path(@user.website), class: 'btn btn-primary' %>
+  <%= link_to 'go back', root_path, class: 'btn btn-primary' %>
 <% end %>

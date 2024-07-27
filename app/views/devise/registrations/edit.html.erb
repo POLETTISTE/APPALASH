@@ -1,8 +1,12 @@
-<h2><%= t('.title')%> <%= resource_name.to_s.humanize %></h2>
+<h2><%= t('.title') %> <%= resource_name.to_s.humanize %></h2>
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+    <%= f.input :email,
+                label: t('.label_email'),
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: t('.autocomplete_email') } %>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p><%= t('.waiting_confirmation') %><%= resource.unconfirmed_email %></p>
     <% end %>
@@ -20,11 +24,27 @@
                 hint: t('.current_password'),
                 required: true,
                 input_html: { autocomplete: t('.autocomplete_current_password') } %>
+    <!-- New Fields -->
+    <%= f.input :name,
+                label: t('.label_name'),
+                required: false,
+                input_html: { autocomplete: t('.autocomplete_name') } %>
+    <%= f.input :firstname,
+                label: t('.label_firstname'),
+                required: false,
+                input_html: { autocomplete: t('.autocomplete_firstname') } %>
+    <%= f.input :website,
+                label: t('.label_website'),
+                required: true,
+                input_html: { autocomplete: t('.autocomplete_website') } %>
   </div>
   <div class="form-actions">
     <%= f.button :submit, t('.submit') %>
   </div>
 <% end %>
 <h3><%= t('.cancel') %></h3>
-<div><%= t('.unhappy') %> <%= button_to t('.cancel_button'), registration_path(resource_name), data: { confirm: t('.unhappy_confirm'), turbo_confirm: t('.unhappy_confirm') }, method: :delete %></div>
+<div>
+  <%= t('.unhappy') %>
+  <%= button_to t('.cancel_button'), registration_path(resource_name), data: { confirm: t('.unhappy_confirm'), turbo_confirm: t('.unhappy_confirm') }, method: :delete %>
+</div>
 <%= link_to t('.back'), :back %>
