@@ -19,10 +19,13 @@
                 label: t('.label_password_confirmation'),
                 required: false,
                 input_html: { autocomplete: t('.autocomplete_new_password') } %>
+    <%# look inside scss devise %>
     <%= f.input :current_password,
+
                 label: t('.label_current_password'),
                 hint: t('.current_password'),
                 required: true,
+          
                 input_html: { autocomplete: t('.autocomplete_current_password') } %>
     <!-- New Fields -->
     <%= f.input :name,
