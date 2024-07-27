@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       if user_params[:website].present? && user_params[:website] != @user.website
         existing_user = User.find_by(website: user_params[:website])
         if existing_user && existing_user != @user
-          flash[:alert] = 'Website already exists'
+          flash[:alert] = "Website '#{existing_user.website}' already exists"
           redirect_to edit_user_profile_path(@user.website)
           return
         end

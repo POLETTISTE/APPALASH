@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :services, dependent: :destroy
   has_many :clients, dependent: :destroy
   has_many :transactions, dependent: :destroy
+  # has_one :website, dependent: :destroy
 
   # Devise modules
   devise :database_authenticatable, :registerable,
@@ -10,6 +11,7 @@ class User < ApplicationRecord
          :confirmable
 
   # Validations
+  # validates :path, presence: true / create table Website (id, path)
   validates :website, presence: true, uniqueness: true, allow_nil: true,
                       format: {
                         without: /\s/, # Ensure no spaces
