@@ -10,7 +10,7 @@ class User < ApplicationRecord
          :confirmable
 
   # Validations
-  validates :website, presence: true, uniqueness: true, allow_nil: true,
+  validates :website, presence: true, uniqueness: true,
                       format: {
                         without: /\s/, # Ensure no spaces
                         message: 'cannot contain spaces'
@@ -28,20 +28,6 @@ class User < ApplicationRecord
   end
 
   private
-
-  # def set_default_website
-  #   if website.blank?
-  #     self.website = generate_unique_website
-  #   end
-  # end
-
-  # def generate_unique_website
-  #   loop do
-  #     random_string = SecureRandom.alphanumeric(18) # Adjust length as needed
-  #     break random_string unless User.exists?(website: random_string)
-  #   end
-  # end
-
   def ensure_single_admin
     if admin? && User.where(admin: true).where.not(id: id).exists?
       errors.add(:admin, 'There can only be one admin user.')

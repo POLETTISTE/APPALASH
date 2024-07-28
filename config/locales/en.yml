@@ -43,6 +43,7 @@ en:
   navbar_link_personnals_informations: "Personnal informations"
   navbar_link_subscription: "Subscription"
   navbar_link_preferences: "Preferences"
+  navbar_link_edit_profile_information: "Edit profil information"
   navbar_link_logout: "Log-Out"
   sidebar_link_dashboard: "Dashboard"
   sidebar_link_clients: "Clients"
@@ -220,6 +221,10 @@ en:
   dashboard:
     index:
       title: "Dashboard"
+      users: "users"
+      admin: "admin"
+      non_admin: "non admin"
+      total: "total"
       clients:
         zero: "%{count} client"
         one: "%{count}client"

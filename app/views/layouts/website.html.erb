@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AppaLash - Lashes Customer Dashboard</title>
+    <title>AppaLash</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,13 +14,7 @@
   <body>
     <%= render "shared/flashes" %>
     <div id="main">
-      <%# <div class="main-left"> %>
-      <%#= render 'partials/side-menu' %>
-      <%# </div> %>
-      <%# <div class="main-right"> %>
-      <%#= render 'partials/navbar' %>
       <%= yield %>
-      <%# </div> %>
     </div>
     <%= render 'partials/footer' %>
   </body>

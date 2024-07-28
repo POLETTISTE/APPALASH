@@ -1,0 +1,12 @@
+<h2 class="h2 my-3 d-flex justify-content-center">
+  <%= t('dashboard.index.clients', count: @clients.size) %>
+</h2>
+<%#= pie_chart Client.group(:name).count %>
+<div id="dashboard">
+  <div data-controller="barchart" class="dashboard-barchart">
+    <canvas id="bar-chart" data-barchart-target="myBarChart" width="400" height="450"></canvas>
+  </div>
+  <div data-controller="donutschart" class="dashboard-donutschart">
+    <canvas id="donuts-chart" data-donutschart-target="myDonutsChart" width="400" height="450"></canvas>
+  </div>
+</div>
