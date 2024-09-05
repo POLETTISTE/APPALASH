@@ -1,5 +1,5 @@
 <h1>Edit Profile</h1>
-<%= form_for @user, url: update_user_profile_path(@user.website), method: :patch, data: { turbo: "true" } do |f| %>
+<%= form_for @user, url: update_website_user_profile_path(@user.website), method: :patch, data: { turbo: "true" } do |f| %>
   <!-- Display error messages -->
   <% if @user.errors.any? %>
     <div id="error_explanation">
