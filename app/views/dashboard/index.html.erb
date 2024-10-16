@@ -1,4 +1,6 @@
 <h1><%= t('dashboard_h1') %></h1>
+  <div id="welcome"></div>
+
 <% if current_user.admin? %>
   <%# Render the admin-specific content %>
   <%= render 'admin_index' %>
