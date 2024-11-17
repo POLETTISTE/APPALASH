@@ -1,18 +1,20 @@
-// Your custom styles
-@use "./variables/colors";
-@use "./components/card";
-@use "./components/card-client";
-@use "./components/upload_image_button";
-@use "./clients";
-@use "./devise";
-@use "./dashboard";
-@use "./side-menu";
-@use "./partials/alert";
-@use "./partials/navbar";
-@use "./partials/footer";
-@use "./transactions";
+// app/assets/stylesheets/application.scss
 
-// Other custom styles
+// Custom SCSS Imports with @use syntax
+@use "variables/colors";
+@use "components/card";
+@use "components/card-client";
+@use "components/upload_image_button";
+@use "clients";
+@use "devise";
+@use "dashboard";
+@use "side-menu";
+@use "partials/alert";
+@use "partials/navbar";
+@use "partials/footer";
+@use "transactions";
+
+// Additional custom SCSS
 a {
   text-decoration: none;
   color: rgb(70, 63, 63);
