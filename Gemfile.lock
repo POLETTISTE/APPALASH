@@ -74,8 +74,6 @@ GEM
       uri (>= 0.13.1)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
-    autoprefixer-rails (10.4.19.0)
-      execjs (~> 2)
     base64 (0.2.0)
     bcrypt (3.1.20)
     benchmark (0.4.0)
@@ -83,9 +81,6 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
-    bootstrap (5.3.3)
-      autoprefixer-rails (>= 9.1.0)
-      popper_js (>= 2.11.8, < 3)
     builder (3.3.0)
     capybara (3.40.0)
       addressable
@@ -131,7 +126,6 @@ GEM
       railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.0)
-    execjs (2.10.0)
     faraday (2.12.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
@@ -193,7 +187,6 @@ GEM
     pg_search (2.3.7)
       activerecord (>= 6.1)
       activesupport (>= 6.1)
-    popper_js (2.11.8)
     psych (5.2.0)
       stringio
     public_suffix (6.0.1)
@@ -273,6 +266,10 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.2)
+    tailwindcss-rails (3.0.0)
+      railties (>= 7.0.0)
+      tailwindcss-ruby
+    tailwindcss-ruby (3.4.15-x86_64-darwin)
     thor (1.3.2)
     tilt (2.4.0)
     timeout (0.4.2)
@@ -304,7 +301,6 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  bootstrap
   capybara
   chartkick
   cloudinary
@@ -323,6 +319,7 @@ DEPENDENCIES
   simple_form
   sprockets-rails
   stimulus-rails
+  tailwindcss-rails
   turbo-rails
   tzinfo-data
   web-console

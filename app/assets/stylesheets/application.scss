@@ -1,17 +1,18 @@
-@import "bootstrap";
-@import "./variables/colors";
-@import "./components/card";
-@import "./components/card-client";
-@import "./components/upload_image_button";
-@import "./clients";
-@import "./devise";
-@import "./dashboard";
-@import "./side-menu";
-@import "./partials/alert";
-@import "./partials/navbar";
-@import "./partials/footer";
-@import "./transactions";
+// Your custom styles
+@use "./variables/colors";
+@use "./components/card";
+@use "./components/card-client";
+@use "./components/upload_image_button";
+@use "./clients";
+@use "./devise";
+@use "./dashboard";
+@use "./side-menu";
+@use "./partials/alert";
+@use "./partials/navbar";
+@use "./partials/footer";
+@use "./transactions";
 
+// Other custom styles
 a {
   text-decoration: none;
   color: rgb(70, 63, 63);

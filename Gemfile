@@ -75,7 +75,10 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-gem 'bootstrap'
+# gem 'bootstrap'
+
+gem 'tailwindcss-rails'
+
 gem 'chartkick'
 gem 'cloudinary'
 gem 'country_select'

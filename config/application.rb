@@ -14,6 +14,7 @@ module LashAppRails
     config.load_defaults 7.0
     config.i18n.default_locale = :en
 
+
     # https://www.mintbit.com/blog/custom-404-500-error-pages-in-rails
     # https://www.youtube.com/watch?v=moeJ_0WQZxo&t=308s
     config.exceptions_app = routes
