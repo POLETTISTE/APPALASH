@@ -3,24 +3,20 @@
     <!-- Navbar Container -->
     <div class="bg-gray-900 text-white border-b">
       <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-        
         <!-- Logo Section -->
         <%= link_to "/", class: "flex items-center text-white no-underline" do %>
           <%= image_tag "/assets/logo.png", class: "rounded-full", width: "40", height: "40", role: "img", aria: { label: "logo" } %>
         <% end %>
-
         <!-- Navbar Links (Desktop) -->
         <nav class="hidden lg:flex items-center space-x-8">
           <%= link_to "/dashboard", class: "text-white hover:text-indigo-400 font-semibold transition duration-200" do %>Dashboard<% end %>
           <%= link_to "/clients", class: "text-white hover:text-indigo-400 font-semibold transition duration-200" do %>Clients<% end %>
           <%= link_to "/services", class: "text-white hover:text-indigo-400 font-semibold transition duration-200" do %>Services<% end %>
           <%= link_to "/transactions", class: "text-white hover:text-indigo-400 font-semibold transition duration-200" do %>Transactions<% end %>
-
           <% if current_user.website.present? %>
             <%= link_to user_profile_path(current_user.website), class: "text-white hover:text-indigo-400 font-semibold transition duration-200" do %>Website<% end %>
           <% end %>
         </nav>
-
         <!-- User Avatar & Dropdown (Mobile & Desktop) -->
         <div x-data="{ open: false }" class="relative">
           <button @click="open = !open" class="flex items-center space-x-2 text-white">
@@ -29,7 +25,6 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-
           <!-- Dropdown Menu -->
           <div x-show="open" @click.outside="open = false" x-transition class="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 text-sm">
             <div class="py-1">
@@ -43,7 +38,6 @@
         </div>
       </div>
     </div>
-
     <!-- Search Bar Section (Mobile-Friendly) -->
     <div class="bg-gray-800 text-white">
       <div class="container mx-auto px-4 py-2 flex justify-center">
@@ -59,7 +53,3 @@
     <button type="button" class="bg-blue-600 text-white rounded px-4 py-2">Sign-up</button>
   </div>
 <% end %>
-
-
-<div class="bg-custom-pink">hello pink</div>
-<div class="bg-blue-500">hello blue</div>
