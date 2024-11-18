@@ -4,3 +4,4 @@
 //= link_tree ../../../vendor/javascript .js
 //= link_tree ../builds
 //= link application.scss
+//= link application.tailwind.css
