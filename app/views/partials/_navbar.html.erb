@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
   <header>
     <!-- Navbar Container -->
-    <div class="bg-white-900 text-black border-b">
+    <div class="bg-white text-black border-b">
       <div class="container mx-auto px-4 py-3 flex items-center justify-between">
         <!-- Logo Section -->
         <%= link_to "/", class: "flex items-center text-black no-underline" do %>
@@ -21,7 +21,11 @@
         <!-- User Avatar & Dropdown (Mobile & Desktop) -->
         <div x-data="{ open: false }" class="relative">
           <button @click="open = !open" class="flex items-center space-x-2 text-black">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "w-8 h-8 rounded-full" %>
+            <%# if current_user.avatar.attached? %>
+            <%#= cl_image_tag current_user.photo.key, height: 32, width: 32, crop: :thumb, gravity: :face, style: "border-radius: 50%;" %>
+            <%# else %>
+            <%= image_tag "avatar.png", class: "rounded-full", width: "50" %>
+            <%# end %>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
