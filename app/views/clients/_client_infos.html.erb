@@ -1,30 +1,15 @@
-<div class="client-card" data-controller="edit-client" data-edit-client-target="card">
-  <% if current_user.admin? %>
-    <p><%= client.user.email %></p>
-  <% end %>
-  <% if client.photo.attached? %>
-    <%= cl_image_tag client.photo.key,  crop: :fill, gravity: :face %>
-  <%else%>
-    <%= image_tag "client/client_photo_profil.png", crop: :fill , style: "background-color: tomato;"%>
-  <% end %>
-  <div class="client-infos <%= 'd-none' if client.errors.any? %>" data-edit-client-target="infos">
-    <%= link_to "#{client.name} #{client.firstname}".html_safe, client_path(client) %>
-    <button aria-label="Edit client" data-action="click->edit-client#displayForm">
-      <%= t('button.edit') %>
-      <%# <i class="fa-solid fa-pen fa-xs ml-2" data-action="click->edit-client#displayForm"></i> %>
-    </button>
+<%= link_to client_path(client), class: "client-card-link" do %>
+  <div class="client-card" data-controller="edit-client" data-edit-client-target="card">
+    <% if current_user.admin? %>
+      <p><%= client.user.email %></p>
+    <% end %>
+    <% if client.photo.attached? %>
+      <%= cl_image_tag client.photo.key, crop: :fill, gravity: :face %>
+    <% else %>
+      <%= image_tag "client/client_photo_profil.png", style: "background-color: tomato;" %>
+    <% end %>
+    <div class="client-infos <%= 'd-none' if client.errors.any? %>" data-edit-client-target="infos">
+      <%= "#{client.name} #{client.firstname}".html_safe %>
+    </div>
   </div>
-  <%= simple_form_for client,
-    html: {
-      class: client.errors.any? ? "" : "d-none",
-      data: {
-        edit_client_target: "form",
-        action: "submit->edit-client#update"
-      }
-    } do |f|
-  %>
-  <%= f.input :name %>
-  <%= f.input :firstname %>
-  <%= f.submit t('button.update'), class: "btn btn-sm btn-primary btn-block mt-2" %>
 <% end %>
-</div>

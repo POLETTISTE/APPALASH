@@ -7,25 +7,44 @@
         <%= link_to "/", class: "flex items-center text-black no-underline" do %>
           <%= image_tag "/assets/appalash-logo-title.png", class: "", width: "100", height: "100", role: "img", aria: { label: "logo" } %>
         <% end %>
+        <!-- Hamburger Icon (Mobile) -->
+        <div x-data="{ open: false }" class="lg:hidden flex items-center">
+          <!-- Toggle mobile menu -->
+          <button @click="open = !open" class="text-black">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <!-- Mobile Navbar Links (Initially hidden, controlled by Alpine.js) -->
+          <div x-show="open" x-transition class="absolute top-0 left-0 w-full bg-white text-black py-4 mt-3">
+            <%= link_to "/dashboard", class: active_class("/dashboard") do %><%=t("navbar_link_dashboard") %><% end %>
+            <%= link_to "/clients", class: active_class("/clients") do %><%=t("navbar_link_clients") %><% end %>
+            <%= link_to "/transactions", class: active_class("/transactions") do %><%=t("navbar_link_transactions") %><% end %>
+            <%= link_to "/services", class: active_class("/services") do %><%=t("navbar_link_services") %><% end %>
+            <% if current_user.website.present? %>
+              <%= link_to user_profile_path(current_user.website), class: active_class(user_profile_path(current_user.website)) do %><%=t("navbar_link_website") %><% end %>
+            <% end %>
+          </div>
+        </div>
         <!-- Navbar Links (Desktop) -->
-        <%# module NavbarHelper for classes %>
         <nav class="hidden lg:flex items-center space-x-8">
           <%= link_to "/dashboard", class: active_class("/dashboard") do %><%=t("navbar_link_dashboard") %><% end %>
           <%= link_to "/clients", class: active_class("/clients") do %><%=t("navbar_link_clients") %><% end %>
-          <%= link_to "/services", class: active_class("/services") do %><%=t("navbar_link_services") %><% end %>
           <%= link_to "/transactions", class: active_class("/transactions") do %><%=t("navbar_link_transactions") %><% end %>
+          <%= link_to "/services", class: active_class("/services") do %><%=t("navbar_link_services") %><% end %>
           <% if current_user.website.present? %>
             <%= link_to user_profile_path(current_user.website), class: active_class(user_profile_path(current_user.website)) do %><%=t("navbar_link_website") %><% end %>
           <% end %>
         </nav>
         <!-- User Avatar & Dropdown (Mobile & Desktop) -->
         <div x-data="{ open: false }" class="relative">
-          <button @click="open = !open" class="flex items-center space-x-2 text-black">
+          <button @click="open = !open" class="flex items-center flex-col text-black">
             <% if current_user.avatar.attached? %>
-              <%= cl_image_tag current_user.avatar.key, height: 32, width: 32, crop: :thumb, gravity: :face, style: "border-radius: 50%;" %>
+              <%= cl_image_tag current_user.avatar.key, height: 50, width: 50, crop: :thumb, gravity: :face, style: "border-radius: 50%;" %>
             <% else %>
               <%= image_tag "avatar-default.png", class: "rounded-full", width: "50" %>
             <% end %>
+            <%# chevron %>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
@@ -50,5 +69,3 @@
     <%= link_to t('navbar_link_login'), new_user_session_path, class: "bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
   </div>
 <% end %>
-<%#= link_to t('link_go_to', model: Client.model_name.human.downcase), clients_path, class: "link-clients" %>
-<%#= link_to t('link_go_to', model: "offers"), offers_path, class: "link-clients" %>
