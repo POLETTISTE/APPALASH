@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
     authenticated :user do
       root to: 'dashboard#index', as: :authenticated_root
+      get 'users/personal_information', to: 'users#personal_information', as: :personal_information
+
     end
 
     unauthenticated do

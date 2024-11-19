@@ -7,6 +7,10 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
+  def personal_information?
+    true
+  end
+  
   def show_website?
     true
   end
