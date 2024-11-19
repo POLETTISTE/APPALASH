@@ -14,6 +14,8 @@ Rails.application.configure do
   # Aplly css changes when reload page, don't need to precompile again
   config.assets.debug = true
 
+
+
   # Do not eager load code on boot.
   config.eager_load = false
 

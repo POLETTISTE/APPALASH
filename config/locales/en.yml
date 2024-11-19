@@ -48,7 +48,7 @@ en:
   navbar_link_login: "Login"
   navbar_link_logout: "Log-Out"
   navbar_link_new-user: "New user"
-  navbar_link_personnals_informations: "Personnal informations"
+  navbar_link_user_informations: "Personal informations"
   navbar_link_preferences: "Preferences"
   navbar_link_subscription: "Subscription"
   navbar_full_username_html: "Hello <strong>%{full_user_name}</strong> !"
@@ -285,3 +285,7 @@ en:
       success: "Delete successful for %{name}"
       error: "There was an error deleting the service."
       not_found: "service not found"
+
+  personal_information:
+    name: "name"
+    email: "email"

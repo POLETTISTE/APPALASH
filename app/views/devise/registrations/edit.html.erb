@@ -27,13 +27,21 @@
   </div>
   <!-- Avatar File Input -->
   <%= image_tag "", width: 300, class: "hidden", data: { photo_preview_target: "preview" } %>
-  <%= f.input :avatar, as: :file, label: t('.label_avatar'), input_html: { 
+  <!-- In your form view file -->
+  <%= f.input :avatar, as: :file, label: false, input_html: { 
   accept: 'image/jpeg, image/png', 
-  class: '', 
+  class: 'hidden file-input', 
+  id: "#{f.object_name}_avatar",
   data: { photo_preview_target: "input", action: "change->photo-preview#displayPreview" } 
 } %>
-  <div class="form-actions">
-    <%= f.button :submit, t('.submit') %>
+  <label for="<%= f.object_name %>_avatar" class=" bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+    <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" style="width: 16px; height: 16px;">
+      <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/>
+    </svg>
+    <span><%= t('.label_upload') %></span>
+  </label>
+  <div class="form-actions ">
+    <%= f.button :submit, t('.submit'), class: "bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded inline-flex items-center" %>
   </div>
 <% end %>
 <h3><%= t('.cancel') %></h3>
