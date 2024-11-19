@@ -1,17 +1,13 @@
 // Custom SCSS Imports with @use syntax
-@use "variables/colors";
-@use "components/card";
-@use "components/card-client";
-@use "components/upload_image_button";
-@use "clients";
-@use "devise";
-@use "dashboard";
-@use "side-menu";
-@use "partials/alert";
-@use "partials/navbar";
-@use "partials/footer";
-@use "transactions";
+// @use "variables/colors";
+@use "variables/variables";
+@use "components/components";
+@use "pages/pages";
+@use "partials/partials";
 
+body {
+  margin: 10px;
+}
 // Additional custom SCSS
 a {
   text-decoration: none;
@@ -21,15 +17,7 @@ a {
 
 #main {
   display: flex;
-}
-
-.main-right {
-  width: 100%;
-}
-
-.turbo-progress-bar {
-  height: 5px;
-  background: linear-gradient(to right, transparent, var(--pink));
+  background: var(--pink);
 }
 
 .translation_missing {

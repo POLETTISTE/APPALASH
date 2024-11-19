@@ -14,14 +14,9 @@
   </head>
   <body>
     <%= render "shared/flashes" %>
+    <%= render 'partials/navbar' %>
     <div id="main">
-      <div class="main-left">
-        <%# <%= render 'partials/side-menu' %>
-      </div>
-      <div class="main-right">
-        <%= render 'partials/navbar' %>
-        <%= yield %>
-      </div>
+      <%= yield %>
     </div>
     <%= render 'partials/footer' %>
   </body>

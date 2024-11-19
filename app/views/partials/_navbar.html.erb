@@ -1,25 +1,26 @@
 <% if user_signed_in? %>
   <header>
     <!-- Navbar Container -->
-    <div class="bg-gray-900 text-white border-b">
+    <div class="bg-white-900 text-black border-b">
       <div class="container mx-auto px-4 py-3 flex items-center justify-between">
         <!-- Logo Section -->
-        <%= link_to "/", class: "flex items-center text-white no-underline" do %>
-          <%= image_tag "/assets/logo.png", class: "rounded-full", width: "40", height: "40", role: "img", aria: { label: "logo" } %>
+        <%= link_to "/", class: "flex items-center text-black no-underline" do %>
+          <%= image_tag "/assets/appalash-logo-title.png", class: "", width: "100", height: "100", role: "img", aria: { label: "logo" } %>
         <% end %>
         <!-- Navbar Links (Desktop) -->
+        <%# module NavbarHelper for classes %>
         <nav class="hidden lg:flex items-center space-x-8">
-          <%= link_to "/dashboard", class: "text-white hover:text-indigo-400 font-semibold transition duration-200" do %>Dashboard<% end %>
-          <%= link_to "/clients", class: "text-white hover:text-indigo-400 font-semibold transition duration-200" do %>Clients<% end %>
-          <%= link_to "/services", class: "text-white hover:text-indigo-400 font-semibold transition duration-200" do %>Services<% end %>
-          <%= link_to "/transactions", class: "text-white hover:text-indigo-400 font-semibold transition duration-200" do %>Transactions<% end %>
+          <%= link_to "/dashboard", class: active_class("/dashboard") do %><%=t("navbar_link_dashboard") %><% end %>
+          <%= link_to "/clients", class: active_class("/clients") do %><%=t("navbar_link_clients") %><% end %>
+          <%= link_to "/services", class: active_class("/services") do %><%=t("navbar_link_services") %><% end %>
+          <%= link_to "/transactions", class: active_class("/transactions") do %><%=t("navbar_link_transactions") %><% end %>
           <% if current_user.website.present? %>
-            <%= link_to user_profile_path(current_user.website), class: "text-white hover:text-indigo-400 font-semibold transition duration-200" do %>Website<% end %>
+            <%= link_to user_profile_path(current_user.website), class: active_class(user_profile_path(current_user.website)) do %><%=t("navbar_link_website") %><% end %>
           <% end %>
         </nav>
         <!-- User Avatar & Dropdown (Mobile & Desktop) -->
         <div x-data="{ open: false }" class="relative">
-          <button @click="open = !open" class="flex items-center space-x-2 text-white">
+          <button @click="open = !open" class="flex items-center space-x-2 text-black">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "w-8 h-8 rounded-full" %>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -38,18 +39,12 @@
         </div>
       </div>
     </div>
-    <!-- Search Bar Section (Mobile-Friendly) -->
-    <div class="bg-gray-800 text-white">
-      <div class="container mx-auto px-4 py-2 flex justify-center">
-        <form class="w-full max-w-md flex items-center space-x-3">
-          <input type="search" class="w-full px-4 py-2 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-400" placeholder="Search..." aria-label="Search">
-        </form>
-      </div>
-    </div>
   </header>
 <% else %>
   <div class="text-end">
-    <button type="button" class="bg-light text-dark rounded px-4 py-2 me-2">Login</button>
-    <button type="button" class="bg-blue-600 text-white rounded px-4 py-2">Sign-up</button>
+    <%= link_to t('navbar_link_new-user'), new_user_registration_path, class: "bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    <%= link_to t('navbar_link_login'), new_user_session_path, class: "bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
   </div>
 <% end %>
+<%#= link_to t('link_go_to', model: Client.model_name.human.downcase), clients_path, class: "link-clients" %>
+<%#= link_to t('link_go_to', model: "offers"), offers_path, class: "link-clients" %>
