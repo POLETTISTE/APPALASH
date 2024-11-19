@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   # Associations
+has_one_attached :avatar
+
   has_many :services, dependent: :destroy
   has_many :clients, dependent: :destroy
   has_many :transactions, dependent: :destroy

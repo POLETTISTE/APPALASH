@@ -1,46 +1,37 @@
-<h2><%= t('.title') %> <%= resource_name.to_s.humanize %></h2>
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, enctype: "multipart/form-data", data: { controller: "photo-preview" } }) do |f| %>
   <%= f.error_notification %>
   <div class="form-inputs">
-    <%= f.input :email,
-                label: t('.label_email'),
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: t('.autocomplete_email') } %>
+    <%= f.input :email, label: t('.label_email'), required: true, autofocus: true, input_html: { autocomplete: t('.autocomplete_email') } %>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p><%= t('.waiting_confirmation') %><%= resource.unconfirmed_email %></p>
     <% end %>
-    <%= f.input :password,
-                label: t('.label_password'),
-                hint: t('.blank'),
-                required: false,
-                input_html: { autocomplete: t('.autocomplete_new_password') } %>
-    <%= f.input :password_confirmation,
-                label: t('.label_password_confirmation'),
-                required: false,
-                input_html: { autocomplete: t('.autocomplete_new_password') } %>
-    <%# look inside scss devise %>
-    <%= f.input :current_password,
-
-                label: t('.label_current_password'),
-                hint: t('.current_password'),
-                required: true,
-          
-                input_html: { autocomplete: t('.autocomplete_current_password') } %>
+    <%= f.input :password, label: t('.label_password'), hint: t('.blank'), required: false, input_html: { autocomplete: t('.autocomplete_new_password') } %>
+    <%= f.input :password_confirmation, label: t('.label_password_confirmation'), required: false, input_html: { autocomplete: t('.autocomplete_new_password') } %>
+    <%= f.input :current_password, label: t('.label_current_password'), hint: t('.current_password'), required: true, input_html: { autocomplete: t('.autocomplete_current_password') } %>
     <!-- New Fields -->
-    <%= f.input :name,
-                label: t('.label_name'),
-                required: false,
-                input_html: { autocomplete: t('.autocomplete_name') } %>
-    <%= f.input :firstname,
-                label: t('.label_firstname'),
-                required: false,
-                input_html: { autocomplete: t('.autocomplete_firstname') } %>
-    <%= f.input :website,
-                label: t('.label_website'),
-                required: true,
-                input_html: { autocomplete: t('.autocomplete_website') } %>
+    <%= f.input :name, label: t('.label_name'), required: false, input_html: { autocomplete: t('.autocomplete_name') } %>
+    <%= f.input :firstname, label: t('.label_firstname'), required: false, input_html: { autocomplete: t('.autocomplete_firstname') } %>
+    <%= f.input :website, label: t('.label_website'), required: true, input_html: { autocomplete: t('.autocomplete_website') } %>
   </div>
+  <!-- Avatar Preview -->
+  <div class="form-inputs">
+    <!-- Original Avatar Image -->
+    <% if resource.avatar.attached? %>
+      <%= image_tag resource.avatar, width: 100, height: 100, class: "rounded-full", data: { photo_preview_target: "originalAvatar" } %>
+    <% else %>
+      <!-- Placeholder if no avatar is uploaded -->
+      <%= image_tag "avatar-default.png", width: 100, height: 100, class: "rounded-full", data: { photo_preview_target: "originalAvatar" } %>
+    <% end %>
+    <!-- Preview Image (Initially hidden) -->
+    <%= image_tag "", width: 100, height: 100, class: "hidden rounded-full", data: { photo_preview_target: "preview" } %>
+  </div>
+  <!-- Avatar File Input -->
+  <%= image_tag "", width: 300, class: "hidden", data: { photo_preview_target: "preview" } %>
+  <%= f.input :avatar, as: :file, label: t('.label_avatar'), input_html: { 
+  accept: 'image/jpeg, image/png', 
+  class: '', 
+  data: { photo_preview_target: "input", action: "change->photo-preview#displayPreview" } 
+} %>
   <div class="form-actions">
     <%= f.button :submit, t('.submit') %>
   </div>
