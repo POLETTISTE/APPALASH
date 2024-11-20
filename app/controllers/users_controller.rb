@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   after_action :verify_authorized, only: %i[edit_website update_website]
   layout 'website', only: [:show_website]
 
-  def personal_information
+  def index_personal_information
     @user = policy_scope(User).find(current_user.id)
     authorize @user
   end

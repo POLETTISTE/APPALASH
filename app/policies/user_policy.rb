@@ -7,7 +7,7 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  def personal_information?
+  def index_personal_information?
     true
   end
   
