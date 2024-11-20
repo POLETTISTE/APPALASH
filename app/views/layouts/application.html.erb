@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
   <body>
-    <%= render "shared/flashes" %>
     <%= render 'partials/navbar' %>
-    <div id="main">
-      <%= yield %>
-    </div>
+    <%# <div id="main"> %>
+    <%= yield %>
+    <%# </div> %>
+    <%= render "shared/flashes" %>
     <%= render 'partials/footer' %>
   </body>
 </html>
