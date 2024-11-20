@@ -46,15 +46,15 @@ en:
   navbar_link_website: "Website"
   navbar_link_edit_profile_information: "Edit profil information"
   navbar_link_login: "Login"
-  navbar_link_logout: "Log-Out"
+  navbar_link_logout: "Log out"
   navbar_link_new-user: "New user"
   navbar_link_user_informations: "Personal informations"
   navbar_link_preferences: "Preferences"
   navbar_link_subscription: "Subscription"
   navbar_full_username_html: "Hello <strong>%{full_user_name}</strong> !"
+
   # buttons
   # links
-
   button:
     save: Save
     edit: Edit
