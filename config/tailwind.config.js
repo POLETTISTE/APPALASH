@@ -6,7 +6,7 @@ module.exports = {
     // Ensure views and other files are included in the content array for purging unused styles
     "./app/views/**/*.{html.erb,html.haml,html.slim}",
     "./app/helpers/**/*.rb",
-    "./app/assets/stylesheets/application.scss",
+    // "./app/assets/stylesheets/application.scss",
     "./app/assets/stylesheets/application.tailwind.css", // Include Tailwind CSS file here
     "./app/javascript/**/*.js",
     "./public/*.html",
