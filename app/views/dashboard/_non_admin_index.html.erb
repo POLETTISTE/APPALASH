@@ -2,7 +2,7 @@
   <%= t('dashboard.index.clients', count: @clients.size) %>
 </h2>
 <%#= pie_chart Client.group(:name).count %>
-<div id="dashboard">
+<div id="dashboard" class="flex">
   <div data-controller="barchart" class="dashboard-barchart">
     <canvas id="bar-chart" data-barchart-target="myBarChart" width="400" height="450"></canvas>
   </div>

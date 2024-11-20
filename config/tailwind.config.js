@@ -1,30 +1,44 @@
-// tailwind.config.js
 const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   content: [
-    // Ensure views and other files are included in the content array for purging unused styles
     "./app/views/**/*.{html.erb,html.haml,html.slim}",
     "./app/helpers/**/*.rb",
-    // "./app/assets/stylesheets/application.scss",
-    "./app/assets/stylesheets/application.tailwind.css", // Include Tailwind CSS file here
+    "./app/assets/stylesheets/application.tailwind.css",
     "./app/javascript/**/*.js",
     "./public/*.html",
   ],
   theme: {
     extend: {
-      // Add custom color
+      // create personnal colors to use then like "bg-pink"
       colors: {
-        "custom-pink": "#FF64A5", // Custom color example
+        pink: "#FF64A5",
+        blue: "#C0FFD4",
       },
-      // Extend default fonts with 'Inter var'
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
     },
   },
   plugins: [
-    // Enable useful plugins for forms, typography, and container queries
+    plugin(function ({ addBase, theme }) {
+      // Inject custom CSS variables for Tailwind colors
+      addBase({
+        ":root": {
+          "--blue": theme("colors.blue"),
+          "--pink": theme("colors.pink"),
+        },
+      });
+
+      // Inject custom styles for .translation_missing
+      addBase({
+        ".translation_missing": {
+          backgroundColor: "red",
+          color: "white",
+        },
+      });
+    }),
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
