@@ -1,8 +1,8 @@
-<div class="bg-gray-100 flex items-center justify-center min-h-screen">
-  <div class="flex w-full max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+<div class="min-h-screen flex items-center justify-center p-8" style="background-image: url('<%= asset_path('login.jpg') %>');">
+  <div class="flex max-w-[80vw] h-[90vh] bg-white shadow-lg rounded-[12px] overflow-hidden border-1 border-white p-5">
     <!-- Left Side (Image and Quote) -->
-    <div class="w-1/2 bg-cover" style="background-image: url('');">
-      <div class="flex flex-col h-full justify-center p-8 bg-black bg-opacity-50 text-white">
+    <div class="w-1/2 bg-cover rounded-[12px]  " style="background-image: url('<%= asset_path('login.jpg') %>');">
+      <div class="flex flex-col justify-center p-8 text-white">
         <h2 class="text-lg font-semibold mb-4">A WISE QUOTE</h2>
         <h1 class="text-4xl font-bold mb-4">Get Everything You Want</h1>
         <p class="text-lg">You can get everything you want if you work hard, trust the process, and stick to the plan.</p>
@@ -17,7 +17,7 @@
                         label: t('.label_email'),
                         required: false,
                         autofocus: true,
-                        class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                        class:"block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6",
                         input_html: { autocomplete: t('.autocomplete_email') } %>
         <%= f.input :password,
                         label: t('.label_password'),
@@ -29,17 +29,10 @@
           <%= f.button :submit, t('.submit'), class:"w-full bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
         </div>
       <% end %>
-      <%= render "devise/shared/links" %>
-      <a href="#" class="text-sm text-blue-500 hover:text-blue-800">Forgot Password?</a>
-      <%# <div class="flex items-center justify-center mb-4">
-        <button class="w-full bg-white border border-gray-300 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-center" type="button">
-          <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" class="w-5 h-5 mr-2">
-          Sign In with Google
-        </button>
-      </div> %>
       <p class="text-center text-gray-500 text-sm">
-        Don't have an account?
-        <%= link_to t('navbar_link_new-user'), new_user_registration_path, class: "text-blue-500 hover:text-blue-800" %>
+        Don't have an account ?<%= link_to t('devise.shared.links.btn_signed_up'), new_registration_path(resource_name), class:"text-customPink underline underline-offset-4" %><br />
+        <%= link_to t('devise.shared.links.forgot_your_password'), new_password_path(resource_name), class:"text-customPink underline underline-offset-4" %><br />
+        <%= link_to t('devise.shared.links.confirmation_instructions'), new_confirmation_path(resource_name), class:"text-customPink underline underline-offset-4" %><br />
       </p>
     </div>
   </div>
