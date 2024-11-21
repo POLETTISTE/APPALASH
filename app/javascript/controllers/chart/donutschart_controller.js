@@ -24,11 +24,11 @@ export default class extends Controller {
     Chart.register(...registerables); // Register all necessary components including scales
 
     //stylesheet color from root scss
-    const blueColor = getComputedStyle(document.documentElement)
+    const customBlueColor = getComputedStyle(document.documentElement)
       .getPropertyValue("--blue")
       .trim();
 
-    const pinkColor = getComputedStyle(document.documentElement)
+    const customPinkColor = getComputedStyle(document.documentElement)
       .getPropertyValue("--pink")
       .trim();
 
@@ -41,8 +41,8 @@ export default class extends Controller {
             label: "",
             data: Object.values(this.data.client_know_us),
             backgroundColor: [
-              blueColor,
-              pinkColor,
+              customBlueColor,
+              customPinkColor,
               "rgb(215, 5, 6)",
               "rgb(215, 105, 6)",
               "rgb(255, 255, 255)",

@@ -14,6 +14,7 @@ Rails.application.configure do
   # Aplly css changes when reload page, don't need to precompile again
   config.assets.debug = true
 
+  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 
 
   # Do not eager load code on boot.

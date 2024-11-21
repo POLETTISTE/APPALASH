@@ -13,8 +13,8 @@ module.exports = {
     extend: {
       // create personnal colors to use then like "bg-pink"
       colors: {
-        pink: "#FF64A5",
-        blue: "#C0FFD4",
+        customPink: "#FF64A5",
+        customBlue: "#C0FFD4",
       },
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
@@ -26,8 +26,8 @@ module.exports = {
       // Inject custom CSS variables for Tailwind colors
       addBase({
         ":root": {
-          "--blue": theme("colors.blue"),
-          "--pink": theme("colors.pink"),
+          "--blue": theme("colors.customBlue"),
+          "--pink": theme("colors.customPink"),
         },
       });
 
