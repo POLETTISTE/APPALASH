@@ -1,31 +1,7 @@
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, enctype: "multipart/form-data", data: { controller: "photo-preview" } }) do |f| %>
-  <%= f.error_notification %>
-  <div class="form-inputs">
-    <%= f.input :email, label: t('.label_email'), required: true, autofocus: true, input_html: { autocomplete: t('.autocomplete_email') } %>
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p><%= t('.waiting_confirmation') %><%= resource.unconfirmed_email %></p>
-    <% end %>
-    <%= f.input :password, label: t('.label_password'), hint: t('.blank'), required: false, input_html: { autocomplete: t('.autocomplete_new_password') } %>
-    <%= f.input :password_confirmation, label: t('.label_password_confirmation'), required: false, input_html: { autocomplete: t('.autocomplete_new_password') } %>
-    <%= f.input :current_password, label: t('.label_current_password'), hint: t('.current_password'), required: true, input_html: { autocomplete: t('.autocomplete_current_password') } %>
-    <!-- New Fields -->
-    <%= f.input :name, label: t('.label_name'), required: false, input_html: { autocomplete: t('.autocomplete_name') } %>
-    <%= f.input :firstname, label: t('.label_firstname'), required: false, input_html: { autocomplete: t('.autocomplete_firstname') } %>
-    <%= f.input :website, label: t('.label_website'), required: true, input_html: { autocomplete: t('.autocomplete_website') } %>
-  </div>
-  <!-- Avatar Preview -->
-  <div class="form-inputs">
-    <!-- Original Avatar Image -->
-    <%# if resource.avatar.attached? %>
-    <%#= cl_image_tag resource.avatar.key, width: 100, height: 100, class: "rounded-full", data: { photo_preview_target: "originalAvatar" } %>
-    <%# else %>
-    <!-- Placeholder if no avatar is uploaded -->
-    <%#= image_tag "avatar-default.png", width: 100, height: 100, class: "rounded-full", data: { photo_preview_target: "originalAvatar" } %>
-    <%# end %>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, enctype: "multipart/form-data", data: { controller: "photo-preview" }, class: 'space-y-6' }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, enctype: "multipart/form-data", data: { controller: "photo-preview" }, class: 'space-y-6' }) do |f| %>
   <!-- Error Notification -->
   <%= f.error_notification class: 'text-red-600' %>
+
   <!-- Form Inputs -->
   <div class="form-inputs space-y-4">
     <div>
@@ -35,38 +11,47 @@
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p class="text-sm text-gray-500"><%= t('.waiting_confirmation') %><%= resource.unconfirmed_email %></p>
     <% end %>
+
     <div>
       <%= f.label :password, t('.label_password'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.password_field :password, required: false, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_new_password') %>
       <p class="text-sm text-gray-500"><%= t('.blank') %></p>
     </div>
+
     <div>
       <%= f.label :password_confirmation, t('.label_password_confirmation'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.password_field :password_confirmation, required: false, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_new_password') %>
     </div>
+
     <div>
       <%= f.label :current_password, t('.label_current_password'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.password_field :current_password, required: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_current_password') %>
       <p class="text-sm text-gray-500"><%= t('.current_password') %></p>
     </div>
+
+    <!-- New Fields -->
     <div>
       <%= f.label :name, t('.label_name'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.text_field :name, required: false, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_name') %>
     </div>
+
     <div>
       <%= f.label :firstname, t('.label_firstname'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.text_field :firstname, required: false, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_firstname') %>
     </div>
+
     <div>
       <%= f.label :website, t('.label_website'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.text_field :website, required: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_website') %>
     </div>
   </div>
+
   <!-- Avatar Preview -->
   <div class="form-inputs space-y-4">
     <!-- Preview Image (Initially hidden) -->
     <%= image_tag "", width: 100, height: 100, class: "hidden rounded-full", data: { photo_preview_target: "preview" } %>
   </div>
+
   <!-- Avatar File Input -->
   <%= f.input :avatar, as: :file, label: false, input_html: { 
     accept: 'image/jpeg, image/png', 
@@ -83,25 +68,17 @@
     </svg>
     <span><%= t('.label_upload') %></span>
   </label>
-  <div class="form-actions">
-    <%= f.button :submit, t('.submit'), class: "bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded inline-flex items-center" %>
-  </div>
-<% end %>
-<h3><%= t('.cancel') %></h3>
-<div>
-  <%= t('.unhappy') %>
-  <%= button_to t('.cancel_button'), registration_path(resource_name), data: { confirm: t('.unhappy_confirm'), turbo_confirm: t('.unhappy_confirm') }, method: :delete %>
-</div>
-<%= link_to t('.back'), :back %>
 
   <!-- Submit Button -->
   <div class="form-actions flex justify-center">
     <%= f.submit t('.submit'), class: "bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" %>
   </div>
+
+  <!-- Cancel Button -->
+  <h3 class="text-lg font-semibold"><%= t('.cancel') %></h3>
+  <div class="text-gray-700">
+    <%= t('.unhappy') %>
+    <%= button_to t('.cancel_button'), registration_path(resource_name), data: { confirm: t('.unhappy_confirm'), turbo_confirm: t('.unhappy_confirm') }, method: :delete, class: 'bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded' %>
+  </div>
+  <%= link_to t('.back'), :back, class: 'text-blue-500 underline' %>
 <% end %>
-<h3 class="text-lg font-semibold"><%= t('.cancel') %></h3>
-<div class="text-gray-700">
-  <%= t('.unhappy') %>
-  <%= button_to t('.cancel_button'), registration_path(resource_name), data: { confirm: t('.unhappy_confirm'), turbo_confirm: t('.unhappy_confirm') }, method: :delete, class: 'bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded' %>
-</div>
-<%= link_to t('.back'), :back, class: 'text-blue-500 underline' %>

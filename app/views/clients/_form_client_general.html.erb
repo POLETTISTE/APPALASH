@@ -1,123 +1,100 @@
 <%= simple_form_for @client, html: { data: { controller: "photo-preview" }, class: "space-y-6" } do |form| %>
   <!-- Photo Preview -->
   <%= image_tag "", width: 300, class: "hidden", data: { photo_preview_target: "preview" } %>
-  <!-- Photo Input -->
-  <%= form.input :photo, as: :file, input_html: { accept: 'image/jpeg, image/png', class: 'hidden', data: { photo_preview_target: "input", action: "change->photo-preview#displayPreview" } }, label_html: { class: 'text-lg font-medium text-gray-700' }, label: t(".label_photo") %>
-  <!-- Client Information -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <%= form.input :name, label: t('simple_form.labels.client.name'), required: true, input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-    <%= form.input :firstname, label: t('simple_form.labels.client.firstname'), required: true, input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-  </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <%= form.input :email, label: t('simple_form.labels.client.email'), input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-    <%= form.input :phone, label: t('simple_form.labels.client.phone'), input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-  </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <%= form.input :address, label: t('simple_form.labels.client.address'), input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-    <%= form.input :zip_code, label: t('simple_form.labels.client.zip_code'), input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-  </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <%= form.input :city, label: t('simple_form.labels.client.city'), input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-    <%= form.input :country, label: t('simple_form.labels.client.country'), input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-  </div>
-  <%= form.input :birthdate, label: t('simple_form.labels.client.birthdate'), as: :string, input_html: { data: { controller: "datepicker" }, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-  <%= form.input :how_do_you_know_us, collection: how_do_you_know_us_options, as: :select, label: t('simple_form.labels.client.how_do_you_know_us'), input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-  <%= form.input :notes, as: :text, label: t('simple_form.labels.client.notes'), input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-  <!-- Lash Fields -->
-  <%= form.simple_fields_for :lash do |lf| %>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <%= lf.input :desired_effect, collection: lash_desired_effect_options, as: :select, label: "Lash Desired Effect", input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-      <%= lf.input :face_diagnostic, collection: lash_face_diagnostic_options, as: :select, label: "Lash Face Diagnostic", input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-<%= form_for @client, html: { data: { controller: "photo-preview" }, class: "space-y-6" } do |form| %>
-  <!-- Photo Preview -->
-  <%= image_tag "", width: 300, class: "hidden", data: { photo_preview_target: "preview" } %>
+  
   <!-- Photo Input -->
   <div class="space-y-2">
     <%= form.label :photo, t(".label_photo"), class: 'text-lg font-medium text-gray-700' %>
     <%= form.file_field :photo, accept: 'image/jpeg, image/png', class: 'hidden', data: { photo_preview_target: "input", action: "change->photo-preview#displayPreview" } %>
   </div>
+  
   <!-- Client Information -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <%= form.label :name, t('form.labels.client.name'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :name, required: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
+
     <%= form.label :firstname, t('form.labels.client.firstname'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :firstname, required: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
+
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <%= form.label :email, t('form.labels.client.email'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.email_field :email, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
+
     <%= form.label :phone, t('form.labels.client.phone'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.telephone_field :phone, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
+
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <%= form.label :address, t('form.labels.client.address'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :address, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
+
     <%= form.label :zip_code, t('form.labels.client.zip_code'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :zip_code, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
+
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <%= form.label :city, t('form.labels.client.city'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :city, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
+
     <%= form.label :country, t('form.labels.client.country'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :country, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
+
   <div class="space-y-2">
     <%= form.label :birthdate, t('form.labels.client.birthdate'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :birthdate, data: { controller: "datepicker" }, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
+
   <div class="space-y-2">
     <%= form.label :how_do_you_know_us, t('form.labels.client.how_do_you_know_us'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.select :how_do_you_know_us, how_do_you_know_us_options, {}, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
+
   <div class="space-y-2">
     <%= form.label :notes, t('form.labels.client.notes'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_area :notes, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
+
   <!-- Lash Fields -->
   <%= form.fields_for :lash do |lf| %>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <%= lf.label :desired_effect, "Lash Desired Effect", class: 'text-lg font-medium text-gray-700' %>
       <%= lf.select :desired_effect, lash_desired_effect_options, {}, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
+
       <%= lf.label :face_diagnostic, "Lash Face Diagnostic", class: 'text-lg font-medium text-gray-700' %>
       <%= lf.select :face_diagnostic, lash_face_diagnostic_options, {}, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
     </div>
-    <!-- Add other Lash input fields here similarly with Tailwind classes -->
   <% end %>
+
   <!-- Extension Fields -->
-  <%= form.simple_fields_for :extension do |ef| %>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <%= ef.input :brand, label: "Extension Brand", input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
-      <%= ef.input :curvature, label: "Extension Curvature", input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
   <%= form.fields_for :extension do |ef| %>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <%= ef.label :brand, "Extension Brand", class: 'text-lg font-medium text-gray-700' %>
       <%= ef.text_field :brand, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
+
       <%= ef.label :curvature, "Extension Curvature", class: 'text-lg font-medium text-gray-700' %>
       <%= ef.text_field :curvature, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
     </div>
-    <!-- Add other Extension input fields here similarly with Tailwind classes -->
   <% end %>
+
   <!-- Health Fields -->
-  <%= form.simple_fields_for :health do |hf| %>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <%= hf.input :diabetes, as: :boolean, label: "Diabetes" %>
-      <%= hf.input :pregnancy, as: :boolean, label: "Pregnancy" %>
   <%= form.fields_for :health do |hf| %>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="flex items-center">
         <%= hf.check_box :diabetes, class: 'mr-2 leading-tight' %>
         <%= hf.label :diabetes, "Diabetes", class: 'text-lg font-medium text-gray-700' %>
       </div>
+      
       <div class="flex items-center">
         <%= hf.check_box :pregnancy, class: 'mr-2 leading-tight' %>
         <%= hf.label :pregnancy, "Pregnancy", class: 'text-lg font-medium text-gray-700' %>
       </div>
     </div>
-    <!-- Add other Health input fields here similarly with Tailwind classes -->
   <% end %>
+
   <!-- Submit Button -->
   <div class="flex justify-center">
-    <%= form.button :submit, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-    <%= form.submit class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <%= form.submit "Submit", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
   </div>
 <% end %>
