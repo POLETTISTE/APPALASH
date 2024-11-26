@@ -1,0 +1,15 @@
+<%= link_to client_path(client), class: "client-card-link" do %>
+  <div class="client-card" data-controller="edit-client" data-edit-client-target="card">
+    <% if current_user.admin? %>
+      <p><%= client.user.email %></p>
+    <% end %>
+    <% if client.photo.attached? %>
+      <%= cl_image_tag client.photo.key, crop: :fill, gravity: :face %>
+    <% else %>
+      <%= image_tag "client/client_photo_profil.png", style: "background-color: tomato;" %>
+    <% end %>
+    <div class="client-infos <%= 'd-none' if client.errors.any? %>" data-edit-client-target="infos">
+      <%= "#{client.name} #{client.firstname}".html_safe %>
+    </div>
+  </div>
+<% end %>

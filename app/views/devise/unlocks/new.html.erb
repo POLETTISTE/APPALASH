@@ -1,0 +1,25 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-2xl font-bold mb-6"><%= t('.title') %></h2>
+      <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: 'space-y-6' }) do |f| %>
+        <!-- Error Notification -->
+        <%= f.error_notification class: 'text-red-600' %>
+        <!-- Full Error for Unlock Token -->
+        <%= f.full_error :unlock_token, class: 'text-red-600' %>
+        <!-- Form Inputs -->
+        <div class="form-inputs space-y-4">
+          <div>
+            <%= f.label :email, t('.label_email'), class: 'block text-lg font-medium text-gray-700' %>
+            <%= f.email_field :email, required: true, autofocus: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_email') %>
+          </div>
+        </div>
+        <!-- Form Actions -->
+        <div class="form-actions mt-6">
+          <%= f.submit t('.resend_btn'), class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded' %>
+        </div>
+      <% end %>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div id="website">
+  <h1>
+    <% if @user.website.present? %>
+      <%= @user.website %>'s Profile
+    <% else %>
+      Profile
+    <% end %>
+  </h1>
+  <% if @services.present? %>
+    <% @user.services.each do |service| %>
+      <div class="service">
+        <h2><%= service.name %></h2>
+        <p><%= number_to_currency(service.price) %></p>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No services available.</p>
+  <% end %>
+  <% if policy(@user).edit_website? %>
+    <%= link_to 'Edit Profile', edit_website_user_profile_path(website: @user.website), class: 'btn btn-primary' %>
+    <%= link_to 'Go Back', root_path, class: 'btn btn-secondary' %>
+  <% end %>
+</div>

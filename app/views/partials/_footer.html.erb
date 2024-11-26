@@ -1,0 +1,6 @@
+<% if !user_signed_in? || (user_signed_in? && controller_name == 'users' && action_name == 'show') %>
+  <div id="footer">
+    <h1>FOOTER</h1>
+  </div>
+<% end %>
+<!-- Rest of your show view content goes here -->

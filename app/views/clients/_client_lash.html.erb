@@ -1,0 +1,68 @@
+<div id="<%= dom_id client_lash %>">
+  <% if client.lash %>
+    <h3><%= t(".lash_information") %></h3>
+    <p>
+      <strong><%= t(".lash_desired_effect") %></strong>
+      <%= client.lash.desired_effect %>
+    </p>
+    <p>
+      <strong><%= t(".lash_face_diagnostic") %></strong>
+      <%= client.lash.face_diagnostic %>
+    </p>
+    <p>
+      <strong><%= t(".lash_asymmetry_diagnostic") %></strong>
+      <%= client.lash.asymmetry_diagnostic %>
+    </p>
+    <p>
+      <strong><%= t(".lash_eyelid_morphology_diagnostic") %></strong>
+      <%= client.lash.eyelid_morphology_diagnostic %>
+    </p>
+    <p>
+      <strong><%= t(".lash_alignment_morphology_diagnostic") %></strong>
+      <%= client.lash.alignment_morphology_diagnostic %>
+    </p>
+    <p>
+      <strong><%= t(".lash_proportion_morphology_diagnostic") %></strong>
+      <%= client.lash.proportion_morphology_diagnostic %>
+    </p>
+    <p>
+      <strong><%= t(".lash_thickness_diagnostic") %></strong>
+      <%= client.lash.thickness_diagnostic %>
+    </p>
+    <p>
+      <strong><%= t(".lash_length_diagnostic") %></strong>
+      <%= client.lash.length_diagnostic %>
+    </p>
+    <p>
+      <strong><%= t(".lash_curvature_diagnostic") %></strong>
+      <%= client.lash.curvature_diagnostic %>
+    </p>
+    <p>
+      <strong><%= t(".lash_style") %></strong>
+      <%= client.lash.style %>
+    </p>
+    <p>
+      <strong><%= t(".lash_notes") %></strong>
+      <%= client.lash.notes %>
+    </p>
+    <p>
+      <strong><%= t(".lash_mapping") %></strong>
+      <%= client.lash.mapping %>
+    </p>
+    <p>
+      <strong><%= t(".lash_event") %></strong>
+      <%= client.lash.event %>
+    </p>
+    <p>
+      <strong><%= t(".lash_texture") %></strong>
+      <%= client.lash.texture %>
+    </p>
+    <p>
+      <strong><%= t(".lash_density") %></strong>
+      <%= client.lash.density %>
+    </p>
+    <!-- Add other lash attributes as needed -->
+  <% else %>
+    <p><em><%= t(".no_lash_information") %></em></p>
+  <% end %>
+</div>

@@ -1,0 +1,7 @@
+<h1><%= t('.title') %></h1>
+<%= render "form", service: @service %>
+<br>
+<div>
+  <%= link_to t('button.goto', model: Service.model_name.human.downcase), @service %>
+  <%= link_to t('button.goback'), services_path %>
+</div>

@@ -1,0 +1,15 @@
+<div id="transactions">
+  <h1><%= t('transactions_h1') %></h1>
+  <% if policy(Transaction).create? %>
+    <%= link_to t("button.new", model: Transaction.model_name.human.downcase), new_transaction_path, class: "btn btn-primary"  %>
+  <% end %>
+  <div class="transactions-list">
+    <% @transactions.each do |transaction| %>
+      <%= render transaction %>
+    <% end %>
+  </div>
+  <div>
+    <%= t('.total') %>
+    <p><%= '%.2f'% @transactions_total_price %></p>
+  </div>
+</div>

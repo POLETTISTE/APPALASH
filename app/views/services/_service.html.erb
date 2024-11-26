@@ -1,0 +1,17 @@
+<div id="<%= dom_id(service) %>">
+  <%= link_to service_path(service) do %>
+    <div class="card-service">
+      <% if current_user.admin? %>
+        <p><%= service.user.email %></p>
+      <% end %>
+      <p>
+        <strong><%= t('.name') %>:</strong>
+        <%= service.name %>
+      </p>
+      <p>
+        <strong><%= t('.price') %>:</strong>
+        <%= '%.2f' % service.price %>
+      </p>
+    </div>
+  <% end %>
+</div>

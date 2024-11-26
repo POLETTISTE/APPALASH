@@ -1,0 +1,25 @@
+<%= t('clients_h1') %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <% if policy(Client).create? %>
+        <%= link_to t('button.new', model: Client.model_name.human.downcase), new_client_path, class: "btn btn-primary" %>
+      <% end %>
+      <div data-controller="search-clients">
+        <%= form_with url: clients_path, method: :get, html: {class: "mb-4", data: {search_clients_target: "form"}} do |f| %>
+          <%= f.label :query, t('.search') %>
+          <%= f.text_field :query,
+                           class: "form-control",
+                           placeholder: t('.placeholder'),
+                           value: params[:query],
+                           data: {
+                             search_clients_target: "searchInput",
+                             action: "keyup->search-clients#update"
+                            }
+                           %>
+        <% end %>
+        <%= render "list", clients: @clients %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<h1><%= t('dashboard_h1') %></h1>
+<% if current_user.admin? %>
+  <%# Render the admin-specific content %>
+  <%= render 'admin_index' %>
+<% else %>
+  <%# Render the regular user content %>
+  <%= render 'non_admin_index' %>
+<% end %>

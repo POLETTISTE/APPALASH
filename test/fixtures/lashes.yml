@@ -1,0 +1,37 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client: one
+  desired_effect: MyString
+  face_diagnostic: MyString
+  asymmetry_diagnostic: MyString
+  eyelid_morphology_diagnostic: MyString
+  alignment_morphology_diagnostic: MyString
+  proportion_morphology_diagnostic: MyString
+  thickness_diagnostic: MyString
+  length_diagnostic: 1
+  curvature_diagnostic: false
+  style: MyString
+  notes: MyText
+  mapping: MyText
+  event: MyText
+  texture: false
+  density: MyString
+
+two:
+  client: two
+  desired_effect: MyString
+  face_diagnostic: MyString
+  asymmetry_diagnostic: MyString
+  eyelid_morphology_diagnostic: MyString
+  alignment_morphology_diagnostic: MyString
+  proportion_morphology_diagnostic: MyString
+  thickness_diagnostic: MyString
+  length_diagnostic: 1
+  curvature_diagnostic: false
+  style: MyString
+  notes: MyText
+  mapping: MyText
+  event: MyText
+  texture: false
+  density: MyString

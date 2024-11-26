@@ -1,0 +1,22 @@
+/* app/assets/stylesheets/application.tailwind.css */
+
+/* Tailwind's base styles */
+/* @import "tailwindcss/base"; */
+
+/* Tailwind's component styles */
+/* @import "tailwindcss/components"; */
+
+/* Tailwind's utility styles */
+/* @import "tailwindcss/utilities"; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .translation_missing {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+  }
+}
