@@ -1,13 +1,25 @@
-<%# frozen_string_literal: true %>
-<%%= simple_form_for(@<%= singular_table_name %>) do |f| %>
-<%%= f.error_notification %>
-<%%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-<div class="form-inputs">
+frozen_string_literal: true
+
+<%# tailwind style %>
+<%%= form_for(@<%= singular_table_name %>, html: { class: 'space-y-6' }) do |f| %>
+  # <!-- Display error notifications -->
+  <div class="text-red-600">
+    <%%= f.error_notification %>
+    <%%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  </div>
+
+  # <!-- Form Inputs -->
+<div class="space-y-4">
   <%- attributes.each do |attribute| -%>
-    <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %> %>
+        <div class="field">
+    <%%= f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %> ,
+             input_html: { class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' } %>
+      </div>
   <%- end -%>
 </div>
-<div class="form-actions">
-  <%%= f.button :submit %>
+
+# <!-- Submit Button -->
+  <div class="form-actions mt-6">
+  <%%= f.button :submit , class: 'bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg' %>
 </div>
 <%% end %>

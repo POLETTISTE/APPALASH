@@ -1,7 +1,7 @@
-
-<%= simple_form_for(@transaction, html: { data: { controller: "checkbox-new-form-transaction" } }) do |f| %>
+<%= form_for(@transaction, html: { data: { controller: "checkbox-new-form-transaction" } }) do |f| %>
+  <!-- Error Notification -->
   <% if @transaction.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="text-red-600">
       <h2><%= pluralize(@transaction.errors.count, "error") %> <%= t('.prohibited') %>:</h2>
       <ul>
         <% @transaction.errors.full_messages.each do |message| %>
@@ -10,41 +10,49 @@
       </ul>
     </div>
   <% end %>
-  <% if @services === []%>
+
+  <% if @services.blank? %>
     <% if policy(Service).create? %>
-      <%= link_to t("button.new", model: Service.model_name.human.downcase), new_service_path, class: "btn btn-primary"  %>
+      <%= link_to t("button.new", model: Service.model_name.human.downcase), new_service_path, class: "btn btn-primary" %>
     <% end %>
   <% else %>
-    <div class="field">
-      <%= f.input :date,   as: :string, input_html: { data: { controller: "datepicker" } } %>
-    </div>
-    <div class="field">
-      <%= f.input :client_id, collection: @clients, prompt: 'Select a client', required: true, label_method: :full_name, value_method: :id %>
-      <% if @transaction.errors[:client_id].any? %>
-        <div class="error-message">
-          <%= @transaction.errors[:client_id].join(", ") %>
-        </div>
-      <% end %>
-    </div>
-    <div class="field">
-      <%= f.label :services %>
-      <div id="services">
-        <% @services.each do |service| %>
-          <div>
-            <% checked = params[:transaction] && params[:transaction][:services]&.any? { |p| p[:name] == service.name } %>
-            <%= check_box_tag 'transaction[services][][name]', service.name, checked, id: "transaction_services_name_#{service.id}", class: "service-name-checkbox", data: { target: "transaction_services_price_#{service.id}" } %>
-            <%= check_box_tag 'transaction[services][][price]', service.price, checked, id: "transaction_services_price_#{service.id}", style: "display: none" %>
-            <%= service.name %> - <%= '%.2f' % service.price %>
-            <% if checked %>
-              <%= hidden_field_tag 'transaction[services][][name]', service.name %>
-              <%= hidden_field_tag 'transaction[services][][price]', service.price  %>
-            <% end %>
+    <div class="space-y-4">
+      <div class="field">
+        <%= f.label :date, class: 'block text-lg font-medium text-gray-700' %>
+        <%= f.text_field :date, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', data: { controller: "datepicker" } %>
+      </div>
+
+      <div class="field">
+        <%= f.label :client_id, 'Select a client', class: 'block text-lg font-medium text-gray-700' %>
+        <%= f.collection_select :client_id, @clients, :id, :full_name, { prompt: 'Select a client' }, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', required: true %>
+        <% if @transaction.errors[:client_id].any? %>
+          <div class="text-red-600">
+            <%= @transaction.errors[:client_id].join(", ") %>
           </div>
         <% end %>
       </div>
-    </div>
-    <div class="actions">
-      <%= f.button :submit %>
+
+      <div class="field">
+        <%= f.label :services, class: 'block text-lg font-medium text-gray-700' %>
+        <div id="services">
+          <% @services.each do |service| %>
+            <div class="flex items-center">
+              <% checked = params[:transaction]&.dig(:services)&.any? { |p| p[:name] == service.name } %>
+              <%= check_box_tag 'transaction[services][][name]', service.name, checked, id: "transaction_services_name_#{service.id}", class: "mr-2 service-name-checkbox", data: { target: "transaction_services_price_#{service.id}" } %>
+              <%= hidden_field_tag 'transaction[services][][price]', service.price, id: "transaction_services_price_#{service.id}" %>
+              <%= service.name %> - <%= number_to_currency(service.price) %>
+              <% if checked %>
+                <%= hidden_field_tag 'transaction[services][][name]', service.name %>
+                <%= hidden_field_tag 'transaction[services][][price]', service.price %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="actions">
+        <%= f.submit class: 'bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded' %>
+      </div>
     </div>
   <% end %>
 <% end %>

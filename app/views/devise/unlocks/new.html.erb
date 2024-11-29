@@ -3,12 +3,28 @@
 <div class="container mx-auto px-4 py-8">
   <div class="row">
     <div class="col">
-      <%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: 'space-y-6' }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: 'space-y-6' }) do |f| %>
         <!-- Error Notification -->
-        <%= f.error_notification class: 'text-red-600' %>
+        <% if resource.errors.any? %>
+          <div class="text-red-600">
+            <ul>
+              <% resource.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
         
         <!-- Full Error for Unlock Token -->
-        <%= f.full_error :unlock_token, class: 'text-red-600' %>
+        <% if resource.errors[:unlock_token].any? %>
+          <div class="text-red-600">
+            <ul>
+              <% resource.errors[:unlock_token].each do |error| %>
+                <li><%= error %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
         <!-- Form Inputs -->
         <div class="space-y-4">

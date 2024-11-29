@@ -1,14 +1,37 @@
-<%= simple_form_for(@service) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :price %>
+<%= form_for(@service, html: { class: 'space-y-6' }) do |f| %>
+  <!-- Error Notification -->
+  <% if @service.errors.any? %>
+    <div class="text-red-600">
+      <ul>
+        <% @service.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Base Errors Notification -->
+  <% if @service.errors[:base].present? %>
+    <div class="text-red-600">
+      <%= @service.errors[:base].to_sentence %>
+    </div>
+  <% end %>
+
+  <!-- Form Inputs -->
+  <div class="form-inputs space-y-4">
+    <div>
+      <%= f.label :name, class: 'block text-lg font-medium text-gray-700' %>
+      <%= f.text_field :name, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
+    </div>
+    <div>
+      <%= f.label :price, class: 'block text-lg font-medium text-gray-700' %>
+      <%= f.text_field :price, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
+    </div>
   </div>
-  <div class="form-actions">
-    <%= f.button :submit %>
+
+  <!-- Form Actions -->
+  <div class="form-actions mt-6">
+    <%= f.submit class: 'bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded' %>
   </div>
 <% end %>
-<%# to add service present is website, maybe service.allow_wesite? %>
-
-
+<%# to add service present is website, maybe service.allow_website? %>

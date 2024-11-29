@@ -1,20 +1,8 @@
-<h2> <%= t('.title')%> </h2>
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                label: t('.label_email'),
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: t('.autocomplete') } %>
-  </div>
-  <div class="form-actions">
-    <%= f.button :submit, t('.reset') %>
-
 <h2 class="text-2xl font-semibold mb-6"><%= t('.title') %></h2>
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'space-y-6' }) do |f| %>
   <!-- Error Notification -->
   <%= f.error_notification class: 'text-red-600' %>
+
   <!-- Email Input -->
   <div class="form-inputs space-y-4">
     <div>
@@ -26,6 +14,7 @@
                         autocomplete: t('.autocomplete') %>
     </div>
   </div>
+
   <!-- Submit Button -->
   <div class="form-actions flex justify-center">
     <%= f.submit t('.reset'), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>

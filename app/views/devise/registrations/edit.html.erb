@@ -1,13 +1,27 @@
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, enctype: "multipart/form-data", data: { controller: "photo-preview" }, class: 'space-y-6' }) do |f| %>
+<h2 class="text-2xl font-semibold mb-6"><%= t('.title') %></h2>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, enctype: "multipart/form-data", data: { controller: "photo-preview" }, class: 'space-y-6' }) do |f| %>
   <!-- Error Notification -->
-  <%= f.error_notification class: 'text-red-600' %>
+  <% if resource.errors.any? %>
+    <div class="text-red-600">
+      <h2><%= t('.errors') %></h2>
+      <ul>
+        <% resource.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <!-- Form Inputs -->
   <div class="form-inputs space-y-4">
     <div>
       <%= f.label :email, t('.label_email'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.email_field :email, required: true, autofocus: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_email') %>
+      <% if resource.errors[:email].any? %>
+        <p class="text-red-600"><%= resource.errors[:email].first %></p>
+      <% end %>
     </div>
+
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p class="text-sm text-gray-500"><%= t('.waiting_confirmation') %><%= resource.unconfirmed_email %></p>
     <% end %>
@@ -15,17 +29,26 @@
     <div>
       <%= f.label :password, t('.label_password'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.password_field :password, required: false, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_new_password') %>
+      <% if resource.errors[:password].any? %>
+        <p class="text-red-600"><%= resource.errors[:password].first %></p>
+      <% end %>
       <p class="text-sm text-gray-500"><%= t('.blank') %></p>
     </div>
 
     <div>
       <%= f.label :password_confirmation, t('.label_password_confirmation'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.password_field :password_confirmation, required: false, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_new_password') %>
+      <% if resource.errors[:password_confirmation].any? %>
+        <p class="text-red-600"><%= resource.errors[:password_confirmation].first %></p>
+      <% end %>
     </div>
 
     <div>
       <%= f.label :current_password, t('.label_current_password'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.password_field :current_password, required: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_current_password') %>
+      <% if resource.errors[:current_password].any? %>
+        <p class="text-red-600"><%= resource.errors[:current_password].first %></p>
+      <% end %>
       <p class="text-sm text-gray-500"><%= t('.current_password') %></p>
     </div>
 
@@ -33,16 +56,25 @@
     <div>
       <%= f.label :name, t('.label_name'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.text_field :name, required: false, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_name') %>
+      <% if resource.errors[:name].any? %>
+        <p class="text-red-600"><%= resource.errors[:name].first %></p>
+      <% end %>
     </div>
 
     <div>
       <%= f.label :firstname, t('.label_firstname'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.text_field :firstname, required: false, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_firstname') %>
+      <% if resource.errors[:firstname].any? %>
+        <p class="text-red-600"><%= resource.errors[:firstname].first %></p>
+      <% end %>
     </div>
 
     <div>
       <%= f.label :website, t('.label_website'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.text_field :website, required: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_website') %>
+      <% if resource.errors[:website].any? %>
+        <p class="text-red-600"><%= resource.errors[:website].first %></p>
+      <% end %>
     </div>
   </div>
 
@@ -53,21 +85,16 @@
   </div>
 
   <!-- Avatar File Input -->
-  <%= f.input :avatar, as: :file, label: false, input_html: { 
-    accept: 'image/jpeg, image/png', 
-    class: 'hidden file-input', 
-    id: "#{f.object_name}_avatar", 
-    data: { photo_preview_target: "input", action: "change->photo-preview#displayPreview" } 
-  } %>
-
-  <%= f.label :avatar, t('.label_upload'), for: "#{f.object_name}_avatar", class: 'block text-lg font-medium text-gray-700' %>
-  <%= f.file_field :avatar, accept: 'image/jpeg, image/png', class: 'hidden file-input', id: "#{f.object_name}_avatar", data: { photo_preview_target: "input", action: "change->photo-preview#displayPreview" } %>
-  <label for="<%= f.object_name %>_avatar" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-    <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" style="width: 16px; height: 16px;">
-      <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/>
-    </svg>
-    <span><%= t('.label_upload') %></span>
-  </label>
+  <div class="form-inputs space-y-4">
+    <%= f.label :avatar, t('.label_upload'), for: "#{f.object_name}_avatar", class: 'block text-lg font-medium text-gray-700' %>
+    <%= f.file_field :avatar, accept: 'image/jpeg, image/png', class: 'hidden file-input', id: "#{f.object_name}_avatar", data: { photo_preview_target: "input", action: "change->photo-preview#displayPreview" } %>
+    <label for="<%= f.object_name %>_avatar" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+      <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" style="width: 16px; height: 16px;">
+        <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/>
+      </svg>
+      <span><%= t('.label_upload') %></span>
+    </label>
+  </div>
 
   <!-- Submit Button -->
   <div class="form-actions flex justify-center">

@@ -86,5 +86,4 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'pg_search'
 gem 'pundit'
-gem 'simple_form'
 

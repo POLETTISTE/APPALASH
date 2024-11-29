@@ -1,48 +1,20 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h2><%= t('.title') %></h2>
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
-        <%= f.error_notification %>
-        <div class="form-inputs">
-          <%= f.input :email,
-                label: t('.label_email'),
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: t('.autocomplete_email') } %>
-          <%= f.input :password,
-                label: t('.label_password'),
-                required: true,
-                hint: ("#{@minimum_password_length} #{t('.min_chars')}" if @minimum_password_length),
-                input_html: { autocomplete: t('.autocomplete_new_password') } %>
-          <%= f.input :password_confirmation,
-                label: t('.label_password_confirmation'),
-                required: true,
-                input_html: { autocomplete: t('.autocomplete_new_password') } %>
-          <!-- New Fields -->
-          <%= f.input :name,
-                label: t('.label_name'),
-                required: false,
-                input_html: { autocomplete: t('.autocomplete_name') } %>
-          <%= f.input :firstname,
-                label: t('.label_firstname'),
-                required: false,
-                input_html: { autocomplete: t('.autocomplete_firstname') } %>
-          <%= f.input :website,
-                label: t('.label_website'),
-                required: true,
-                input_html: { autocomplete: t('.autocomplete_website') } %>
-        </div>
-        <div class="form-actions">
-          <%= f.button :submit, t('.submit') %>
-
 <div class="container mx-auto px-4 py-8">
   <div class="row">
     <div class="col">
       <h2 class="text-2xl font-bold mb-6"><%= t('.title') %></h2>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }, html: { class: 'space-y-6' }) do |f| %>
         <!-- Error Notification -->
-        <%= f.error_notification class: 'text-red-600' %>
+        <% if resource.errors.any? %>
+          <div class="text-red-600">
+            <h2><%= t('.errors') %></h2>
+            <ul>
+              <% resource.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
         <!-- Form Inputs -->
         <div class="form-inputs space-y-4">
           <div>
@@ -73,6 +45,7 @@
             <%= f.text_field :website, required: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_website') %>
           </div>
         </div>
+
         <!-- Form Actions -->
         <div class="form-actions mt-6">
           <%= f.submit t('.submit'), class: 'bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded' %>

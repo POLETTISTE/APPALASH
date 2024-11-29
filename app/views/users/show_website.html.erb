@@ -1,23 +1,29 @@
-<div id="website">
-  <h1>
+<div id="website" class="p-6 bg-gray-50 rounded-lg shadow-md">
+  <h1 class="text-3xl font-bold mb-6">
     <% if @user.website.present? %>
       <%= @user.website %>'s Profile
     <% else %>
       Profile
     <% end %>
   </h1>
+
   <% if @services.present? %>
-    <% @user.services.each do |service| %>
-      <div class="service">
-        <h2><%= service.name %></h2>
-        <p><%= number_to_currency(service.price) %></p>
-      </div>
-    <% end %>
+    <div class="space-y-6">
+      <% @user.services.each do |service| %>
+        <div class="service bg-white p-4 rounded-lg shadow-md">
+          <h2 class="text-xl font-semibold text-gray-800"><%= service.name %></h2>
+          <p class="text-lg text-gray-600"><%= number_to_currency(service.price) %></p>
+        </div>
+      <% end %>
+    </div>
   <% else %>
-    <p>No services available.</p>
+    <p class="text-gray-500">No services available.</p>
   <% end %>
+
   <% if policy(@user).edit_website? %>
-    <%= link_to 'Edit Profile', edit_website_user_profile_path(website: @user.website), class: 'btn btn-primary' %>
-    <%= link_to 'Go Back', root_path, class: 'btn btn-secondary' %>
+    <div class="mt-6 space-x-4">
+      <%= link_to 'Edit Profile', edit_website_user_profile_path(website: @user.website), class: 'inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg' %>
+      <%= link_to 'Go Back', root_path, class: 'inline-block bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg' %>
+    </div>
   <% end %>
 </div>
