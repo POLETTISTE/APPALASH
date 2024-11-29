@@ -109,25 +109,25 @@
     <p><em><%= t(".no_lash_information") %></em></p>
   <% end %>
   <% if client.extension %>
-    <h3><%= t("extension_info") %></h3>
+    <h3> <strong><%= t(".lash_extension_info") %></strong></h3>
     <p>
-      <strong><%= t(".extension_brand") %></strong>
+      <strong><%= t(".lash_extension_brand") %></strong>
       <%= client.extension.brand %>
     </p>
     <p>
-      <strong><%= t(".extension_curvature") %></strong>
+      <strong><%= t(".lash_extension_curvature") %></strong>
       <%= client.extension.curvature %>
     </p>
     <p>
-      <strong><%= t(".extension_thickness") %></strong>
+      <strong><%= t(".lash_extension_thickness") %></strong>
       <%= client.extension.thickness %>
     </p>
     <p>
-      <strong><%= t(".extension_glue") %></strong>
+      <strong><%= t(".lash_extension_glue") %></strong>
       <%= client.extension.glue %>
     </p>
   <% else %>
-    <p><em><%= t(".no_extension_information") %></em></p>
+    <p><em><%= t(".no_lash_extension_information") %></em></p>
   <% end %>
   <% if client.health %>
     <h3><%= t("health_info") %></h3>
