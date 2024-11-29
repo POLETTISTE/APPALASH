@@ -75,15 +75,14 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-# gem 'bootstrap'
-
-gem 'tailwindcss-rails'
 
 gem 'chartkick'
 gem 'cloudinary'
 gem 'country_select'
 gem 'devise'
 gem 'dotenv-rails'
+gem 'font-awesome-sass'
 gem 'pg_search'
 gem 'pundit'
+gem 'tailwindcss-rails'
 

@@ -1,4 +1,10 @@
 <div class="container mx-auto px-4 py-8">
+  <!-- Back to Home Link with Left Arrow Icon -->
+  <div class="mb-6">
+    <%= link_to root_path  do %>
+      <%= content_tag(:i, nil, class: "fa-solid fa-arrow-left fa-7x") %> <!-- Home Icon -->
+    <% end %>
+  </div>
   <div class="row">
     <div class="col">
       <h2 class="text-2xl font-bold mb-6"><%= t('.title') %></h2>
@@ -14,7 +20,6 @@
             </ul>
           </div>
         <% end %>
-
         <!-- Form Inputs -->
         <div class="form-inputs space-y-4">
           <div>
@@ -45,7 +50,6 @@
             <%= f.text_field :website, required: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_website') %>
           </div>
         </div>
-
         <!-- Form Actions -->
         <div class="form-actions mt-6">
           <%= f.submit t('.submit'), class: 'bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded' %>
