@@ -1,0 +1,19 @@
+<!-- HAMBURGER ICON - MOBILE + IPAD -->
+<div x-data="{ open: false }" class="lg:hidden flex items-center">
+  <!-- TOGGLE MENU - MOBILE + IPAD -->
+  <button @click="open = !open" class="text-black">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+  <!-- NAVBAR LINKS - MOBILE + IPAD (Initially hidden, controlled by Alpine.js) -->
+  <div x-show="open" x-transition :class="{ 'hidden': !open }" class="absolute top-0 left-0 w-full bg-white text-black py-4 mt-3 hidden">
+    <%= link_to "/dashboard", class: active_class("/dashboard") do %><%= t("navbar_link_dashboard") %><% end %>
+    <%= link_to "/clients", class: active_class("/clients") do %><%= t("navbar_link_clients") %><% end %>
+    <%= link_to "/transactions", class: active_class("/transactions") do %><%= t("navbar_link_transactions") %><% end %>
+    <%= link_to "/services", class: active_class("/services") do %><%= t("navbar_link_services") %><% end %>
+    <% if current_user.website.present? %>
+      <%= link_to user_profile_path(current_user.website), class: active_class(user_profile_path(current_user.website)) do %><%= t("navbar_link_website") %><% end %>
+    <% end %>
+  </div>
+</div>

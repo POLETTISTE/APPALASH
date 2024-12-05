@@ -1,0 +1,7 @@
+<div id="footer">
+  <% if !user_signed_in? || (user_signed_in? && controller_name == 'users' && action_name == 'show') %>
+    <%= render 'partials/footer/footer_visitor'%>
+  <% else %>
+    <%= render 'partials/footer/footer_user_connected'%>
+  <% end %>
+</div>
