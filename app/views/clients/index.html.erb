@@ -11,7 +11,7 @@
         <%= form_with url: clients_path, method: :get, html: {class: "mb-4", data: {search_clients_target: "form"}} do |f| %>
           <div class="mb-4">
             <%= f.label :query, t('.search'), class: "block text-sm font-medium text-gray-700" %>
-            <%= f.text_field :query, 
+            <%= f.text_field :query,
                             class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500", 
                             placeholder: t('.placeholder'),
                             value: params[:query],
@@ -21,7 +21,7 @@
                             } %>
           </div>
         <% end %>
-        <%= render "list", clients: @clients %>
+        <%= render "index_list", clients: @clients %>
       </div>
     </div>
   </div>

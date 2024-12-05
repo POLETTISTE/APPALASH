@@ -1,41 +1,15 @@
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 <p class="text-green-600"><%= notice %></p>
 <% if @client.photo.attached? %>
-  <%= cl_image_tag @client.photo.key, height: 100, width: 100, crop: :thumb, gravity: :face, class: "rounded-full" %>
+  <%= cl_image_tag @client.photo.key, quality: "auto", height: 100, width: 100, crop: :thumb, gravity: :face, class: "rounded-full" %>
 <% else %>
-  <%= image_tag "client/client_photo_profil.png", height: 100, width: 100, crop: :fill, class: "rounded-full bg-tomato" %>
+  <%= image_tag "client/client_photo_profil.png", quality: "auto", height: 100, width: 100, crop: :fill, class: "rounded-full bg-tomato" %>
 <% end %>
 <%= render @client %>
 <div class="mt-4 space-x-2">
   <%= link_to t('button.edit'), edit_client_path(@client), class: "bg-yellow-500 text-white py-2 px-4 rounded" %>
   <%= link_to t('button.goback'), clients_path, class: "bg-blue-500 text-white py-2 px-4 rounded" %>
   <% if user_signed_in? %>
-    <!-- Modal to Delete User or Client -->
-    <div x-data="{ openModal: false }">
-      <button @click="openModal = true" class="bg-red-500 text-white py-2 px-4 rounded">Delete Client</button>
-      <!-- Modal Content -->
-      <div x-show="openModal" x-transition class="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-50">
-        <div class="bg-white rounded-lg overflow-hidden shadow-xl max-w-lg w-full">
-          <!-- Modal Header -->
-          <div class="flex justify-between items-center px-4 py-3 bg-gray-100 border-b">
-            <h5 class="text-lg font-semibold">Confirm Deletion</h5>
-            <button type="button" @click="openModal = false" class="text-gray-500 hover:text-gray-700">
-              <svg class="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </button>
-          </div>
-          <!-- Modal Body -->
-          <div class="px-4 py-3">
-            <p>Are you sure you want to delete this client?</p>
-          </div>
-          <!-- Modal Footer (Confirm / Cancel Buttons) -->
-          <div class="px-4 py-3 bg-gray-100 border-t flex justify-end space-x-2">
-            <button @click="openModal = false" class="bg-gray-500 text-white py-2 px-4 rounded">Cancel</button>
-            <%= button_to "Confirm Delete", @client, method: :delete, class: "bg-red-500 text-white py-2 px-4 rounded", remote: true %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render "client_modal_deletion"%>
   <% end %>
 </div>

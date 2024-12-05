@@ -157,8 +157,8 @@ en:
       search: "Search..."
       placeholder: "Search by name / firstname / email / phone"
 
-    #clients/_list.html.erb
-    list:
+    #clients/_index_list.html.erb
+    index_list:
       list_with_query_html:
         zero: "%{count} result found for <code><strong>'%{query}'</strong></code>"
         one: "%{count} result found for <code><strong>'%{query}'</strong></code>"

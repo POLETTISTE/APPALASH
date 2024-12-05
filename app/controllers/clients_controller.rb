@@ -57,7 +57,7 @@ class ClientsController < ApplicationController
           render json: { clients: @clients }
         end
       end
-      format.text { render partial: 'clients/list', locals: { clients: @clients }, formats: [:html] }
+      format.text { render partial: 'clients/index_list', locals: { clients: @clients }, formats: [:html] }
     end
   end
 

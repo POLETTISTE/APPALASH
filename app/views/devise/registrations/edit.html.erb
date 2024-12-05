@@ -11,7 +11,6 @@
       </ul>
     </div>
   <% end %>
-
   <!-- Form Inputs -->
   <div class="form-inputs space-y-4">
     <div>
@@ -21,11 +20,9 @@
         <p class="text-red-600"><%= resource.errors[:email].first %></p>
       <% end %>
     </div>
-
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p class="text-sm text-gray-500"><%= t('.waiting_confirmation') %><%= resource.unconfirmed_email %></p>
     <% end %>
-
     <div>
       <%= f.label :password, t('.label_password'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.password_field :password, required: false, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_new_password') %>
@@ -34,7 +31,6 @@
       <% end %>
       <p class="text-sm text-gray-500"><%= t('.blank') %></p>
     </div>
-
     <div>
       <%= f.label :password_confirmation, t('.label_password_confirmation'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.password_field :password_confirmation, required: false, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_new_password') %>
@@ -42,7 +38,6 @@
         <p class="text-red-600"><%= resource.errors[:password_confirmation].first %></p>
       <% end %>
     </div>
-
     <div>
       <%= f.label :current_password, t('.label_current_password'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.password_field :current_password, required: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_current_password') %>
@@ -51,7 +46,6 @@
       <% end %>
       <p class="text-sm text-gray-500"><%= t('.current_password') %></p>
     </div>
-
     <!-- New Fields -->
     <div>
       <%= f.label :name, t('.label_name'), class: 'block text-lg font-medium text-gray-700' %>
@@ -60,7 +54,6 @@
         <p class="text-red-600"><%= resource.errors[:name].first %></p>
       <% end %>
     </div>
-
     <div>
       <%= f.label :firstname, t('.label_firstname'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.text_field :firstname, required: false, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_firstname') %>
@@ -68,7 +61,6 @@
         <p class="text-red-600"><%= resource.errors[:firstname].first %></p>
       <% end %>
     </div>
-
     <div>
       <%= f.label :website, t('.label_website'), class: 'block text-lg font-medium text-gray-700' %>
       <%= f.text_field :website, required: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', autocomplete: t('.autocomplete_website') %>
@@ -77,13 +69,11 @@
       <% end %>
     </div>
   </div>
-
   <!-- Avatar Preview -->
   <div class="form-inputs space-y-4">
     <!-- Preview Image (Initially hidden) -->
     <%= image_tag "", width: 100, height: 100, class: "hidden rounded-full", data: { photo_preview_target: "preview" } %>
   </div>
-
   <!-- Avatar File Input -->
   <div class="form-inputs space-y-4">
     <%= f.label :avatar, t('.label_upload'), for: "#{f.object_name}_avatar", class: 'block text-lg font-medium text-gray-700' %>
@@ -95,12 +85,10 @@
       <span><%= t('.label_upload') %></span>
     </label>
   </div>
-
   <!-- Submit Button -->
   <div class="form-actions flex justify-center">
     <%= f.submit t('.submit'), class: "bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" %>
   </div>
-
   <!-- Cancel Button -->
   <h3 class="text-lg font-semibold"><%= t('.cancel') %></h3>
   <div class="text-gray-700">

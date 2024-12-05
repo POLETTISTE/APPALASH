@@ -2,7 +2,7 @@
   <div class="shadow-md rounded-lg overflow-hidden flex flex-auto items-center mb-4 cursor-pointer transform transition-all hover:scale-105 hover:shadow-lg h-36">
     <!-- Div qui contient l'image (taille fixe et centrée) -->
     <% if client.photo.attached? %>
-      <%= cl_image_tag client.photo.key, crop: :fill, gravity: :face, height: "50", width: "50", class: "object-cover" %>
+      <%= cl_image_tag client.photo.key, quality: "auto", crop: :fill, gravity: :face, height: "50", width: "50", class: "object-cover" %>
     <% else %>
       <!-- Image par défaut si aucune photo -->
       <%= image_tag "client/client_photo_profil.png", crop: :fill, gravity: :face, height: "50", width: "50", class: "object-cover" %>
