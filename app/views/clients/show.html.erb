@@ -3,7 +3,7 @@
 <% if @client.photo.attached? %>
   <%= cl_image_tag @client.photo.key, quality: "auto", height: 100, width: 100, crop: :thumb, gravity: :face, class: "rounded-full" %>
 <% else %>
-  <%= image_tag "client/client_photo_profil.png", quality: "auto", height: 100, width: 100, crop: :fill, class: "rounded-full bg-tomato" %>
+  <%= image_tag "client/client_photo_profil.png", quality: "auto", height: 100, width: 100, crop: :thumb, class: "rounded-full bg-tomato" %>
 <% end %>
 <%= render @client %>
 <div class="mt-4 space-x-2">
