@@ -10,6 +10,9 @@
     <!-- Infos du client -->
     <div class="bg-yellow-500 card-product-infos px-4 py-3 w-full">
       <h2 class="text-sm font-semibold text-gray-900 truncate">
+        <% if current_user.admin? %>
+          <p><%= "User is :#{client.user.name} #{client.user.firstname}".html_safe %></p>
+        <% end %>
         <%= "#{client.name} #{client.firstname}".html_safe %>
       </h2>
       <% if client.errors.any? %>

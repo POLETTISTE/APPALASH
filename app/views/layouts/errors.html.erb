@@ -18,10 +18,18 @@
     <link rel="shortcut icon" type="image/png" href="/assets/logo.png">
     <%= javascript_importmap_tags %>
   </head>
-  <body>
-    <h1>SPECIAL LAYOUT ERRORS</h1>
-    <div id="main">
-      <%= yield %>
+  <body class="flex flex-col min-h-screen">
+    <%= render 'partials/navbar/navbar' %>
+    <!-- Main content -->
+    <div class="flex-1">
+      <h1>SPECIAL LAYOUT ERRORS</h1>
+      <div id="main">
+        <%= yield %> <!-- This will render the page content -->
+      </div>
     </div>
+    <!-- Flash messages -->
+    <%= render "shared/flashes" %>
+    <!-- Footer -->
+    <%= render 'partials/footer/footer' %>
   </body>
 </html>
