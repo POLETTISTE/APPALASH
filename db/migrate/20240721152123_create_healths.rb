@@ -2,7 +2,7 @@
 
 class CreateHealths < ActiveRecord::Migration[7.1]
   def change
-    create_table :healths do |t|
+    create_table :healths, id: :uuid do |t|
       t.boolean :diabetes
       t.boolean :pregnancy
       t.boolean :dry_eyes
@@ -16,7 +16,8 @@ class CreateHealths < ActiveRecord::Migration[7.1]
       t.boolean :first_application
       t.boolean :lie_down
       t.text :notes
-      t.references :client, null: false, foreign_key: true
+      # t.references :client, null: false, foreign_key: true
+      t.uuid :client_id
 
       t.timestamps
     end

@@ -2,8 +2,10 @@
 
 class CreateLashes < ActiveRecord::Migration[7.1]
   def change
-    create_table :lashes do |t|
-      t.references :client, null: false, foreign_key: true
+    create_table :lashes, id: :uuid do |t|
+      t.uuid :client_id
+
+      # t.references :client, null: false, foreign_key: true
       t.string :desired_effect
       t.string :face_diagnostic
       t.string :asymmetry_diagnostic

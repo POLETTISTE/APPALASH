@@ -13,6 +13,7 @@
 ActiveRecord::Schema[8.0].define(version: 2024_07_21_152123) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "pgcrypto"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,7 +43,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_21_152123) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "clients", force: :cascade do |t|
+  create_table "clients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "firstname"
     t.string "email"
@@ -57,24 +58,20 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_21_152123) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.string "lash_attributes"
-    t.string "extension_attributes"
-    t.string "health_attributes"
     t.index ["user_id"], name: "index_clients_on_user_id"
   end
 
-  create_table "extensions", force: :cascade do |t|
+  create_table "extensions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "brand"
     t.text "curvature"
     t.integer "thickness"
     t.text "glue"
-    t.bigint "client_id", null: false
+    t.uuid "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_extensions_on_client_id"
   end
 
-  create_table "healths", force: :cascade do |t|
+  create_table "healths", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "diabetes"
     t.boolean "pregnancy"
     t.boolean "dry_eyes"
@@ -88,14 +85,13 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_21_152123) do
     t.boolean "first_application"
     t.boolean "lie_down"
     t.text "notes"
-    t.bigint "client_id", null: false
+    t.uuid "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_healths_on_client_id"
   end
 
-  create_table "lashes", force: :cascade do |t|
-    t.bigint "client_id", null: false
+  create_table "lashes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "client_id"
     t.string "desired_effect"
     t.string "face_diagnostic"
     t.string "asymmetry_diagnostic"
@@ -113,10 +109,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_21_152123) do
     t.string "density"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_lashes_on_client_id"
   end
 
-  create_table "services", force: :cascade do |t|
+  create_table "services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.float "price"
     t.datetime "created_at", null: false
@@ -125,15 +120,14 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_21_152123) do
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
-  create_table "transactions", force: :cascade do |t|
+  create_table "transactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.date "date"
-    t.bigint "client_id", null: false
+    t.uuid "client_id"
     t.json "services", default: []
     t.float "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.index ["client_id"], name: "index_transactions_on_client_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
@@ -161,10 +155,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_21_152123) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "clients", "users"
-  add_foreign_key "extensions", "clients"
-  add_foreign_key "healths", "clients"
-  add_foreign_key "lashes", "clients"
   add_foreign_key "services", "users"
-  add_foreign_key "transactions", "clients"
   add_foreign_key "transactions", "users"
 end

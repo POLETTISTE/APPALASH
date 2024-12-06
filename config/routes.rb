@@ -36,4 +36,7 @@ Rails.application.routes.draw do
   get '/home/:website', to: 'users#show_website', as: 'user_profile'
   get '/home/:website/edit', to: 'users#edit_website', as: 'edit_website_user_profile'
   patch '/home/:website', to: 'users#update_website', as: 'update_website_user_profile'
+
+    # Catch-all route for undefined paths
+    match '*path', to: 'errors#not_found', via: :all
 end
