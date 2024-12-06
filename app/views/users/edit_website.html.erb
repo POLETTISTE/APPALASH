@@ -1,5 +1,4 @@
 <h1 class="text-3xl font-bold mb-6">Edit Profile</h1>
-
 <%= form_for @user, url: update_website_user_profile_path(@user.website), method: :patch, data: { turbo: "true" }, html: { class: 'space-y-6' } do |f| %>
   <!-- Display error messages -->
   <% if @user.errors.any? %>
@@ -28,6 +27,5 @@
     <%= f.submit "Update Profile", class: 'bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded' %>
   </div>
 <% end %>
-
 <%= link_to 'Back to Profile', user_profile_path(@user.website), class: 'inline-block bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mt-4' %>
 <%= turbo_stream_from "user_form" %>

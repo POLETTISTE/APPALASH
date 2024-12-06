@@ -1,6 +1,7 @@
 class User < ApplicationRecord
+  
   # Associations
-has_one_attached :avatar
+  has_one_attached :avatar
 
   has_many :services, dependent: :destroy
   has_many :clients, dependent: :destroy
@@ -13,23 +14,22 @@ has_one_attached :avatar
 
   # Validations
   validates :website, presence: true, uniqueness: true,
-                      format: {
-                        without: /\s/, # Ensure no spaces
-                        message: 'cannot contain spaces'
-                      }
+                      format: { without: /\s/, message: 'cannot contain spaces' }
 
   validate :validate_website_format
   validate :ensure_single_admin, if: :admin_changed?
 
-  # before_validation :set_default_website, on: :create
+  private
 
   def validate_website_format
-    return if website.blank? || website.match(/\A\S+\z/)
+    return if website.blank?
 
-    errors.add(:website, 'is not valid. Please ensure no spaces are included.')
+    if website.downcase == "appalash"
+      errors.add(:website, 'cannot be "appalash". This is a reserved name.')
+    end
   end
 
-  private
+
   def ensure_single_admin
     if admin? && User.where(admin: true).where.not(id: id).exists?
       errors.add(:admin, 'There can only be one admin user.')

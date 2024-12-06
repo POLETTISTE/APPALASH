@@ -9,56 +9,47 @@ class UsersController < ApplicationController
   end
 
   def show_website
-    @services = policy_scope(Service.all)
     @user = find_user_by_website
-
     if @user
-      authorize @user, policy_class: UserPolicy
+      authorize @user
     else
       redirect_to errors_not_found_path
     end
-  rescue Pundit::NotAuthorizedError
-    redirect_to errors_not_found_path
   end
 
   def edit_website
     @user = find_user_by_website
-
     if @user
-      authorize @user, policy_class: UserPolicy
+      authorize @user
     else
       redirect_to errors_not_found_path
     end
-  rescue Pundit::NotAuthorizedError
-    redirect_to root_path
   end
 
   def update_website
     @user = find_user_by_website
-
-    if @user
-      authorize @user, policy_class: UserPolicy
-
-      if user_params[:website].present? && user_params[:website] != @user.website
-        existing_user = User.find_by(website: user_params[:website])
-        if existing_user && existing_user != @user
-          flash[:alert] = "Website '#{existing_user.website}' already exists"
-          redirect_to edit_user_profile_path(@user.website)
-          return
-        end
-      end
-
-      if @user.update(user_params)
-        redirect_to user_profile_path(@user.website), notice: 'Profile updated successfully.'
-      else
-        render :edit_website
-      end
-    else
-      redirect_to errors_not_found_path
+    return redirect_to errors_not_found_path unless @user
+  
+    authorize @user
+  
+    # Check if the website is forbidden ("appalash")
+    if user_params[:website].downcase == "appalash"
+      return redirect_to edit_website_user_profile_path(@user.website), notice:'The website name "appalash" is forbidden.'  # Updated helper
     end
-  rescue Pundit::NotAuthorizedError
-    redirect_to root_path
+  
+    # Check if the new website is unique
+    if website_changed_to_existing?
+      return redirect_to edit_website_user_profile_path(@user.website), notice: "Website '#{user_params[:website]}' is already taken." # Updated helper
+    end
+  
+    # Update user profile if all validations pass
+    if @user.update(user_params)
+      redirect_to user_profile_path(@user.website), notice: 'Profile updated successfully.'
+    else
+      render :edit_website, notice: 'There was an error updating your profile.'
+    end
   end
+  
 
   private
 
@@ -68,5 +59,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:website, :name, :firstname)
+  end
+
+  def website_changed_to_existing?
+    new_website = user_params[:website]
+    new_website.present? && new_website != @user.website && User.exists?(website: new_website)
   end
 end
