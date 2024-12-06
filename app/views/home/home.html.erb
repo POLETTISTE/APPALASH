@@ -1,8 +1,9 @@
-<div class="flex justify-center items-center h-screen bg-gradient-to-r from-blue-500 to-blue-700">
-  <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+<div class="flex justify-center items-start h-screen bg-cover bg-center" style="background-image: url('<%= asset_path('home_bg.png') %>');">
+  <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full mt-12">  <!-- Added mt-12 to give space from top -->
     <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Welcome to the Home Page</h1>
     <div class="flex justify-around space-x-4">
       <%= link_to t('navbar_link_new-user'), new_user_registration_path, class: "flex justify-center items-center bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-3 px-5 border border-blue-500 hover:border-transparent rounded-md text-lg transition duration-300 ease-in-out" %>
-      <%= link_to t('navbar_link_login'), new_user_session_path, class: "flex justify-center items-center bg-blue-600 text-white rounded-md px-5 py-3 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg transition duration-300 ease-in-out" %></div>
+      <%= link_to t('navbar_link_login'), new_user_session_path, class: "flex justify-center items-center bg-blue-600 text-white rounded-md px-5 py-3 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg transition duration-300 ease-in-out" %>
+    </div>
   </div>
 </div>

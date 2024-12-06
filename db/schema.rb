@@ -58,6 +58,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_07_21_152123) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
+    t.string "lash_attributes"
+    t.string "extension_attributes"
+    t.string "health_attributes"
     t.index ["user_id"], name: "index_clients_on_user_id"
   end
 
