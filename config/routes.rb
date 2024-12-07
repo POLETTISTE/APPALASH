@@ -1,10 +1,11 @@
 # frozen_string_literal: true
+require 'admin_constraint'
 
 Rails.application.routes.draw do
-  get 'errors/not_found'
-  get 'errors/internal_server'
-  get 'errors/unprocessable'
-  get 'errors/unacceptable'
+  # get 'errors/not_found'
+  # get 'errors/internal_server'
+  # get 'errors/unprocessable'
+  # get 'errors/unacceptable'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -14,7 +15,10 @@ Rails.application.routes.draw do
     authenticated :user do
       root to: 'dashboard#index', as: :authenticated_root
       get 'users/personal_information', to: 'users#index_personal_information', as: :personal_information
+    end
 
+    constraints AdminConstraint.new do
+      get 'documentation', to: 'home#documentation', as: :documentation
     end
 
     unauthenticated do
