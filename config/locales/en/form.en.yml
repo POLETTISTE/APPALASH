@@ -14,6 +14,8 @@ en:
     # clients/_form_client_general.html.erb
     labels:
       client:
+        #clients/_form_client_general.html.erb
+        photo: "📷 Upload a photo"
         name: "Name"
         firstname: "Firstname"
         email: "E-mail"

@@ -1,5 +1,5 @@
 <h1><%= t(".title")%></h1>
-<%= render 'form_client_general', client: @client %>
+<%= render 'form_new_client', client: @client %>
 <div>
   <%= link_to  t("button.goback"), @client, class: "btn btn-primary" %>
   <%= link_to t("button.find", model: Client.model_name.human.downcase), clients_path, class: "btn btn-secondary" %>

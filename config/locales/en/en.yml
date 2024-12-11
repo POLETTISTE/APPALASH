@@ -167,10 +167,6 @@ en:
     #clients/_client_infos.html.erb
     client_infos:
 
-    #clients/_form_client_general.html.erb
-    form_client_general:
-      label_photo: "📷 Upload a photo"
-
     #clients/_client.html.erb
     client:
       name: "name"
