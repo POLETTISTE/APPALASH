@@ -1,10 +1,4 @@
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
-<p class="text-green-600"><%= notice %></p>
-<% if @client.photo.attached? %>
-  <%= cl_image_tag @client.photo.key, quality: "auto", height: 100, width: 100, crop: :thumb, gravity: :face, class: "rounded-full" %>
-<% else %>
-  <%= image_tag "client/client_photo_profil.png", quality: "auto", height: 100, width: 100, crop: :thumb, class: "rounded-full bg-tomato" %>
-<% end %>
+
 <%= render @client %>
 <div class="mt-4 space-x-2">
   <%= link_to t('button.edit'), edit_client_path(@client), class: "bg-yellow-500 text-white py-2 px-4 rounded" %>

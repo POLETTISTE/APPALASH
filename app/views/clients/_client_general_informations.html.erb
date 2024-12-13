@@ -1,8 +1,22 @@
 <div id="client_general_informations" data-controller="edit-client">
   <!-- Info Section -->
- <button data-edit-client-target="editButton" data-action="click->edit-client#edit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">MODIFIER</button>
-  <button data-edit-client-target="cancelButton" data-action="click->edit-client#edit" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded hidden">ANNULER</button>
+ <button data-edit-client-target="editCancelButton" data-action="click->edit-client#editCancelToggle" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">MODIFIER</button>
 
+
+<%# <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script> %>
+<p class="text-green-600"><%= notice %></p>
+ <%= form_with(model: @client, local: true) do |form| %>
+    <div class="space-y-2">
+      <% if @client.photo.attached? %>
+        <%= cl_image_tag @client.photo.key, data: { edit_client_target: "info" }, quality: "auto", height: 100, width: 100, crop: :thumb, gravity: :face, class: "rounded-full" %>
+      <% else %>
+        <%= image_tag "client/client_photo_profil.png", data: { edit_client_target: "info" }, quality: "auto", height: 100, width: 100, crop: :thumb, class: "rounded-full bg-tomato" %>
+      <% end %>
+
+      <%= form.label :photo, t("form.labels.client.photo"), data: { edit_client_target: "form" }, class: 'hidden text-lg font-medium text-gray-700 ' %>
+      <%= form.file_field :photo, accept: 'image/jpeg, image/png', data: { edit_client_target: "form" }, class: 'hidden', data: { photo_preview_target: "input", action: "change->photo-preview#displayPreview" } %>
+    </div>
+  <% end %>
   <!-- Client information content (display mode) -->
   <div class="client-info bg-slate-500" data-client-field="name">
     <p data-edit-client-target="info">
