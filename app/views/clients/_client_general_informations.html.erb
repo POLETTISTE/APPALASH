@@ -1,45 +1,116 @@
-<div id="client_general_informations">
-  <p>
-    <strong><%= t(".name") %></strong>
-    <%= @client.name %>
-  </p>
-  <p>
-    <strong><%= t(".firstname") %></strong>
-    <%= @client.firstname %>
-  </p>
-  <p>
-    <strong><%= t(".email") %></strong>
-    <%= @client.email %>
-  </p>
-  <p>
-    <strong><%= t(".phone") %></strong>
-    <%= @client.phone %>
-  </p>
-  <p>
-    <strong><%= t(".address") %></strong>
-    <%= @client.address %>
-  </p>
-  <p>
-    <strong><%= t(".zip_code") %></strong>
-    <%= @client.zip_code %>
-  </p>
-  <p>
-    <strong><%= t(".city") %></strong>
-    <%= @client.city %>
-  </p>
-  <p>
-    <strong><%= t(".country") %></strong>
-    <%= @client.country %>
-  </p>
-  <p>
-    <strong><%= t(".birthdate") %></strong>
-    <%= @client.birthdate %>
-  </p>
-  <p>
-    <strong><%= t(".how_do_you_know_us") %></strong>
-    <%= @client.how_do_you_know_us %>
-  </p>
-  <p>
-    <strong><%= t(".notes") %></strong>
-    <%= @client.notes %>
-  </p>
+<div id="client_general_informations" data-controller="edit-client">
+  <!-- Info Section -->
+ <button data-edit-client-target="editButton" data-action="click->edit-client#edit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">MODIFIER</button>
+  <button data-edit-client-target="cancelButton" data-action="click->edit-client#edit" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded hidden">ANNULER</button>
+
+  <!-- Client information content (display mode) -->
+  <div class="client-info bg-slate-500" data-client-field="name">
+    <p data-edit-client-target="info">
+      <strong><%= t(".name") %></strong><%= @client.name %>
+    </p>
+    <p data-edit-client-target="form" class="hidden">
+      <strong><%= t(".name") %></strong>
+      <input type="text" value="<%= @client.name %>" id="client_name">
+    </p>
+  </div>
+
+  <div class="client-info" data-client-field="firstname">
+    <p data-edit-client-target="info">
+      <strong><%= t(".firstname") %></strong><%= @client.firstname %>
+    </p>
+    <p data-edit-client-target="form" class="hidden">
+      <strong><%= t(".firstname") %></strong>
+      <input type="text" value="<%= @client.firstname %>" id="client_firstname">
+    </p>
+  </div>
+
+  <div class="client-info" data-client-field="email">
+    <p data-edit-client-target="info">
+      <strong><%= t(".email") %></strong><%= @client.email %>
+    </p>
+    <p data-edit-client-target="form" class="hidden">
+      <strong><%= t(".email") %></strong>
+      <input type="text" value="<%= @client.email %>" id="client_email">
+    </p>
+  </div>
+
+  <div class="client-info" data-client-field="phone">
+    <p data-edit-client-target="info">
+      <strong><%= t(".phone") %></strong><%= @client.phone %>
+    </p>
+    <p data-edit-client-target="form" class="hidden">
+      <strong><%= t(".phone") %></strong>
+      <input type="text" value="<%= @client.phone %>" id="client_phone">
+    </p>
+  </div>
+
+  <div class="client-info" data-client-field="address">
+    <p data-edit-client-target="info">
+      <strong><%= t(".address") %></strong><%= @client.address %>
+    </p>
+    <p data-edit-client-target="form" class="hidden">
+      <strong><%= t(".address") %></strong>
+      <input type="text" value="<%= @client.address %>" id="client_address">
+    </p>
+  </div>
+
+  <div class="client-info" data-client-field="zip_code">
+    <p data-edit-client-target="info">
+      <strong><%= t(".zip_code") %></strong><%= @client.zip_code %>
+    </p>
+    <p data-edit-client-target="form" class="hidden">
+      <strong><%= t(".zip_code") %></strong>
+      <input type="text" value="<%= @client.zip_code %>" id="client_zip_code">
+    </p>
+  </div>
+
+  <div class="client-info" data-client-field="city">
+    <p data-edit-client-target="info">
+      <strong><%= t(".city") %></strong><%= @client.city %>
+    </p>
+    <p data-edit-client-target="form" class="hidden">
+      <strong><%= t(".city") %></strong>
+      <input type="text" value="<%= @client.city %>" id="client_city">
+    </p>
+  </div>
+
+  <div class="client-info" data-client-field="country">
+    <p data-edit-client-target="info">
+      <strong><%= t(".country") %></strong><%= @client.country %>
+    </p>
+    <p data-edit-client-target="form" class="hidden">
+      <strong><%= t(".country") %></strong>
+      <input type="text" value="<%= @client.country %>" id="client_country">
+    </p>
+  </div>
+
+  <div class="client-info" data-client-field="birthdate">
+    <p data-edit-client-target="info">
+      <strong><%= t(".birthdate") %></strong><%= @client.birthdate %>
+    </p>
+    <p data-edit-client-target="form" class="hidden">
+      <strong><%= t(".birthdate") %></strong>
+      <input type="text" value="<%= @client.birthdate %>" id="client_birthdate">
+    </p>
+  </div>
+
+  <div class="client-info" data-client-field="how_do_you_know_us">
+    <p data-edit-client-target="info">
+      <strong><%= t(".how_do_you_know_us") %></strong><%= @client.how_do_you_know_us %>
+    </p>
+    <p data-edit-client-target="form" class="hidden">
+      <strong><%= t(".how_do_you_know_us") %></strong>
+      <input type="text" value="<%= @client.how_do_you_know_us %>" id="client_how_do_you_know_us">
+    </p>
+  </div>
+
+  <div class="client-info" data-client-field="notes">
+    <p data-edit-client-target="info">
+      <strong><%= t(".notes") %></strong><%= @client.notes %>
+    </p>
+    <p data-edit-client-target="form" class="hidden">
+      <strong><%= t(".notes") %></strong>
+      <input type="text" value="<%= @client.notes %>" id="client_notes">
+    </p>
+  </div>
+</div>
