@@ -1,13 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = [
-    "info",
-    "form",
-    "editCancelButton",
-    "editCancelSubmitButton",
-    "photo",
-  ];
+  static targets = ["info", "form", "editCancelButton", "photo"];
 
   // Define a target for client info sections for easier querying
   get clientInfoTargets() {
@@ -29,15 +23,19 @@ export default class extends Controller {
       formElement.classList.toggle("hidden");
     });
 
+    this.editCancelButton();
+    this.photoLabelToggle();
+  }
+
+  photoLabelToggle() {
     // Toggle visibility for the photo label and input
     const photoLabel = this.photoTarget.previousElementSibling; // Find the label
     photoLabel.classList.toggle("hidden");
     this.photoTarget.classList.toggle("hidden");
-
-    this.editCancelButton();
   }
-
   editCancelButton() {
+    // Toggle visibility for the text of the edit cancel button
+
     this.editCancelButtonTarget.classList.toggle("bg-blue-500");
     this.editCancelButtonTarget.classList.toggle("hover:bg-blue-700");
     this.editCancelButtonTarget.classList.toggle("bg-yellow-500");
@@ -47,9 +45,5 @@ export default class extends Controller {
       this.editCancelButtonTarget.innerText === "MODIFIER"
         ? "ANNULER"
         : "MODIFIER";
-  }
-
-  editCancelSubmitButton() {
-    editCancelSubmitButton.classList.toggle("hidden");
   }
 }

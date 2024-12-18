@@ -1,6 +1,20 @@
-<div id="<%= dom_id(client) %>">
-  <%= render 'client_general_informations'%>
-  <%= render 'client_lash'%>
-  <%= render 'client_extension'%>
-  <%= render 'client_health'%>
+<div id="<%= dom_id(client) %>" class="flex flex-col min-h-screen">
+  <!-- General Info at the top center -->
+  <div class="flex justify-center items-center flex-1">
+    <%= render 'client_general_informations' %>
+  </div>
+  <!-- Lash extension at bottom left -->
+  <div class="flex items-center justify-between">
+    <div class="flex items-center">
+      <%= render 'client_lash' %>
+    </div>
+    <!-- Health at bottom right -->
+    <div class="flex items-center">
+      <%= render 'client_health' %>
+    </div>
+    <!-- Extension section (if needed, adjust position as desired) -->
+    <div class="flex items-center">
+      <%= render 'client_extension' %>
+    </div>
+  </div>
 </div>

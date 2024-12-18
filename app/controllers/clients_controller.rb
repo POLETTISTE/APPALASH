@@ -79,9 +79,12 @@ class ClientsController < ApplicationController
   # PATCH/PUT /clients/1
   def update
     ensure_fields_exist
+    if params[:client][:photo].present?
+      @client.photo.attach(params[:client][:photo])  # Attach photo if present
+    end
+  
     if @client.update(client_params)
       alert_message = t('clients.update.success', firstname: @client.firstname, name: @client.name)
-
       respond_to do |format|
         format.html { redirect_to @client, alert: alert_message }
         format.text { render partial: 'clients/client_infos', locals: { client: @client }, formats: [:html] }
@@ -89,13 +92,13 @@ class ClientsController < ApplicationController
       end
     else
       alert_error_message = t('clients.update.error')
-
       respond_to do |format|
         format.html { render :edit, alert: alert_error_message, status: :unprocessable_entity }
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
     end
   end
+  
 
   # DELETE /clients/1
   def destroy

@@ -1,24 +1,25 @@
 <div id="client_general_informations" data-controller="edit-client">
   <!-- Info Section -->
   <button data-edit-client-target="editCancelButton" data-action="click->edit-client#editCancelToggle" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">MODIFIER</button>
-
-  <%= form_with(model: @client, url: client_path(@client), method: :put, local: true, data: { edit_client_target: "form" }) do |form| %>
-    <div class="space-y-2">
-      <% if @client.photo.attached? %>
-        <%= cl_image_tag @client.photo.key, data: { edit_client_target: "info" }, quality: "auto", height: 100, width: 100, crop: :thumb, gravity: :face, class: "rounded-full" %>
-      <% else %>
-        <%= image_tag "client/client_photo_profil.png", data: { edit_client_target: "info" }, quality: "auto", height: 100, width: 100, crop: :thumb, class: "rounded-full bg-tomato" %>
-      <% end %>
-        <label for="photo" data-edit-client-target="photo" class="text-lg font-medium text-gray-700">
-          <%= t("form.labels.client.photo") %>
-        </label>
-        <input type="file" id="photo" name="photo" accept="image/jpeg, image/png" 
-              class="block mt-2 hidden" 
+  <div class="space-y-2">
+    <% if @client.photo.attached? %>
+      <%= cl_image_tag @client.photo.key, data: { edit_client_target: "info" }, quality: "auto", height: 100, width: 100, crop: :thumb, gravity: :face, class: "rounded-full" %>
+    <% else %>
+      <%= image_tag "client/client_photo_profil.png", data: { edit_client_target: "info" }, quality: "auto", height: 100, width: 100, crop: :thumb, class: "rounded-full bg-tomato" %>
+    <% end %>
+  </div>
+  <div class="space-y-2">
+    <%= form_with(model: @client, url: client_path(@client), method: :put, local: true, data: { edit_client_target: "form" }) do |form| %>
+      <label for="photo" data-edit-client-target="photo" class="hidden text-lg font-medium text-gray-700">
+        <%= t("form.labels.client.photo") %>
+      </label>
+      <input type="file" id="photo" name="photo" accept="image/jpeg, image/png" 
+              class="hidden block mt-2 " 
               data-edit-client-target="photo" 
-              data-photo-preview-target="input" 
-              onchange="displayPreview(event)" />
+              <%# data-photo-preview-target="input"  %>
+              <%# onchange="displayPreview(event)" %>
+               />
     </div>
-
     <!-- Client information fields for editing -->
     <div class="client-info" data-client-field="name">
       <p data-edit-client-target="info">
@@ -29,7 +30,6 @@
         <%= form.text_field :name, value: @client.name, id: "client_name", class: "mt-2 block" %>
       </p>
     </div>
-
     <div class="client-info" data-client-field="firstname">
       <p data-edit-client-target="info">
         <strong><%= t(".firstname") %></strong><%= @client.firstname %>
@@ -39,7 +39,6 @@
         <%= form.text_field :firstname, value: @client.firstname, id: "client_firstname", class: "mt-2 block" %>
       </p>
     </div>
-
     <div class="client-info" data-client-field="email">
       <p data-edit-client-target="info">
         <strong><%= t(".email") %></strong><%= @client.email %>
@@ -49,7 +48,6 @@
         <%= form.text_field :email, value: @client.email, id: "client_email", class: "mt-2 block" %>
       </p>
     </div>
-
     <div class="client-info" data-client-field="phone">
       <p data-edit-client-target="info">
         <strong><%= t(".phone") %></strong><%= @client.phone %>
@@ -59,7 +57,6 @@
         <%= form.text_field :phone, value: @client.phone, id: "client_phone", class: "mt-2 block" %>
       </p>
     </div>
-
     <div class="client-info" data-client-field="address">
       <p data-edit-client-target="info">
         <strong><%= t(".address") %></strong><%= @client.address %>
@@ -69,7 +66,6 @@
         <%= form.text_field :address, value: @client.address, id: "client_address", class: "mt-2 block" %>
       </p>
     </div>
-
     <div class="client-info" data-client-field="zip_code">
       <p data-edit-client-target="info">
         <strong><%= t(".zip_code") %></strong><%= @client.zip_code %>
@@ -79,7 +75,6 @@
         <%= form.text_field :zip_code, value: @client.zip_code, id: "client_zip_code", class: "mt-2 block" %>
       </p>
     </div>
-
     <div class="client-info" data-client-field="city">
       <p data-edit-client-target="info">
         <strong><%= t(".city") %></strong><%= @client.city %>
@@ -89,7 +84,6 @@
         <%= form.text_field :city, value: @client.city, id: "client_city", class: "mt-2 block" %>
       </p>
     </div>
-
     <div class="client-info" data-client-field="country">
       <p data-edit-client-target="info">
         <strong><%= t(".country") %></strong><%= @client.country %>
@@ -99,7 +93,6 @@
         <%= form.text_field :country, value: @client.country, id: "client_country", class: "mt-2 block" %>
       </p>
     </div>
-
     <div class="client-info" data-client-field="birthdate">
       <p data-edit-client-target="info">
         <strong><%= t(".birthdate") %></strong><%= @client.birthdate %>
@@ -109,7 +102,6 @@
         <%= form.text_field :birthdate, data: { controller: "datepicker" },value:@client.birthdate, id: "client_birthdate", class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
       </p>
     </div>
-
     <div class="client-info" data-client-field="how_do_you_know_us">
       <p data-edit-client-target="info">
         <strong><%= t(".how_do_you_know_us") %></strong><%= @client.how_do_you_know_us %>
@@ -119,7 +111,6 @@
         <%= form.text_field :how_do_you_know_us, value: @client.how_do_you_know_us, id: "client_how_do_you_know_us", class: "mt-2 block" %>
       </p>
     </div>
-
     <div class="client-info" data-client-field="notes">
       <p data-edit-client-target="info">
         <strong><%= t(".notes") %></strong><%= @client.notes %>
@@ -129,16 +120,13 @@
         <%= form.text_area :notes, value: @client.notes, id: "client_notes", class: "mt-2 block" %>
       </p>
     </div>
-
     <div class="client-info">
       <p data-edit-client-target="info">
         <strong>rien</strong>
       </p>
       <p data-edit-client-target="form" class="hidden">
-          <button type="submit" class=" mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">SUBMIT BUTTON</button>
+        <button type="submit" class=" mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">SUBMIT BUTTON</button>
       </p>
     </div>
-
-
   <% end %>
 </div>
