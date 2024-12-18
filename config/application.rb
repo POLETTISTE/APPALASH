@@ -16,9 +16,7 @@ module LashAppRails
     
     # Ensure the locales in subdirectories are loaded
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
-
-
+    
     # https://www.mintbit.com/blog/custom-404-500-error-pages-in-rails
     # https://www.youtube.com/watch?v=moeJ_0WQZxo&t=308s
     config.exceptions_app = routes

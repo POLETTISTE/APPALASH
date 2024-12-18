@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
+
   scope '(:locale)', locale: /fr|es|de/ do
     get 'offers', to: 'home#offers', as: :offers
+    get '/switch_language', to: 'application#switch_language', as: :switch_language
 
     authenticated :user do
       root to: 'dashboard#index', as: :authenticated_root
@@ -41,6 +43,6 @@ Rails.application.routes.draw do
   get '/home/:website/edit', to: 'users#edit_website', as: 'edit_website_user_profile'
   patch '/home/:website', to: 'users#update_website', as: 'update_website_user_profile'
 
-    # Catch-all route for undefined paths
-    match '*path', to: 'errors#not_found', via: :all
+  # Catch-all route for undefined paths
+  match '*path', to: 'errors#not_found', via: :all
 end
