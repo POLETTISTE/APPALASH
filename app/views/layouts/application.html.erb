@@ -19,13 +19,15 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class="flex flex-col min-h-screen">
-    <header>
-      <!-- Language selector dropdown -->
-      <%= form_with url: request.path, method: :get, local: true do %>
-        <%= select_tag :locale, options_for_select([['English', 'en'], ['Français', 'fr'], ['Español', 'es']], I18n.locale), onchange: 'this.form.submit();' %>
-      <% end %>
-    </header>
     <%= render 'partials/navbar/navbar' %>
+    <% if !current_user %>
+      <header>
+        <!-- Language selector dropdown -->
+        <%= form_with url: request.path, method: :get, local: true do %>
+          <%= select_tag :locale, options_for_select([['English', 'en'], ['Français', 'fr'], ['Español', 'es']], I18n.locale), onchange: 'this.form.submit();' %>
+        <% end %>
+      </header>
+    <% end %>
     <!-- Main content -->
     <div class="flex-1">
       <%= yield %> <!-- This will render the page content -->
