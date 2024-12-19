@@ -14,7 +14,5 @@ class HomeController < ApplicationController
     # No authorization needed for offers action
   end
 
-  def documentation
-    
-  end
+  def documentation; end
 end

@@ -11,20 +11,20 @@
         <%= render 'partials/navbar/navbar_modal_hamburger' %>
         <!-- DESKTOP NAVBAR LINKS -->
         <nav class="hidden lg:flex items-center space-x-8">
-          <%= link_to "/dashboard", class: active_class("/dashboard"), locale: I18n.locale do %>
+          <%= link_to "/dashboard", class: active_class("/dashboard") do %>
             <%= t("navbar_link_dashboard") %>
           <% end %>
-          <%= link_to "/clients", class: active_class("/clients"), locale: I18n.locale do %>
+          <%= link_to "/clients", class: active_class("/clients") do %>
             <%= t("navbar_link_clients") %>
           <% end %>
-          <%= link_to "/transactions", class: active_class("/transactions"), locale: I18n.locale do %>
+          <%= link_to "/transactions", class: active_class("/transactions") do %>
             <%= t("navbar_link_transactions") %>
           <% end %>
-          <%= link_to "/services", class: active_class("/services"), locale: I18n.locale do %>
+          <%= link_to "/services", class: active_class("/services") do %>
             <%= t("navbar_link_services") %>
           <% end %>
           <% if current_user.website.present? %>
-            <%= link_to user_profile_path(current_user.website, locale: I18n.locale), class: active_class(user_profile_path(current_user.website)) do %>
+            <%= link_to user_profile_path(current_user.website), class: active_class(user_profile_path(current_user.website)) do %>
               <%= t("navbar_link_website") %>
             <% end %>
           <% end %>

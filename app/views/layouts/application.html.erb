@@ -19,25 +19,20 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class="flex flex-col min-h-screen">
-    <!-- Language Selection Dropdown -->
-    <div class="language-selector">
-      <form id="language_form" action="/switch_language" method="get">
-        <select name="locale" id="locale" onchange="document.getElementById('language_form').submit();">
-          <option value="en" <%= 'selected' if I18n.locale == :en %>>English</option>
-          <option value="fr" <%= 'selected' if I18n.locale == :fr %>>Français</option>
-          <option value="es" <%= 'selected' if I18n.locale == :es %>>Español</option>
-        </select>
-      </form>
-    </div>
-
+    <header>
+      <!-- Language selector dropdown -->
+      <%= form_with url: request.path, method: :get, local: true do %>
+        <%= select_tag :locale, options_for_select([['English', 'en'], ['Français', 'fr'], ['Español', 'es']], I18n.locale), onchange: 'this.form.submit();' %>
+      <% end %>
+    </header>
     <%= render 'partials/navbar/navbar' %>
     <!-- Main content -->
-            <div class="flex-1">
-              <%= yield %> <!-- This will render the page content -->
-            </div>
-            <!-- Flash messages -->
-            <%= render "shared/flashes" %>
-            <!-- Footer -->
-            <%= render 'partials/footer/footer' %>
-          </body>
-        </html>
+    <div class="flex-1">
+      <%= yield %> <!-- This will render the page content -->
+    </div>
+    <!-- Flash messages -->
+    <%= render "shared/flashes" %>
+    <!-- Footer -->
+    <%= render 'partials/footer/footer' %>
+  </body>
+</html>

@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
-  
   # Associations
   has_one_attached :avatar
 
@@ -24,15 +25,14 @@ class User < ApplicationRecord
   def validate_website_format
     return if website.blank?
 
-    if website.downcase == "appalash"
-      errors.add(:website, 'cannot be "appalash". This is a reserved name.')
-    end
+    return unless website.downcase == 'appalash'
+
+    errors.add(:website, 'cannot be "appalash". This is a reserved name.')
   end
 
-
   def ensure_single_admin
-    if admin? && User.where(admin: true).where.not(id: id).exists?
-      errors.add(:admin, 'There can only be one admin user.')
-    end
+    return unless admin? && User.where(admin: true).where.not(id: id).exists?
+
+    errors.add(:admin, 'There can only be one admin user.')
   end
 end

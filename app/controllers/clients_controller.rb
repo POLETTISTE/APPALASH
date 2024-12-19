@@ -80,9 +80,9 @@ class ClientsController < ApplicationController
   def update
     ensure_fields_exist
     if params[:client][:photo].present?
-      @client.photo.attach(params[:client][:photo])  # Attach photo if present
+      @client.photo.attach(params[:client][:photo]) # Attach photo if present
     end
-  
+
     if @client.update(client_params)
       alert_message = t('clients.update.success', firstname: @client.firstname, name: @client.name)
       respond_to do |format|
@@ -98,7 +98,6 @@ class ClientsController < ApplicationController
       end
     end
   end
-  
 
   # DELETE /clients/1
   def destroy

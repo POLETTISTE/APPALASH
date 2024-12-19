@@ -2,7 +2,7 @@
 
 module NavbarHelper
   def active_class(link_path)
-    if current_page?(root_path) && link_path == "/dashboard"
+    if current_page?(root_path) && link_path == '/dashboard'
       # If we're at the root and the link is "/dashboard", highlight it as active
       'text-customPink font-semibold transition duration-200'
     else

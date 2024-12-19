@@ -10,7 +10,7 @@ class UserPolicy < ApplicationPolicy
   def index_personal_information?
     true
   end
-  
+
   def show_website?
     true
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # set the orm to use UUIDs
 # When generate a scaffold, it will automatically put uuid instead id
 # https://www.youtube.com/watch?v=P6Kgn6wElPY

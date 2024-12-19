@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DeviseCreateUsers < ActiveRecord::Migration[7.1]
   def change
     create_table :users do |t|
@@ -17,8 +19,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
       t.datetime :confirmed_at
       t.datetime :confirmation_sent_at
       t.string   :unconfirmed_email
-
-
 
       t.timestamps null: false
     end

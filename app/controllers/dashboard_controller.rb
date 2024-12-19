@@ -13,8 +13,8 @@ class DashboardController < ApplicationController
     # authorize @users
 
     if current_user.admin?
-    @non_admin_users = @users.reject(&:admin?)
-    @admin_users = @users.select(&:admin?)
+      @non_admin_users = @users.reject(&:admin?)
+      @admin_users = @users.select(&:admin?)
 
     end
 

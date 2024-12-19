@@ -17,13 +17,12 @@ class Client < ApplicationRecord
 
   before_create :build_associated_records
 
-
   def as_json(options = {})
     super(options.merge(except: %i[lash_attributes extension_attributes health_attributes],
                         include: { lash: { only: Lash.attribute_names - %w[id client_id created_at updated_at] },
-                                   extension: { only: Extension.attribute_names - %w[id client_id created_at updated_at]},
-                                   health: { only: Health.attribute_names - %w[id client_id created_at updated_at] }
-                                  }))
+                                   extension: { only: Extension.attribute_names - %w[id client_id created_at
+                                                                                     updated_at] },
+                                   health: { only: Health.attribute_names - %w[id client_id created_at updated_at] } }))
   end
 
   include PgSearch::Model
@@ -41,6 +40,7 @@ class Client < ApplicationRecord
   end
 
   private
+
   def build_associated_records
     build_lash unless lash
     build_extension unless extension
