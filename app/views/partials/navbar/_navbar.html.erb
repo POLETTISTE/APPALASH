@@ -11,22 +11,12 @@
         <%= render 'partials/navbar/navbar_modal_hamburger' %>
         <!-- DESKTOP NAVBAR LINKS -->
         <nav class="hidden lg:flex items-center space-x-8">
-          <%= link_to "/dashboard", class: active_class("/dashboard") do %>
-            <%= t("navbar_link_dashboard") %>
-          <% end %>
-          <%= link_to "/clients", class: active_class("/clients") do %>
-            <%= t("navbar_link_clients") %>
-          <% end %>
-          <%= link_to "/transactions", class: active_class("/transactions") do %>
-            <%= t("navbar_link_transactions") %>
-          <% end %>
-          <%= link_to "/services", class: active_class("/services") do %>
-            <%= t("navbar_link_services") %>
-          <% end %>
+          <%= link_to t("navbar_link_dashboard"), dashboard_index_path, class: active_class("/dashboard")  %>
+          <%= link_to t("navbar_link_clients"), clients_path, class: active_class("/clients")  %>
+          <%= link_to t("navbar_link_transactions"), transactions_path, class: active_class("/transactions")  %>
+          <%= link_to t("navbar_link_services"), services_path, class: active_class("/services")  %>
           <% if current_user.website.present? %>
-            <%= link_to user_profile_path(current_user.website), class: active_class(user_profile_path(current_user.website)) do %>
-              <%= t("navbar_link_website") %>
-            <% end %>
+            <%= link_to t("navbar_link_website"), user_profile_path(current_user.website), class: active_class(user_profile_path(current_user.website))  %>
           <% end %>
         </nav>
         <!-- DROPDOWN LINKS AVATAR -->

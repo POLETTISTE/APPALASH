@@ -63,7 +63,7 @@
     </div>
     <div>
       <%= f.label :language, t('.label_language'), class: 'block text-lg font-medium text-gray-700' %>
-      <%= f.select :language, [['Français', 'fr'], ['English', 'en'], ['Español', 'es']], { include_blank: 'Select Language' }, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
+      <%= f.select :language, [['Français', 'fr'], ['English', 'en'], ['Español', 'es'], ['Deutsch', 'de']], { include_blank: 'Select Language' }, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
       <% if resource.errors[:language].any? %>
         <p class="text-red-600"><%= resource.errors[:language].first %></p>
       <% end %>

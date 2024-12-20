@@ -24,7 +24,7 @@
       <header>
         <!-- Language selector dropdown -->
         <%= form_with url: request.path, method: :get, local: true do %>
-          <%= select_tag :locale, options_for_select([['English', 'en'], ['Français', 'fr'], ['Español', 'es']], I18n.locale), onchange: 'this.form.submit();' %>
+          <%= select_tag :locale, options_for_select([['English', 'en'], ['Français', 'fr'], ['Español', 'es'], ['Deutsch', 'de']], I18n.locale), onchange: 'this.form.submit();' %>
         <% end %>
       </header>
     <% end %>

@@ -31,7 +31,7 @@
 
 en:
   hello: "Hello %{name}"
-  welcome: "Welcome"
+  welcome: "Welcome to home page"
   link_go_to: "Go to %{model}"
   lash_global_info: "Lash informations"
   accueil_h1: "Accueil"
