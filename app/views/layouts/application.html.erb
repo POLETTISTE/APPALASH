@@ -21,12 +21,12 @@
   <body class="flex flex-col min-h-screen">
     <%= render 'partials/navbar/navbar' %>
     <% if !current_user %>
-      <header>
-        <!-- Language selector dropdown -->
-        <%= form_with url: request.path, method: :get, local: true do %>
-          <%= select_tag :locale, options_for_select([['English', 'en'], ['Français', 'fr'], ['Español', 'es'], ['Deutsch', 'de']], I18n.locale), onchange: 'this.form.submit();' %>
-        <% end %>
-      </header>
+      <nav>
+        <%= link_to "English", url_for(request.params.merge(locale: 'en')) %> |
+        <%= link_to "Français", url_for(request.params.merge(locale: 'fr')) %> |
+        <%= link_to "Español", url_for(request.params.merge(locale: 'es')) %> |
+        <%= link_to "Deutsch", url_for(request.params.merge(locale: 'de')) %>
+      </nav>
     <% end %>
     <!-- Main content -->
     <div class="flex-1">
