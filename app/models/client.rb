@@ -8,14 +8,15 @@ class Client < ApplicationRecord
   has_one :extension, dependent: :destroy
   has_one :health, dependent: :destroy
 
-  accepts_nested_attributes_for :lash # Make sure this line is present
-  accepts_nested_attributes_for :extension # Make sure this line is present
-  accepts_nested_attributes_for :health # Make sure this line is present
+  accepts_nested_attributes_for :lash
+  accepts_nested_attributes_for :extension
+  accepts_nested_attributes_for :health
 
   validates :name, presence: true
   validates :firstname, presence: true
 
   before_create :build_associated_records
+  after_commit :process_photo, on: [:create, :update]
 
   def as_json(options = {})
     super(options.merge(except: %i[lash_attributes extension_attributes health_attributes],
@@ -45,5 +46,9 @@ class Client < ApplicationRecord
     build_lash unless lash
     build_extension unless extension
     build_health unless health
+  end
+
+  def process_photo
+    ProcessPhotoJob.perform_later(self)
   end
 end

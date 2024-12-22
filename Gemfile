@@ -69,6 +69,7 @@ end
 
 gem 'chartkick'
 gem 'cloudinary'
+gem 'activestorage-cloudinary-service'
 gem 'country_select'
 gem 'devise'
 gem 'dotenv-rails'
@@ -76,4 +77,5 @@ gem 'font-awesome-sass'
 gem 'mailcatcher'
 gem 'pg_search'
 gem 'pundit'
+gem 'sidekiq'
 gem 'tailwindcss-rails'

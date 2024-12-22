@@ -1,7 +1,3 @@
-# frozen_string_literal: true
-
-# app/controllers/clients_controller.rb
-
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[show edit update destroy]
 

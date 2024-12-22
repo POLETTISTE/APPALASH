@@ -35,4 +35,7 @@ class User < ApplicationRecord
 
     errors.add(:admin, 'There can only be one admin user.')
   end
+  def process_avatar
+    ProcessAvatarJob.perform_later(self)
+  end
 end
