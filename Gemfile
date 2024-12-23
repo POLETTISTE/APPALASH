@@ -54,6 +54,7 @@ group :development do
   gem 'guard-livereload', require: false
   gem 'rack-livereload'
   gem 'web-console'
+  gem 'mailcatcher'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
 
@@ -74,7 +75,6 @@ gem 'country_select'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'font-awesome-sass'
-gem 'mailcatcher'
 gem 'pg_search'
 gem 'pundit'
 gem 'sidekiq'
