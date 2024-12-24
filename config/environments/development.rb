@@ -25,10 +25,7 @@ Rails.application.configure do
 
   # mail catcher
   # https://www.youtube.com/watch?v=nun18zM8Gq0
-  config.action_mailer.smtp_settings = 
-  { address: 'mailcatcher',
-   port: 1025 
-  }
+  config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025 }
   config.action_mailer.raise_delivery_errors = false
 
   # Show full error reports.
