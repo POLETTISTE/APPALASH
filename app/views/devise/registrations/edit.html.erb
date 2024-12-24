@@ -98,9 +98,9 @@
   </div>
   <!-- Cancel Button -->
   <h3 class="text-lg font-semibold"><%= t('.cancel') %></h3>
-  <div class="text-gray-700">
-    <%= t('.unhappy') %>
-    <%= button_to t('.cancel_button'), registration_path(resource_name), data: { confirm: t('.unhappy_confirm'), turbo_confirm: t('.unhappy_confirm') }, method: :delete, class: 'bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded' %>
-  </div>
   <%= link_to t('.back'), :back, class: 'text-blue-500 underline' %>
 <% end %>
+<div class="text-gray-700">
+  <%= t('.unhappy') %>
+  <%= button_to t('.cancel_button'), registration_path(resource_name), data: { confirm: t('.unhappy_confirm'), turbo_confirm: t('.unhappy_confirm') }, method: :delete, class: 'bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded' %>
+</div>
