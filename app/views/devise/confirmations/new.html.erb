@@ -1,9 +1,15 @@
 <h2 class="text-2xl font-semibold mb-6"><%= t('.title') %></h2>
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'space-y-6' }) do |f| %>
   <!-- Error Notification -->
-  <%= f.error_notification class: 'text-red-600' %>
-  <%= f.full_error :confirmation_token, class: 'text-red-600' %>
-  
+  <% if resource.errors.any? %>
+    <div class="text-red-600">
+      <ul>
+        <% resource.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <!-- Email Input -->
   <div class="form-inputs">
     <div class="space-y-2">
@@ -16,10 +22,9 @@
                         autocomplete: "email" %>
     </div>
   </div>
-  
   <!-- Submit Button -->
   <div class="form-actions flex justify-center">
-    <%= f.submit t('.title'), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <%= f.submit t('.submit_button'), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
   </div>
 <% end %>
 <%= render "devise/shared/links" %>

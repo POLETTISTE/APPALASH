@@ -73,39 +73,65 @@ class ClientsController < ApplicationController
   end
 
   # PATCH/PUT /clients/1
-  def update
-    ensure_fields_exist
-    if params[:client][:photo].present?
-      @client.photo.attach(params[:client][:photo]) # Attach photo if present
+# PATCH/PUT /clients/1
+def update
+  ensure_fields_exist
+
+  # If there's a new photo uploaded
+  if params[:client][:photo].present?
+    # Delete the old photo from Cloudinary (if it exists)
+    if @client.photo.attached?
+      # Get the public ID of the old image
+      old_public_id = @client.photo.blob.metadata['public_id']
+
+      # Destroy the old image from Cloudinary
+      Cloudinary::Uploader.destroy(old_public_id) if old_public_id.present?
     end
 
-    if @client.update(client_params)
-      alert_message = t('clients.update.success', firstname: @client.firstname, name: @client.name)
-      respond_to do |format|
-        format.html { redirect_to @client, alert: alert_message }
-        format.text { render partial: 'clients/client_infos', locals: { client: @client }, formats: [:html] }
-        format.json { render json: @client, status: :ok, location: @client }
-      end
-    else
-      alert_error_message = t('clients.update.error')
-      respond_to do |format|
-        format.html { render :edit, alert: alert_error_message, status: :unprocessable_entity }
-        format.json { render json: @client.errors, status: :unprocessable_entity }
-      end
+    # Attach the new photo
+    @client.photo.attach(params[:client][:photo])
+  end
+
+  if @client.update(client_params)
+    alert_message = t('clients.update.success', firstname: @client.firstname, name: @client.name)
+    respond_to do |format|
+      format.html { redirect_to @client, alert: alert_message }
+      format.text { render partial: 'clients/client_infos', locals: { client: @client }, formats: [:html] }
+      format.json { render json: @client, status: :ok, location: @client }
+    end
+  else
+    alert_error_message = t('clients.update.error')
+    respond_to do |format|
+      format.html { render :edit, alert: alert_error_message, status: :unprocessable_entity }
+      format.json { render json: @client.errors, status: :unprocessable_entity }
     end
   end
+end
+
 
   # DELETE /clients/1
-  def destroy
-    @client.photo.purge if @client.photo.attached?
-    @client.destroy
-    respond_to do |format|
-      alert_message = t('clients.destroy.success', firstname: @client.firstname, name: @client.name)
+# DELETE /clients/1
+def destroy
+  # Check if a photo is attached to the client
+  if @client.photo.attached?
+    # Get the public_id of the attached photo
+    old_public_id = @client.photo.blob.metadata['public_id']
 
-      format.html { redirect_to clients_url, alert: alert_message }
-      format.json { head :no_content }
-    end
+    # Destroy the photo from Cloudinary
+    Cloudinary::Uploader.destroy(old_public_id) if old_public_id.present?
   end
+
+  # Now destroy the client record
+  @client.destroy
+
+  respond_to do |format|
+    alert_message = t('clients.destroy.success', firstname: @client.firstname, name: @client.name)
+
+    format.html { redirect_to clients_url, alert: alert_message }
+    format.json { head :no_content }
+  end
+end
+
 
   private
 

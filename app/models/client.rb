@@ -16,7 +16,6 @@ class Client < ApplicationRecord
   validates :firstname, presence: true
 
   before_create :build_associated_records
-  after_commit :process_photo, on: [:create, :update]
 
   def as_json(options = {})
     super(options.merge(except: %i[lash_attributes extension_attributes health_attributes],
@@ -48,7 +47,5 @@ class Client < ApplicationRecord
     build_health unless health
   end
 
-  def process_photo
-    ProcessPhotoJob.perform_later(self)
-  end
+
 end
