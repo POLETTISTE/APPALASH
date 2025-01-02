@@ -1,6 +1,8 @@
 module Users
   class RegistrationsController < Devise::RegistrationsController
     before_action :check_admin_limit, only: [:create]
+    before_action :check_website_taken, only: [:create]
+    before_action :check_email_taken, only: [:create]
 
     # Override the update action to handle the avatar update
     def update
@@ -39,6 +41,20 @@ module Users
 
       flash[:alert] = 'There can only be one admin user.'
       redirect_to new_user_registration_path
+    end
+
+    # Check if the website is already taken
+    def check_website_taken
+      if User.exists?(website: user_params[:website])
+        @website_taken = true
+      end
+    end
+
+    # Check if the email is already taken
+    def check_email_taken
+      if User.exists?(email: user_params[:email])
+        @email_taken = true
+      end
     end
 
     def user_params

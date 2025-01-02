@@ -14,6 +14,8 @@ class Client < ApplicationRecord
 
   validates :name, presence: true
   validates :firstname, presence: true
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+
 
   before_create :build_associated_records
 

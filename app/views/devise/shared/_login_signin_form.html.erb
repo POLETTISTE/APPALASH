@@ -22,25 +22,34 @@
         <%= form_for(resource, as: resource_name, url: form_url, html: { class: "space-y-4" }, data: { turbo: false }) do |f| %>
           <div>
             <%= f.label :email, t('devise.registrations.new.label_email'), class: "block text-gray-700" %>
-            <%= f.email_field :email, required: true, autofocus: true, autocomplete: t('devise.registrations.new.autocomplete_email'), class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %> </div>
-          <div>
-            <% if form_type == :registration %>
-              <div>
-                <%= f.label :name, t('devise.registrations.new.label_name'), class: "block text-gray-700" %>
-                <%= f.text_field :name, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-              </div>
-              <div>
-                <%= f.label :firstname, t('devise.registrations.new.label_firstname'), class: "block text-gray-700" %>
-                <%= f.text_field :firstname, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-              </div>
-              <div>
-                <%= f.label :website, t('devise.registrations.new.label_website'), class: "block text-gray-700" %>
-                <%= f.text_field :website, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            <%= f.email_field :email, required: true, autofocus: true, autocomplete: t('devise.registrations.new.autocomplete_email'), class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            <% if @email_taken %>
+              <div class="text-sm text-red-500 mt-1">
+                Cette adresse email est déjà utilisée. Veuillez en choisir une autre.
               </div>
             <% end %>
-            <%= f.label :password, t('devise.registrations.new.label_password'), class: "block text-gray-700" %>
-            <%= f.password_field :password, required: true, autocomplete: t('devise.registrations.new.autocomplete_current_password'), class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
           </div>
+          <% if form_type == :registration %>
+            <div>
+              <%= f.label :name, t('devise.registrations.new.label_name'), class: "block text-gray-700" %>
+              <%= f.text_field :name, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            </div>
+            <div>
+              <%= f.label :firstname, t('devise.registrations.new.label_firstname'), class: "block text-gray-700" %>
+              <%= f.text_field :firstname, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            </div>
+            <div>
+              <%= f.label :website, t('devise.registrations.new.label_website'), class: "block text-gray-700" %>
+              <%= f.text_field :website, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+              <% if @website_taken %>
+                <div class="text-sm text-red-500 mt-1">
+                  Ce site Web est déjà pris. Veuillez choisir un autre site.
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+          <%= f.label :password, t('devise.registrations.new.label_password'), class: "block text-gray-700" %>
+          <%= f.password_field :password, required: true, autocomplete: t('devise.registrations.new.autocomplete_current_password'), class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
           <% if form_type == :registration %>
             <div>
               <%= f.label :password_confirmation, t('devise.registrations.new.label_password_confirmation'), class: "block text-gray-700" %>
