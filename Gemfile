@@ -47,6 +47,8 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'rack-mini-profiler'
+
 end
 
 group :development do
@@ -67,9 +69,9 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+gem 'activestorage-cloudinary-service'
 gem 'chartkick'
 gem 'cloudinary'
-gem 'activestorage-cloudinary-service'
 gem 'country_select'
 gem 'devise'
 gem 'dotenv-rails'
@@ -77,4 +79,6 @@ gem 'font-awesome-sass'
 gem 'mailcatcher'
 gem 'pg_search'
 gem 'pundit'
+gem 'rack-attack'
+
 gem 'tailwindcss-rails'
