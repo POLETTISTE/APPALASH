@@ -2,12 +2,12 @@
   <div class="flex w-[60%] bg-white shadow-lg rounded-[30px] overflow-hidden border border-white p-2">
     <!-- Left Side (Image) -->
     <div class="w-1/2 rounded-[21px] overflow-hidden">
-      <img src="<%= asset_path('login_page/login.jpg') %>" alt="Background Image" class="w-full h-full object-cover rounded-[21px]" />
+      <img src="<%= asset_path('login_page/login.jpg') %>" alt="A mirror with lash tools on a table, illustrating a lash artist's workspace" class="w-full h-full object-cover rounded-[21px]" />
     </div>
     <!-- Right Side (Login Form) -->
     <div class="w-1/2 p-8 flex flex-col">
       <div class="flex justify-center mb-8">
-        <%= image_tag "/assets/appalash-logo-title.png", class: "", width: "150", height: "150", role: "img", aria: { label: "logo" } %>
+        <img src="<%= asset_path('/assets/appalash-logo-title.png') %>" alt="appalash logo" class="w-[100px] h-full object-contain" />
       </div>
       <div class="flex-grow flex flex-col justify-center">
         <% current_time = Time.now.hour %>
