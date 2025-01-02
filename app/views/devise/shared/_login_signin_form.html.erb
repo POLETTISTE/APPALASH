@@ -1,0 +1,73 @@
+<div class="min-h-screen flex items-center justify-center">
+  <div class="flex w-[60%] bg-white shadow-lg rounded-[30px] overflow-hidden border border-white p-2">
+    <!-- Left Side (Image) -->
+    <div class="w-1/2 rounded-[21px] overflow-hidden">
+      <% if form_type == :login %>
+        <img src="<%= asset_path('login_page/login.jpg') %>" alt="A mirror with lash tools on a table, illustrating a lash artist's workspace" class="w-full h-full object-cover rounded-[21px]" />
+      <% else %>
+        <img src="<%= asset_path('sign-in_page/sign-in.jpg') %>" alt="A mirror with lash tools on a table, illustrating a lash artist's workspace" class="w-full h-full object-cover rounded-[21px]" />
+      <% end %>
+    </div>
+    <!-- Right Side (Form) -->
+    <div class="w-1/2 p-8 flex flex-col">
+      <div class="flex justify-center mb-8">
+        <img src="<%= asset_path('/assets/appalash-logo-title.png') %>" alt="appalash logo" class="w-[100px] h-full object-contain" />
+      </div>
+      <div class="flex-grow flex flex-col justify-center">
+        <% current_time = Time.now.hour %>
+        <h2 class="text-3xl font-semibold mb-6">
+          <%= current_time < 18 ? "Bonjour !" : "Bonsoir !" %>
+        </h2>
+        <p class="mb-6">Entrez votre email et votre mot de passe pour accéder à votre compte.</p>
+        <%= form_for(resource, as: resource_name, url: form_url, html: { class: "space-y-4" }, data: { turbo: false }) do |f| %>
+          <div>
+            <%= f.label :email, t('devise.registrations.new.label_email'), class: "block text-gray-700" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: t('devise.registrations.new.autocomplete_email'), class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %> </div>
+          <div>
+            <%= f.label :password, t('devise.registrations.new.label_password'), class: "block text-gray-700" %>
+            <%= f.password_field :password, autocomplete: t('devise.registrations.new.autocomplete_current_password'), class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+          </div>
+          <% if form_type == :registration %>
+            <div>
+              <%= f.label :password_confirmation, t('devise.registrations.new.label_password_confirmation'), class: "block text-gray-700" %>
+              <%= f.password_field :password_confirmation, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            </div>
+            <div>
+              <%= f.label :name, t('devise.registrations.new.label_name'), class: "block text-gray-700" %>
+              <%= f.text_field :name, required: false, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            </div>
+            <div>
+              <%= f.label :firstname, t('devise.registrations.new.label_firstname'), class: "block text-gray-700" %>
+              <%= f.text_field :firstname, required: false, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            </div>
+            <div>
+              <%= f.label :website, t('devise.registrations.new.label_website'), class: "block text-gray-700" %>
+              <%= f.text_field :website, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            </div>
+          <% end %>
+          <% if devise_mapping.rememberable? && form_type == :login %>
+            <div class="flex items-center justify-between">
+              <div>
+                <%= f.check_box :remember_me, class: "mr-2 leading-tight" %>
+                <%= f.label :remember_me, class: "text-gray-700" %>
+              </div>
+            </div>
+          <% end %>
+          <div class="flex items-center justify-between">
+            <%= f.submit t('devise.registrations.new.submit'), class: "w-full bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+          </div>
+        <% end %>
+        <p class="text-center text-gray-500 text-sm">
+          <% if form_type == :login %>
+            Vous n'avez pas de compte ? <%= link_to t('devise.shared.links.btn_signed_up'), new_registration_path(resource_name), class: "text-customPink underline underline-offset-4" %><br />
+            <%= link_to t('devise.shared.links.forgot_your_password'), new_password_path(resource_name), class: "text-customPink underline underline-offset-4" %><br />
+            <%= link_to t('devise.shared.links.confirmation_instructions'), new_confirmation_path(resource_name), class: "text-customPink underline underline-offset-4" %><br />
+          <% else%>
+            Vous avez déjà un compte ?   <%= link_to t('devise.shared.links.login'), new_session_path(resource_name), class: "text-customPink underline underline-offset-4" %><br />
+            <br />
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
