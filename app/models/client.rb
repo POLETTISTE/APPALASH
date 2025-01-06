@@ -38,6 +38,7 @@ class Client < ApplicationRecord
                   }
 
   def full_name
+    return name if firstname.blank?
     "#{name} #{firstname}"
   end
 
