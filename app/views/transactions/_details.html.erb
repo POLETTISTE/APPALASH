@@ -1,15 +1,10 @@
 <%= turbo_frame_tag :contact_details do %>
   <div>
-    <!-- Transaction Date -->
     <p><%= @transaction.date %></p>
-
-    <!-- Client Information -->
     <p>
       <strong><%= t('.client') %>:</strong>
       <%= @transaction.client.firstname %> <%= @transaction.client.name %>
     </p>
-
-    <!-- Services List -->
     <h2><%= t('services_h1') %>:</h2>
     <ul>
       <% @transaction.services.each do |service| %>
