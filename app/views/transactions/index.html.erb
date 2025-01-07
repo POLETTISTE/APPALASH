@@ -1,30 +1,23 @@
 <div id="transactions">
-  <%# <h1>= t('transactions_h1')</h1> %>
   <% if policy(Transaction).create? %>
-  <%= button_to t("button.new", model: Transaction.model_name.human.downcase), 
+    <%= link_to t("button.new", model: Transaction.model_name.human.downcase), 
                 new_transaction_path, 
-                method: :get, 
                 class: "px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" %>
-<% end %>
-<br>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-  <!-- Transactions List on the Left -->
-  <div class="transactions-list space-y-4">
-    <% @transactions.each do |transaction| %>
-      <%= render transaction %>
-    <% end %>
-  </div>
-
-  <!-- Details or Message on the Right -->
-  <div class="flex items-center justify-center text-gray-500 border rounded-md p-4">
-    Select a transaction to view details
-  </div>
-</div>
-
-
-  <br>
+  <% end %>
+    <br>
   <div>
     <%= t('.total') %>
-    <p><%= '%.2f'% @transactions_total_price %></p>
+    <p><%= '%.2f' % @transactions_total_price %></p>
+  </div>
+
+  <br>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Transactions List on the Left -->
+    <%= render 'list', transactions: @transactions %>
+    <!-- Details or Message on the Right -->
+    <div class="flex items-center justify-center text-gray-500 border rounded-md p-4">
+      Select a transaction to view details
+    </div>
   </div>
 </div>

@@ -1,18 +1,19 @@
-# frozen_string_literal: true
-
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i[edit_website update_website]
   after_action :verify_authorized, only: %i[edit_website update_website]
   layout 'website', only: [:show_website]
 
   def index_personal_information
-    @user = policy_scope(User).find(current_user.id)
+    # Eager-load the avatar attachment and blob for each user
+    @user = policy_scope(User).includes(avatar_attachment: :blob).find(current_user.id)
     authorize @user
   end
 
   def show_website
     @user = find_user_by_website
     if @user
+      # Eager-load the avatar for the user
+      @user = @user.includes(avatar_attachment: :blob)
       authorize @user
     else
       redirect_to errors_not_found_path
@@ -22,6 +23,8 @@ class UsersController < ApplicationController
   def edit_website
     @user = find_user_by_website
     if @user
+      # Eager-load the avatar for the user
+      @user = @user.includes(avatar_attachment: :blob)
       authorize @user
     else
       redirect_to errors_not_found_path
@@ -36,12 +39,12 @@ class UsersController < ApplicationController
 
     # Check if the website is forbidden ("appalash")
     if user_params[:website].downcase == 'appalash'
-      return redirect_to edit_website_user_profile_path(@user.website), notice: 'The website name "appalash" is forbidden.' # Updated helper
+      return redirect_to edit_website_user_profile_path(@user.website), notice: 'The website name "appalash" is forbidden.'
     end
 
     # Check if the new website is unique
     if website_changed_to_existing?
-      return redirect_to edit_website_user_profile_path(@user.website), notice: "Website '#{user_params[:website]}' is already taken." # Updated helper
+      return redirect_to edit_website_user_profile_path(@user.website), notice: "Website '#{user_params[:website]}' is already taken."
     end
 
     # Update user profile if all validations pass
@@ -59,7 +62,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:website, :name, :firstname)
+    params.require(:user).permit(:website, :name, :firstname, :avatar) # Add avatar here if you want it to be updatable
   end
 
   def website_changed_to_existing?

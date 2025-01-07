@@ -22,7 +22,7 @@ class ClientsController < ApplicationController
       alert_message = t('clients.create.success', firstname: @client.firstname, name: @client.name)
       respond_to do |format|
         format.html { redirect_to @client, alert: alert_message }
-        format.json { render json: @client, status: :created, location: @client }
+        format.json { render json: client_with_avatar_url([@client]), status: :created, location: @client }
       end
     else
       alert_error_message = t('clients.create.error')
@@ -35,7 +35,8 @@ class ClientsController < ApplicationController
 
   # GET /clients
   def index
-    @clients = policy_scope(Client).order('UPPER(name)')
+    # Eager load the photo attachment and blob for each client
+    @clients = policy_scope(Client).includes(photo_attachment: :blob).order('UPPER(name)')
     authorize @clients
     @users = current_user.admin? ? User.all : []
 
@@ -48,9 +49,9 @@ class ClientsController < ApplicationController
       format.html
       format.json do
         if current_user.admin?
-          render json: { users: @users, clients: @clients }
+          render json: { users: @users, clients: client_with_avatar_url(@clients) }
         else
-          render json: { clients: @clients }
+          render json: { clients: client_with_avatar_url(@clients) }
         end
       end
       format.text { render partial: 'clients/index_list', locals: { clients: @clients }, formats: [:html] }
@@ -61,7 +62,7 @@ class ClientsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.json { render json: @client }
+      format.json { render json: client_with_avatar_url([@client]).first }
     end
   end
 
@@ -73,70 +74,66 @@ class ClientsController < ApplicationController
   end
 
   # PATCH/PUT /clients/1
-# PATCH/PUT /clients/1
-def update
-  ensure_fields_exist
+  def update
+    ensure_fields_exist
 
-  # If there's a new photo uploaded
-  if params[:client][:photo].present?
-    # Delete the old photo from Cloudinary (if it exists)
+    # If there's a new photo uploaded
+    if params[:client][:photo].present?
+      # Delete the old photo from Cloudinary (if it exists)
+      if @client.photo.attached?
+        # Get the public ID of the old image
+        old_public_id = @client.photo.blob.metadata['public_id']
+
+        # Destroy the old image from Cloudinary
+        Cloudinary::Uploader.destroy(old_public_id) if old_public_id.present?
+      end
+
+      # Attach the new photo
+      @client.photo.attach(params[:client][:photo])
+    end
+
+    if @client.update(client_params)
+      alert_message = t('clients.update.success', firstname: @client.firstname, name: @client.name)
+      respond_to do |format|
+        format.html { redirect_to @client, alert: alert_message }
+        format.text { render partial: 'clients/client_infos', locals: { client: @client }, formats: [:html] }
+        format.json { render json: client_with_avatar_url([@client]).first, status: :ok, location: @client }
+      end
+    else
+      alert_error_message = t('clients.update.error')
+      respond_to do |format|
+        format.html { render :edit, alert: alert_error_message, status: :unprocessable_entity }
+        format.json { render json: @client.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /clients/1
+  def destroy
+    # Check if a photo is attached to the client
     if @client.photo.attached?
-      # Get the public ID of the old image
+      # Get the public_id of the attached photo
       old_public_id = @client.photo.blob.metadata['public_id']
 
-      # Destroy the old image from Cloudinary
+      # Destroy the photo from Cloudinary
       Cloudinary::Uploader.destroy(old_public_id) if old_public_id.present?
     end
 
-    # Attach the new photo
-    @client.photo.attach(params[:client][:photo])
-  end
+    # Now destroy the client record
+    @client.destroy
 
-  if @client.update(client_params)
-    alert_message = t('clients.update.success', firstname: @client.firstname, name: @client.name)
     respond_to do |format|
-      format.html { redirect_to @client, alert: alert_message }
-      format.text { render partial: 'clients/client_infos', locals: { client: @client }, formats: [:html] }
-      format.json { render json: @client, status: :ok, location: @client }
-    end
-  else
-    alert_error_message = t('clients.update.error')
-    respond_to do |format|
-      format.html { render :edit, alert: alert_error_message, status: :unprocessable_entity }
-      format.json { render json: @client.errors, status: :unprocessable_entity }
+      alert_message = t('clients.destroy.success', firstname: @client.firstname, name: @client.name)
+      format.html { redirect_to clients_url, alert: alert_message }
+      format.json { head :no_content }
     end
   end
-end
-
-
-  # DELETE /clients/1
-# DELETE /clients/1
-def destroy
-  # Check if a photo is attached to the client
-  if @client.photo.attached?
-    # Get the public_id of the attached photo
-    old_public_id = @client.photo.blob.metadata['public_id']
-
-    # Destroy the photo from Cloudinary
-    Cloudinary::Uploader.destroy(old_public_id) if old_public_id.present?
-  end
-
-  # Now destroy the client record
-  @client.destroy
-
-  respond_to do |format|
-    alert_message = t('clients.destroy.success', firstname: @client.firstname, name: @client.name)
-
-    format.html { redirect_to clients_url, alert: alert_message }
-    format.json { head :no_content }
-  end
-end
-
 
   private
 
   def set_client
-    @client = Client.find(params[:id])
+    # Eager load the photo attachment and blob here, so it is loaded with the client
+    @client = Client.includes(photo_attachment: :blob).find(params[:id])
     authorize @client
     @clients = policy_scope(Client)
   rescue ActiveRecord::RecordNotFound
@@ -180,5 +177,14 @@ end
     field_type = Client.columns_hash[field.to_s]&.type || :string
     @client.class.connection.add_column(@client.class.table_name, field, field_type)
     @client.class.reset_column_information
+  end
+
+  # Helper method to include the photo URL in the client data
+  def client_with_avatar_url(clients)
+    clients.map do |client|
+      client.as_json.merge(
+        avatar_url: client.photo.attached? ? rails_blob_url(client.photo, only_path: false) : nil
+      )
+    end
   end
 end

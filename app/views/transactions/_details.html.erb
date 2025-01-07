@@ -1,0 +1,37 @@
+<%= turbo_frame_tag :contact_details do %>
+  <div>
+    <!-- Transaction Date -->
+    <p><%= @transaction.date %></p>
+
+    <!-- Client Information -->
+    <p>
+      <strong><%= t('.client') %>:</strong>
+      <%= @transaction.client.firstname %> <%= @transaction.client.name %>
+    </p>
+
+    <!-- Services List -->
+    <h2><%= t('services_h1') %>:</h2>
+    <ul>
+      <% @transaction.services.each do |service| %>
+        <li><%= "#{service['name']} - #{'%.2f' % service['price']}" %></li>
+      <% end %>
+    </ul>
+
+    <!-- Total Price -->
+    <p><%= t('.total_price') %>: <%= '%.2f' % @transaction.total_price %></p>
+
+    <br>
+
+    <%= link_to transaction,
+        data: { turbo_method: :delete,
+                turbo_confirm: "Are you sure?",
+                turbo_frame: '_top'
+              },
+        class: "px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400" do %>
+
+      <span class="visually-hidden">Delete</span>
+      <i class="fas fa-trash"></i>
+    <% end %>
+
+  </div>
+<% end %>

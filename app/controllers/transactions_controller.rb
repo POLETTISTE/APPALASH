@@ -43,6 +43,7 @@ class TransactionsController < ApplicationController
   end
 
   def index
+    @clients = policy_scope(Client).includes(photo_attachment: :blob).order('UPPER(name)')
     @transactions = policy_scope(Transaction).order(date: :desc, created_at: :desc).all
     @transactions_total_price = @transactions.sum(:total_price)
     authorize @transactions
@@ -54,6 +55,7 @@ class TransactionsController < ApplicationController
   end
 
   def show
+    @transactions = policy_scope(Transaction).order(date: :desc, created_at: :desc).all
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @transaction }

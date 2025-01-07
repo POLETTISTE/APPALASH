@@ -8,6 +8,6 @@ class AddUuidToActiveStorageTables < ActiveRecord::Migration[8.0]
 
   def down
     # In the `down` method, we define how to reverse the migration.
-    change_column :active_storage_attachments, :record_id, :string, limit: nil  # or the original limit, if any
+    change_column :active_storage_attachments, :record_id, :string, limit: nil # or the original limit, if any
   end
 end

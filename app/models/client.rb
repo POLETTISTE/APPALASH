@@ -16,7 +16,6 @@ class Client < ApplicationRecord
   validates :firstname, presence: true
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
-
   before_create :build_associated_records
 
   def as_json(options = {})
@@ -39,6 +38,7 @@ class Client < ApplicationRecord
 
   def full_name
     return name if firstname.blank?
+
     "#{name} #{firstname}"
   end
 
@@ -49,6 +49,4 @@ class Client < ApplicationRecord
     build_extension unless extension
     build_health unless health
   end
-
-
 end

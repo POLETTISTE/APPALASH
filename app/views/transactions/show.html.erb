@@ -1,13 +1,4 @@
-<p>
-  <strong><%= t('.date') %>:</strong>
-  <p><%= @transaction.date %></p>
-  <p><strong><%= t('.client') %>:</strong> <%= @transaction.client.firstname %> <%= @transaction.client.name %> </p>
-</p>
-<h2><%= t('services_h1') %>:</h2>
-<ul>
-  <% @transaction.services.each do |service| %>
-    <li><%= "#{service['name']} - #{'%.2f' % service['price']}" %></li>
-  <% end %>
-</ul>
-<p><%= t('.total_price') %>: <%= '%.2f' % @transaction.total_price %></p>
-<%= button_to "Destroy this transaction", @transaction, method: :delete %>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <%= render 'list', transactions: @transactions %>
+  <%= render 'details', transaction: @transaction %>
+</div>

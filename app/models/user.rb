@@ -35,5 +35,4 @@ class User < ApplicationRecord
 
     errors.add(:admin, 'There can only be one admin user.')
   end
-
 end

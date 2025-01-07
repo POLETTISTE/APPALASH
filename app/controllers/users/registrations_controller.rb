@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Users
   class RegistrationsController < Devise::RegistrationsController
     before_action :check_admin_limit, only: [:create]
@@ -45,16 +47,16 @@ module Users
 
     # Check if the website is already taken
     def check_website_taken
-      if User.exists?(website: user_params[:website])
-        @website_taken = true
-      end
+      return unless User.exists?(website: user_params[:website])
+
+      @website_taken = true
     end
 
     # Check if the email is already taken
     def check_email_taken
-      if User.exists?(email: user_params[:email])
-        @email_taken = true
-      end
+      return unless User.exists?(email: user_params[:email])
+
+      @email_taken = true
     end
 
     def user_params
