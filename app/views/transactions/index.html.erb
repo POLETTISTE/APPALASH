@@ -14,7 +14,7 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <!-- Transactions List on the Left -->
-    <%= render 'list', transactions: @transactions %>
+    <%= render 'list', transactions: @transactions, selected_transaction: nil %>
     <!-- Details or Message on the Right -->
     <div class="flex items-center justify-center text-gray-500 border rounded-md p-4">
       Select a transaction to view details

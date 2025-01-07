@@ -1,4 +1,4 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-  <%= render 'list', transactions: @transactions %>
+  <%= render 'list', transactions: @transactions, selected_transaction: @transaction %>
   <%= render 'details', transaction: @transaction %>
 </div>
