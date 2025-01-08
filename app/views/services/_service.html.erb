@@ -1,24 +1,21 @@
-<div id="<%= dom_id(service) %>">
-  <%= link_to service_path(service) do %>
-    <div class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-      <% if current_user.admin? %>
-        <p><%= service.user.email %></p>
-      <% end %>
-      <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        <strong>
+<%= link_to service_path(service), class: "block w-full max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do %>
+  <div >
+    <% if current_user.admin? %>
+      <p><%= service.user.email %></p>
+    <% end %>
+    <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+      <strong>
         <%#= t('.name')%>
         <%# : %>
-        </strong>
-        <%= service.name %>
-      </p>
-      <p class="font-normal text-gray-700 dark:text-gray-400">
-        <strong>
-          <%#= t('.price') %>
-          <%# : %>
-        </strong>
+      </strong>
+      <%= service.name %>
+    </p>
+    <p class="font-normal text-gray-700 dark:text-gray-400">
+      <strong>
+        <%#= t('.price') %>
+        <%# : %>
+      </strong>
       <%= "#{t('currency')}#{service.price}" %>
-
-      </p>
-    </div>
-  <% end %>
-</div>
+    </p>
+  </div>
+<% end %>

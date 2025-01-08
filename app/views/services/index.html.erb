@@ -3,7 +3,7 @@
 <% if policy(Service).create? %>
   <%= link_to t("button.new", model: Service.model_name.human.downcase), new_service_path, class: "btn btn-primary"  %>
 <% end %>
-<div id="services">
+<div id="services" class="flex flex-col space-y-4 justify-center items-center p-6">
   <% @services.each do |service| %>
     <%= render service %>
   <% end %>

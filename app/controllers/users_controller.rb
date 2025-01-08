@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i[edit_website update_website]
   after_action :verify_authorized, only: %i[edit_website update_website]
@@ -36,12 +38,14 @@ class UsersController < ApplicationController
 
     # Check if the website is forbidden ("appalash")
     if user_params[:website].downcase == 'appalash'
-      return redirect_to edit_website_user_profile_path(@user.website), notice: 'The website name "appalash" is forbidden.'
+      return redirect_to edit_website_user_profile_path(@user.website),
+                         notice: 'The website name "appalash" is forbidden.'
     end
 
     # Check if the new website is unique
     if website_changed_to_existing?
-      return redirect_to edit_website_user_profile_path(@user.website), notice: "Website '#{user_params[:website]}' is already taken."
+      return redirect_to edit_website_user_profile_path(@user.website),
+                         notice: "Website '#{user_params[:website]}' is already taken."
     end
 
     # Update user profile if all validations pass

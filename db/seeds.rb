@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # db/seeds.rb
 
 # Delete previous records for clients, services, and transactions
@@ -9,7 +11,7 @@ p 'Previous records deleted.'
 p 'Creating new records...'
 
 # Array of possible values for how_do_you_know_us
-how_do_you_know_us_values = ["google", "friend", "advise", "instagram"]
+how_do_you_know_us_values = %w[google friend advise instagram]
 
 # Create 20 clients
 20.times do |i|

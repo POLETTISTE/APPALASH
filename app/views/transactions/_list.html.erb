@@ -1,30 +1,26 @@
-<div class="list-group" data-controller="transactions-list">
+<div class="list-group space-y-4" data-controller="transactions-list">
   <% transactions.each do |transaction| %>
-  
     <%= link_to transaction,
-    class: "list-group-item list-group-item-action",
-    data: { turbo_frame: :transaction_details,
-    turbo_action: :advance,
-    action: "click->transactions-list#highlight",
-    transactions_list_target: "transaction" } do %>
-
+                class: "card-transaction flex space-x-4 rounded-md shadow-md #{'bg-lime-200' if transaction == selected_transaction}",
+                data: { turbo_frame: :transaction_details,
+                        turbo_action: :advance,
+                        action: "click->transactions-list#highlight",
+                        transactions_list_target: "transaction" } do %>
       <!-- Add bg-red-900 to the entire div when the transaction is selected -->
-      <div class="<%= 'bg-lime-200' if transaction == selected_transaction %> card-transaction flex space-x-4 rounded-md shadow-md p-4">
+      <div class="flex items-center space-x-4"> <!-- Flex row layout applied here -->
         <div class="flex-shrink-0">
           <% if transaction.client.photo.attached? %>
             <%= cl_image_tag transaction.client.photo.key,
-              alt: "#{transaction.client.firstname}'s photo",
-              width: 40, height: 40, class: "rounded-full border-2 border-gray-300" %>
+                             alt: "#{transaction.client.firstname}'s photo",
+                             width: 40, height: 40, class: "rounded-full border-2 border-gray-300" %>
           <% else %>
             <%= image_tag "client/client_photo_profil.png",
-              width: 40, height: 40, class: "rounded-full border-2 border-gray-300" %>
+                          width: 40, height: 40, class: "rounded-full border-2 border-gray-300" %>
           <% end %>
         </div>
-
         <% if current_user.admin? %>
           <p class="text-sm text-gray-500"><%= transaction.user.email %></p>
         <% end %>
-
         <div class="flex-1">
           <p class="font-semibold text-lg"><%= transaction.client.full_name %></p>
           <p class="text-sm text-gray-600"><%= transaction.date %></p>

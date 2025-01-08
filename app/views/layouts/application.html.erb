@@ -22,11 +22,11 @@
     <%= render 'partials/navbar/navbar' %>
     <% if !current_user %>
       <nav>
-        <%= link_to "English", url_for(request.params.merge(locale: 'en')) %> |
-        <%= link_to "USA", url_for(request.params.merge(locale: 'en-US')) %> |
-        <%= link_to "Français", url_for(request.params.merge(locale: 'fr')) %> |
-        <%= link_to "Español", url_for(request.params.merge(locale: 'es')) %> |
-        <%= link_to "Deutsch", url_for(request.params.merge(locale: 'de')) %>
+        <%= link_to "🇬🇧", url_for(request.params.merge(locale: 'en')) %> |
+        <%= link_to "🇺🇸", url_for(request.params.merge(locale: 'en-US')) %> |
+        <%= link_to "🇫🇷", url_for(request.params.merge(locale: 'fr')) %> |
+        <%= link_to "🇪🇸", url_for(request.params.merge(locale: 'es')) %> |
+        <%= link_to "🇩🇪", url_for(request.params.merge(locale: 'de')) %>
       </nav>
     <% end %>
     <!-- Main content -->
