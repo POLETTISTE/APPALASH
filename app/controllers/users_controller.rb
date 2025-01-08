@@ -5,15 +5,13 @@ class UsersController < ApplicationController
 
   def index_personal_information
     # Eager-load the avatar attachment and blob for each user
-    @user = policy_scope(User).includes(avatar_attachment: :blob).find(current_user.id)
+    @user = policy_scope(User).find(current_user.id)
     authorize @user
   end
 
   def show_website
     @user = find_user_by_website
     if @user
-      # Eager-load the avatar for the user
-      @user = @user.includes(avatar_attachment: :blob)
       authorize @user
     else
       redirect_to errors_not_found_path
@@ -24,7 +22,6 @@ class UsersController < ApplicationController
     @user = find_user_by_website
     if @user
       # Eager-load the avatar for the user
-      @user = @user.includes(avatar_attachment: :blob)
       authorize @user
     else
       redirect_to errors_not_found_path
