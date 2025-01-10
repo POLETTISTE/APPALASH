@@ -1,28 +1,25 @@
-<%= t('clients_h1') %>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-    <div class="col-span-1">
-      <% if policy(Client).create? %>
-        <%= link_to t('button.new', model: Client.model_name.human.downcase), new_client_path, class: "inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" %>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+  <div class="col-span-1">
+    <% if policy(Client).create? %>
+      <%= link_to t('button.new', model: Client.model_name.human.downcase), new_client_path, class: "inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-auto" %>
+    <% end %>
+  </div>
+  <div class="col-span-1 lg:col-span-2">
+    <div data-controller="search-clients" class="bg-white p-6 rounded-lg shadow-md">
+      <%= form_with url: clients_path, method: :get, html: {class: "mb-4", data: {search_clients_target: "form"}} do |f| %>
+        <div class="mb-4">
+          <%= f.label :query, t('.search'), class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_field :query,
+                              class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500", 
+                              placeholder: t('.placeholder'),
+                              value: params[:query],
+                              data: {
+                                search_clients_target: "searchInput",
+                                action: "keyup->search-clients#update"
+                              } %>
+        </div>
       <% end %>
-    </div>
-    <div class="col-span-1 lg:col-span-2">
-      <div data-controller="search-clients" class="bg-white p-6 rounded-lg shadow-md">
-        <%= form_with url: clients_path, method: :get, html: {class: "mb-4", data: {search_clients_target: "form"}} do |f| %>
-          <div class="mb-4">
-            <%= f.label :query, t('.search'), class: "block text-sm font-medium text-gray-700" %>
-            <%= f.text_field :query,
-                            class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500", 
-                            placeholder: t('.placeholder'),
-                            value: params[:query],
-                            data: {
-                              search_clients_target: "searchInput",
-                              action: "keyup->search-clients#update"
-                            } %>
-          </div>
-        <% end %>
-        <%= render "index_list", clients: @clients %>
-      </div>
+      <%= render "index_list", clients: @clients %>
     </div>
   </div>
 </div>

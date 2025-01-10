@@ -18,26 +18,17 @@
     <link rel="shortcut icon" type="image/png" href="/assets/logo.png">
     <%= javascript_importmap_tags %>
   </head>
-  <body class="flex flex-col min-h-screen">
-    <%= render 'partials/navbar/navbar' %>
-    <% if !current_user %>
-      <nav>
-        <%= link_to "🇬🇧", url_for(request.params.merge(locale: 'en')) %> |
-        <%= link_to "🇺🇸", url_for(request.params.merge(locale: 'en-US')) %> |
-        <%= link_to url_for(request.params.merge(locale: 'fr-CA')) do %>
-          <%= image_tag("flags/quebec.png", alt: "Quebec", width: 20, height: 20) %>
-        <% end %> |
-        <%= link_to "🇫🇷", url_for(request.params.merge(locale: 'fr')) %> |
-        <%= link_to "🇪🇸", url_for(request.params.merge(locale: 'es')) %> |
-        <%= link_to "🇩🇪", url_for(request.params.merge(locale: 'de')) %> |
-        <%= link_to "🇵🇹", url_for(request.params.merge(locale: 'pt')) %> |
-        <%= link_to "🇧🇷", url_for(request.params.merge(locale: 'pt-BR')) %>
-      </nav>
-    <% end %>
+  <body>
+    <%= render 'partials/flags/flags' %>
+    <main class="flex">
+      <%= render 'partials/sidebar/sidebar' %>
+      <!-- Ensure section takes up the remaining space -->
+      <section class="flex flex-col flex-grow">
+        <%= render 'partials/navbar/navbar' %>
+        <%= yield %> <!-- This will render the page content -->
+      </section>
+    </main>
     <!-- Main content -->
-    <div class="flex-1">
-      <%= yield %> <!-- This will render the page content -->
-    </div>
     <!-- Flash messages -->
     <%= render "shared/flashes" %>
     <!-- Footer -->
