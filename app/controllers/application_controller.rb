@@ -25,23 +25,36 @@ class ApplicationController < ActionController::Base
 
   private
 
-  # Set locale based on user preferences or URL
+  # Set locale based on user preferences, URL, cookies, or browser language
   def set_locale
-    # If the user is logged in and has a language preference, use that
+    # 1. If the user is logged in and has a language preference, use that
     if user_signed_in? && I18n.available_locales.include?(current_user.language.try(:to_sym))
       I18n.locale = current_user.language
-    # If a language is specified in the URL, use it
+    # 2. If a language is specified in the URL, use it
     elsif params[:locale].present? && I18n.available_locales.include?(params[:locale].to_sym)
       I18n.locale = params[:locale]
       # Store the selected language in the cookie for future visits (only if the user is not logged in)
       cookies[:locale] = { value: params[:locale], expires: 1.year.from_now }
-    # If no URL parameter, use the language stored in the cookie (for non-logged-in users)
+    # 3. If no URL parameter, use the language stored in the cookie (for non-logged-in users)
     elsif cookies[:locale].present? && I18n.available_locales.include?(cookies[:locale].to_sym)
       I18n.locale = cookies[:locale].to_sym
+    # 4. If the user has not explicitly set a language (first visit), detect the browser language
+    elsif request.env['HTTP_ACCEPT_LANGUAGE'].present?
+      detected_locale = extract_locale_from_accept_language_header || I18n.default_locale
+      I18n.locale = detected_locale
+      # Store the detected language in the cookie for future visits
+      cookies[:locale] = { value: detected_locale, expires: 1.year.from_now }
     else
       # Default to the default locale (e.g., English)
       I18n.locale = I18n.default_locale
     end
+  end
+
+  # Extract the language from the browser's Accept-Language header
+  def extract_locale_from_accept_language_header
+    # Here we extract the first language code from the browser's Accept-Language header
+    # e.g., 'en-US' => 'en'
+    request.env['HTTP_ACCEPT_LANGUAGE']&.scan(/^[a-z]{2}/)&.first
   end
 
   # Change language based on the user's selection and store it in a cookie
