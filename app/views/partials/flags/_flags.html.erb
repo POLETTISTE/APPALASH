@@ -1,33 +1,31 @@
-<% if !current_user %>
   <% current_locale = I18n.locale.to_s %> <!-- Store the current locale -->
-  <!-- Current Locale Button -->
-  <div x-data="{ open: false }" class="relative inline-block text-left">
-    <button @click="open = !open" @click.outside="open = false" class="flex items-center space-x-2 p-2 bg-white rounded border border-gray-300 shadow-sm hover:bg-gray-100">
-      <%= image_tag("flags/#{current_locale}.png", alt: "#{current_locale} flag", width: 20, height: 20) %>
-      <span class="text-sm font-medium capitalize"><%= current_locale %></span>
-      <svg class="h-4 w-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
-    </button>
-    <!-- Dropdown Menu -->
-    <div x-show="open" x-cloak class="absolute left-0 mt-2 w-32 bg-white rounded shadow-lg border border-gray-200 z-10">
-      <ul class="text-sm text-gray-700">
-        <% locales = { 'en' => '🇬🇧', 'en-US' => '🇺🇸', 'fr-CA' => 'flags/quebec.png', 'fr' => '🇫🇷', 'es' => '🇪🇸', 'de' => '🇩🇪', 'pt' => '🇵🇹', 'pt-BR' => '🇧🇷' } %>
-        <% locales.each do |locale, flag| %>
-          <li>
-            <%= link_to url_for(request.params.merge(locale: locale)) do %>
-              <div class="flex items-center p-2 hover:bg-gray-100">
-                <% if flag.start_with?('flags/') %>
-                  <%= image_tag(flag, alt: "#{locale} flag", width: 20, height: 20) %>
-                <% else %>
-                  <span><%= flag %></span>
-                <% end %>
-                <span class="ml-2 capitalize"><%= locale %></span>
-              </div>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+<!-- Current Locale Button -->
+<div x-data="{ open: false }" class="relative inline-block text-left">
+  <button @click="open = !open" @click.outside="open = false" class="flex items-center space-x-2 p-2 bg-white rounded border border-gray-300 shadow-sm hover:bg-gray-100">
+    <%= image_tag("flags/#{current_locale}.png", alt: "#{current_locale} flag", width: 20, height: 20) %>
+    <span class="text-sm font-medium capitalize"><%= current_locale %></span>
+    <svg class="h-4 w-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+  <!-- Dropdown Menu -->
+  <div x-show="open" x-cloak class="absolute left-0 mt-2 w-32 bg-white rounded shadow-lg border border-gray-200 z-10" style="display: none;">
+    <ul class="text-sm text-gray-700">
+      <% locales = { 'en' => '🇬🇧', 'en-US' => '🇺🇸', 'fr-CA' => 'flags/quebec.png', 'fr' => '🇫🇷', 'es' => '🇪🇸', 'de' => '🇩🇪', 'pt' => '🇵🇹', 'pt-BR' => '🇧🇷' } %>
+      <% locales.each do |locale, flag| %>
+        <li>
+          <%= link_to url_for(request.params.merge(locale: locale)) do %>
+            <div class="flex items-center p-2 hover:bg-gray-100">
+              <% if flag.start_with?('flags/') %>
+                <%= image_tag(flag, alt: "#{locale} flag", width: 20, height: 20) %>
+              <% else %>
+                <span><%= flag %></span>
+              <% end %>
+              <span class="ml-2 capitalize"><%= locale %></span>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   </div>
-<% end %>
+</div>

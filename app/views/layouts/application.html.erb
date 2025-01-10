@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>">
   <head>
     <title>AppaLash - Lashes Customer Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,12 +19,18 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= render 'partials/flags/flags' %>
+    <% if !current_user %>
+      <%= render 'partials/flags/flags' %>
+    <% end %>
     <main class="flex">
-      <%= render 'partials/sidebar/sidebar' %>
+      <% if user_signed_in? %>
+        <%= render 'partials/sidebar/sidebar' %>
+      <% end %>
       <!-- Ensure section takes up the remaining space -->
       <section class="flex flex-col flex-grow">
-        <%= render 'partials/navbar/navbar' %>
+        <% if user_signed_in? %>
+          <%= render 'partials/navbar/navbar' %>
+        <% end %>
         <%= yield %> <!-- This will render the page content -->
       </section>
     </main>

@@ -1,29 +1,26 @@
-<% if user_signed_in? %>
-  <!-- DROPDOWN MENU AVATAR -->
-  <nav x-data="{ openDropdownAvatar: false }" class="relative flex justify-end">
-    <div class="relative">
-      <!-- Avatar Button with Dropdown Toggle -->
-      <button @click="openDropdownAvatar = !openDropdownAvatar" class="relative flex flex-col items-center text-black">
-        <!-- Avatar Image -->
-        <% if current_user.avatar.attached? %>
-          <%= cl_image_tag current_user.avatar.key, height: 50, width: 50, crop: :thumb, gravity: :face, radius: :max %>
-        <% else %>
-          <%= image_tag "avatar-default.png", class: "rounded-full", width: "50" %>
-        <% end %>
-        <!-- Dropdown Arrow Icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 ml-2">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-      <!-- Dropdown Menu -->
-      <div x-show="openDropdownAvatar" x-transition @click.away="openDropdownAvatar = false" class="absolute top-full mt-1 right-0 w-56 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 text-sm z-50">
-        <div class="py-1">
-          <%= link_to t("navbar_link_user_informations"), personal_information_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
-          <%= link_to t("navbar_link_subscription"), "#", class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
-          <%= link_to t("navbar_link_preferences"), "#", class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
-          <%= link_to t("navbar_link_logout"), destroy_user_session_path, data: { turbo_method: :delete }, class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
-        </div>
+<nav x-data="{ openDropdownAvatar: false }" class="relative flex justify-end">
+  <div class="relative">
+    <!-- Avatar Button with Dropdown Toggle -->
+    <button @click="openDropdownAvatar = !openDropdownAvatar" class="relative flex flex-col items-center text-black">
+      <!-- Avatar Image -->
+      <% if current_user.avatar.attached? %>
+        <%= cl_image_tag current_user.avatar.key, height: 50, width: 50, crop: :thumb, gravity: :face, radius: :max %>
+      <% else %>
+        <%= image_tag "avatar-default.png", class: "rounded-full", width: "50" %>
+      <% end %>
+      <!-- Dropdown Arrow Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 ml-2">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+    <!-- Dropdown Menu -->
+    <div x-show="openDropdownAvatar" x-transition x-cloak class="absolute top-full mt-1 right-0 w-56 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 text-sm z-50" style="display: none;">
+      <div class="py-1">
+        <%= link_to t("navbar_link_user_informations"), personal_information_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
+        <%= link_to t("navbar_link_subscription"), "#", class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
+        <%= link_to t("navbar_link_preferences"), "#", class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
+        <%= link_to t("navbar_link_logout"), destroy_user_session_path, data: { turbo_method: :delete }, class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
       </div>
     </div>
-  </nav>
-<% end %>
+  </div>
+</nav>

@@ -8,7 +8,7 @@ module NavbarHelper
       'text-customPink font-semibold transition duration-200'
     else
       # Default class if not active
-      'text-black hover:text-indigo-400 font-semibold transition duration-200'
+      'text-white hover:text-indigo-400 font-semibold transition duration-200'
     end
   end
 end

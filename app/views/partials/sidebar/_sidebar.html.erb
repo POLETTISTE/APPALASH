@@ -1,18 +1,19 @@
-<header class="flex flex-col bg-black text-white w-64 py-6 px-4">
+<header class="flex flex-col bg-black w-64 py-6 px-4">
   <!-- LOGO -->
-  <div class="mb-8">
+  <div class="mt-2 mb-8 flex justify-center">
     <%= link_to "/", class: "flex items-center text-white no-underline", locale: I18n.locale do %>
       <%= image_tag "/assets/appalash-logo-title.png", width: "100", role: "img", aria: { label: "logo" } %>
     <% end %>
   </div>
   <!-- NAV LINKS -->
   <nav class="space-y-4">
-    <%= link_to t("navbar_link_dashboard"), dashboard_index_path, class: "text-white block py-2 px-4 rounded hover:bg-gray-700 #{active_class("/dashboard")}" %>
-    <%= link_to t("navbar_link_clients"), clients_path, class: "text-white block py-2 px-4 rounded hover:bg-gray-700 #{active_class("/clients")}" %>
-    <%= link_to t("navbar_link_transactions"), transactions_path, class: "text-white block py-2 px-4 rounded hover:bg-gray-700 #{active_class("/transactions")}" %>
-    <%= link_to t("navbar_link_services"), services_path, class: "text-white block py-2 px-4 rounded hover:bg-gray-700 #{active_class("/services")}" %>
-    <% if current_user.website.present? %>
-      <%= link_to t("navbar_link_website"), user_profile_path(current_user.website), class: "text-white block py-2 px-4 rounded hover:bg-gray-700 #{active_class(user_profile_path(current_user.website))}" %>
+    <%= link_to t("navbar_link_dashboard"), dashboard_index_path, class: "block py-2 px-4 rounded hover:bg-gray-700 #{active_class("/dashboard")}" %>
+    <%= link_to t("navbar_link_clients"), clients_path, class: "block py-2 px-4 rounded hover:bg-gray-700 #{active_class("/clients")}" %>
+    <%= link_to t("navbar_link_transactions"), transactions_path, class: "block py-2 px-4 rounded hover:bg-gray-700 #{active_class("/transactions")}" %>
+    <%= link_to t("navbar_link_services"), services_path, class: "block py-2 px-4 rounded hover:bg-gray-700 #{active_class("/services")}" %>
+    <!-- Only show the 'Website' link if the user is logged in and has a website -->
+    <% if current_user && current_user.website.present? %>
+      <%= link_to t("navbar_link_website"), user_profile_path(current_user.website), class: "block py-2 px-4 rounded hover:bg-gray-700 #{active_class(user_profile_path(current_user.website))}" %>
     <% end %>
   </nav>
 </header>
