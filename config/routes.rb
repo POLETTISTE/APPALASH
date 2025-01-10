@@ -3,7 +3,7 @@
 require 'admin_constraint'
 
 Rails.application.routes.draw do
-  scope '(:locale)', locale: /en-US|fr|es|de|en/ do
+  scope '(:locale)', locale: /en-US|fr|fr-CA|es|de|en|pt|pt-BR/ do
     devise_for :users, controllers: {
       registrations: 'users/registrations'
     }

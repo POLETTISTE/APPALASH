@@ -12,8 +12,15 @@ module LashAppRails
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-    config.i18n.fallbacks = { 'en-US' => 'en' }
     config.i18n.default_locale = :en
+
+    # Enable locale fallbacks
+    config.i18n.fallbacks = { 'pt-BR' => 'pt', 'fr-CA' => 'fr' }
+
+    # Set a global fallback to `en` for all locales
+    config.i18n.fallbacks = true
+
+    # Set the default locale to English
 
     # Ensure the locales in subdirectories are loaded
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]

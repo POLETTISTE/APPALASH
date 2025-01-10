@@ -1,19 +1,24 @@
 <div class='p-4'>
-<% if policy(Transaction).create? %>
-  <%= link_to t("button.new", model: Transaction.model_name.human.downcase),
-              new_transaction_path,
-              class: "px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" %>
+  <% if policy(Transaction).create? %>
+    <%= link_to t("button.new", model: Transaction.model_name.human.downcase),
+                new_transaction_path,
+                class: "px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" %>
   <% end %>
 </div>
-
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
   <%= render 'list', transactions: @transactions, selected_transaction: nil %>
   <div class="flex items-center justify-center text-gray-500 border rounded-md p-4">
     Select a transaction to view details
   </div>
 </div>
-
 <div>
   <%= t('.total') %>
-  <p><%= '%.2f' % @transactions_total_price %></p>
+  <p>
+    <% 
+      total_price = '%.2f' % @transactions_total_price
+      currency = t('currency')
+      position = t('currency_position')
+    %>
+    <%= position == 'before' ? "#{currency}#{total_price}" : "#{total_price} #{currency}" %>
+  </p>
 </div>

@@ -1,0 +1,4 @@
+fr-CA:
+  currency: "$"
+  currency_position: "after"
+  welcome: "Bienvenue sur la page d'accueil tabernak"

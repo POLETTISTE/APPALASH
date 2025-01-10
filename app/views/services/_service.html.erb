@@ -1,21 +1,20 @@
 <%= link_to service_path(service), class: "block w-full max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do %>
-  <div >
+  <div>
     <% if current_user.admin? %>
       <p><%= service.user.email %></p>
     <% end %>
     <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-      <strong>
-        <%#= t('.name')%>
-        <%# : %>
-      </strong>
+      <strong><%#% t('.name') %> </strong>
       <%= service.name %>
     </p>
     <p class="font-normal text-gray-700 dark:text-gray-400">
-      <strong>
-        <%#= t('.price') %>
-        <%# : %>
-      </strong>
-      <%= "#{t('currency')}#{service.price}" %>
+      <strong><%#= t('.price') %> </strong>
+      <% 
+        price = '%.2f' % service.price 
+        currency = t('currency') 
+        position = t('currency_position') 
+      %>
+      <%= position == 'before' ? "#{currency}#{price}" : "#{price} #{currency}" %>
     </p>
   </div>
 <% end %>
