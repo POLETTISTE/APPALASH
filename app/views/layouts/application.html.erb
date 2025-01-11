@@ -26,18 +26,18 @@
       <% if user_signed_in? %>
         <%= render 'partials/sidebar/sidebar' %>
       <% end %>
-      <!-- Ensure section takes up the remaining space -->
-      <section class="flex flex-col flex-grow">
+      <section class="w-full">
         <% if user_signed_in? %>
           <%= render 'partials/navbar/navbar' %>
         <% end %>
         <%= yield %> <!-- This will render the page content -->
       </section>
+      <!-- Ensure section takes up the remaining space -->
     </main>
     <!-- Main content -->
     <!-- Flash messages -->
     <%= render "shared/flashes" %>
-    <!-- Footer -->
     <%= render 'partials/footer/footer' %>
+    <!-- Footer -->
   </body>
 </html>

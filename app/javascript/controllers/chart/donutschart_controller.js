@@ -53,6 +53,8 @@ export default class extends Controller {
         ],
       },
       options: {
+        responsive: true,
+
         // scales: {
         //   y: {
         //     type: "linear", // Ensure scale type is specified correctly
