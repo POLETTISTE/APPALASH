@@ -10,13 +10,9 @@ class DashboardController < ApplicationController
     authorize @clients
     authorize @services
     authorize @transactions
-    # authorize @users
 
-    if current_user.admin?
-      @non_admin_users = @users.reject(&:admin?)
-      @admin_users = @users.select(&:admin?)
-
-    end
+    @non_admin_users = @users.reject(&:admin?) if current_user.admin?
+    @admin_users = @users.select(&:admin?) if current_user.admin?
 
     @clients_group_by_name = @clients.group(:name).count
     @clients_how_do_you_know_us = @clients.group(:how_do_you_know_us).count

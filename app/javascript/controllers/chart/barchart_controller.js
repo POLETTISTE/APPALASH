@@ -3,35 +3,35 @@ import { Chart, registerables } from "chart.js";
 
 export default class extends Controller {
   static targets = ["myBarChart"];
-  data = {}; // Initialize data as an empty object
+  barChartData = {}; // Initialize barChartData as an empty object
 
-  async connect() {
-    await this.fetchData();
-    this.renderChart();
+  connect() {
+    try {
+      // Parse JSON data from the HTML data attribute
+      const clientCountsData = this.element.dataset.barchartClientCounts;
+      this.barChartData = JSON.parse(clientCountsData); // Use barChartData instead of data
+      this.renderBarChart();
+    } catch (error) {
+      console.error("Error parsing JSON data for BarChart:", error);
+    }
   }
 
-  async fetchData() {
-    const response = await fetch("/dashboard.json"); // Adjust URL based on your route
-    const jsonData = await response.json();
-    this.data = jsonData; // Update this.data with fetched data
-  }
-
-  renderChart() {
-    if (Object.keys(this.data).length === 0) {
-      // Handle case where data hasn't been fetched yet
+  renderBarChart() {
+    if (Object.keys(this.barChartData).length === 0) {
+      // Handle case where barChartData hasn't been initialized
       return;
     }
 
-    Chart.register(...registerables); // Register all necessary components including scales
+    Chart.register(...registerables); // Register all necessary components
 
     new Chart(this.myBarChartTarget.getContext("2d"), {
       type: "bar",
       data: {
-        labels: Object.keys(this.data.client_counts), // Assuming names are labels
+        labels: Object.keys(this.barChartData), // Assuming names are labels
         datasets: [
           {
-            label: [],
-            data: Object.values(this.data.client_counts),
+            label: "Clients",
+            data: Object.values(this.barChartData),
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
@@ -54,20 +54,17 @@ export default class extends Controller {
       },
       options: {
         responsive: true,
-
         scales: {
           y: {
-            type: "linear", // Ensure scale type is specified correctly
             beginAtZero: true,
           },
           x: {
-            type: "category", // Assuming categorical x-axis
+            type: "category",
           },
         },
         plugins: {
           legend: {
-            display: false, // Hide the legend
-            onClick: null, //stop click legend
+            // display: true,
           },
         },
       },
