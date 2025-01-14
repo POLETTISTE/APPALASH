@@ -89,7 +89,7 @@ export default class extends Controller {
         ],
       },
       options: {
-        // responsive: true,
+        responsive: false,
         plugins: {
           legend: {
             display: false, // Hide legend for this chart

@@ -53,7 +53,7 @@ export default class extends Controller {
         ],
       },
       options: {
-        responsive: true,
+        responsive: false,
         scales: {
           y: {
             beginAtZero: true,
