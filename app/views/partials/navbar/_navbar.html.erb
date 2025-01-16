@@ -1,4 +1,4 @@
-<nav x-data="{ openDropdownAvatar: false }" class="relative flex justify-end">
+<nav x-data="{ openDropdownAvatar: false }" class="relative flex justify-end m-2 pr-8">
   <div class="relative">
     <!-- Avatar Button with Dropdown Toggle -->
     <button @click="openDropdownAvatar = !openDropdownAvatar" class="relative flex flex-col items-center text-black">
@@ -9,7 +9,7 @@
         <%= image_tag "avatar-default.png", class: "rounded-full", width: "50" %>
       <% end %>
       <!-- Dropdown Arrow Icon -->
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5 ml-2">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
       </svg>
     </button>
