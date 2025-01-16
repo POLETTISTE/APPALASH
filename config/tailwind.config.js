@@ -11,10 +11,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // create personnal colors to use then like "bg-pink"
       colors: {
-        customPink: "#FF64A5",
         customBlue: "#C0FFD4",
+        customPink: "#FF64A1",
+        customGreen: "#00FFB0",
       },
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],

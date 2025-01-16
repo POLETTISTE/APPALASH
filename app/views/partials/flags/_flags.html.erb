@@ -9,7 +9,7 @@
     </svg>
   </button>
   <!-- Dropdown Menu -->
-  <div x-show="open" x-cloak class="absolute left-0 mt-2 w-32 bg-white rounded shadow-lg border border-gray-200 z-10" style="display: none;">
+  <div x-show="open" x-cloak class="absolute left-0 mt-2 w-32 bg-white rounded shadow-lg border border-gray-200" style="display: none;">
     <ul class="text-sm text-gray-700">
       <% locales = { 'en' => '🇬🇧', 'en-US' => '🇺🇸', 'fr-CA' => 'flags/quebec.png', 'fr' => '🇫🇷', 'es' => '🇪🇸', 'de' => '🇩🇪', 'pt' => '🇵🇹', 'pt-BR' => '🇧🇷' } %>
       <% locales.each do |locale, flag| %>

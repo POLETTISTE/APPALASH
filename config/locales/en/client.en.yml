@@ -1,0 +1,153 @@
+en:
+  # page clients/form/options
+  client_options:
+    how_do_you_know_us_options:
+      google: "Google"
+      planity: "Planity"
+      social_networks: "Social Networks"
+      friend: "Friend / Family"
+      other: "Other"
+    lash_desired_effect_options:
+      light: "Light"
+      intermediate: "Intermediate"
+      intense: "Intense"
+    lash_face_diagnostic_options:
+      round: "Round"
+      square: "Square"
+      oval: "Oval"
+    lash_asymmetry_diagnostic_options:
+      almond: "Almond"
+      round: "Round"
+    lash_eyelid_morphology_diagnostic_options:
+      large: "Large"
+      small: "Small"
+      droopy: "Droopy"
+    lash_alignment_morphology_diagnostic_options:
+      descending: "Descending"
+      aligned: "Aligned"
+      ascending: "Ascending"
+    lash_proportion_morphology_diagnostic_options:
+      close: "Close"
+      equal: "Equal"
+      wide: "Wide"
+    lash_density_options:
+      high: "High"
+      medium: "Medium"
+      low: "Low"
+    lash_style_options:
+      natural: "Natural"
+      squirrel: "Squirrel"
+      dolly: "Dolly"
+      cat_eye: "Cat Eye"
+    lash_extensions_brand_options:
+      london_lash: "London Lash"
+      une_pause_poudree: "Une Pause Poudrée"
+      lexcellence: "L'excellence"
+    lash_extensions_curvature_options:
+      c: "C"
+      cc: "CC"
+      d: "D"
+      l: "L"
+    lash_extensions_glue_options:
+      no_constraint: "No Constraint"
+      lady_bond: "Lady Bond"
+      lexcellence: "L'excellence"
+
+  #  controller create/update/delete html
+  clients:
+    create:
+      success: "Creation successful for %{firstname} %{name}"
+      error: "There was an error creating the client."
+    update:
+      success: "Update successful for %{firstname} %{name}"
+      error: "There was an error updating the client."
+      not_found: "client not found"
+
+    #clients/edit.html.erb
+    edit:
+      title: "Edit client"
+
+    #clients/show.html.erb
+    show:
+      not_found: "client not found"
+      delete: "Are you sure you want to delete %{instance_firstname} %{instance_name} ?"
+
+    destroy:
+      success: "Delete successful for %{firstname} %{name}"
+      error: "There was an error deleting the client."
+      not_found: "client not found"
+
+    #clients/index.html.erb
+    index:
+      title: "List of clients"
+      search: "Search..."
+      placeholder: "Search by name / firstname / email / phone"
+
+    #clients/_index_list.html.erb
+    index_list:
+      list_with_query_html:
+        zero: "%{count} result found for <code class='text-red-500'><strong>'%{query}'</strong></code>"
+        one: "%{count} result found for <code class='bg-customGreen'><strong>'%{query}'</strong></code>"
+        other: "%{count} results found for <code class='bg-customBlue'><strong>'%{query}'</strong></code>"
+
+    #clients/_client_general_informations.html.erb
+    client_general_informations:
+      name: "name"
+      firstname: "firstname"
+      email: "email"
+      phone: "phone"
+      address: "address"
+      zip_code: "zip code"
+      city: "city"
+      country: "country"
+      birthdate: "birthdate"
+      how_do_you_know_us: "how did you know us?"
+      notes: "notes"
+
+    #clients/_client_lash.html.erb
+    client_lash:
+      lash_information: "Lash information"
+      no_lash_information: " lash information"
+      lash_desired_effect: "lash desired effect"
+      lash_face_diagnostic: "lash face diagnostic"
+      lash_asymmetry_diagnostic: "lash asymmetry diagnostic"
+      lash_eyelid_morphology_diagnostic: "lash eyelid morphology diagnostic"
+      lash_alignment_morphology_diagnostic: "lash alignment morphology diagnostic"
+      lash_proportion_morphology_diagnostic: "lash proportion morphology diagnostic"
+      lash_thickness_diagnostic: "lash thickness diagnostic"
+      lash_length_diagnostic: "lash length diagnostic"
+      lash_curvature_diagnostic: "lash curvature diagnostic"
+      lash_style: "lash style"
+      lash_notes: "lash notes"
+      lash_mapping: "lash mapping"
+      lash_event: "lash event"
+      lash_texture: "lash texture"
+      lash_density: "lash density"
+
+    #clients/_client_extension.html.erb
+    client_extension:
+      lash_extension_info: "lash extensions informations"
+      lash_extension_brand: "lash extensions brand"
+      lash_extension_curvature: "lash extensions curvature"
+      lash_extension_thickness: "lash extensions thickness"
+      lash_extension_glue: "lash extensions glue"
+      lash_extension_pretreatment_superbonder: "lash extensions pretreatment superbonder"
+      lash_extension_pretreatment_booster: "lash extensions pretreatment booster"
+      no_lash_extension_information: "no lash extension information"
+
+    #clients/_client_health.html.erb
+    client_health:
+      health_info: "health infos"
+      health_diabetes: "health diabetes"
+      health_pregnancy: "health pregnancy"
+      health_dry_eyes: "health dry eyes"
+      health_teary_eyes: "health teary eyes"
+      health_allergy: "health allergy"
+      health_contact_lenses: "health contact lenses"
+      health_surgery: "health surgery"
+      health_chemotherapy: "health chemotherapy"
+      health_eyes_allergy: "health eyes allergy"
+      health_itch: "health itch"
+      health_first_application: "health first application"
+      health_lie_down: "health lie down"
+      health_notes: "health notes"

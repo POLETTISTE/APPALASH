@@ -12,7 +12,7 @@
     <%= link_to t("navbar_link_services"), services_path, class: "block py-2 px-4 rounded #{active_class("/services")}" %>
     <!-- Only show the 'Website' link if the user is logged in and has a website -->
     <% if current_user && current_user.website.present? %>
-      <%= link_to t("navbar_link_website"), user_profile_path(current_user.website), class: "block py-2 px-4 rounded #{active_class(user_profile_path(current_user.website))}" %>
+      <%= link_to t("navbar_link_website"), user_profile_path(current_user.website), class: "block py-2 px-4 rounded #{active_class("/home")}" %>
     <% end %>
     <%= link_to t("navbar_link_dashboard"), dashboard_index_path, class: "block py-2 px-4 rounded #{active_class("/dashboard")}" %>
   </nav>

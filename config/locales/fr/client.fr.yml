@@ -1,4 +1,4 @@
-en:
+fr:
   # page clients/form/options
   client_options:
     how_do_you_know_us_options:
@@ -86,9 +86,9 @@ en:
     #clients/_index_list.html.erb
     index_list:
       list_with_query_html:
-        zero: "%{count} result found for <code><strong>'%{query}'</strong></code>"
-        one: "%{count} result found for <code><strong>'%{query}'</strong></code>"
-        other: "%{count} results found for <code><strong>'%{query}'</strong></code>"
+        zero: "%{count} résultat trouvé <code class='text-red-500'><strong>'%{query}'</strong></code>"
+        one: "%{count} résultat trouvé <code class='bg-customGreen'><strong>'%{query}'</strong></code>"
+        other: "%{count} résultats trouvés for <code class='bg-customBlue'><strong>'%{query}'</strong></code>"
 
     #clients/_client_general_informations.html.erb
     client_general_informations:

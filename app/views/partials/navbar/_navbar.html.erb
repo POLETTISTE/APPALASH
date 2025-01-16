@@ -1,4 +1,4 @@
-<nav x-data="{ openDropdownAvatar: false }" class="sticky bg-white top-0 w-full flex justify-end pr-8 z-50">
+<nav x-data="{ openDropdownAvatar: false }" class="sticky bg-white top-0 w-full flex justify-end pr-8 z-10">
   <div class="relative">
     <!-- Avatar Button with Dropdown Toggle -->
     <button @click="openDropdownAvatar = !openDropdownAvatar" class="relative flex flex-col items-center text-black">
@@ -14,7 +14,7 @@
       </svg>
     </button>
     <!-- Dropdown Menu -->
-    <div x-show="openDropdownAvatar" x-transition x-cloak class="absolute top-full mt-1 right-0 w-56 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 text-sm z-50" style="display: none;">
+    <div x-show="openDropdownAvatar" x-transition x-cloak class="absolute top-full mt-1 right-0 w-56 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 text-sm z-1" style="display: none;">
       <div class="py-1">
         <%= link_to t("navbar_link_user_informations"), personal_information_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
         <%= link_to t("navbar_link_subscription"), "#", class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>

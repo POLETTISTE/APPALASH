@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <!-- Preload Tailwind and Inter Font CSS files with appropriate 'as' attributes -->
+    <!-- Preload Tailwind and Inter Font CSS files -->
     <link rel="preload" href="<%= asset_path('tailwind.css') %>" as="style">
     <link rel="preload" href="<%= asset_path('inter-font.css') %>" as="style">
-    <!-- Link to local stylesheets (after preload) -->
-    <%= stylesheet_link_tag "tailwind", "inter-font", media: 'all', "data-turbolinks-track": "reload" %>
+    <!-- Link to local stylesheets (one tag, corrected) -->
+    <%= stylesheet_link_tag "tailwind", "inter-font", media: 'all', "data-turbo-track": "reload" %>
     <!-- Link to external stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -32,12 +32,10 @@
         <% end %>
         <%= yield %> <!-- This will render the page content -->
       </section>
-      <!-- Ensure section takes up the remaining space -->
     </main>
-    <!-- Main content -->
     <!-- Flash messages -->
     <%= render "shared/flashes" %>
-    <%= render 'partials/footer/footer' %>
     <!-- Footer -->
+    <%= render 'partials/footer/footer' %>
   </body>
 </html>
