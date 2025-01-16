@@ -3,7 +3,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i[edit_website update_website]
   after_action :verify_authorized, only: %i[edit_website update_website]
-  layout 'website', only: [:show_website]
+  layout 'website', only: [:publish_website]
 
   def index_personal_information
     # Eager-load the avatar attachment and blob for each user
@@ -54,6 +54,10 @@ class UsersController < ApplicationController
     else
       render :edit_website, notice: 'There was an error updating your profile.'
     end
+  end
+
+  def publish_website
+
   end
 
   private

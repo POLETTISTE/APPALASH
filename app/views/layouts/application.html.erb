@@ -18,7 +18,7 @@
     <link rel="shortcut icon" type="image/png" href="/assets/logo.png">
     <%= javascript_importmap_tags %>
   </head>
-  <body>
+  <body class="overscroll-none w-full">
     <% if !current_user %>
       <%= render 'partials/flags/flags' %>
     <% end %>
