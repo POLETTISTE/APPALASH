@@ -46,9 +46,9 @@ if Guest.count == 0
 
     # Attach a fake photo (using a random image service like Lorem Picsum)
     guest.photo.attach(
-      io: URI.open("https://picsum.photos/200/200?random=#{i}"),  # URL for random image (200x200)
-      filename: "profile_#{i}.jpg",  # Set filename for the photo
-      content_type: "image/jpg"  # Set content type
+      io: URI.open("https://randomuser.me/api/portraits/women/#{i + 1}.jpg"),  # Dynamic portrait image for each guest
+      filename: "profile_#{i + 1}.jpg",  # Set filename for the photo
+      content_type: "image/jpg"  # Set content type Set content typeet content type
     )
 
     p "Guest #{i + 1} created with a fake photo."

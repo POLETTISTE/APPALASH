@@ -18,20 +18,18 @@
     <link rel="shortcut icon" type="image/png" href="/assets/logo.png">
     <%= javascript_importmap_tags %>
   </head>
-  <body class="overscroll-none w-full">
+  <body>
     <% if !current_user %>
       <%= render 'partials/flags/flags' %>
     <% end %>
-    <main class="flex">
+    <% if user_signed_in? %>
+      <%= render 'partials/navbar/navbar' %>
+    <% end %>
+    <main>
       <% if user_signed_in? %>
         <%= render 'partials/sidebar/sidebar' %>
       <% end %>
-      <section class="w-full">
-        <% if user_signed_in? %>
-          <%= render 'partials/navbar/navbar' %>
-        <% end %>
-        <%= yield %> <!-- This will render the page content -->
-      </section>
+      <%= yield %> <!-- This will render the page content -->
     </main>
     <!-- Flash messages -->
     <%= render "shared/flashes" %>

@@ -1,33 +1,27 @@
-<header class="flex flex-col bg-white w-80 py-6 px-4 h-screen">
-  <!-- LOGO -->
-  <div class="flex justify-center items-center sticky top-6">
-    <%= link_to "/#{I18n.locale}", class: "text-black hover:text-customPink font-semibold" do %>
-      <%= image_tag "/assets/appalash-logo-title.png", width: "100", role: "img", aria: { label: "logo" } %>
-    <% end %>
-  </div>
-  <!-- NAV LINKS -->
-  <nav class="flex flex-col space-y-4 sticky top-32">
-    <%= link_to guests_path, class: "block py-2 px-4 rounded #{active_class('/guests')} flex justify-start items-center w-100" do %>
-      <!-- Inline SVG of Lash with mr-2 class for spacing -->
+<header>
+  <%= link_to "/#{I18n.locale}", class: "text-black hover:text-customPink font-semibold" do %>
+    <%= image_tag "/assets/appalash-logo-title.png", width: "100", role: "img", aria: { label: "logo" } %>
+  <% end %>
+  <nav class="flex flex-col space-y-4 ">
+    <%= link_to guests_path, class: "py-2 px-4 rounded #{active_class('/guests')} flex justify-start items-center" do %>
       <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'guest.svg')).gsub('<svg', '<svg class="mr-2 w-8 h-8"')) %>
       <%= t("navbar_link_guests") %>
     <% end %>
-    <%= link_to services_path, class: "block py-2 px-4 rounded #{active_class('/services')} flex justify-start items-center w-100" do %>
-      <!-- Inline SVG of Lash with mr-2 class for spacing -->
+    <%= link_to services_path, class: "py-2 px-4 rounded #{active_class('/services')} flex justify-start items-center w-100" do %>
       <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'lash.svg')).gsub('<svg', '<svg class="mr-2 w-8 h-8"')) %>
       <%= t("navbar_link_services") %>
     <% end %>
-    <%= link_to transactions_path, class: "block py-2 px-4 rounded #{active_class('/transactions')} flex justify-start items-center w-100" do %>
+    <%= link_to transactions_path, class: "py-2 px-4 rounded #{active_class('/transactions')} flex justify-start items-center w-100" do %>
       <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'transaction.svg')).gsub('<svg', '<svg class="mr-2 w-8 h-8"')) %>
       <%= t("navbar_link_transactions") %>
     <% end %>
     <% if current_user && current_user.website.present? %>
-      <%= link_to user_profile_path(current_user.website), class: "block py-2 px-4 rounded #{active_class('/home')} flex justify-start items-center w-100" do %>
+      <%= link_to user_profile_path(current_user.website), class: "py-2 px-4 rounded #{active_class('/home')} flex justify-start items-center w-100" do %>
         <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'website.svg')).gsub('<svg', '<svg class="mr-2 w-8 h-8"')) %>
         <%= t("navbar_link_website") %>
       <% end %>
     <% end %>
-    <%= link_to dashboard_index_path, class: "block py-2 px-4 rounded #{active_class('/dashboard')} flex justify-start items-center w-100" do %>
+    <%= link_to dashboard_index_path, class: "py-2 px-4 rounded #{active_class('/dashboard')} flex justify-start items-center w-100" do %>
       <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'dashboard.svg')).gsub('<svg', '<svg class="mr-2 w-8 h-8"')) %>
       <%= t("navbar_link_dashboard") %>
     <% end %>

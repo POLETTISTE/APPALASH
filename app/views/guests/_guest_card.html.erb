@@ -1,7 +1,7 @@
-<%= link_to guest_path(guest), class: "guest-card-link" do %>
-  <div class="shadow-md rounded-lg overflow-hidden flex flex-auto ml-10 mr-10 mb-2 items-center cursor-pointer hover:shadow-lg h-12">
+<%= link_to guest_path(guest), class: "guest-card-link " do %>
+  <div class="shadow-md rounded-lg overflow-hidden flex flex-auto ml-10 mr-10 mb-5 items-center cursor-pointer hover:shadow-lg h-12">
     <!-- Div containing the image, taking full height and width of the parent -->
-    <div class="w-[130px] w-[60px] flex justify-center items-center">
+    <div class="w-[130px] w-[60px]  flex justify-center items-center">
       <% if guest.photo.attached? %>
         <%= cl_image_tag guest.photo.key, gravity: "face", height: 200, width: 200, crop: "thumb" %>
       <% else %>
@@ -10,7 +10,7 @@
       <% end %>
     </div>
     <!-- guest info -->
-    <div class="bg-blue-500 px-4 py-6 w-full flex items-center h-full">
+    <div class="bg-customBlue px-4 py-6 w-full flex items-center h-full hover:opacity-90">
       <div class="text-sm font-semibold text-gray-900 truncate">
         <% if current_user.admin? %>
           <p><%= "User is :#{guest.user.name} #{guest.user.firstname}" %></p>
