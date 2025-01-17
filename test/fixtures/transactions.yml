@@ -2,12 +2,12 @@
 
 one:
   date: 2024-06-20
-  client: one
-  prestations: 
+  guest: one
+  prestations:
   total_price: 1
 
 two:
   date: 2024-06-20
-  client: two
-  prestations: 
+  guest: two
+  prestations:
   total_price: 1

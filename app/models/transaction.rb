@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Transaction < ApplicationRecord
-  belongs_to :client
+  belongs_to :guest
   belongs_to :user
-  validates :client_id, presence: true
+  validates :guest_id, presence: true
 
   # serialize :prestations, Array
 

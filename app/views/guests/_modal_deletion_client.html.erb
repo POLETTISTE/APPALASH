@@ -1,6 +1,6 @@
- <!-- Modal to Delete User or Client -->
+ <!-- Modal to Delete User or guest -->
 <div x-data="{ openModal: false }">
-  <button @click="openModal = true" class="bg-red-500 text-white py-2 px-4 rounded">Delete Client</button>
+  <button @click="openModal = true" class="bg-red-500 text-white py-2 px-4 rounded">Delete guest</button>
   <!-- Modal Content -->
   <div x-show="openModal" x-transition:enter="transition ease-out duration-300"
        x-transition:enter-start="opacity-0 transform scale-90"
@@ -22,12 +22,12 @@
       </div>
       <!-- Modal Body -->
       <div class="px-4 py-3">
-        <p>Are you sure you want to delete this client?</p>
+        <p>Are you sure you want to delete this guest?</p>
       </div>
       <!-- Modal Footer (Confirm / Cancel Buttons) -->
       <div class="px-4 py-3 bg-gray-100 border-t flex justify-end space-x-2">
         <button @click="openModal = false" class="bg-gray-500 text-white py-2 px-4 rounded">Cancel</button>
-        <%= button_to "Confirm Delete", @client, method: :delete, class: "bg-red-500 text-white py-2 px-4 rounded", remote: true %>
+        <%= button_to "Confirm Delete", @guest, method: :delete, class: "bg-red-500 text-white py-2 px-4 rounded", remote: true %>
       </div>
     </div>
   </div>

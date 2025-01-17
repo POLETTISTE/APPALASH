@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  client: one
+  guest: one
   desired_effect: MyString
   face_diagnostic: MyString
   asymmetry_diagnostic: MyString
@@ -19,7 +19,7 @@ one:
   density: MyString
 
 two:
-  client: two
+  guest: two
   desired_effect: MyString
   face_diagnostic: MyString
   asymmetry_diagnostic: MyString

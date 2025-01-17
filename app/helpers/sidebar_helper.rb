@@ -3,8 +3,8 @@
 module SidebarHelper
   def active_class(link_path)
     # Check if the current request path is the root path ("/") or the locale-prefixed root ("/en")
-    if link_path == '/clients' && (request.path == '/' || request.path == "/#{I18n.locale}")
-      # If we are on the root path ("/" or "/en"), apply the active class to "/clients"
+    if link_path == '/guests' && (request.path == '/' || request.path == "/#{I18n.locale}")
+      # If we are on the root path ("/" or "/en"), apply the active class to "/guests"
       return 'text-customPink bg-customPink bg-opacity-20 font-semibold border-l-8 border-customPink transition duration-200 text-lg'
     end
 

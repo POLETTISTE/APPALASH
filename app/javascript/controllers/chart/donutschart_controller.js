@@ -8,7 +8,7 @@ export default class extends Controller {
   connect() {
     try {
       // Parse JSON data from the dataset
-      const howDoYouKnowUsData = this.element.dataset.donutschartClientCounts;
+      const howDoYouKnowUsData = this.element.dataset.donutschartGuestCounts;
       this.chartData = JSON.parse(howDoYouKnowUsData); // Safely parse JSON
       console.log("Parsed donut chart data:", this.chartData); // Debug log
 

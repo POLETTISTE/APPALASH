@@ -1,57 +1,57 @@
-<div id="client_health">
-  <% if @client.health %>
+<div id="guest_health">
+  <% if @guest.health %>
     <h3><%= t(".health_info") %></h3>
     <p>
       <strong><%= t(".health_diabetes") %></strong>
-      <%= @client.health.diabetes %>
+      <%= @guest.health.diabetes %>
     </p>
     <p>
       <strong><%= t(".health_pregnancy") %></strong>
-      <%= @client.health.pregnancy %>
+      <%= @guest.health.pregnancy %>
     </p>
     <p>
       <strong><%= t(".health_dry_eyes") %></strong>
-      <%= @client.health.dry_eyes %>
+      <%= @guest.health.dry_eyes %>
     </p>
     <p>
       <strong><%= t(".health_teary_eyes") %></strong>
-      <%= @client.health.teary_eyes %>
+      <%= @guest.health.teary_eyes %>
     </p>
     <p>
       <strong><%= t(".health_allergy") %></strong>
-      <%= @client.health.allergy %>
+      <%= @guest.health.allergy %>
     </p>
     <p>
       <strong><%= t(".health_contact_lenses") %></strong>
-      <%= @client.health.contact_lenses %>
+      <%= @guest.health.contact_lenses %>
     </p>
     <p>
       <strong><%= t(".health_surgery") %></strong>
-      <%= @client.health.surgery %>
+      <%= @guest.health.surgery %>
     </p>
     <p>
       <strong><%= t(".health_chemotherapy") %></strong>
-      <%= @client.health.chemotherapy %>
+      <%= @guest.health.chemotherapy %>
     </p>
     <p>
       <strong><%= t(".health_eyes_allergy") %></strong>
-      <%= @client.health.eyes_allergy %>
+      <%= @guest.health.eyes_allergy %>
     </p>
     <p>
       <strong><%= t(".health_itch") %></strong>
-      <%= @client.health.itch %>
+      <%= @guest.health.itch %>
     </p>
     <p>
       <strong><%= t(".health_first_application") %></strong>
-      <%= @client.health.first_application %>
+      <%= @guest.health.first_application %>
     </p>
     <p>
       <strong><%= t(".health_lie_down") %></strong>
-      <%= @client.health.lie_down %>
+      <%= @guest.health.lie_down %>
     </p>
     <p>
       <strong><%= t(".health_notes") %></strong>
-      <%= @client.health.notes %>
+      <%= @guest.health.notes %>
     </p>
   <% else %>
     <p><em><%= t(".no_health_information") %></em></p>

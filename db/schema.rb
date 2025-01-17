@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_18_181510) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_17_145922) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -43,7 +43,17 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_18_181510) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "clients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "extensions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "brand"
+    t.text "curvature"
+    t.integer "thickness"
+    t.text "glue"
+    t.uuid "guest_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "guests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "firstname"
     t.string "email"
@@ -61,17 +71,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_18_181510) do
     t.string "lash_attributes"
     t.string "extension_attributes"
     t.string "health_attributes"
-    t.index ["user_id"], name: "index_clients_on_user_id"
-  end
-
-  create_table "extensions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.text "brand"
-    t.text "curvature"
-    t.integer "thickness"
-    t.text "glue"
-    t.uuid "client_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_guests_on_user_id"
   end
 
   create_table "healths", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -88,13 +88,13 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_18_181510) do
     t.boolean "first_application"
     t.boolean "lie_down"
     t.text "notes"
-    t.uuid "client_id"
+    t.uuid "guest_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "lashes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "client_id"
+    t.uuid "guest_id"
     t.string "desired_effect"
     t.string "face_diagnostic"
     t.string "asymmetry_diagnostic"
@@ -125,7 +125,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_18_181510) do
 
   create_table "transactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.date "date"
-    t.uuid "client_id"
+    t.uuid "guest_id"
     t.json "services", default: []
     t.float "total_price"
     t.datetime "created_at", null: false
@@ -158,7 +158,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_18_181510) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "clients", "users"
+  add_foreign_key "guests", "users"
   add_foreign_key "services", "users"
   add_foreign_key "transactions", "users"
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ClientPolicy < ApplicationPolicy
+class GuestPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       user.admin? ? scope.all : scope.where(user:)

@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class ClientPolicyTest < ActiveSupport::TestCase
+class GuestPolicyTest < ActiveSupport::TestCase
   def test_scope; end
 
   def test_show; end

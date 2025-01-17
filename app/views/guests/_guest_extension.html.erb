@@ -1,21 +1,21 @@
-<div id="client_extension">
-  <% if @client.extension %>
+<div id="guest_extension">
+  <% if @guest.extension %>
     <h3> <strong><%= t(".lash_extension_info") %></strong></h3>
     <p>
       <strong><%= t(".lash_extension_brand") %></strong>
-      <%= @client.extension.brand %>
+      <%= @guest.extension.brand %>
     </p>
     <p>
       <strong><%= t(".lash_extension_curvature") %></strong>
-      <%= @client.extension.curvature %>
+      <%= @guest.extension.curvature %>
     </p>
     <p>
       <strong><%= t(".lash_extension_thickness") %></strong>
-      <%= @client.extension.thickness %>
+      <%= @guest.extension.thickness %>
     </p>
     <p>
       <strong><%= t(".lash_extension_glue") %></strong>
-      <%= @client.extension.glue %>
+      <%= @guest.extension.glue %>
     </p>
   </div>
 <% else %>

@@ -1,4 +1,4 @@
-// app/javascript/controllers/search_clients_controller.js
+// app/javascript/controllers/search_guests_controller.js
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {

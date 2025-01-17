@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class ClientTest < ActiveSupport::TestCase
+class GuestTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

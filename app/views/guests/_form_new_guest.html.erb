@@ -1,46 +1,46 @@
-<%= form_for @client, html: { data: { controller: "photo-preview" }, class: "space-y-6" } do |form| %>
+<%= form_for @guest, html: { data: { controller: "photo-preview" }, class: "space-y-6" } do |form| %>
   <!-- Photo Preview -->
   <%= image_tag "", width: 300, class: "hidden", data: { photo_preview_target: "preview" } %>
   <!-- Photo Input -->
   <div class="space-y-2">
-    <%= form.label :photo, t("form.labels.client.photo"), class: 'text-lg font-medium text-gray-700' %>
+    <%= form.label :photo, t("form.labels.guest.photo"), class: 'text-lg font-medium text-gray-700' %>
     <%= form.file_field :photo, accept: 'image/jpeg, image/png', class: 'hidden', data: { photo_preview_target: "input", action: "change->photo-preview#displayPreview" } %>
   </div>
-  <!-- Client Information -->
+  <!-- guest Information -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <%= form.label :name, t('form.labels.client.name'), class: 'text-lg font-medium text-gray-700' %>
+    <%= form.label :name, t('form.labels.guest.name'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :name, required: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
-    <%= form.label :firstname, t('form.labels.client.firstname'), class: 'text-lg font-medium text-gray-700' %>
+    <%= form.label :firstname, t('form.labels.guest.firstname'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :firstname, required: true, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <%= form.label :email, t('form.labels.client.email'), class: 'text-lg font-medium text-gray-700' %>
+    <%= form.label :email, t('form.labels.guest.email'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.email_field :email, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
-    <%= form.label :phone, t('form.labels.client.phone'), class: 'text-lg font-medium text-gray-700' %>
+    <%= form.label :phone, t('form.labels.guest.phone'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.telephone_field :phone, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <%= form.label :address, t('form.labels.client.address'), class: 'text-lg font-medium text-gray-700' %>
+    <%= form.label :address, t('form.labels.guest.address'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :address, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
-    <%= form.label :zip_code, t('form.labels.client.zip_code'), class: 'text-lg font-medium text-gray-700' %>
+    <%= form.label :zip_code, t('form.labels.guest.zip_code'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :zip_code, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <%= form.label :city, t('form.labels.client.city'), class: 'text-lg font-medium text-gray-700' %>
+    <%= form.label :city, t('form.labels.guest.city'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :city, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
-    <%= form.label :country, t('form.labels.client.country'), class: 'text-lg font-medium text-gray-700' %>
+    <%= form.label :country, t('form.labels.guest.country'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :country, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
   <div class="space-y-2">
-    <%= form.label :birthdate, t('form.labels.client.birthdate'), class: 'text-lg font-medium text-gray-700' %>
+    <%= form.label :birthdate, t('form.labels.guest.birthdate'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_field :birthdate, data: { controller: "datepicker" }, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
   <div class="space-y-2">
-    <%= form.label :how_do_you_know_us, t('form.labels.client.how_do_you_know_us'), class: 'text-lg font-medium text-gray-700' %>
+    <%= form.label :how_do_you_know_us, t('form.labels.guest.how_do_you_know_us'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.select :how_do_you_know_us, how_do_you_know_us_options, {}, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
   <div class="space-y-2">
-    <%= form.label :notes, t('form.labels.client.notes'), class: 'text-lg font-medium text-gray-700' %>
+    <%= form.label :notes, t('form.labels.guest.notes'), class: 'text-lg font-medium text-gray-700' %>
     <%= form.text_area :notes, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
   </div>
   <!-- Lash Fields -->

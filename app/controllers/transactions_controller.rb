@@ -5,17 +5,17 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    @clients = policy_scope(Client).order('UPPER(name)')
+    @guests = policy_scope(Guest).order('UPPER(name)')
     @services = policy_scope(Service)
     @transactions = policy_scope(Transaction)
-    authorize @clients
+    authorize @guests
     authorize @transaction
     authorize @services
 
     return unless params[:query].present?
 
-    search_results = Client.search_by_general_informations(params[:query])
-    @clients = current_user.admin? ? search_results : search_results.where(user: current_user)
+    search_results = Guest.search_by_general_informations(params[:query])
+    @guests = current_user.admin? ? search_results : search_results.where(user: current_user)
   end
 
   def create
@@ -25,8 +25,8 @@ class TransactionsController < ApplicationController
     @transactions = policy_scope(Transaction)
 
     if @transaction.save
-      alert_message = t('transactions.create.success', firstname: @transaction.client.firstname,
-                                                       name: @transaction.client.name)
+      alert_message = t('transactions.create.success', firstname: @transaction.guest.firstname,
+                                                       name: @transaction.guest.name)
 
       respond_to do |format|
         format.html { redirect_to transactions_url, alert: alert_message }
@@ -43,7 +43,7 @@ class TransactionsController < ApplicationController
   end
 
   def index
-    @clients = policy_scope(Client).includes(photo_attachment: :blob).order('UPPER(name)')
+    @guests = policy_scope(Guest).includes(photo_attachment: :blob).order('UPPER(name)')
     @transactions = policy_scope(Transaction).order(date: :desc, created_at: :desc).all
     @transactions_total_price = @transactions.sum(:total_price)
     authorize @transactions
@@ -64,8 +64,8 @@ class TransactionsController < ApplicationController
 
   def destroy
     if @transaction.destroy
-      alert_message = t('transactions.destroy.success', firstname: @transaction.client.firstname,
-                                                        name: @transaction.client.name)
+      alert_message = t('transactions.destroy.success', firstname: @transaction.guest.firstname,
+                                                        name: @transaction.guest.name)
 
       respond_to do |format|
         format.html { redirect_to transactions_url, alert: alert_message }
@@ -93,6 +93,6 @@ class TransactionsController < ApplicationController
   end
 
   def transaction_params
-    params.require(:transaction).permit(:date, :client_id, services: %i[name price])
+    params.require(:transaction).permit(:date, :guest_id, services: %i[name price])
   end
 end

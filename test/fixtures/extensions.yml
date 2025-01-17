@@ -5,11 +5,11 @@ one:
   lash_extensions_curvature: MyText
   lash_extensions_thickness: 1
   lash_extensions_glue: MyText
-  client: one
+  guest: one
 
 two:
   lash_extensions_brand: MyText
   lash_extensions_curvature: MyText
   lash_extensions_thickness: 1
   lash_extensions_glue: MyText
-  client: two
+  guest: two

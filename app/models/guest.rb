@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Client < ApplicationRecord
+class Guest < ApplicationRecord
   belongs_to :user
   has_one_attached :photo
   has_many :transactions, dependent: :destroy
@@ -20,10 +20,10 @@ class Client < ApplicationRecord
 
   def as_json(options = {})
     super(options.merge(except: %i[lash_attributes extension_attributes health_attributes],
-                        include: { lash: { only: Lash.attribute_names - %w[id client_id created_at updated_at] },
-                                   extension: { only: Extension.attribute_names - %w[id client_id created_at
+                        include: { lash: { only: Lash.attribute_names - %w[id guest_id created_at updated_at] },
+                                   extension: { only: Extension.attribute_names - %w[id guest_id created_at
                                                                                      updated_at] },
-                                   health: { only: Health.attribute_names - %w[id client_id created_at updated_at] } }))
+                                   health: { only: Health.attribute_names - %w[id guest_id created_at updated_at] } }))
   end
 
   include PgSearch::Model

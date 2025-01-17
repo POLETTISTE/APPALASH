@@ -1,0 +1,133 @@
+<div id="guest_general_informations" data-controller="edit-guest">
+  <!-- Info Section -->
+  <button data-edit-guest-target="editCancelButton" data-action="click->edit-guest#editCancelToggle" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">MODIFIER</button>
+  <div class="space-y-2">
+    <% if @guest.photo.attached? %>
+      <%= cl_image_tag @guest.photo.key, data: { edit_guest_target: "info" }, quality: "auto", height: 100, width: 100, crop: :thumb, gravity: :face, class: "rounded-full" %>
+    <% else %>
+      <%= image_tag "guest/guest_photo_profil.png", data: { edit_guest_target: "info" }, quality: "auto", height: 100, width: 100, crop: :thumb, class: "rounded-full bg-tomato" %>
+    <% end %>
+  </div>
+  <div class="space-y-2">
+    <%= form_for @guest, url: guest_path(@guest), method: :put, html: { multipart: true, data: { controller: "photo-preview" }, class: "space-y-6" } do |form| %>
+      <label for="photo" data-edit-guest-target="photo" class="hidden text-lg font-medium text-gray-700">
+        <%= t("form.labels.guest.photo") %>
+      </label>
+      <input type="file" id="photo" name="guest[photo]" accept="image/jpeg, image/png" 
+              class="hidden block mt-2 " 
+              data-edit-guest-target="photo" 
+              <%# data-photo-preview-target="input"  %>
+              <%# onchange="displayPreview(event)" %>
+               />
+      <!-- guest information fields for editing -->
+      <div class="guest-info" data-guest-field="name">
+        <p data-edit-guest-target="info">
+          <strong><%= t(".name") %></strong><%= @guest.name %>
+          <strong><%= t(".full_name") %></strong><%= @guest.full_name %>
+        </p>
+        <p data-edit-guest-target="form" class="hidden">
+          <strong><%= t(".name") %></strong>
+          <%= form.text_field :name, value: @guest.name, id: "guest_name", class: "mt-2 block" %>
+        </p>
+      </div>
+      <div class="guest-info" data-guest-field="firstname">
+        <p data-edit-guest-target="info">
+          <strong><%= t(".firstname") %></strong><%= @guest.firstname %>
+        </p>
+        <p data-edit-guest-target="form" class="hidden">
+          <strong><%= t(".firstname") %></strong>
+          <%= form.text_field :firstname, value: @guest.firstname, id: "guest_firstname", class: "mt-2 block" %>
+        </p>
+      </div>
+      <div class="guest-info" data-guest-field="email">
+        <p data-edit-guest-target="info">
+          <strong><%= t(".email") %></strong><%= @guest.email %>
+        </p>
+        <p data-edit-guest-target="form" class="hidden">
+          <strong><%= t(".email") %></strong>
+          <%= form.text_field :email, value: @guest.email, id: "guest_email", class: "mt-2 block" %>
+        </p>
+      </div>
+      <div class="guest-info" data-guest-field="phone">
+        <p data-edit-guest-target="info">
+          <strong><%= t(".phone") %></strong><%= @guest.phone %>
+        </p>
+        <p data-edit-guest-target="form" class="hidden">
+          <strong><%= t(".phone") %></strong>
+          <%= form.text_field :phone, value: @guest.phone, id: "guest_phone", class: "mt-2 block" %>
+        </p>
+      </div>
+      <div class="guest-info" data-guest-field="address">
+        <p data-edit-guest-target="info">
+          <strong><%= t(".address") %></strong><%= @guest.address %>
+        </p>
+        <p data-edit-guest-target="form" class="hidden">
+          <strong><%= t(".address") %></strong>
+          <%= form.text_field :address, value: @guest.address, id: "guest_address", class: "mt-2 block" %>
+        </p>
+      </div>
+      <div class="guest-info" data-guest-field="zip_code">
+        <p data-edit-guest-target="info">
+          <strong><%= t(".zip_code") %></strong><%= @guest.zip_code %>
+        </p>
+        <p data-edit-guest-target="form" class="hidden">
+          <strong><%= t(".zip_code") %></strong>
+          <%= form.text_field :zip_code, value: @guest.zip_code, id: "guest_zip_code", class: "mt-2 block" %>
+        </p>
+      </div>
+      <div class="guest-info" data-guest-field="city">
+        <p data-edit-guest-target="info">
+          <strong><%= t(".city") %></strong><%= @guest.city %>
+        </p>
+        <p data-edit-guest-target="form" class="hidden">
+          <strong><%= t(".city") %></strong>
+          <%= form.text_field :city, value: @guest.city, id: "guest_city", class: "mt-2 block" %>
+        </p>
+      </div>
+      <div class="guest-info" data-guest-field="country">
+        <p data-edit-guest-target="info">
+          <strong><%= t(".country") %></strong><%= @guest.country %>
+        </p>
+        <p data-edit-guest-target="form" class="hidden">
+          <strong><%= t(".country") %></strong>
+          <%= form.text_field :country, value: @guest.country, id: "guest_country", class: "mt-2 block" %>
+        </p>
+      </div>
+      <div class="guest-info" data-guest-field="birthdate">
+        <p data-edit-guest-target="info">
+          <strong><%= t(".birthdate") %></strong><%= @guest.birthdate %>
+        </p>
+        <p data-edit-guest-target="form" class="hidden">
+          <strong><%= t(".birthdate") %></strong>
+          <%= form.text_field :birthdate, data: { controller: "datepicker" }, value: @guest.birthdate, id: "guest_birthdate", class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500' %>
+        </p>
+      </div>
+      <div class="guest-info" data-guest-field="how_do_you_know_us">
+        <p data-edit-guest-target="info">
+          <strong><%= t(".how_do_you_know_us") %></strong><%= @guest.how_do_you_know_us %>
+        </p>
+        <p data-edit-guest-target="form" class="hidden">
+          <strong><%= t(".how_do_you_know_us") %></strong>
+          <%= form.text_field :how_do_you_know_us, value: @guest.how_do_you_know_us, id: "guest_how_do_you_know_us", class: "mt-2 block" %>
+        </p>
+      </div>
+      <div class="guest-info" data-guest-field="notes">
+        <p data-edit-guest-target="info">
+          <strong><%= t(".notes") %></strong><%= @guest.notes %>
+        </p>
+        <p data-edit-guest-target="form" class="hidden">
+          <strong><%= t(".notes") %></strong>
+          <%= form.text_area :notes, value: @guest.notes, id: "guest_notes", class: "mt-2 block" %>
+        </p>
+      </div>
+      <div class="guest-info">
+        <p data-edit-guest-target="info">
+          <strong>rien</strong>
+        </p>
+        <p data-edit-guest-target="form" class="hidden">
+          <button type="submit" class=" mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">SUBMIT BUTTON</button>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

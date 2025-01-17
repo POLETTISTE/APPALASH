@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   has_many :services, dependent: :destroy
-  has_many :clients, dependent: :destroy
+  has_many :guests, dependent: :destroy
   has_many :transactions, dependent: :destroy
 
   # Devise modules

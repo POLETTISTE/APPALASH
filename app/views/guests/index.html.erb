@@ -2,12 +2,12 @@
   <div class="w-full col-span-1"> <!-- Changed top-16 to top-0 -->
     <!-- Search Form Section -->
     <div class="w-full">
-      <div data-controller="search-clients">
-        <%= form_with url: clients_path, method: :get, html: { data: {search_clients_target: "form"}} do |f| %>
+      <div data-controller="search-guests">
+        <%= form_with url: guests_path, method: :get, html: { data: {search_guests_target: "form"}} do |f| %>
           <div class="fixed top-16 w-full bg-white px-4 py-5 sm:px-6">
             <!-- Button Section -->
-            <% if policy(Client).create? %>
-              <%= link_to t('button.new', model: Client.model_name.human.downcase), new_client_path, class: "inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-auto" %>
+            <% if policy(Guest).create? %>
+              <%= link_to t('button.new', model: Guest.model_name.human.downcase), new_guest_path, class: "inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-auto" %>
             <% end %>
             <%= f.label :query, t('.search'), class: "block text-sm font-medium text-gray-700" %>
             <%= f.text_field :query,
@@ -15,14 +15,14 @@
                               placeholder: t('.placeholder'),
                               value: params[:query],
                               data: {
-                                search_clients_target: "searchInput",
-                                action: "keyup->search-clients#update"
+                                search_guests_target: "searchInput",
+                                action: "keyup->search-guests#update"
                               } %>
           </div>
         <% end %>
-        <!-- Clients List Section -->
+        <!-- guests List Section -->
         <div class="pt-36 w-full" >
-          <%= render "index_list", clients: @clients %>
+          <%= render "index_list", guests: @guests %>
         </div>
       </div>
     </div>

@@ -9,12 +9,12 @@
       <!-- Add bg-red-900 to the entire div when the transaction is selected -->
       <div class="flex items-center space-x-4"> <!-- Flex row layout applied here -->
         <div class="flex-shrink-0">
-          <% if transaction.client.photo.attached? %>
-            <%= cl_image_tag transaction.client.photo.key,
-                             alt: "#{transaction.client.firstname}'s photo",
+          <% if transaction.guest.photo.attached? %>
+            <%= cl_image_tag transaction.guest.photo.key,
+                             alt: "#{transaction.guest.firstname}'s photo",
                              width: 40, height: 40, class: "rounded-full border-2 border-gray-300" %>
           <% else %>
-            <%= image_tag "client/client_photo_profil.png",
+            <%= image_tag "guest/guest_photo_profil.png",
                           width: 40, height: 40, class: "rounded-full border-2 border-gray-300" %>
           <% end %>
         </div>
@@ -22,7 +22,7 @@
           <p class="text-sm text-gray-500"><%= transaction.user.email %></p>
         <% end %>
         <div class="flex-1">
-          <p class="font-semibold text-lg"><%= transaction.client.full_name %></p>
+          <p class="font-semibold text-lg"><%= transaction.guest.full_name %></p>
           <p class="text-sm text-gray-600"><%= l(transaction.date, default: transaction.date.to_s) %></p>
         </div>
       </div>

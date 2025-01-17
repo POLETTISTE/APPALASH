@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <% if @services.blank? %>
     <% if policy(Service).create? %>
       <%= link_to t("button.new", model: Service.model_name.human.downcase), new_service_path, class: "btn btn-primary" %>
@@ -21,17 +20,15 @@
         <%= f.label :date, class: 'block text-lg font-medium text-gray-700' %>
         <%= f.text_field :date, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', data: { controller: "datepicker" } %>
       </div>
-
       <div class="field">
-        <%= f.label :client_id, 'Select a client', class: 'block text-lg font-medium text-gray-700' %>
-        <%= f.collection_select :client_id, @clients, :id, :full_name, { prompt: 'Select a client' }, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', required: true %>
-        <% if @transaction.errors[:client_id].any? %>
+        <%= f.label :guest_id, 'Select a guest', class: 'block text-lg font-medium text-gray-700' %>
+        <%= f.collection_select :guest_id, @guests, :id, :full_name, { prompt: 'Select a guest' }, class: 'block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500', required: true %>
+        <% if @transaction.errors[:guest_id].any? %>
           <div class="text-red-600">
-            <%= @transaction.errors[:client_id].join(", ") %>
+            <%= @transaction.errors[:guest_id].join(", ") %>
           </div>
         <% end %>
       </div>
-
       <div class="field">
         <%= f.label :services, class: 'block text-lg font-medium text-gray-700' %>
         <div id="services">
@@ -49,7 +46,6 @@
           <% end %>
         </div>
       </div>
-      
       <div class="actions">
         <%= f.submit class: 'bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded' %>
       </div>

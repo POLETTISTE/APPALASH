@@ -2,70 +2,70 @@
 
 # # frozen_string_literal: true
 
-# app/helpers/clients_helper.rb
-module ClientsHelper
-  # CLIENT GENERAL
+# app/helpers/guests_helper.rb
+module GuestsHelper
+  # GUEST GENERAL
 
   def how_do_you_know_us_options
-    I18n.t('client_options.how_do_you_know_us_options').values
+    I18n.t('guest_options.how_do_you_know_us_options').values
   end
 
-  # CLIENT LASH
+  #  LASH
 
   def lash_desired_effect_options
-    I18n.t('client_options.lash_desired_effect_options').values
+    I18n.t('guest_options.lash_desired_effect_options').values
   end
 
   def lash_face_diagnostic_options
-    I18n.t('client_options.lash_face_diagnostic_options').values
+    I18n.t('guest_options.lash_face_diagnostic_options').values
   end
 
   def lash_asymmetry_diagnostic_options
-    I18n.t('client_options.lash_asymmetry_diagnostic_options').values
+    I18n.t('guest_options.lash_asymmetry_diagnostic_options').values
   end
 
   def lash_eyelid_morphology_diagnostic_options
-    I18n.t('client_options.lash_eyelid_morphology_diagnostic_options').values
+    I18n.t('guest_options.lash_eyelid_morphology_diagnostic_options').values
   end
 
   def lash_alignment_morphology_diagnostic_options
-    I18n.t('client_options.lash_alignment_morphology_diagnostic_options').values
+    I18n.t('guest_options.lash_alignment_morphology_diagnostic_options').values
   end
 
   def lash_proportion_morphology_diagnostic_options
-    I18n.t('client_options.lash_proportion_morphology_diagnostic_options').values
+    I18n.t('guest_options.lash_proportion_morphology_diagnostic_options').values
   end
 
   def lash_density_options
-    I18n.t('client_options.lash_density_options').values
+    I18n.t('guest_options.lash_density_options').values
   end
 
   def lash_style_options
-    I18n.t('client_options.lash_style_options').values
+    I18n.t('guest_options.lash_style_options').values
   end
 
   def lash_extensions_brand_options
-    I18n.t('client_options.lash_extensions_brand_options').values
+    I18n.t('guest_options.lash_extensions_brand_options').values
   end
 
   def lash_extensions_curvature_options
-    I18n.t('client_options.lash_extensions_curvature_options').values
+    I18n.t('guest_options.lash_extensions_curvature_options').values
   end
 
   def lash_extensions_glue_options
-    I18n.t('client_options.lash_extensions_glue_options').values
+    I18n.t('guest_options.lash_extensions_glue_options').values
   end
 end
 
-# # app/helpers/clients_helper.rb
-# module ClientsHelper
-#   #   ** CLIENT GENERAL **
+# # app/helpers/s_helper.rb
+# module sHelper
+#   #   **  GENERAL **
 
 #   def how_do_you_know_us_options
 #     ['GOOGLE', 'PLANITY', 'RESEAUX SOCIAUX', 'PROCHE / AMI', 'AUTRE']
 #   end
 
-#   # ** CLIENT LASH **
+#   # **  LASH **
 #   # EFFET DESIRE
 #   def lash_desired_effect_options
 #     %w[LEGER INTERMEDIAIRE INTENSE]

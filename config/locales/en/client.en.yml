@@ -1,6 +1,6 @@
 en:
-  # page clients/form/options
-  client_options:
+  # page guests/form/options
+  guest_options:
     how_do_you_know_us_options:
       google: "Google"
       planity: "Planity"
@@ -54,44 +54,44 @@ en:
       lexcellence: "L'excellence"
 
   #  controller create/update/delete html
-  clients:
+  guests:
     create:
       success: "Creation successful for %{firstname} %{name}"
-      error: "There was an error creating the client."
+      error: "There was an error creating the guest."
     update:
       success: "Update successful for %{firstname} %{name}"
-      error: "There was an error updating the client."
-      not_found: "client not found"
+      error: "There was an error updating the guest."
+      not_found: "guest not found"
 
-    #clients/edit.html.erb
+    #guests/edit.html.erb
     edit:
-      title: "Edit client"
+      title: "Edit guest"
 
-    #clients/show.html.erb
+    #guests/show.html.erb
     show:
-      not_found: "client not found"
+      not_found: "guest not found"
       delete: "Are you sure you want to delete %{instance_firstname} %{instance_name} ?"
 
     destroy:
       success: "Delete successful for %{firstname} %{name}"
-      error: "There was an error deleting the client."
-      not_found: "client not found"
+      error: "There was an error deleting the guest."
+      not_found: "guest not found"
 
-    #clients/index.html.erb
+    #guests/index.html.erb
     index:
-      title: "List of clients"
+      title: "List of guests"
       search: "Search..."
       placeholder: "Search by name / firstname / email / phone"
 
-    #clients/_index_list.html.erb
+    #guests/_index_list.html.erb
     index_list:
       list_with_query_html:
         zero: "%{count} result found for <code class='text-red-500'><strong>'%{query}'</strong></code>"
         one: "%{count} result found for <code class='bg-customGreen'><strong>'%{query}'</strong></code>"
         other: "%{count} results found for <code class='bg-customBlue'><strong>'%{query}'</strong></code>"
 
-    #clients/_client_general_informations.html.erb
-    client_general_informations:
+    #guests/_guest_general_informations.html.erb
+    guest_general_informations:
       name: "name"
       firstname: "firstname"
       email: "email"
@@ -104,8 +104,8 @@ en:
       how_do_you_know_us: "how did you know us?"
       notes: "notes"
 
-    #clients/_client_lash.html.erb
-    client_lash:
+    #guests/_guest_lash.html.erb
+    guest_lash:
       lash_information: "Lash information"
       no_lash_information: " lash information"
       lash_desired_effect: "lash desired effect"
@@ -124,8 +124,8 @@ en:
       lash_texture: "lash texture"
       lash_density: "lash density"
 
-    #clients/_client_extension.html.erb
-    client_extension:
+    #guests/_guest_extension.html.erb
+    guest_extension:
       lash_extension_info: "lash extensions informations"
       lash_extension_brand: "lash extensions brand"
       lash_extension_curvature: "lash extensions curvature"
@@ -135,8 +135,8 @@ en:
       lash_extension_pretreatment_booster: "lash extensions pretreatment booster"
       no_lash_extension_information: "no lash extension information"
 
-    #clients/_client_health.html.erb
-    client_health:
+    #guests/_guest_health.html.erb
+    guest_health:
       health_info: "health infos"
       health_diabetes: "health diabetes"
       health_pregnancy: "health pregnancy"

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
 
     authenticated :user do
-      root to: 'clients#index', as: :authenticated_root
+      root to: 'guests#index', as: :authenticated_root
       get 'users/personal_information', to: 'users#index_personal_information', as: :personal_information
     end
 
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       get 'documentation', to: 'home#documentation', as: :documentation
     end
 
-    resources :clients
+    resources :guests
     resources :services
     resources :transactions
     resources :dashboard

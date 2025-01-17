@@ -3,19 +3,19 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["info", "form", "editCancelButton", "photo"];
 
-  // Define a target for client info sections for easier querying
-  get clientInfoTargets() {
-    return this.element.querySelectorAll(".client-info");
+  // Define a target for guest info sections for easier querying
+  get guestInfoTargets() {
+    return this.element.querySelectorAll(".guest-info");
   }
 
   editCancelToggle() {
     // Loop through each pair of info and form fields
-    this.clientInfoTargets.forEach((clientInfoElement) => {
-      const formElement = clientInfoElement.querySelector(
-        '[data-edit-client-target="form"]'
+    this.guestInfoTargets.forEach((guestInfoElement) => {
+      const formElement = guestInfoElement.querySelector(
+        '[data-edit-guest-target="form"]'
       );
-      const infoElement = clientInfoElement.querySelector(
-        '[data-edit-client-target="info"]'
+      const infoElement = guestInfoElement.querySelector(
+        '[data-edit-guest-target="info"]'
       );
 
       // Toggle visibility

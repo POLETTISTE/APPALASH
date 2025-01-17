@@ -8,8 +8,8 @@ export default class extends Controller {
   connect() {
     try {
       // Parse JSON data from the HTML data attribute
-      const clientCountsData = this.element.dataset.barchartClientCounts;
-      this.barChartData = JSON.parse(clientCountsData); // Use barChartData instead of data
+      const guestCountsData = this.element.dataset.barchartGuestCounts;
+      this.barChartData = JSON.parse(guestCountsData); // Use barChartData instead of data
       this.renderBarChart();
     } catch (error) {
       console.error("Error parsing JSON data for BarChart:", error);
@@ -30,7 +30,7 @@ export default class extends Controller {
         labels: Object.keys(this.barChartData), // Assuming names are labels
         datasets: [
           {
-            label: "Clients",
+            label: "Guests",
             data: Object.values(this.barChartData),
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",

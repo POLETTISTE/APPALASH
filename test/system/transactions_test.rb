@@ -17,7 +17,7 @@ class TransactionsTest < ApplicationSystemTestCase
     click_on 'New transaction'
 
     fill_in 'Amount total', with: @transaction.amount_total
-    fill_in 'Client', with: @transaction.client_id
+    fill_in 'Guest', with: @transaction.guest_id
     fill_in 'Date', with: @transaction.date
     fill_in 'Type payment', with: @transaction.type_payment
     click_on 'Create Transaction'
@@ -31,7 +31,7 @@ class TransactionsTest < ApplicationSystemTestCase
     click_on 'Edit this transaction', match: :first
 
     fill_in 'Amount total', with: @transaction.amount_total
-    fill_in 'Client', with: @transaction.client_id
+    fill_in 'Guest', with: @transaction.guest_id
     fill_in 'Date', with: @transaction.date
     fill_in 'Type payment', with: @transaction.type_payment
     click_on 'Update Transaction'

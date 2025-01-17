@@ -11,10 +11,10 @@ en:
     error_notification:
       default_message: "Please review the problems below:"
 
-    # clients/_form_client_general.html.erb
+    # guests/_form_guest_general.html.erb
     labels:
-      client:
-        #clients/_form_client_general.html.erb
+      guest:
+        #guests/_form_guest_general.html.erb
         photo: "📷 Upload a photo"
         name: "Name"
         firstname: "Firstname"

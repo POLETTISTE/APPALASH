@@ -2,29 +2,29 @@
 
 class DashboardController < ApplicationController
   def index
-    @clients = policy_scope(Client.all)
+    @cguests = policy_scope(Guest.all)
     @services = policy_scope(Service.all)
     @transactions = policy_scope(Transaction.all)
     @users = policy_scope(User.all)
 
-    authorize @clients
+    authorize @cguests
     authorize @services
     authorize @transactions
 
     @non_admin_users = @users.reject(&:admin?) if current_user.admin?
     @admin_users = @users.select(&:admin?) if current_user.admin?
 
-    @clients_group_by_name = @clients.group(:name).count
-    @clients_how_do_you_know_us = @clients.group(:how_do_you_know_us).count
+    @cguests_group_by_name = @cguests.group(:name).count
+    @cguests_how_do_you_know_us = @cguests.group(:how_do_you_know_us).count
 
-    # Respond with JSON for client counts
+    # Respond with JSON for guest counts
     respond_to do |format|
       format.html
       format.json do
         response = {
-          client_counts: @clients_group_by_name,
-          client_know_us: @clients_how_do_you_know_us,
-          clients: @clients
+          guest_counts: @cguests_group_by_name,
+          guest_know_us: @cguests_how_do_you_know_us,
+          guests: @cguests
         }
         response[:users] = @users if current_user.admin?
 

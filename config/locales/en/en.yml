@@ -41,11 +41,11 @@ en:
   lash_global_info: "Lash informations"
   accueil_h1: "Accueil"
   dashboard_h1: "Dashboard"
-  clients_h1: "Clients"
+  guests_h1: "Guests"
   services_h1: "Services"
   transactions_h1: "Transactions"
   navbar_link_dashboard: "Dashboard"
-  navbar_link_clients: "Guests"
+  navbar_link_guests: "Guests"
   navbar_link_services: "Services"
   navbar_link_transactions: "Transactions"
   navbar_link_website: "Website"
@@ -86,15 +86,15 @@ en:
       admin: "admin"
       non_admin: "non admin"
       total: "total"
-      clients:
-        zero: "%{count} client"
-        one: "%{count}client"
-        other: "%{count} clients"
+      guests:
+        zero: "%{count} guest"
+        one: "%{count}guest"
+        other: "%{count} Guests"
   transactions:
     transaction:
       date: "date"
-      client_name: "client name"
-      client_firstname: "client firstname"
+      guest_name: "guest name"
+      guest_firstname: "guest firstname"
       total_price: "total price"
       not_found: "transaction not found"
 
@@ -107,8 +107,8 @@ en:
       not_found: "transaction not found"
     show:
       date: "date"
-      client: "client"
-      client_firstname: "client firstname"
+      guest: "guest"
+      guest_firstname: "guest firstname"
       total_price: "total price"
       not_found: "transaction not found"
 
