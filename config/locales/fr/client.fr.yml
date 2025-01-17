@@ -87,8 +87,8 @@ fr:
     index_list:
       list_with_query_html:
         zero: "%{count} résultat trouvé <code class='text-red-500'><strong>'%{query}'</strong></code>"
-        one: "%{count} résultat trouvé <code class='bg-customGreen'><strong>'%{query}'</strong></code>"
-        other: "%{count} résultats trouvés for <code class='bg-customBlue'><strong>'%{query}'</strong></code>"
+        one: "%{count} résultat trouvé <code class='bg-customPink'><strong>'%{query}'</strong></code>"
+        other: "%{count} résultats trouvés for <code class='bg-customGreen'><strong>'%{query}'</strong></code>"
 
     #clients/_client_general_informations.html.erb
     client_general_informations:

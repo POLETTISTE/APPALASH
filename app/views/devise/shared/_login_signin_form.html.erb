@@ -16,13 +16,17 @@
       <div class="flex-grow flex flex-col justify-center">
         <% current_time = Time.now.hour %>
         <h2 class="text-3xl font-semibold mb-6">
-          <%= current_time < 18 ? "Bonjour !" : "Bonsoir !" %>
-        </h2>
-        <p class="mb-4">Entrez votre email et votre mot de passe pour accéder à votre compte.</p>
-        <%= form_for(resource, as: resource_name, url: form_url, html: { class: "space-y-4" }, data: { turbo: false }) do |f| %>
+          <% greeting = case current_time
+                 when 0...12 then t('devise.shared.good_morning')  # Good morning before noon
+                 when 12...18 then t('devise.shared.good_afternoon') # Good afternoon before 6 PM
+                 else t('devise.shared.good_evening') # Good evening after 6 PM
+               end %>
+          <%= greeting %>        </h2>
+        <p class="mb-4"><%= t('devise.shared.enter_mail_and_password') %></p>
+        <%= form_for(resource, as: resource_name, url: form_url, html: { class: "space-y-2" }, data: { turbo: false }) do |f| %>
           <div>
             <%= f.label :email, t('devise.registrations.new.label_email'), class: "block text-gray-700" %>
-            <%= f.email_field :email, required: true, autofocus: true, autocomplete: t('devise.registrations.new.autocomplete_email'), class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            <%= f.email_field :email, required: true, autofocus: true, autocomplete: t('devise.registrations.new.autocomplete_email'), class: "mt-3 shadow appearance-none border rounded w-full  text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
             <% if @email_taken %>
               <div class="text-sm text-red-500 mt-1">
                 Cette adresse email est déjà utilisée. Veuillez en choisir une autre.
@@ -70,11 +74,11 @@
         <% end %>
         <p class="text-center text-gray-500 text-sm">
           <% if form_type == :login %>
-            Vous n'avez pas de compte ? <%= link_to t('devise.shared.links.btn_signed_up'), new_registration_path(resource_name), class: "text-customPink underline underline-offset-4" %><br />
+            <%= t('devise.shared.no_account_yet')%> <%= link_to t('devise.shared.links.btn_signed_up'), new_registration_path(resource_name), class: "text-customPink underline underline-offset-4" %><br />
             <%= link_to t('devise.shared.links.forgot_your_password'), new_password_path(resource_name), class: "text-customPink underline underline-offset-4" %><br />
             <%= link_to t('devise.shared.links.confirmation_instructions'), new_confirmation_path(resource_name), class: "text-customPink underline underline-offset-4" %><br />
           <% else%>
-            Vous avez déjà un compte ?   <%= link_to t('devise.shared.links.login'), new_session_path(resource_name), class: "text-customPink underline underline-offset-4" %><br />
+            <%= t('devise.shared.already_have_an_account')%>   <%= link_to t('devise.shared.links.login'), new_session_path(resource_name), class: "text-customPink underline underline-offset-4" %><br />
             <br />
           <% end %>
         </p>

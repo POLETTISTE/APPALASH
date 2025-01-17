@@ -133,6 +133,9 @@ en:
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
       unlocked: "Your account has been unlocked successfully. Please sign in to continue."
     shared:
+      good_morning: "Good morning"
+      good_afternoon: "Good afternoon"
+      good_evening: "Good evening"
       links:
         login: "Log in"
         btn_signed_up: "Sign up"
@@ -140,6 +143,9 @@ en:
         confirmation_instructions: "Didn't receive confirmation instructions?"
         unlock_instructions: "Didn't receive unlock instructions?"
         btn_sign_in: "Sign in with"
+      enter_mail_and_password: "Please enter your email and password to sign in."
+      no_account_yet: "Don't have an account yet?"
+      already_have_an_account: "Already have an account?"
 
   errors:
     messages:
