@@ -9,9 +9,9 @@ class User < ApplicationRecord
   has_many :transactions, dependent: :destroy
 
   # Devise modules
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :confirmable
+  devise  :database_authenticatable, :registerable,
+          :recoverable, :rememberable, :validatable,
+          :confirmable, :timeoutable
 
   # Validations
   validates :website, presence: true, uniqueness: true,

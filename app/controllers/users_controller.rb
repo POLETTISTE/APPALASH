@@ -56,9 +56,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def publish_website
-
-  end
+  def publish_website; end
 
   private
 
