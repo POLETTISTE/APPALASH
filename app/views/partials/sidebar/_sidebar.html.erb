@@ -6,15 +6,29 @@
     <% end %>
   </div>
   <!-- NAV LINKS -->
-  <nav class="space-y-4 fixed top-32"> <!-- Adjusted top to 32 for more space -->
-    <%= link_to t("navbar_link_clients"), clients_path, class: "block py-2 px-4 rounded  #{active_class("/clients")}" %>
-    <%= link_to t("navbar_link_transactions"), transactions_path, class: "block py-2 px-4 rounded #{active_class("/transactions")}" %>
-    <%= link_to t("navbar_link_services"), services_path, class: "block py-2 px-4 rounded #{active_class("/services")}" %>
-    <!-- Only show the 'Website' link if the user is logged in and has a website -->
-    <% if current_user && current_user.website.present? %>
-      <%= link_to t("navbar_link_website"), user_profile_path(current_user.website), class: "block py-2 px-4 rounded #{active_class("/home")}" %>
+  <nav class="space-y-4 fixed top-32">
+    <%= link_to clients_path, class: "block py-2 px-4 rounded #{active_class('/clients')} flex items-center" do %>
+      <i class="fa fa-user-circle mr-2" aria-hidden="true"></i>
+      <%= t("navbar_link_clients") %>
     <% end %>
-    <%= link_to t("navbar_link_dashboard"), dashboard_index_path, class: "block py-2 px-4 rounded #{active_class("/dashboard")}" %>
+    <%= link_to transactions_path, class: "block py-2 px-4 rounded #{active_class('/transactions')} flex items-center" do %>
+      <i class="fa fa-exchange mr-2" aria-hidden="true"></i>
+      <%= t("navbar_link_transactions") %>
+    <% end %>
+    <%= link_to services_path, class: "block py-2 px-4 rounded #{active_class('/services')} flex items-center" do %>
+      <!-- Inline SVG of Lash with mr-2 class for spacing -->
+      <%= raw(File.read(Rails.root.join('app', 'assets', 'images', 'svg', 'lash.svg')).gsub('<svg', '<svg class="mr-2 w-5 h-5"')) %>
+      <%= t("navbar_link_services") %>
+    <% end %>
+    <% if current_user && current_user.website.present? %>
+      <%= link_to user_profile_path(current_user.website), class: "block py-2 px-4 rounded #{active_class('/home')} flex items-center" do %>
+        <i class="fa fa-globe mr-2" aria-hidden="true"></i>
+        <%= t("navbar_link_website") %>
+      <% end %>
+    <% end %>
+    <%= link_to dashboard_index_path, class: "block py-2 px-4 rounded #{active_class('/dashboard')} flex items-center" do %>
+      <i class="fa fa-tachometer-alt mr-2" aria-hidden="true"></i>
+      <%= t("navbar_link_dashboard") %>
+    <% end %>
   </nav>
 </header>
-<!-- RIGHT COLUMN / MAIN CONTENT -->

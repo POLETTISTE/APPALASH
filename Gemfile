@@ -80,5 +80,4 @@ gem 'mailcatcher'
 gem 'pg_search'
 gem 'pundit'
 gem 'rack-attack'
-
 gem 'tailwindcss-rails'
