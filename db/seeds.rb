@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # db/seeds.rb
+require 'open-uri'
 
 # Delete previous records for guests, services, and transactions
 p 'Deleting previous records...'
@@ -8,54 +9,111 @@ Guest.destroy_all
 Service.destroy_all
 Transaction.destroy_all
 p 'Previous records deleted.'
-p 'Creating new records...'
+
+# Find or create the user by email
+p 'Finding user...'
+user = User.find_by(email: 'essai@essai.fr')
+
+# If the user doesn't exist, create them (or you can handle this differently)
+if user.nil?
+  p 'User not found, creating user...'
+  user = User.create!(email: 'essai@essai.fr', password: 'password123', name: 'Essai User') # Adjust as needed for your user model
+else
+  p 'User found.'
+end
 
 # Array of possible values for how_do_you_know_us
 how_do_you_know_us_values = %w[google friend advise instagram]
 
-# Create 20 guests
-20.times do |i|
-  Guest.create!(
-    name: "Guest #{i + 1}",
-    firstname: "First #{i + 1}",
-    email: "Guest#{i + 1}@example.com",
-    phone: "555-1234#{i + 1}",
-    address: "123 Main St #{i + 1}",
-    zip_code: "12345#{i + 1}",
-    city: "City #{i + 1}",
-    country: "Country #{i + 1}",
-    birthdate: Faker::Date.birthday(min_age: 18, max_age: 80),
-    how_do_you_know_us: how_do_you_know_us_values.sample, # Randomly selected value
-    notes: "Notes for guest #{i + 1}",
-    user_id: 3
-  )
+# Create 20 guests only if guests are empty
+if Guest.count == 0
+  p 'Creating new guests...'
+  20.times do |i|
+    guest = Guest.create!(
+      name: Faker::Name.name,  # Realistic full name
+      firstname: Faker::Name.first_name,  # Random first name
+      email: Faker::Internet.email,  # Realistic email
+      phone: Faker::PhoneNumber.phone_number,  # Realistic phone number
+      address: Faker::Address.street_address,  # Realistic street address
+      zip_code: Faker::Address.zip_code,  # Realistic zip code
+      city: Faker::Address.city,  # Realistic city
+      country: Faker::Address.country,  # Realistic country
+      birthdate: Faker::Date.birthday(min_age: 18, max_age: 80),  # Random birthdate
+      how_do_you_know_us: how_do_you_know_us_values.sample,  # Randomly selected value from the array
+      notes: Faker::Lorem.sentence,  # Realistic sentence for notes
+      user_id: user.id  # Assign the user to this guest
+    )
+
+    # Attach a fake photo (using a random image service like Lorem Picsum)
+    guest.photo.attach(
+      io: URI.open("https://picsum.photos/200/200?random=#{i}"),  # URL for random image (200x200)
+      filename: "profile_#{i}.jpg",  # Set filename for the photo
+      content_type: "image/jpg"  # Set content type
+    )
+
+    p "Guest #{i + 1} created with a fake photo."
+  end
+  p 'Guests created.'
+else
+  p 'Guests already exist, skipping creation.'
 end
-p 'Guests created.'
-p 'Creating new services...'
 
-# Create 20 services
-20.times do |i|
-  Service.create!(
-    name: "Service #{i + 1}",
-    price: Faker::Commerce.price(range: 50..200),
-    user_id: 3
-  )
+# Create 20 lash-related services only if services are empty
+if Service.count == 0
+  p 'Creating new services...'
+  service_names = [
+    "Classic Lash Extensions",
+    "Volume Lash Extensions",
+    "Hybrid Lash Extensions",
+    "Russian Volume Lash Extensions",
+    "Lash Lift & Tint",
+    "Lash Tinting",
+    "Mega Volume Lash Extensions",
+    "Lash Refill (Classic)",
+    "Lash Refill (Volume)",
+    "Lash Removal",
+    "Lash Touch-Up",
+    "Lash Conditioning Treatment",
+    "Lash Repair Treatment",
+    "Eyelash Extension Removal",
+    "Brow & Lash Combo (Lash Lift + Brow Tint)",
+    "Lash & Brow Tint",
+    "Volume Lash Full Set",
+    "Lash Extension Full Set (Classic)",
+    "Lash Extension Full Set (Hybrid)",
+    "Lash Lift"
+  ]
+
+  20.times do |i|
+    Service.create!(
+      name: service_names.sample,  # Randomly select a lash-related service name
+      price: Faker::Commerce.price(range: 50..200),  # Random price for the service
+      user_id: user.id  # Assign the user to this service
+    )
+  end
+  p 'Lash services created.'
+else
+  p 'Services already exist, skipping creation.'
 end
-p 'Services created.'
 
-p 'Creating new transactions...'
+# Create transactions only if there are guests and services available
+if Guest.count > 0 && Service.count > 0
+  p 'Creating new transactions...'
 
-# Create 20 transactions
-Guest.all.each_with_index do |guest, i|
-  services = Service.all.sample(2) # Select two random services for each transaction
-  total_price = services.sum(&:price)
+  # Create 20 transactions
+  Guest.all.each_with_index do |guest, i|
+    services = Service.all.sample(2) # Select two random services for each transaction
+    total_price = services.sum(&:price)
 
-  Transaction.create!(
-    date: Faker::Date.backward(days: 30),
-    guest: guest,
-    services: services.map { |service| { name: service.name, price: service.price } },
-    total_price: total_price,
-    user_id: 3
-  )
-  p "Transaction #{i + 1} created."
+    Transaction.create!(
+      date: Faker::Date.backward(days: 30),
+      guest: guest,
+      services: services.map { |service| { name: service.name, price: service.price } },
+      total_price: total_price,
+      user_id: user.id
+    )
+    p "Transaction #{i + 1} created."
+  end
+else
+  p 'Not enough guests or services to create transactions.'
 end
