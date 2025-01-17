@@ -45,7 +45,7 @@ en:
   services_h1: "Services"
   transactions_h1: "Transactions"
   navbar_link_dashboard: "Dashboard"
-  navbar_link_clients: "Clients"
+  navbar_link_clients: "Guests"
   navbar_link_services: "Services"
   navbar_link_transactions: "Transactions"
   navbar_link_website: "Website"
