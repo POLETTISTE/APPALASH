@@ -1,12 +1,10 @@
 <div data-search-guests-target="list">
   <% if params[:query].present? %>
-    <p class="guests">
+    <p class="query-guests">
       <%= t('.list_with_query_html', count: @guests.size, query: params[:query]) %>
     </p>
   <% end %>
-  <div class="guests">
-    <% @guests.each do |guest| %>
-      <%= render "guest_card", guest: guest %>
-    <% end %>
-  </div>
+  <% @guests.each do |guest| %>
+    <%= render "guest_card", guest: guest %>
+  <% end %>
 </div>

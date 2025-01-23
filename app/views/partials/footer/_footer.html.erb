@@ -1,7 +1,8 @@
-<div id="footer" class="bg-black h-[70px] mt-auto">
+<footer class="z-40 fixed bottom-0 w-full bg-gray-800 text-white p-4 text-center footer">
   <% if !user_signed_in? || (user_signed_in? && controller_name == 'users' && action_name == 'show') %>
     <%= render 'partials/footer/footer_visitor'%>
   <% else %>
     <%= render 'partials/footer/footer_user_connected'%>
   <% end %>
 </div>
+</footer>

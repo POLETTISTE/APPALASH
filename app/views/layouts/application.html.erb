@@ -8,7 +8,7 @@
     <!-- Preload Tailwind and Inter Font CSS files -->
     <link rel="preload" href="<%= asset_path('tailwind.css') %>" as="style">
     <link rel="preload" href="<%= asset_path('inter-font.css') %>" as="style">
-    <!-- Link to local stylesheets (one tag, corrected) -->
+    <!-- Link to local stylesheets -->
     <%= stylesheet_link_tag "tailwind", "inter-font", media: 'all', "data-turbo-track": "reload" %>
     <!-- Link to external stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -18,21 +18,28 @@
     <link rel="shortcut icon" type="image/png" href="/assets/logo.png">
     <%= javascript_importmap_tags %>
   </head>
-  <body>
+  <body class="bg-gray-50 overscroll-none">
     <% if !current_user %>
       <%= render 'partials/flags/flags' %>
+      <%= yield %> <!-- This will render the page content -->
     <% end %>
     <% if user_signed_in? %>
       <%= render 'partials/navbar/navbar' %>
+      <main class="flex">
+        <!-- Sidebar (Fixed Left) -->
+        <div class="z-30 main-left flex flex-col fixed w-[250px] h-screen bg-white shadow-md">
+          <% if user_signed_in? %>
+            <%= render 'partials/sidebar/sidebar' %>
+          <% end %>
+        </div>
+        <!-- Main Content (Right) -->
+        <div class="main-right flex-1 ml-[250px] px-5 min-h-screen">
+          <%= yield %> <!-- This will render the page content -->
+        </div>
+      </main>
+      <!-- Flash messages -->
+      <%= render "shared/flashes" %>
     <% end %>
-    <main>
-      <% if user_signed_in? %>
-        <%= render 'partials/sidebar/sidebar' %>
-      <% end %>
-      <%= yield %> <!-- This will render the page content -->
-    </main>
-    <!-- Flash messages -->
-    <%= render "shared/flashes" %>
     <!-- Footer -->
     <%= render 'partials/footer/footer' %>
   </body>
