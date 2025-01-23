@@ -38,10 +38,6 @@
               <%= check_box_tag 'transaction[services][][name]', service.name, checked, id: "transaction_services_name_#{service.id}", class: "mr-2 service-name-checkbox", data: { target: "transaction_services_price_#{service.id}" } %>
               <%= hidden_field_tag 'transaction[services][][price]', service.price, id: "transaction_services_price_#{service.id}" %>
               <%= service.name %> - <%= number_to_currency(service.price) %>
-              <% if checked %>
-                <%= hidden_field_tag 'transaction[services][][name]', service.name %>
-                <%= hidden_field_tag 'transaction[services][][price]', service.price %>
-              <% end %>
             </div>
           <% end %>
         </div>
