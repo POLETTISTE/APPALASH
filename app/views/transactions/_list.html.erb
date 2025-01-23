@@ -1,4 +1,4 @@
-<div class="list-group space-y-4" data-controller="transactions-list">
+<div class="list-group space-y-4 pt-[30px] pb-[150px] " data-controller="transactions-list">
   <% transactions.each do |transaction| %>
     <%= link_to transaction,
                 class: "card-transaction flex space-x-4 rounded-md shadow-md #{'bg-lime-200' if transaction == selected_transaction}",
