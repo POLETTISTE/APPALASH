@@ -1,6 +1,6 @@
 <%= turbo_frame_tag :contact_details, class: "w-full" do %>
   <!-- Parent Container (flex layout to allow turbo frame to take remaining space) -->
-  <div class="p-4 rounded-md flex flex-col w-full sticky top-[180px] z-10">
+  <div class="p-4 rounded-md flex flex-col w-full sticky top-[180px]">
     <!-- Localized Transaction Date with Default -->
     <p><%= l(@transaction.date, default: @transaction.date.to_s) %></p>
     <div class="flex-shrink-0">
