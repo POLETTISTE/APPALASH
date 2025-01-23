@@ -48,6 +48,12 @@ class TransactionsController < ApplicationController
     @transactions_total_price = @transactions.sum(:total_price)
     authorize @transactions
 
+    # Automatically select the first transaction and redirect to its show page
+    if @transactions.any?
+      @selected_transaction = @transactions.first
+      redirect_to @selected_transaction and return
+    end
+
     respond_to do |format|
       format.html
       format.json { render json: @transactions }

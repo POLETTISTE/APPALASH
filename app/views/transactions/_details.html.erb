@@ -1,9 +1,18 @@
 <%= turbo_frame_tag :contact_details, class: "w-full" do %>
   <!-- Parent Container (flex layout to allow turbo frame to take remaining space) -->
-  <div class="bg-customPink bg-opacity-20 p-4 rounded-md flex flex-col w-full sticky top-[180px] z-10">
+  <div class="p-4 rounded-md flex flex-col w-full sticky top-[180px] z-10">
     <!-- Localized Transaction Date with Default -->
     <p><%= l(@transaction.date, default: @transaction.date.to_s) %></p>
-    <!-- Guest Details -->
+    <div class="flex-shrink-0">
+      <% if transaction.guest.photo.attached? %>
+        <%= cl_image_tag transaction.guest.photo.key,
+                             alt: "#{transaction.guest.firstname}'s photo",
+                             width: 140, height: 140, class: "rounded-full border-2 border-gray-300" %>
+      <% else %>
+        <%= image_tag "guest/guest_photo_profil.png",
+                          width: 140, height: 140, class: "rounded-full border-2 border-gray-300" %>
+      <% end %>
+    </div>
     <p>
       <strong><%= t('.guest') %>:</strong>
       <%= @transaction.guest.firstname %> <%= @transaction.guest.name %>
@@ -13,7 +22,9 @@
     <ul>
       <% @transaction.services.each do |service| %>
         <li>
+          <strong><%= service['name'] %></strong> <!-- Add the service name here -->
           <% 
+
               price = '%.2f' % service['price']
               currency = t('currency')
               position = t('currency_position')
