@@ -1,4 +1,7 @@
-<div class="list-group space-y-4 pt-[30px] pb-[150px] " data-controller="transactions-list">
+<div id="transactions-list"
+     class="list-group space-y-4 pt-[30px] pb-[150px]"
+     data-controller="transactions-list"
+     data-action="scroll->transactions-list#saveScrollPosition">
   <% transactions.each do |transaction| %>
     <%= link_to transaction,
                 class: "card-transaction flex space-x-4 rounded-md shadow-md #{'bg-lime-200' if transaction == selected_transaction}",
@@ -6,8 +9,7 @@
                         turbo_action: :advance,
                         action: "click->transactions-list#highlight",
                         transactions_list_target: "transaction" } do %>
-      <!-- Add bg-red-900 to the entire div when the transaction is selected -->
-      <div class="flex items-center space-x-4"> <!-- Flex row layout applied here -->
+      <div class="flex items-center space-x-4">
         <div class="flex-shrink-0">
           <% if transaction.guest.photo.attached? %>
             <%= cl_image_tag transaction.guest.photo.key,
