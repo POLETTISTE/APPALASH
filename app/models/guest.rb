@@ -28,7 +28,7 @@ class Guest < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_by_general_informations,
-                  against: %i[name firstname email phone city],
+                  against: %i[name firstname email phone],
                   associated_against: {
                     user: :email
                   },
