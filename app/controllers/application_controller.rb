@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :authenticate_user!
@@ -13,7 +11,8 @@ class ApplicationController < ActionController::Base
 
   # Ensure locale is set in URL options
   def default_url_options
-    { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
+    # Ensure the URL reflects the current locale, but omit it if it's the default (English)
+    { locale: I18n.locale == I18n.default_locale ? 'en' : I18n.locale }
   end
 
   protected
@@ -39,7 +38,12 @@ class ApplicationController < ActionController::Base
     # 3. If no URL parameter, use the language stored in the cookie (for non-logged-in users)
     elsif cookies[:locale].present? && I18n.available_locales.include?(cookies[:locale].to_sym)
       I18n.locale = cookies[:locale].to_sym
-    # 4. If the user has not explicitly set a language (first visit), detect the browser language
+    # 4. If the user is not logged in and no cookie is present, default to English
+    elsif !user_signed_in? && cookies[:locale].blank?
+      I18n.locale = I18n.default_locale
+      # Explicitly set the URL to '/en' for the default locale (English)
+      request.env['PATH_INFO'] = '/en' # Ensures /en is in the URL path
+    # 5. If the user has not explicitly set a language (first visit), detect the browser language
     elsif request.env['HTTP_ACCEPT_LANGUAGE'].present?
       detected_locale = extract_locale_from_accept_language_header || I18n.default_locale
       I18n.locale = detected_locale
