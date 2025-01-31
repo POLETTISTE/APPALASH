@@ -1,13 +1,11 @@
 import { Controller } from "@hotwired/stimulus";
 
-// Permit the controller to target the list and transaction elements in the list when clicking on the show of a transaction
 export default class extends Controller {
-  static targets = ["list", "transaction"]; // Targeting the list and transactions
+  static targets = ["list", "transaction"];
 
   connect() {
     console.log("TransactionsListController is connected!");
 
-    // Restore the scroll position when the page loads
     const savedScrollPosition = localStorage.getItem(
       "transactionsListScrollPosition"
     );
@@ -15,19 +13,17 @@ export default class extends Controller {
       this.listTarget.scrollTop = savedScrollPosition;
     }
 
-    // Scroll directly to the selected transaction if one is highlighted
-    const selectedTransaction = this.transactionTargets.find(
-      (transaction) => transaction.classList.contains("border-lime-200") // This checks if the selected transaction has the highlight class
-    );
-    if (selectedTransaction) {
-      selectedTransaction.scrollIntoView({
-        block: "center",
-      }); // Smooth scroll to the selected transaction
-    }
+    // Ensure only one transaction is highlighted on page load
+    this.transactionTargets.forEach((transaction) => {
+      if (transaction.classList.contains("border-customPink")) {
+        this.selectedTransaction = transaction; // Store reference
+      } else {
+        transaction.classList.add("border-white");
+      }
+    });
   }
 
   saveScrollPosition() {
-    // Save the scroll position before navigating away
     localStorage.setItem(
       "transactionsListScrollPosition",
       this.listTarget.scrollTop
@@ -35,14 +31,29 @@ export default class extends Controller {
   }
 
   highlight(event) {
-    // Remove highlight from all transactions
-    this.transactionTargets.forEach((transaction) => {
-      transaction.classList.remove("border-lime-200");
-    });
+    // Remove highlight from previously selected transaction
+    if (this.selectedTransaction) {
+      this.selectedTransaction.classList.remove(
+        "border-customPink",
+        "border-opacity-70",
+        "bg-customPink",
+        "bg-opacity-20"
+      );
+      this.selectedTransaction.classList.add("border-white");
+    }
 
     // Highlight the clicked transaction
     const selectedTransaction = event.currentTarget;
-    selectedTransaction.classList.add("border-lime-200");
+    selectedTransaction.classList.remove("border-white");
+    selectedTransaction.classList.add(
+      "border-customPink",
+      "border-opacity-70",
+      "bg-customPink",
+      "bg-opacity-20"
+    );
+
+    // Store the new selected transaction
+    this.selectedTransaction = selectedTransaction;
 
     console.log("Highlighted transaction:", selectedTransaction);
   }
