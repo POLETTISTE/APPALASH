@@ -1,5 +1,5 @@
 <div id="transactions-list"
-     class="list-group space-y-5 pt-[30px] pb-[150px]"
+     class="list-group space-y-2 pt-[30px] pb-[150px]"
      data-controller="transactions-list"
      data-action="scroll->transactions-list#saveScrollPosition">
   <% transactions.each do |transaction| %>
@@ -10,7 +10,7 @@
             action: "click->transactions-list#highlight",
             transactions_list_target: "transaction",
             transaction_id: transaction.id } do %>  <!-- Add the transaction ID here -->
-      <div class="w-[80px] bg-white rounded-lg flex flex-col items-center mr-[20px]">
+      <div class="w-[60px] bg-white rounded-lg flex flex-col items-center mr-[20px]">
         <!-- Month of the week -->
         <div class="flex justify-center items-center w-full text-sm font-bold text-white bg-red-500 uppercase rounded-tl-lg rounded-tr-lg">
           <%= transaction.formatted_month %>
@@ -26,10 +26,10 @@
             <!-- Keep fixed width and height with min-width for image container -->
             <%= cl_image_tag transaction.guest.photo.key,
                              alt: "#{transaction.guest.firstname}'s photo",  quality: "auto", crop: :thumb, gravity: :face,
-                             width: 50, height: 50, class: "rounded-full border-2 border-gray-300" %>
+                             width: 60, height: 60, class: "rounded-full border-2 border-gray-300" %>
           <% else %>
             <%= image_tag "guest/guest_photo_profil.png",  quality: "auto", crop: :thumb, gravity: :face,
-                          width: 50, height: 50, class: "rounded-full border-2 border-gray-300" %>
+                          width: 60, height: 60, class: "rounded-full border-2 border-gray-300" %>
           <% end %>
         </div>
         <% if current_user.admin? %>
