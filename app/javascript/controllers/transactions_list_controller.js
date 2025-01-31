@@ -114,6 +114,9 @@ export default class extends Controller {
   highlight(event) {
     const selectedTransaction = event.currentTarget;
 
+    // Clear any previous selection immediately (remove old highlight)
+    this.clearSelection();
+
     // Highlight the new clicked transaction
     selectedTransaction.classList.remove("border-white", "text-black");
     selectedTransaction.classList.add(
