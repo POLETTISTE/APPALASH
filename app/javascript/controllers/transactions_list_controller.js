@@ -18,7 +18,7 @@ export default class extends Controller {
       if (transaction.classList.contains("border-customPink")) {
         this.selectedTransaction = transaction; // Store reference
       } else {
-        transaction.classList.add("border-white");
+        transaction.classList.add("border-white", "text-black"); // Default border & text color
       }
     });
   }
@@ -35,21 +35,23 @@ export default class extends Controller {
     if (this.selectedTransaction) {
       this.selectedTransaction.classList.remove(
         "border-customPink",
-        "border-opacity-70",
+        "border-opacity-90",
         "bg-customPink",
-        "bg-opacity-20"
+        "bg-opacity-20",
+        "text-customPink"
       );
-      this.selectedTransaction.classList.add("border-white");
+      this.selectedTransaction.classList.add("border-white", "text-black"); // Reset to default
     }
 
     // Highlight the clicked transaction
     const selectedTransaction = event.currentTarget;
-    selectedTransaction.classList.remove("border-white");
+    selectedTransaction.classList.remove("border-white", "text-black");
     selectedTransaction.classList.add(
       "border-customPink",
-      "border-opacity-70",
+      "border-opacity-90",
       "bg-customPink",
-      "bg-opacity-20"
+      "bg-opacity-20",
+      "text-customPink"
     );
 
     // Store the new selected transaction

@@ -4,7 +4,7 @@
      data-action="scroll->transactions-list#saveScrollPosition">
   <% transactions.each do |transaction| %>
     <%= link_to transaction,
-                class: "card-transaction flex rounded-md border-4 p-1 #{transaction == selected_transaction ? 'border-customPink border-opacity-70 bg-customPink bg-opacity-20' : 'border-white'}",
+    class: "card-transaction flex rounded-md border-l-8 py-3 px-6 #{transaction == selected_transaction ? 'border-customPink border-opacity-90 bg-customPink bg-opacity-20 text-customPink' : 'border-white text-black'}",
                 data: { turbo_frame: :transaction_details,
                         turbo_action: :advance,
                         action: "click->transactions-list#highlight",
@@ -35,7 +35,7 @@
           <p class="text-sm text-gray-500"><%= transaction.user.email %></p>
         <% end %>
         <!-- Full name with ellipsis if it overflows -->
-        <div class="max-w-[320px] flex-grow font-semibold text-lg text-black overflow-hidden whitespace-nowrap text-ellipsis">
+        <div class="max-w-[320px] flex-grow font-semibold text-lg overflow-hidden whitespace-nowrap text-ellipsis">
           <p class="overflow-hidden whitespace-nowrap text-ellipsis">
             <%= transaction.guest.full_name %>
           </p>
