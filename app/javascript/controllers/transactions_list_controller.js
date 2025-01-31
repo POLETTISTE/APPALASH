@@ -6,30 +6,66 @@ export default class extends Controller {
   connect() {
     console.log("TransactionsListController is connected!");
 
+    // Restore the scroll position when the page loads
+    this.restoreScrollPosition();
+
+    // Restore the selected transaction and scroll to it if needed
+    this.restoreSelectedTransaction();
+  }
+
+  // Restore scroll position from localStorage
+  restoreScrollPosition() {
     const savedScrollPosition = localStorage.getItem(
       "transactionsListScrollPosition"
     );
-    if (savedScrollPosition) {
-      this.listTarget.scrollTop = savedScrollPosition;
+    if (savedScrollPosition && this.listTarget) {
+      this.listTarget.scrollTop = parseInt(savedScrollPosition, 10); // Ensure it's an integer
     }
-
-    // Ensure only one transaction is highlighted on page load
-    this.transactionTargets.forEach((transaction) => {
-      if (transaction.classList.contains("border-customPink")) {
-        this.selectedTransaction = transaction; // Store reference
-      } else {
-        transaction.classList.add("border-white", "text-black"); // Default border & text color
-      }
-    });
   }
 
+  // Save the scroll position to localStorage before navigating
   saveScrollPosition() {
+    if (this.listTarget) {
+      localStorage.setItem(
+        "transactionsListScrollPosition",
+        this.listTarget.scrollTop
+      );
+    }
+  }
+
+  // Save the selected transaction ID to localStorage
+  saveSelectedTransaction(event) {
+    const selectedTransaction = event.currentTarget;
     localStorage.setItem(
-      "transactionsListScrollPosition",
-      this.listTarget.scrollTop
+      "selectedTransactionId",
+      selectedTransaction.dataset.transactionId
     );
   }
 
+  // Restore the selected transaction and scroll to it directly
+  restoreSelectedTransaction() {
+    const savedTransactionId = localStorage.getItem("selectedTransactionId");
+
+    if (savedTransactionId && this.transactionTargets) {
+      const selectedTransaction = this.transactionTargets.find(
+        (transaction) =>
+          transaction.dataset.transactionId === savedTransactionId
+      );
+
+      if (selectedTransaction) {
+        this.highlight({ currentTarget: selectedTransaction });
+
+        // Directly scroll to the selected transaction (without smooth scrolling)
+        selectedTransaction.scrollIntoView({
+          behavior: "auto",
+          block: "center", // Scroll to the center of the container
+          inline: "center", // Align the element horizontally in the center
+        });
+      }
+    }
+  }
+
+  // Highlight the clicked transaction and save the selection
   highlight(event) {
     // Remove highlight from previously selected transaction
     if (this.selectedTransaction) {
@@ -56,6 +92,9 @@ export default class extends Controller {
 
     // Store the new selected transaction
     this.selectedTransaction = selectedTransaction;
+
+    // Save the ID of the selected transaction to localStorage
+    this.saveSelectedTransaction(event);
 
     console.log("Highlighted transaction:", selectedTransaction);
   }
