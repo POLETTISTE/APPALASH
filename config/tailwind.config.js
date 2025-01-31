@@ -32,12 +32,6 @@ module.exports = {
       });
 
       // Inject custom styles for .translation_missing
-      addBase({
-        ".translation_missing": {
-          backgroundColor: "red",
-          color: "white",
-        },
-      });
     }),
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),

@@ -55,7 +55,6 @@ group :development do
   gem 'guard-livereload', require: false
   gem 'rack-livereload'
   gem 'web-console'
-
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem 'rack-mini-profiler'
 

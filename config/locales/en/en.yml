@@ -33,6 +33,40 @@ en:
   date:
     formats:
       default: "%m/%d/%Y" # MM/DD/YYYY (e.g., 12/21/2020)
+      short: "%e %b" # abbreviated format (e.g., "1 janv.")
+      long: "%e %B %Y" # full date format (e.g., "1 janvier 2025")
+    month_names:
+      [
+        ~,
+        "january",
+        "february",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december",
+      ]
+    abbr_month_names:
+      [
+        ~,
+        "JAN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAY",
+        "JUN",
+        "JUL",
+        "AUG",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DEC",
+      ]
   currency: "£"
   currency_position: "before"
   hello: "Hello %{name}"

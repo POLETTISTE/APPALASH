@@ -1,4 +1,3 @@
-// app/javascript/controllers/transactions_list_controller.js
 import { Controller } from "@hotwired/stimulus";
 
 // Permit the controller to target the list and transaction elements in the list when clicking on the show of a transaction
@@ -17,11 +16,13 @@ export default class extends Controller {
     }
 
     // Scroll directly to the selected transaction if one is highlighted
-    const selectedTransaction = this.transactionTargets.find((transaction) =>
-      transaction.classList.contains("bg-lime-200")
+    const selectedTransaction = this.transactionTargets.find(
+      (transaction) => transaction.classList.contains("border-lime-200") // This checks if the selected transaction has the highlight class
     );
     if (selectedTransaction) {
-      selectedTransaction.scrollIntoView({ block: "center" }); // Instant scroll, no animation
+      selectedTransaction.scrollIntoView({
+        block: "center",
+      }); // Smooth scroll to the selected transaction
     }
   }
 
@@ -36,12 +37,12 @@ export default class extends Controller {
   highlight(event) {
     // Remove highlight from all transactions
     this.transactionTargets.forEach((transaction) => {
-      transaction.classList.remove("bg-lime-200");
+      transaction.classList.remove("border-lime-200");
     });
 
     // Highlight the clicked transaction
     const selectedTransaction = event.currentTarget;
-    selectedTransaction.classList.add("bg-lime-200");
+    selectedTransaction.classList.add("border-lime-200");
 
     console.log("Highlighted transaction:", selectedTransaction);
   }

@@ -1,5 +1,5 @@
 <div data-controller="search-guests">
-  <div class="sticky top-[80px] bg-white">
+  <div class='sticky top-[80px] bg-white h-[50px] px-5 '>
     <%= form_with url: guests_path, method: :get, html: { data: {search_guests_target: "form"}} do |f| %>
       <!-- Button Section -->
       <% if policy(Guest).create? %>

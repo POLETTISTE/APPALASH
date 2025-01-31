@@ -1,21 +1,19 @@
 <%= turbo_frame_tag :contact_details, class: "w-full" do %>
   <!-- Parent Container (flex layout to allow turbo frame to take remaining space) -->
-  <div class="p-4 rounded-md flex flex-col w-full sticky top-[180px]">
+  <div class="p-4 pt-0 rounded-md flex flex-col w-full sticky top-[190px]">
     <!-- Localized Transaction Date with Default -->
     <p><%= l(@transaction.date, default: @transaction.date.to_s) %></p>
-    <div class="flex-shrink-0">
-      <% if transaction.guest.photo.attached? %>
-        <%= cl_image_tag transaction.guest.photo.key,
-                             alt: "#{transaction.guest.firstname}'s photo",
+    <% if transaction.guest.photo.attached? %>
+      <%= cl_image_tag transaction.guest.photo.key,
+                             alt: "#{transaction.guest.firstname}'s photo", quality: "auto", crop: :thumb, gravity: :face,
                              width: 140, height: 140, class: "rounded-full border-2 border-gray-300" %>
-      <% else %>
-        <%= image_tag "guest/guest_photo_profil.png",
+    <% else %>
+      <%= image_tag "guest/guest_photo_profil.png",  quality: "auto", crop: :thumb, gravity: :face,
                           width: 140, height: 140, class: "rounded-full border-2 border-gray-300" %>
-      <% end %>
-    </div>
+    <% end %>
     <p>
       <strong><%= t('.guest') %>:</strong>
-      <%= @transaction.guest.firstname %> <%= @transaction.guest.name %>
+      <%= @transaction.guest.full_name %>
     </p>
     <!-- Services Section -->
     <h2><%= t('services_h1') %>:</h2>

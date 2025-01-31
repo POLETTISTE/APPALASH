@@ -13,10 +13,23 @@
   .result {
     color: var(--pink);
   }
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   .translation_missing {
     background-color: red;
     color: white;
     font-weight: bold;
+    animation: blink 1s infinite; /* Blink every 1 second */
   }
 
   .alert {

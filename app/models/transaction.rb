@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Transaction < ApplicationRecord
+  include HasFormattedDate
+
   belongs_to :guest
   belongs_to :user
   validates :guest_id, presence: true

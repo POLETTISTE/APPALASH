@@ -18,7 +18,7 @@
     <link rel="shortcut icon" type="image/png" href="/assets/logo.png">
     <%= javascript_importmap_tags %>
   </head>
-  <body class="bg-gray-50 overscroll-none">
+  <body class="bg-white overscroll-none">
     <% if !current_user %>
       <%= render 'partials/flags/flags' %>
       <%= yield %> <!-- This will render the page content -->
@@ -33,7 +33,7 @@
           <% end %>
         </div>
         <!-- Main Content (Right) -->
-        <div class="main-right flex-1 ml-[250px] px-5 min-h-screen">
+        <div class="main-right flex-1 ml-[250px] min-h-screen">
           <%= yield %> <!-- This will render the page content -->
         </div>
       </main>

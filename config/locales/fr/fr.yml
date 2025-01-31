@@ -2,6 +2,40 @@ fr:
   date:
     formats:
       default: "%d/%m/%Y" #DD/MM/YYYY (e.g., 21/12/2020)
+      short: "%e %b" # abbreviated format (e.g., "1 janv.")
+      long: "%e %B %Y" # full date format (e.g., "1 janvier 2025")
+    month_names:
+      [
+        ~,
+        "janvier",
+        "février",
+        "mars",
+        "avril",
+        "mai",
+        "juin",
+        "juillet",
+        "août",
+        "septembre",
+        "octobre",
+        "novembre",
+        "décembre",
+      ]
+    abbr_month_names:
+      [
+        ~,
+        "JAN",
+        "FEV",
+        "MAR",
+        "AVR",
+        "MAI",
+        "JUI",
+        "JUIL",
+        "AOU",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DEC",
+      ]
   currency: "€"
   currency_position: "after"
   welcome: "Bienvenue sur la page d'accueil"
