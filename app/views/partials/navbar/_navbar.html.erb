@@ -1,24 +1,12 @@
 <nav class="z-10 sticky top-0 bg-white h-[80px] w-full">
-  <div x-data="{ openDropdownAvatar: false }" class="flex justify-end relative mr-3">
-    <div class="flex items-center justify-center pr-5">
-      <%= current_user.name%> <%= current_user.firstname%>
-    </div>
-    <!-- Avatar Button with Dropdown Toggle -->
-    <button @click="openDropdownAvatar = !openDropdownAvatar" class="flex flex-col items-center text-black">
-      <!-- Avatar Image -->
-      <% if current_user.avatar.attached? %>
-        <%= cl_image_tag current_user.avatar.key, height: 50, width: 50, crop: :thumb, gravity: :face, radius: :max %>
-      <% else %>
-        <%= image_tag "avatar-default.png", class: "rounded-full", width: "50" %>
-      <% end %>
-      <!-- Dropdown Arrow Icon -->
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
+  <div x-data="{ openDropdownWheel: false }" class="flex justify-end relative mr-3">
+    <!-- toothed wheel parameters with Dropdown Toggle -->
+    <button @click="openDropdownWheel = !openDropdownWheel" class="flex flex-col items-center text-black">
+      <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'parameters.svg')).gsub('<svg', '<svg class="mr-2 w-8 h-8"')) %>
     </button>
     <!-- Dropdown Menu -->
     <div 
-      x-show="openDropdownAvatar" 
+      x-show="openDropdownWheel" 
       x-transition 
       x-cloak 
       class="z-40 absolute top-[70px] right-0 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 text-sm bg-white" 
