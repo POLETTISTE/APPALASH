@@ -3,11 +3,7 @@ const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   content: [
-    "./app/views/**/*.{html.erb,html.haml,html.slim}",
-    "./app/helpers/**/*.rb",
-    "./app/assets/stylesheets/application.tailwind.css",
-    "./app/javascript/**/*.js",
-    "./public/*.html",
+    "./app/**/*.{html,erb,js,jsx,ts,tsx,vue}", // Watch all the files in your app
   ],
   theme: {
     extend: {

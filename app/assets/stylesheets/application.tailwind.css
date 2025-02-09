@@ -64,4 +64,14 @@
       display: none;
     }
   }
+
+  .animate-spin-wheel {
+    animation: spin 10s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }

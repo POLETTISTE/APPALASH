@@ -1,8 +1,11 @@
 <nav class="z-10 sticky top-0 bg-white h-[80px] w-full">
   <div x-data="{ openDropdownWheel: false }" class="flex justify-end relative mr-3">
     <!-- toothed wheel parameters with Dropdown Toggle -->
-    <button @click="openDropdownWheel = !openDropdownWheel" class="flex flex-col items-center text-black">
-      <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'parameters.svg')).gsub('<svg', '<svg class="mr-2 w-8 h-8"')) %>
+    <button 
+      @click="openDropdownWheel = !openDropdownWheel" 
+      class="flex flex-col justify-center items-center text-black hover:text-customPink hover:animate-spin-wheel">
+      <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'parameters.svg'))
+      .gsub('<svg', '<svg class="w-6 h-6 fill-current"')) %>
     </button>
     <!-- Dropdown Menu -->
     <div 
