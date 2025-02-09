@@ -10,10 +10,8 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  # Aplly css changes when reload page, don't need to precompile again
+  # Apply css changes when reload page, don't need to precompile again
   config.assets.debug = true
-
-  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -87,4 +85,8 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # Add Hotwire Livereload listen paths here
+  config.hotwire_livereload.listen_paths << Rails.root.join("app/views")
+  config.hotwire_livereload.listen_paths << Rails.root.join("app/assets")
 end
