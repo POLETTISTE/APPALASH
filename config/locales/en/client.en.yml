@@ -88,7 +88,7 @@ en:
       list_with_query_html:
         zero: "%{count} result found for <code class='text-red-500'><strong>'%{query}'</strong></code>"
         one: "%{count} result found for <code class='bg-customGreen'><strong>'%{query}'</strong></code>"
-        other: "%{count} results found for <code class='bg-customBlue'><strong>'%{query}'</strong></code>"
+        other: "%{count} results found for <code class='bg-customGreen'><strong>'%{query}'</strong></code>"
 
     #guests/_guest_general_informations.html.erb
     guest_general_informations:

@@ -17,6 +17,6 @@ module SidebarHelper
     end
 
     # Default class if not active
-    'text-black hover:text-customPink font-semibold border-l-8 border-transparent transition duration-200 text-lg'
+    'text-black hover:text-customPink font-semibold border-l-8 border-white transition duration-200 text-lg'
   end
 end
