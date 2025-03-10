@@ -1,6 +1,6 @@
 <div id="guest_health">
   <% if @guest.health %>
-    <h3><%= t(".health_info") %></h3>
+    <h3><strong><%= t(".health_info") %></strong></h3>
     <p>
       <strong><%= t(".health_diabetes") %></strong>
       <%= @guest.health.diabetes %>

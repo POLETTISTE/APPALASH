@@ -72,6 +72,68 @@ en:
       not_found: "guest not found"
       delete: "Are you sure you want to delete %{instance_firstname} %{instance_name} ?"
 
+      #guests/how/_guest_general_informations.html.erb
+      guest_general_informations:
+        name: "name"
+        firstname: "firstname"
+        email: "email"
+        phone: "phone"
+        address: "address"
+        zip_code: "zip code"
+        city: "city"
+        country: "country"
+        birthdate: "birthdate"
+        how_do_you_know_us: "how did you know us?"
+        notes: "notes"
+        #guests/_guest_lash.html.erb
+      guest_lash:
+        lash_information: "Lash information"
+        no_lash_information: " lash information"
+        lash_desired_effect: "lash desired effect"
+        lash_face_diagnostic: "lash face diagnostic"
+        lash_asymmetry_diagnostic: "lash asymmetry diagnostic"
+        lash_eyelid_morphology_diagnostic: "lash eyelid morphology diagnostic"
+        lash_alignment_morphology_diagnostic: "lash alignment morphology diagnostic"
+        lash_proportion_morphology_diagnostic: "lash proportion morphology diagnostic"
+        lash_thickness_diagnostic: "lash thickness diagnostic"
+        lash_length_diagnostic: "lash length diagnostic"
+        lash_curvature_diagnostic: "lash curvature diagnostic"
+        lash_style: "lash style"
+        lash_notes: "lash notes"
+        lash_mapping: "lash mapping"
+        lash_event: "lash event"
+        lash_texture: "lash texture"
+        lash_density: "lash density"
+
+      #guests/_guest_extension.html.erb
+      guest_extension:
+        lash_extension_info: "lash extensions informations"
+        lash_extension_brand: "lash extensions brand"
+        lash_extension_curvature: "lash extensions curvature"
+        lash_extension_thickness: "lash extensions thickness"
+        lash_extension_glue: "lash extensions glue"
+        lash_extension_pretreatment_superbonder: "lash extensions pretreatment superbonder"
+        lash_extension_pretreatment_booster: "lash extensions pretreatment booster"
+        no_lash_extension_information: "no lash extension information"
+
+      #guests/_guest_health.html.erb
+      guest_health:
+        health_info: "health infos"
+        health_diabetes: "health diabetes"
+        health_pregnancy: "health pregnancy"
+        health_dry_eyes: "health dry eyes"
+        health_teary_eyes: "health teary eyes"
+        health_allergy: "health allergy"
+        health_contact_lenses: "health contact lenses"
+        health_surgery: "health surgery"
+        health_chemotherapy: "health chemotherapy"
+        health_eyes_allergy: "health eyes allergy"
+        health_itch: "health itch"
+        health_first_application: "health first application"
+        health_lie_down: "health lie down"
+        health_notes: "health notes"
+        no_health_information: "no health information"
+
     destroy:
       success: "Delete successful for %{firstname} %{name}"
       error: "There was an error deleting the guest."
@@ -79,75 +141,12 @@ en:
 
     #guests/index.html.erb
     index:
-      title: "List of guests"
-      search: "Search..."
-      placeholder: "Search by name / firstname / email / phone"
-
-    #guests/_index_list.html.erb
-    index_list:
-      list_with_query_html:
-        zero: "%{count} result found for <code class='text-red-500'><strong>'%{query}'</strong></code>"
-        one: "%{count} result found for <code class='bg-customGreen'><strong>'%{query}'</strong></code>"
-        other: "%{count} results found for <code class='bg-customGreen'><strong>'%{query}'</strong></code>"
-
-    #guests/_guest_general_informations.html.erb
-    guest_general_informations:
-      name: "name"
-      firstname: "firstname"
-      email: "email"
-      phone: "phone"
-      address: "address"
-      zip_code: "zip code"
-      city: "city"
-      country: "country"
-      birthdate: "birthdate"
-      how_do_you_know_us: "how did you know us?"
-      notes: "notes"
-
-    #guests/_guest_lash.html.erb
-    guest_lash:
-      lash_information: "Lash information"
-      no_lash_information: " lash information"
-      lash_desired_effect: "lash desired effect"
-      lash_face_diagnostic: "lash face diagnostic"
-      lash_asymmetry_diagnostic: "lash asymmetry diagnostic"
-      lash_eyelid_morphology_diagnostic: "lash eyelid morphology diagnostic"
-      lash_alignment_morphology_diagnostic: "lash alignment morphology diagnostic"
-      lash_proportion_morphology_diagnostic: "lash proportion morphology diagnostic"
-      lash_thickness_diagnostic: "lash thickness diagnostic"
-      lash_length_diagnostic: "lash length diagnostic"
-      lash_curvature_diagnostic: "lash curvature diagnostic"
-      lash_style: "lash style"
-      lash_notes: "lash notes"
-      lash_mapping: "lash mapping"
-      lash_event: "lash event"
-      lash_texture: "lash texture"
-      lash_density: "lash density"
-
-    #guests/_guest_extension.html.erb
-    guest_extension:
-      lash_extension_info: "lash extensions informations"
-      lash_extension_brand: "lash extensions brand"
-      lash_extension_curvature: "lash extensions curvature"
-      lash_extension_thickness: "lash extensions thickness"
-      lash_extension_glue: "lash extensions glue"
-      lash_extension_pretreatment_superbonder: "lash extensions pretreatment superbonder"
-      lash_extension_pretreatment_booster: "lash extensions pretreatment booster"
-      no_lash_extension_information: "no lash extension information"
-
-    #guests/_guest_health.html.erb
-    guest_health:
-      health_info: "health infos"
-      health_diabetes: "health diabetes"
-      health_pregnancy: "health pregnancy"
-      health_dry_eyes: "health dry eyes"
-      health_teary_eyes: "health teary eyes"
-      health_allergy: "health allergy"
-      health_contact_lenses: "health contact lenses"
-      health_surgery: "health surgery"
-      health_chemotherapy: "health chemotherapy"
-      health_eyes_allergy: "health eyes allergy"
-      health_itch: "health itch"
-      health_first_application: "health first application"
-      health_lie_down: "health lie down"
-      health_notes: "health notes"
+      guests:
+        title: "List of guests"
+        search: "Search..."
+        placeholder: "Search by name / firstname / email / phone"
+      guests_index_list:
+        list_with_query_html:
+          zero: "%{count} result found for <code class='text-red-500'><strong>'%{query}'</strong></code>"
+          one: "%{count} result found for <code class='bg-customGreen'><strong>'%{query}'</strong></code>"
+          other: "%{count} results found for <code class='bg-customGreen'><strong>'%{query}'</strong></code>"
