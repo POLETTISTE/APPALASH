@@ -56,7 +56,7 @@ class GuestsController < ApplicationController
           render json: { guests: guest_with_avatar_url(@guests) }
         end
       end
-      format.text { render partial: 'guests/index_list', locals: { guests: @guests }, formats: [:html] }
+      format.text { render partial: 'guests/index/guests_index_list', locals: { guests: @guests }, formats: [:html] }
     end
   end
 

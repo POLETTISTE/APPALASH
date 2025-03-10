@@ -1,4 +1,4 @@
 <h1><%= t(".title")%></h1>
-<%= render 'form_new_guest', guest: @guest %>
+<%= render 'guests/new/form_new_guest', guest: @guest %>
 <%= link_to  t("button.goback"), @guest, class: "btn btn-primary" %>
 <%= link_to t("button.find", model: Guest.model_name.human.downcase), guests_path, class: "btn btn-secondary" %>
