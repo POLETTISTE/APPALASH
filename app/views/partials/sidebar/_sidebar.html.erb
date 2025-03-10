@@ -1,17 +1,19 @@
 <header class="fixed bg-white top-0 left-0 w-[280px] h-screen px-2 ">
-  <div class="flex justify-center items-center mt-6 mb-[100px]">
-    <%= link_to "/#{I18n.locale}", class: "text-black hover:text-customPink font-semibold" do %>
-      <%= image_tag "/assets/appalash-logo-title.png", width: "100", role: "img", aria: { label: "logo" } %>
-    <% end %>
-  </div>
+
   <div>
+    <div class="flex justify-center items-center mb-4">
+      <div class="flex justify-center items-center pr-3">
+ 
     <% if current_user.avatar.attached? %>
       <%= cl_image_tag current_user.avatar.key, height: 50, width: 50, crop: :thumb, gravity: :face, radius: :max %>
     <% else %>
       <%= image_tag "avatar-default.png", class: "rounded-full", width: "50" %>
     <% end %>
-    <div class="flex justify-center items-center mt-2">
+
+      </div>
+    <div class="flex justify-center items-center ml-2">
       <%= current_user.name %> <%= current_user.firstname %>
+    </div>
     </div>
     <nav class="flex flex-col space-y-4 justify-center">
       <%= link_to guests_path, class: "py-2 px-4 rounded #{active_class('/guests')} flex justify-start items-center w-100" do %>
@@ -37,4 +39,9 @@
         <%= t("navbar_link_dashboard") %>
       <% end %>
     </nav>
+      <div class="flex justify-center items-center mt-6 mb-[100px]">
+    <%= link_to "/#{I18n.locale}", class: "text-black hover:text-customPink font-semibold" do %>
+      <%= image_tag "/assets/appalash-logo-title.png", width: "100", role: "img", aria: { label: "logo" } %>
+    <% end %>
+  </div>
   </header>
