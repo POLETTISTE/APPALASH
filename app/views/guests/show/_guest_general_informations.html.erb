@@ -14,8 +14,7 @@
          this.selectedSection = section;
        }
      }"
-     x-init="selectedSection = 'health'"  <!-- Set the default section to 'health' -->
-  x-cloak>
+     x-init="selectedSection = 'health'" x-cloak>
   <!-- 🔹 DISPLAY GENERAL INFO -->
   <div class="guest-main-info flex flex-row mt-4">
     <div class="left mr-5">
@@ -27,7 +26,7 @@
     </div>
     <div class="right w-full">
       <!-- First Name -->
-      <p class="text-xl font-bold"><%= @guest.firstname %> <%= @guest.name %></p>
+      <p class="text-3xl font-bold"><%= @guest.firstname %> <%= @guest.name %></p>
       <!-- Email -->
       <p class="flex items-center">
         <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'email.svg')).gsub('<svg', '<svg class="w-6 h-6 text-customPink mr-1"')) %>
@@ -39,9 +38,8 @@
         <%= link_to @guest.phone, "tel:#{@guest.phone}", class: "text-customPink hover:underline" %>
       </p>
       <!-- EDIT BUTTON - Opens General Info Modal -->
-      <button type="button" @click="editGeneralInfosModal = true" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        EDIT GENERAL INFO
-      </button>
+      <!-- Directly use the SVG pencil icon without a button -->
+      <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'pencil.svg')).gsub('<svg', '<svg @click="editGeneralInfosModal = true" class="w-6 h-6 text-customPink cursor-pointer"')) %>
     </div>
   </div>
   <!-- 🔹 TOGGLE BUTTON FOR MORE INFORMATIONS -->
@@ -125,16 +123,12 @@
   </div>
   <!-- 🔹 SECTION TO RENDER BASED ON SELECTION -->
   <ul class="flex justify-between mt-4 cursor-pointer">
-    <li @click="setSection('health')" 
-        :class="{'font-bold text-blue-500': selectedSection === 'health'}">HEALTH</li>
-    <li @click="setSection('diagnostic')" 
-        :class="{'font-bold text-blue-500': selectedSection === 'diagnostic'}">DIAGNOSTIC</li>
-    <li @click="setSection('extensions')" 
-        :class="{'font-bold text-blue-500': selectedSection === 'extensions'}">EXTENSIONS</li>
-    <li @click="setSection('esthetic')" 
-        :class="{'font-bold text-blue-500': selectedSection === 'esthetic'}">ESTHETIC</li>
-    <li @click="setSection('transactions')" 
-        :class="{'font-bold text-blue-500': selectedSection === 'transactions'}">TRANSACTIONS</li>
+    <template x-for="section in ['health', 'diagnostic', 'extensions', 'esthetic', 'transactions']" :key="section">
+      <li @click="setSection(section)" 
+        :class="{'font-bold text-customPink': selectedSection === section}">
+        <span x-text="section.toUpperCase()"></span>
+      </li>
+    </template>
   </ul>
   <!-- 🔹 DISPLAY THE CONTENTS OF SELECTED SECTION -->
   <div class="technical-info h-[500px] overflow-y-auto mt-4">

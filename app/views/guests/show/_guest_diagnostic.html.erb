@@ -1,69 +1,146 @@
-<div id="guest_diagnostic">
-  <% if @guest.diagnostic %>
-    <h3><%= t(".lash_information") %>
-    </h3>
-    <p>
-      <strong><%= t(".lash_desired_effect") %></strong>
-      <%= @guest.lash.desired_effect %>
-    </p>
-    <p>
-      <strong><%= t(".lash_face_diagnostic") %></strong>
-      <%= @guest.lash.face_diagnostic %>
-    </p>
-    <p>
-      <strong><%= t(".lash_asymmetry_diagnostic") %></strong>
-      <%= @guest.lash.asymmetry_diagnostic %>
-    </p>
-    <p>
-      <strong><%= t(".lash_eyelid_morphology_diagnostic") %></strong>
-      <%= @guest.lash.eyelid_morphology_diagnostic %>
-    </p>
-    <p>
-      <strong><%= t(".lash_alignment_morphology_diagnostic") %></strong>
-      <%= @guest.lash.alignment_morphology_diagnostic %>
-    </p>
-    <p>
-      <strong><%= t(".lash_proportion_morphology_diagnostic") %></strong>
-      <%= @guest.lash.proportion_morphology_diagnostic %>
-    </p>
-    <p>
-      <strong><%= t(".lash_thickness_diagnostic") %></strong>
-      <%= @guest.lash.thickness_diagnostic %>
-    </p>
-    <p>
-      <strong><%= t(".lash_length_diagnostic") %></strong>
-      <%= @guest.lash.length_diagnostic %>
-    </p>
-    <p>
-      <strong><%= t(".lash_curvature_diagnostic") %></strong>
-      <%= @guest.lash.curvature_diagnostic %>
-    </p>
-    <p>
-      <strong><%= t(".lash_style") %></strong>
-      <%= @guest.lash.style %>
-    </p>
-    <p>
-      <strong><%= t(".lash_notes") %></strong>
-      <%= @guest.lash.notes %>
-    </p>
-    <p>
-      <strong><%= t(".lash_mapping") %></strong>
-      <%= @guest.lash.mapping %>
-    </p>
-    <p>
-      <strong><%= t(".lash_event") %></strong>
-      <%= @guest.lash.event %>
-    </p>
-    <p>
-      <strong><%= t(".lash_texture") %></strong>
-      <%= @guest.lash.texture %>
-    </p>
-    <p>
-      <strong><%= t(".lash_density") %></strong>
-      <%= @guest.lash.density %>
-    </p>
-    <!-- Add other lash attributes as needed -->
+<div id="guest_diagnostic" class="p-6 bg-gray-50 rounded-lg shadow-lg">
+  <% fields = ['desired_effect', 'face_diagnostic', 'asymmetry_diagnostic', 'eyelid_morphology_diagnostic', 'alignment_morphology_diagnostic', 'proportion_morphology_diagnostic', 'thickness_diagnostic', 'length_diagnostic', 'curvature_diagnostic', 'style', 'notes', 'mapping', 'event', 'texture', 'density'] %>
+  <% has_lash_info = fields.any? { |field| @guest.lash.send(field).present? } %>
+  <% if @guest.lash && has_lash_info %>
+    <h3 class="text-2xl font-semibold text-blue-600 mb-4"><%= t(".lash_information") %></h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow-md">
+      <% if @guest.lash.desired_effect.present? %>
+        <div class="flex items-center space-x-3">
+          <i class="fas fa-eye text-blue-500 text-lg"></i>
+          <div class="flex-1">
+            <strong class="text-gray-700"><%= t(".lash_desired_effect") %>:</strong>
+            <span class="text-gray-600"><%= @guest.lash.desired_effect %></span>
+          </div>
+        </div>
+      <% end %>
+      <%# if @guest.lash.face_diagnostic.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-face text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_face_diagnostic") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.face_diagnostic %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.lash.asymmetry_diagnostic.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-balance-scale text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_asymmetry_diagnostic") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.asymmetry_diagnostic %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.lash.eyelid_morphology_diagnostic.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-eye-dropper text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_eyelid_morphology_diagnostic") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.eyelid_morphology_diagnostic %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.lash.alignment_morphology_diagnostic.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-arrows-alt-h text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_alignment_morphology_diagnostic") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.alignment_morphology_diagnostic %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.lash.proportion_morphology_diagnostic.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-ratio text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_proportion_morphology_diagnostic") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.proportion_morphology_diagnostic %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.lash.thickness_diagnostic.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-ruler-vertical text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_thickness_diagnostic") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.thickness_diagnostic %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.lash.length_diagnostic.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-ruler-combined text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_length_diagnostic") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.length_diagnostic %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.lash.curvature_diagnostic.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-cogs text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_curvature_diagnostic") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.curvature_diagnostic %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.lash.style.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-paint-brush text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_style") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.style %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.lash.notes.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-sticky-note text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_notes") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.notes %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.lash.mapping.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-map text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_mapping") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.mapping %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.lash.event.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-calendar-alt text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_event") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.event %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.lash.texture.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-cogs text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_texture") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.texture %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.lash.density.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-lungs text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".lash_density") %>:</strong>
+          <span class="text-gray-600"><%= @guest.lash.density %></span>
+        </div>
+      </div>
+      <%# end %>
+    </div>
   <% else %>
-    <p><em><%= t(".no_lash_information") %></em></p>
+    <p class="text-gray-500 italic"><%= t(".no_lash_information") %></p>
   <% end %>
 </div>

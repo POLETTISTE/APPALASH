@@ -1,59 +1,128 @@
-<div id="guest_health">
-  <% if @guest.health %>
-    <h3><strong><%= t(".health_info") %></strong></h3>
-    <p>
-      <strong><%= t(".health_diabetes") %></strong>
-      <%= @guest.health.diabetes %>
-    </p>
-    <p>
-      <strong><%= t(".health_pregnancy") %></strong>
-      <%= @guest.health.pregnancy %>
-    </p>
-    <p>
-      <strong><%= t(".health_dry_eyes") %></strong>
-      <%= @guest.health.dry_eyes %>
-    </p>
-    <p>
-      <strong><%= t(".health_teary_eyes") %></strong>
-      <%= @guest.health.teary_eyes %>
-    </p>
-    <p>
-      <strong><%= t(".health_allergy") %></strong>
-      <%= @guest.health.allergy %>
-    </p>
-    <p>
-      <strong><%= t(".health_contact_lenses") %></strong>
-      <%= @guest.health.contact_lenses %>
-    </p>
-    <p>
-      <strong><%= t(".health_surgery") %></strong>
-      <%= @guest.health.surgery %>
-    </p>
-    <p>
-      <strong><%= t(".health_chemotherapy") %></strong>
-      <%= @guest.health.chemotherapy %>
-    </p>
-    <p>
-      <strong><%= t(".health_eyes_allergy") %></strong>
-      <%= @guest.health.eyes_allergy %>
-    </p>
-    <p>
-      <strong><%= t(".health_itch") %></strong>
-      <%= @guest.health.itch %>
-    </p>
-    <p>
-      <strong><%= t(".health_first_application") %></strong>
-      <%= @guest.health.first_application %>
-    </p>
-    <p>
-      <strong><%= t(".health_lie_down") %></strong>
-      <%= @guest.health.lie_down %>
-    </p>
-    <p>
-      <strong><%= t(".health_notes") %></strong>
-      <%= @guest.health.notes %>
-    </p>
+<div id="guest_health" class="p-6 bg-gray-50 rounded-lg shadow-lg">
+  <% fields = ['diabetes', 'pregnancy', 'dry_eyes', 'teary_eyes', 'allergy', 'contact_lenses', 'surgery', 'chemotherapy', 'eyes_allergy', 'itch', 'first_application', 'lie_down', 'notes'] %>
+  <% has_health_info = fields.any? { |field| @guest.health.send(field).present? } %>
+  <% if @guest.health && has_health_info %>
+    <h3 class="text-2xl font-semibold text-blue-600 mb-4"><%= t(".health_info") %></h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow-md">
+      <%# if @guest.health.diabetes.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-heartbeat text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".health_diabetes") %>:</strong>
+          <span class="text-gray-600"><%= @guest.health.diabetes %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.health.pregnancy.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-baby-carriage text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".health_pregnancy") %>:</strong>
+          <span class="text-gray-600"><%= @guest.health.pregnancy %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.health.dry_eyes.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-eye-dropper text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".health_dry_eyes") %>:</strong>
+          <span class="text-gray-600"><%= @guest.health.dry_eyes %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.health.teary_eyes.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-tear text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".health_teary_eyes") %>:</strong>
+          <span class="text-gray-600"><%= @guest.health.teary_eyes %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.health.allergy.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-allergies text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".health_allergy") %>:</strong>
+          <span class="text-gray-600"><%= @guest.health.allergy %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.health.contact_lenses.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-eye text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".health_contact_lenses") %>:</strong>
+          <span class="text-gray-600"><%= @guest.health.contact_lenses %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.health.surgery.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-scalpel text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".health_surgery") %>:</strong>
+          <span class="text-gray-600"><%= @guest.health.surgery %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.health.chemotherapy.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-capsules text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".health_chemotherapy") %>:</strong>
+          <span class="text-gray-600"><%= @guest.health.chemotherapy %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.health.eyes_allergy.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-eye text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".health_eyes_allergy") %>:</strong>
+          <span class="text-gray-600"><%= @guest.health.eyes_allergy %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.health.itch.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-scratch text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".health_itch") %>:</strong>
+          <span class="text-gray-600"><%= @guest.health.itch %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.health.first_application.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-calendar-check text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".health_first_application") %>:</strong>
+          <span class="text-gray-600"><%= @guest.health.first_application %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.health.lie_down.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-bed text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".health_lie_down") %>:</strong>
+          <span class="text-gray-600"><%= @guest.health.lie_down %></span>
+        </div>
+      </div>
+      <%# end %>
+      <%# if @guest.health.notes.present? %>
+      <div class="flex items-center space-x-3">
+        <i class="fas fa-sticky-note text-blue-500 text-lg"></i>
+        <div class="flex-1">
+          <strong class="text-gray-700"><%= t(".health_notes") %>:</strong>
+          <span class="text-gray-600"><%= @guest.health.notes %></span>
+        </div>
+      </div>
+      <%# end %>
+    </div>
   <% else %>
-    <p><em><%= t(".no_health_information") %></em></p>
+    <p class="text-gray-500 italic"><%= t(".no_health_information") %></p>
   <% end %>
 </div>
