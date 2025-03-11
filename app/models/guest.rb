@@ -39,7 +39,7 @@ class Guest < ApplicationRecord
   def full_name
     return name if firstname.blank?
 
-    "#{name} #{firstname}"
+    "#{firstname.capitalize} #{name.upcase} "
   end
 
   private
