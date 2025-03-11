@@ -1,133 +1,157 @@
-<div id="guest_general_informations" x-data="{ showForm: false, openMoreInfos: false }">
-  <!-- EDIT BUTTON -->
-  <button 
-    :class="showForm ? 'bg-yellow-500 hover:bg-yellow-700' : 'bg-blue-500 hover:bg-blue-700'"
-    class="text-white font-bold py-2 px-4 rounded"
-    @click="showForm = !showForm">
-    <span x-text="showForm ? 'CANCEL' : 'EDIT'"></span>
-  </button>
-  <%= form_for @guest, url: guest_path(@guest), method: :put, html: { multipart: true, data: { controller: "photo-preview" }, class: "space-y-6" } do |form| %>
-    <!-- GUEST CARES -->
-    <div class="guest-cares">
-      METTRE DES TAGS SOINS SELON TRANSACTIONS
+<style>
+  /* Ensures that the modal is initially hidden until Alpine is initialized */
+  [x-cloak] {
+    display: none;
+  }
+</style>
+<div id="guest_general_informations" 
+     x-data="{ 
+       selectedSection: 'health',  // Default section
+       editGeneralInfosModal: false, 
+       editOthersInfosModal: false, 
+       showSecondaryInfo: false, 
+       setSection(section) {
+         this.selectedSection = section;
+       }
+     }"
+     x-init="selectedSection = 'health'"  <!-- Set the default section to 'health' -->
+  x-cloak>
+  <!-- 🔹 DISPLAY GENERAL INFO -->
+  <div class="guest-main-info flex flex-row mt-4">
+    <div class="left mr-5">
+      <% if @guest.photo.attached? %>
+        <%= cl_image_tag @guest.photo.key, quality: "auto", height: 150, width: 150, crop: :thumb, gravity: :face, class: "rounded-full" %>
+      <% else %>
+        <%= image_tag "guest/guest_photo_profil.png", quality: "auto", height: 150, width: 150, class: "rounded-full bg-tomato" %>
+      <% end %>
     </div>
-    <!-- GUEST MAIN INFO -->
-    <div class="guest-main-info flex flex-row">
-      <div class="left mr-5">
-        <% if @guest.photo.attached? %>
-          <%= cl_image_tag @guest.photo.key, quality: "auto", height: 150, width: 150, crop: :thumb, gravity: :face, class: "rounded-full" %>
-        <% else %>
-          <%= image_tag "guest/guest_photo_profil.png", quality: "auto", height: 150, width: 150, crop: :thumb, class: "rounded-full bg-tomato" %>
-        <% end %>
-        <label for="photo" class="hidden text-lg font-medium text-gray-700">
-          <%= t("form.labels.guest.photo") %>
-        </label>
-        <input type="file" id="photo" name="guest[photo]" accept="image/jpeg, image/png" class="hidden block mt-2" data-edit-guest-target="photo" />
-      </div>
-      <div class="right w-full">
-        <div x-show="!showForm">
-          <p class="text-3xl font-bold mt-5 mb-5">
-            <%= @guest.full_name %>
-          </p>
-        </div>
-        <div x-show="showForm">
-          <%= field(form, :firstname) %>
-        </div>
-        <div x-show="showForm">
-          <%= field(form, :name) %>
-        </div>
-        <div x-show="!showForm">
-          <p class="flex items-center">
-            <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'email.svg')).gsub('<svg', '<svg class="w-6 h-6 text-customPink mr-1"')) %>
-            <%= mail_to @guest.email, @guest.email, class: "text-customPink hover:underline" %>
-          </p>
-        </div>
-        <div x-show="showForm">
-          <%= field(form, :email) %>
-        </div>
-        <div x-show="!showForm" >
-          <p class="flex items-center mb-2">
-            <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'phone.svg')).gsub('<svg', '<svg class="w-6 h-6 text-customPink mr-1"')) %>
-            <%= link_to @guest.phone, "tel:#{@guest.phone}", class: "text-customPink hover:underline" %>
-          </p>
-        </div>
-        <div x-show="showForm">
-          <%= field(form, :phone) %>
-        </div>
-      </div>
-    </div>
-    <!-- MORE INFOS BUTTON -->
-    <div x-data="{ openMoreInfos: false }">
-      <button type="button" @click="openMoreInfos = !openMoreInfos" class="flex flex-col justify-center items-center text-black hover:text-customPink">
-        + more infos
+    <div class="right w-full">
+      <!-- First Name -->
+      <p class="text-xl font-bold"><%= @guest.firstname %> <%= @guest.name %></p>
+      <!-- Email -->
+      <p class="flex items-center">
+        <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'email.svg')).gsub('<svg', '<svg class="w-6 h-6 text-customPink mr-1"')) %>
+        <%= mail_to @guest.email, @guest.email, class: "text-customPink hover:underline" %>
+      </p>
+      <!-- Phone -->
+      <p class="flex items-center mb-2">
+        <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'phone.svg')).gsub('<svg', '<svg class="w-6 h-6 text-customPink mr-1"')) %>
+        <%= link_to @guest.phone, "tel:#{@guest.phone}", class: "text-customPink hover:underline" %>
+      </p>
+      <!-- EDIT BUTTON - Opens General Info Modal -->
+      <button type="button" @click="editGeneralInfosModal = true" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        EDIT GENERAL INFO
       </button>
-      <!-- MORE INFOS CONTENT -->
-      <div x-show="openMoreInfos" x-transition x-cloak class="z-40 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 text-sm bg-white p-2 mt-2">
-        <div class="py-1">
-          <div class="guest-secondary-info">
-            <div x-show="!showForm" >
-              <p>
-                <strong><%= t(".address") %></strong> <%= @guest.address %>
-              </p>
-            </div>
-            <div x-show="showForm">
-              <%= field(form, :address) %>
-            </div>
-            <div x-show="!showForm" >
-              <p >
-                <strong><%= t(".zip_code") %></strong> <%= @guest.zip_code %>
-              </p>
-            </div>
-            <div x-show="showForm">
-              <%= field(form, :zip_code) %>
-            </div>
-            <div x-show="!showForm" >
-              <p >
-                <strong><%= t(".city") %></strong> <%= @guest.city %>
-              </p>
-            </div>
-            <div x-show="showForm">
-              <%= field(form, :city) %>
-            </div>
-            <div x-show="!showForm" >
-              <p>
-                <strong><%= t(".country") %></strong> <%= @guest.country %>
-              </p>
-            </div>
-            <div x-show="showForm">
-              <%= field(form, :country) %>
-            </div>
-            <div x-show="!showForm">
-              <p class="flex items-center mb-2">
-                <strong><%= t(".birthdate") %></strong> <%= @guest.birthdate %>
-              </p>
-            </div>
-            <div x-show="showForm">
-              <%= field(form, :birthdate) %>
-            </div>
-            <div x-show="showForm">
-              <%= field(form, :how_do_you_know_us) %>
-            </div>
-            <div x-show="showForm">
-              <%= field(form, :how_do_you_know_us) %>
-            </div>
-            <div>
-              <p>
-                <strong><%= t(".notes") %></strong> <%= @guest.notes %>
-              </p>
-            </div>
-            <div x-show="showForm">
-              <%= field(form, :notes) %>
-            </div>
+    </div>
+  </div>
+  <!-- 🔹 TOGGLE BUTTON FOR MORE INFORMATIONS -->
+  <button @click="showSecondaryInfo = !showSecondaryInfo" class="mt-4 bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
+    MORE INFORMATIONS
+  </button>
+  <!-- 🔹 DISPLAY SECONDARY INFO (Initially Hidden) -->
+  <div class="guest-secondary-info mt-4" x-show="showSecondaryInfo" x-cloak>
+    <p><strong>Address:</strong> <%= @guest.address %></p>
+    <p><strong>Zip Code:</strong> <%= @guest.zip_code %></p>
+    <p><strong>City:</strong> <%= @guest.city %></p>
+    <p><strong>Country:</strong> <%= @guest.country %></p>
+    <p><strong>Birthdate:</strong> <%= @guest.birthdate %></p>
+    <p><strong>Notes:</strong> <%= @guest.notes %></p>
+    <!-- EDIT BUTTON - Opens Secondary Info Modal -->
+    <button type="button" @click="editOthersInfosModal = true" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      EDIT SECONDARY INFO
+    </button>
+  </div>
+  <!-- 🔹 MODAL - GENERAL INFO -->
+  <div x-show="editGeneralInfosModal" 
+       class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center" 
+       x-cloak>
+    <div class="bg-white rounded-lg shadow-lg p-6 w-1/2">
+      <h2 class="text-2xl font-bold mb-4">Edit General Information</h2>
+      <%= form_for @guest, url: guest_path(@guest), method: :put, html: { multipart: true } do |form| %>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <%= field(form, :firstname) %>
+          </div>
+          <div>
+            <%= field(form, :name) %>
+          </div>
+          <div>
+            <%= field(form, :email) %>
+          </div>
+          <div>
+            <%= field(form, :phone) %>
           </div>
         </div>
-      </div>
+        <div class="flex justify-end space-x-4 mt-4">
+          <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" @click="editGeneralInfosModal = false">Cancel</button>
+          <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Save</button>
+        </div>
+      <% end %>
     </div>
-    <!-- GUEST SUBMIT BUTTON -->
-    <div x-show="showForm">
-      <button type="submit" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-        SUBMIT BUTTON
-      </button>
+  </div>
+  <!-- 🔹 MODAL - SECONDARY INFO -->
+  <div x-show="editOthersInfosModal" 
+       class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center" 
+       x-cloak>
+    <div class="bg-white rounded-lg shadow-lg p-6 w-1/2">
+      <h2 class="text-2xl font-bold mb-4">Edit Secondary Information</h2>
+      <%= form_for @guest, url: guest_path(@guest), method: :put, html: { multipart: true } do |form| %>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <%= field(form, :address) %>
+          </div>
+          <div>
+            <%= field(form, :zip_code) %>
+          </div>
+          <div>
+            <%= field(form, :city) %>
+          </div>
+          <div>
+            <%= field(form, :country) %>
+          </div>
+          <div class="col-span-2">
+            <%= field(form, :birthdate) %>
+          </div>
+          <div class="col-span-2">
+            <%= field(form, :notes) %>
+          </div>
+        </div>
+        <div class="flex justify-end space-x-4 mt-4">
+          <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" @click="editOthersInfosModal = false">Cancel</button>
+          <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Save</button>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
+  <!-- 🔹 SECTION TO RENDER BASED ON SELECTION -->
+  <ul class="flex justify-between mt-4 cursor-pointer">
+    <li @click="setSection('health')" 
+        :class="{'font-bold text-blue-500': selectedSection === 'health'}">HEALTH</li>
+    <li @click="setSection('diagnostic')" 
+        :class="{'font-bold text-blue-500': selectedSection === 'diagnostic'}">DIAGNOSTIC</li>
+    <li @click="setSection('extensions')" 
+        :class="{'font-bold text-blue-500': selectedSection === 'extensions'}">EXTENSIONS</li>
+    <li @click="setSection('esthetic')" 
+        :class="{'font-bold text-blue-500': selectedSection === 'esthetic'}">ESTHETIC</li>
+    <li @click="setSection('transactions')" 
+        :class="{'font-bold text-blue-500': selectedSection === 'transactions'}">TRANSACTIONS</li>
+  </ul>
+  <!-- 🔹 DISPLAY THE CONTENTS OF SELECTED SECTION -->
+  <div class="technical-info h-[500px] overflow-y-auto mt-4">
+    <div x-show="selectedSection === 'health'">
+      <%= render "guests/show/guest_health", guest: @guest %>
+    </div>
+    <div x-show="selectedSection === 'diagnostic'">
+      <%= render "guests/show/guest_diagnostic", guest: @guest %>
+    </div>
+    <div x-show="selectedSection === 'extensions'">
+      <%= render "guests/show/guest_extension", guest: @guest %>
+    </div>
+    <div x-show="selectedSection === 'esthetic'">
+      <!-- Add content for Esthetic here -->
+    </div>
+    <div x-show="selectedSection === 'transactions'">
+      <!-- Add content for Transactions here -->
+    </div>
+  </div>
 </div>
