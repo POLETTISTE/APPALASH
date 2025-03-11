@@ -13,6 +13,18 @@ module GuestsHelper
     end
   end
 
+  def checkbox_field(form, name, options = {})
+  label = t(".#{name}") # Translates the field label
+  id = "#{form.object.class.name.underscore}_#{name}" # Generates the checkbox ID dynamically
+  css_class = options[:class] || "mt-2 block" # Default class for styling
+
+  content_tag :div, class: "flex items-center space-x-2 #{css_class}" do
+    concat form.check_box(name, id: id, class: "h-5 w-5 text-blue-600")
+    concat form.label(name, label, class: "text-gray-700")
+  end
+end
+
+
   def how_do_you_know_us_options
     I18n.t('guest_options.how_do_you_know_us_options').values
   end

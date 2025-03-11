@@ -1,6 +1,6 @@
 <div id="guest_diagnostic" class="p-6 bg-gray-50 rounded-lg shadow-lg">
   <% fields = ['desired_effect', 'face_diagnostic', 'asymmetry_diagnostic', 'eyelid_morphology_diagnostic', 'alignment_morphology_diagnostic', 'proportion_morphology_diagnostic', 'thickness_diagnostic', 'length_diagnostic', 'curvature_diagnostic', 'style', 'notes', 'mapping', 'event', 'texture', 'density'] %>
-  <% has_lash_info = fields.any? { |field| @guest.lash.send(field).present? } %>
+  <% has_lash_info = fields.any? { |field| @guest.lash.send(field).nil? } %>
   <% if @guest.lash && has_lash_info %>
     <h3 class="text-2xl font-semibold text-blue-600 mb-4"><%= t(".lash_information") %></h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-lg shadow-md">
@@ -140,7 +140,5 @@
       </div>
       <%# end %>
     </div>
-  <% else %>
-    <p class="text-gray-500 italic"><%= t(".no_lash_information") %></p>
   <% end %>
 </div>
