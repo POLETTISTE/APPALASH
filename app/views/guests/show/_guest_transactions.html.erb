@@ -1,51 +1,69 @@
-
-
 <% if @guest.transactions.empty? %>
   <p>No transactions found for this guest.</p>
-  <% else %>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Date</th>  <!-- Date column -->
-      <th>Services</th>  <!-- Services column -->
-      <th>Total Price</th>
-    </tr>
-  </thead>
-  <tbody>
+<% else %>
+  <div class="space-y-4">
     <% @guest.transactions.each do |transaction| %>
-      <tr>
+      <div x-data="{ showModal: false }">
+        <!-- Transaction link with Date, Number of Services, and Total Price -->
+        <a href="#" @click.prevent="showModal = true" class="block p-4 border border-gray-300 rounded-md hover:bg-gray-50 cursor-pointer">
+          <p><%= transaction.created_at.strftime('%B %d, %Y') %></p>
+          <p><%= pluralize(transaction.services.count, 'service') %></p>
+          <p>
+            <% 
+              total_price = '%.2f' % transaction.total_price
+              position = t('currency_position')
+              currency = t('currency')
+            %>
+            <%= position == 'before' ? "#{currency}#{total_price}" : "#{total_price} #{currency}" %>
+          </p>
+        </a>
 
-        <!-- Date of the transaction -->
-        <td><%= transaction.date%></td>
-        <!-- Display services for the transaction -->
-        <td>
-          <ul>
-            <% transaction.services.each do |service| %>
-              <li>
-                <strong><%= service['name'] %></strong> <!-- Service name -->
+        <!-- Modal -->
+        <div x-show="showModal" x-cloak class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center" @click.self="showModal = false">
+          <div class="bg-white p-6 rounded-lg shadow-lg w-3/4 md:w-1/2">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center mb-4">
+              <h2 class="text-2xl font-semibold text-blue-600"><%= t('transaction_details') %></h2>
+              <button @click="showModal = false" class="text-gray-600 hover:text-gray-900">&times;</button>
+            </div>
+
+            <!-- Transaction Details -->
+            <div>
+              <p><strong><%= t('transaction_date') %>:</strong> <%= transaction.created_at.strftime('%B %d, %Y') %></p>
+              <p><strong><%= t('transaction_services') %>:</strong></p>
+              <ul>
+                <% transaction.services.each do |service| %>
+                  <li><%= service['name'] %> - 
+                    <% 
+                      price = '%.2f' % service['price']
+                      position = t('currency_position')
+                      currency = t('currency')
+                    %>
+                    <%= position == 'before' ? "#{currency}#{price}" : "#{price} #{currency}" %>
+                  </li>
+                <% end %>
+              </ul>
+              <p><strong><%= t('transaction_total_price') %>:</strong> 
                 <% 
-                  price = '%.2f' % service['price']
-                  currency = t('currency')
+                  total_price = '%.2f' % transaction.total_price
                   position = t('currency_position')
+                  currency = t('currency')
                 %>
-                <%= position == 'before' ? "#{currency}#{price}" : "#{price} #{currency}" %>
-              </li>
-            <% end %>
-          </ul>
-        </td>
+                <%= position == 'before' ? "#{currency}#{total_price}" : "#{total_price} #{currency}" %>
+              </p>
+            </div>
 
-        <!-- Display the total price for the transaction -->
-        <td>
-          <% 
-            total_price = '%.2f' % transaction.total_price
-            position = t('currency_position')
-            currency = t('currency')
-          %>
-          <%= position == 'before' ? "#{currency}#{total_price}" : "#{total_price} #{currency}" %>
-        </td>
+            <!-- Delete Button -->
+            <div class="mt-4 text-right">
+             <%= link_to transaction_path(transaction), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this transaction?' }, class: 'px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400' do %>
+  <i class="fas fa-trash"></i> 
+  <span class="sr-only"><%= t('delete_transaction') %></span>
+<% end %>
 
-      </tr>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
 <% end %>
