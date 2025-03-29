@@ -1,0 +1,51 @@
+
+
+<% if @guest.transactions.empty? %>
+  <p>No transactions found for this guest.</p>
+  <% else %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Date</th>  <!-- Date column -->
+      <th>Services</th>  <!-- Services column -->
+      <th>Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @guest.transactions.each do |transaction| %>
+      <tr>
+
+        <!-- Date of the transaction -->
+        <td><%= transaction.date%></td>
+        <!-- Display services for the transaction -->
+        <td>
+          <ul>
+            <% transaction.services.each do |service| %>
+              <li>
+                <strong><%= service['name'] %></strong> <!-- Service name -->
+                <% 
+                  price = '%.2f' % service['price']
+                  currency = t('currency')
+                  position = t('currency_position')
+                %>
+                <%= position == 'before' ? "#{currency}#{price}" : "#{price} #{currency}" %>
+              </li>
+            <% end %>
+          </ul>
+        </td>
+
+        <!-- Display the total price for the transaction -->
+        <td>
+          <% 
+            total_price = '%.2f' % transaction.total_price
+            position = t('currency_position')
+            currency = t('currency')
+          %>
+          <%= position == 'before' ? "#{currency}#{total_price}" : "#{total_price} #{currency}" %>
+        </td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

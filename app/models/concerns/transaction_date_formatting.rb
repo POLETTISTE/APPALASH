@@ -1,4 +1,4 @@
-module HasFormattedDate
+module TransactionDateFormatting
   extend ActiveSupport::Concern
 
   def formatted_year

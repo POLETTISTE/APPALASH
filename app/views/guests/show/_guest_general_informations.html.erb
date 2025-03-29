@@ -123,7 +123,7 @@
   </div>
   <!-- 🔹 SECTION TO RENDER BASED ON SELECTION -->
   <ul class="flex justify-between mt-4 cursor-pointer">
-    <template x-for="section in ['health', 'diagnostic', 'extensions', 'esthetic', 'transactions']" :key="section">
+    <template x-for="section in ['health', 'diagnostic', 'lashes', 'esthetic', 'transactions']" :key="section">
       <li @click="setSection(section)" 
         :class="{'font-bold text-customPink': selectedSection === section}">
         <span x-text="section.toUpperCase()"></span>
@@ -138,13 +138,15 @@
     <div x-show="selectedSection === 'diagnostic'">
       <%= render "guests/show/guest_diagnostic", guest: @guest %>
     </div>
-    <div x-show="selectedSection === 'extensions'">
-      <%= render "guests/show/guest_extension", guest: @guest %>
+    <div x-show="selectedSection === 'lashes'">
+      <%= render "guests/show/guest_lashes", guest: @guest %>
     </div>
     <div x-show="selectedSection === 'esthetic'">
       <!-- Add content for Esthetic here -->
     </div>
     <div x-show="selectedSection === 'transactions'">
+      <%= render "guests/show/guest_transactions", guest: @guest %>
+
       <!-- Add content for Transactions here -->
     </div>
   </div>

@@ -1,9 +1,8 @@
-# frozen_string_literal: true
-
 class User < ApplicationRecord
+  include UserValidations # ✅ Use the new concern
+
   # Associations
   has_one_attached :avatar
-
   has_many :services, dependent: :destroy
   has_many :guests, dependent: :destroy
   has_many :transactions, dependent: :destroy
@@ -16,23 +15,4 @@ class User < ApplicationRecord
   # Validations
   validates :website, presence: true, uniqueness: true,
                       format: { without: /\s/, message: 'cannot contain spaces' }
-
-  validate :validate_website_format
-  validate :ensure_single_admin, if: :admin_changed?
-
-  private
-
-  def validate_website_format
-    return if website.blank?
-
-    return unless website.downcase == 'appalash'
-
-    errors.add(:website, 'cannot be "appalash". This is a reserved name.')
-  end
-
-  def ensure_single_admin
-    return unless admin? && User.where(admin: true).where.not(id: id).exists?
-
-    errors.add(:admin, 'There can only be one admin user.')
-  end
 end
