@@ -16,9 +16,9 @@ module UserValidations
   def validate_forbidden_websites
     return if website.blank?
 
-    if FORBIDDEN_WEBSITES.include?(website.downcase)
-      errors.add(:website, 'is forbidden. Please choose another one.')
-    end
+    return unless FORBIDDEN_WEBSITES.include?(website.downcase)
+
+    errors.add(:website, 'is forbidden. Please choose another one.')
   end
 
   def ensure_single_admin

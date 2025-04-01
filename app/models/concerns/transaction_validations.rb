@@ -12,8 +12,8 @@ module TransactionValidations
   private
 
   def at_least_one_service_selected
-    if services.blank? || services.all? { |service| service['name'].blank? || service['price'].blank? }
-      errors.add(:services, "must include at least one valid service")
-    end
+    return unless services.blank? || services.all? { |service| service['name'].blank? || service['price'].blank? }
+
+    errors.add(:services, 'must include at least one valid service')
   end
 end

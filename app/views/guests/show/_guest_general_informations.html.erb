@@ -4,17 +4,26 @@
     display: none;
   }
 </style>
+
 <div id="guest_general_informations" 
      x-data="{ 
-       selectedSection: 'health',  // Default section
+       selectedSection: '<%= params[:selected_section] || 'health' %>',  // Default to 'health' unless specified in URL
+       showTransactionModal: false,  // To control showing the transaction modal
        editGeneralInfosModal: false, 
        editOthersInfosModal: false, 
        showSecondaryInfo: false, 
        setSection(section) {
          this.selectedSection = section;
+       },
+       openTransactionModalIfNeeded() {
+         // Automatically open the modal for 'transactions' section if selected
+         if (this.selectedSection === 'transactions') {
+           this.showTransactionModal = true;
+         }
        }
      }"
-     x-init="selectedSection = 'health'" x-cloak>
+     x-init="openTransactionModalIfNeeded()" x-cloak>
+  
   <!-- 🔹 DISPLAY GENERAL INFO -->
   <div class="guest-main-info flex flex-row mt-4">
     <div class="left mr-5">
@@ -38,14 +47,15 @@
         <%= link_to @guest.phone, "tel:#{@guest.phone}", class: "text-customPink hover:underline" %>
       </p>
       <!-- EDIT BUTTON - Opens General Info Modal -->
-      <!-- Directly use the SVG pencil icon without a button -->
       <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'pencil.svg')).gsub('<svg', '<svg @click="editGeneralInfosModal = true" class="w-6 h-6 text-customPink cursor-pointer"')) %>
     </div>
   </div>
-  <!-- 🔹 TOGGLE BUTTON FOR MORE INFORMATIONS -->
+
+  <!-- 🔹 TOGGLE BUTTON FOR MORE INFORMATION -->
   <button @click="showSecondaryInfo = !showSecondaryInfo" class="mt-4 bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
     MORE INFORMATIONS
   </button>
+
   <!-- 🔹 DISPLAY SECONDARY INFO (Initially Hidden) -->
   <div class="guest-secondary-info mt-4" x-show="showSecondaryInfo" x-cloak>
     <p><strong>Address:</strong> <%= @guest.address %></p>
@@ -59,6 +69,7 @@
       EDIT SECONDARY INFO
     </button>
   </div>
+
   <!-- 🔹 MODAL - GENERAL INFO -->
   <div x-show="editGeneralInfosModal" 
        class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center" 
@@ -87,6 +98,7 @@
       <% end %>
     </div>
   </div>
+
   <!-- 🔹 MODAL - SECONDARY INFO -->
   <div x-show="editOthersInfosModal" 
        class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center" 
@@ -121,6 +133,7 @@
       <% end %>
     </div>
   </div>
+
   <!-- 🔹 SECTION TO RENDER BASED ON SELECTION -->
   <ul class="flex justify-between mt-4 cursor-pointer">
     <template x-for="section in ['health', 'diagnostic', 'lashes', 'esthetic', 'transactions']" :key="section">
@@ -130,6 +143,7 @@
       </li>
     </template>
   </ul>
+
   <!-- 🔹 DISPLAY THE CONTENTS OF SELECTED SECTION -->
   <div class="technical-info h-[500px] overflow-y-auto mt-4">
     <div x-show="selectedSection === 'health'">
@@ -146,8 +160,16 @@
     </div>
     <div x-show="selectedSection === 'transactions'">
       <%= render "guests/show/guest_transactions", guest: @guest %>
-
-      <!-- Add content for Transactions here -->
+<%#       
+      <!-- Triggering the modal here -->
+      <div x-show="showTransactionModal" x-cloak>
+        <!-- Modal for transaction content here -->
+        <div class="modal-content">
+          <p>Here is the modal for transactions!</p>
+          <!-- Close button for modal -->
+          <button @click="showTransactionModal = false">Close</button>
+        </div> %>
+      </div>
     </div>
   </div>
 </div>

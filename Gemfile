@@ -79,4 +79,4 @@ gem 'pundit'
 gem 'rack-attack'
 gem 'tailwindcss-rails'
 
-gem "hotwire-livereload", "~> 2.0"
+gem 'hotwire-livereload', '~> 2.0'

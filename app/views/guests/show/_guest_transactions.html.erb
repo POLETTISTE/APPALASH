@@ -55,10 +55,16 @@
 
             <!-- Delete Button -->
             <div class="mt-4 text-right">
-             <%= link_to transaction_path(transaction), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this transaction?' }, class: 'px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400' do %>
+<%= link_to transaction_path(transaction, from_guest: 'true'), 
+            method: :delete, 
+            data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this transaction?' }, 
+            class: 'px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400' do %>
   <i class="fas fa-trash"></i> 
   <span class="sr-only"><%= t('delete_transaction') %></span>
 <% end %>
+
+
+
 
             </div>
           </div>

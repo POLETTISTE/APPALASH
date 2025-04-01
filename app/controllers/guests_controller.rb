@@ -134,8 +134,8 @@ class GuestsController < ApplicationController
   private
 
   def set_guest
-  # Eager load the photo attachment and blob, as well as transactions
-  @guest = Guest.includes(photo_attachment: :blob, transactions: :guest).find(params[:id])
+    # Eager load the photo attachment and blob, as well as transactions
+    @guest = Guest.includes(photo_attachment: :blob, transactions: :guest).find(params[:id])
     authorize @guest
     @guests = policy_scope(Guest)
   rescue ActiveRecord::RecordNotFound

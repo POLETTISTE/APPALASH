@@ -87,6 +87,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Add Hotwire Livereload listen paths here
-  config.hotwire_livereload.listen_paths << Rails.root.join("app/views")
-  config.hotwire_livereload.listen_paths << Rails.root.join("app/assets")
+  config.hotwire_livereload.listen_paths << Rails.root.join('app/views')
+  config.hotwire_livereload.listen_paths << Rails.root.join('app/assets')
 end
