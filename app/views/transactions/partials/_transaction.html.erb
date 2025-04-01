@@ -16,18 +16,11 @@
     <%= position == 'before' ? "#{currency}#{total_price}" : "#{total_price} #{currency}" %>
   </p>
 </div>
-<% if @transactions.any? %>  <!-- Check if there are transactions -->
-  <div class="flex flex-wrap w-full px-5 justify-around">
-    <!-- List Section: 1/4 width on desktop, full width on mobile/tablet -->
-    <div class="md:w-2/5 lg:w-2/5 lg:max-w-[500px]">
-      <%= render 'list', transactions: @transactions, selected_transaction: @transaction %>
-    </div>
-    <!-- Details Section: Ensuring visibility on iPad (medium screens) -->
-    <div class="ml-[50px] w-full md:w-3/5 lg:w-3/5 min-w-[300px]">
-      <%= render 'details', transaction: @transaction if @transaction.present? %>
-    </div>
+<% if @transactions.any? %>
+  <div class="flex px-5 ">
+    <%= render 'transactions/partials/list', transactions: @transactions, selected_transaction: @transaction %>
+    <%= render 'transactions/partials/details', transaction: @transaction if @transaction.present? %>
   </div>
 <% else %>
   <p>No transactions</p>
-  <!-- Display message when no transactions exist -->
 <% end %>

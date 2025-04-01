@@ -1,5 +1,5 @@
-<div id="transactions-list w-full"
-     class="list-group space-y-2 pt-[30px] pb-[150px]"
+<div id="transactions-list"
+     class="list-group space-y-2 pt-[30px] pb-[150px] h-[400px] overflow-y-auto bg-white rounded-lg shadow-md border border-gray-300"
      data-controller="transactions-list"
      data-action="scroll->transactions-list#saveScrollPosition">
   <% transactions.each do |transaction| %>

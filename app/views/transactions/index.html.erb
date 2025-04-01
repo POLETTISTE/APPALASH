@@ -1,23 +1,3 @@
-<div class='sticky top-[80px] bg-white h-[50px] px-5'>
-  <% if policy(Transaction).create? %>
-    <%= link_to t("button.new", model: Transaction.model_name.human.downcase), 
-              new_transaction_path, 
-              class: "inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-auto" %>
-  <% end %>
+<div class="flex flex-col">
+  <%= render "transactions/partials/transaction", transaction: @transaction %> <!-- Adjusted render path -->
 </div>
-<div>
-  <%= t('.total') %>
-  <p>
-    <% 
-      total_price = '%.2f' % @transactions_total_price
-      currency = t('currency')
-      position = t('currency_position')
-    %>
-    <%= position == 'before' ? "#{currency}#{total_price}" : "#{total_price} #{currency}" %>
-  </p>
-</div>
-<% if @transactions.any? %>  <!-- Check if there are transactions -->
-<% else %>
-  <p>No transactions</p>
-  <!-- Display message when no transactions exist -->
-<% end %>
