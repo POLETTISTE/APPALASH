@@ -90,11 +90,12 @@ class TransactionsController < ApplicationController
   def destroy
     @transaction = Transaction.find(params[:id])
     @guest = @transaction.guest
-    from_guest = params[:from_guest] == 'true'  # Check if the request came from the guest page
-    
+    from_guest = params[:from_guest] == 'true' # Check if the request came from the guest page
+
     if @transaction.destroy
-      alert_message = t('transactions.destroy.success', firstname: @transaction.guest.firstname, name: @transaction.guest.name)
-    
+      alert_message = t('transactions.destroy.success', firstname: @transaction.guest.firstname,
+                                                        name: @transaction.guest.name)
+
       respond_to do |format|
         format.html do
           if from_guest
@@ -109,18 +110,13 @@ class TransactionsController < ApplicationController
       end
     else
       alert_error_message = t('transactions.destroy.error')
-    
+
       respond_to do |format|
         format.html { redirect_to guest_path(@guest), alert: alert_error_message }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end
   end
-  
-  
-  
-  
-  
 
   private
 

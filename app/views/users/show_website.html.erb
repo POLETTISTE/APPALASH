@@ -6,7 +6,7 @@
       Profile
     <% end %>
   </h1>
-  <% if @services.present? %>
+  <% if @user.services.present? %>
     <div class="space-y-6">
       <% @user.services.each do |service| %>
         <div class="service p-4 rounded-lg shadow-md">

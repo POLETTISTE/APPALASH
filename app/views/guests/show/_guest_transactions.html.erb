@@ -17,7 +17,6 @@
             <%= position == 'before' ? "#{currency}#{total_price}" : "#{total_price} #{currency}" %>
           </p>
         </a>
-
         <!-- Modal -->
         <div x-show="showModal" x-cloak class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center" @click.self="showModal = false">
           <div class="bg-white p-6 rounded-lg shadow-lg w-3/4 md:w-1/2">
@@ -26,7 +25,6 @@
               <h2 class="text-2xl font-semibold text-blue-600"><%= t('transaction_details') %></h2>
               <button @click="showModal = false" class="text-gray-600 hover:text-gray-900">&times;</button>
             </div>
-
             <!-- Transaction Details -->
             <div>
               <p><strong><%= t('transaction_date') %>:</strong> <%= transaction.created_at.strftime('%B %d, %Y') %></p>
@@ -43,7 +41,7 @@
                   </li>
                 <% end %>
               </ul>
-              <p><strong><%= t('transaction_total_price') %>:</strong> 
+              <p><strong><%= t('transaction_total_price') %>:</strong>
                 <% 
                   total_price = '%.2f' % transaction.total_price
                   position = t('currency_position')
@@ -52,20 +50,16 @@
                 <%= position == 'before' ? "#{currency}#{total_price}" : "#{total_price} #{currency}" %>
               </p>
             </div>
-
             <!-- Delete Button -->
             <div class="mt-4 text-right">
-<%= link_to transaction_path(transaction, from_guest: 'true'), 
-            method: :delete, 
-            data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this transaction?' }, 
-            class: 'px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400' do %>
-  <i class="fas fa-trash"></i> 
-  <span class="sr-only"><%= t('delete_transaction') %></span>
-<% end %>
-
-
-
-
+              <!-- from_guest: 'true' permits to redirect to the guest page when deleting a transaction from guest page instead redirect to transactions index page -->
+              <%= link_to transaction_path(transaction, from_guest: 'true'), 
+                          method: :delete, 
+                          data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this transaction?' }, 
+                          class: 'px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400' do %>
+                <i class="fas fa-trash"></i>
+                <span class="sr-only"><%= t('delete_transaction') %></span>
+              <% end %>
             </div>
           </div>
         </div>
