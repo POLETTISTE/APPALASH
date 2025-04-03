@@ -1,6 +1,6 @@
-<%= turbo_frame_tag :contact_details, class: "w-full" do %>
+<%= turbo_frame_tag :contact_details, class: "w-[800px]" do %>
   <!-- Parent Container (flex layout to allow turbo frame to take remaining space) -->
-  <div class="flex flex-col space-y-4 justify-center fixed items-center p-6">
+  <div class="flex flex-col space-y-4 fixed  p-6">
     <!-- Localized Transaction Date with Default -->
     <p><%= l(@transaction.date, default: @transaction.date.to_s) %></p>
     <% if transaction.guest.photo.attached? %>
