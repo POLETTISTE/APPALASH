@@ -1,4 +1,9 @@
 <footer class="z-40 fixed bottom-0 w-full bg-gray-800 text-white p-4 text-center footer">
+  <div class="flex justify-center items-center w-full h-[40px] mb-4">
+    <%= link_to "/#{I18n.locale}", class: "text-white hover:text-customPink font-semibold" do %>
+      <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'logo.svg')).gsub('<svg', '<svg class="h-[40px]"')) %>
+    <% end %>
+  </div>
   <% if !user_signed_in? || (user_signed_in? && controller_name == 'users' && action_name == 'show') %>
     <%= render 'partials/footer/footer_visitor'%>
   <% else %>

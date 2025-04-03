@@ -27,7 +27,7 @@
       <%= render 'partials/navbar/navbar' %>
       <main class="flex">
         <!-- Sidebar (Fixed Left) -->
-        <div class="z-30 main-left flex flex-col fixed w-[280px] h-screen bg-white shadow-md hidden lg:block">
+        <div class="z-30 main-left flex flex-col h-screen fixed w-[280px] bg-white hidden lg:block">
           <% if user_signed_in? %>
             <%= render 'partials/sidebar/sidebar' %>
           <% end %>
