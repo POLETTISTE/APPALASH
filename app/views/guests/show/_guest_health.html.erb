@@ -8,7 +8,7 @@
 <% health_fields = [:diabetes, :pregnancy, :dry_eyes, :teary_eyes, :allergy, :contact_lenses, :surgery, :chemotherapy, :eyes_allergy, :itch, :first_application, :lie_down] %>
 <div id="guest_health_informations" x-data="{ editHealthModal: false }" x-cloak>
   <div id="guest_health" class="p-6 bg-gray-50 rounded-lg shadow-lg">
-    <h3 class="text-2xl font-semibold text-blue-600 mb-4"><%#= t(".health_info") %></h3>
+    <h3 class="text-2xl font-semibold text-blue-600 mb-4"><%= t(".health_info") %></h3>
     <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'pencil.svg'))
       .gsub('<svg', '<svg @click="editHealthModal = true" class="w-10 h-10 text-customPink cursor-pointer"')) %>
     <div x-show="editHealthModal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center" x-cloak>
@@ -16,8 +16,8 @@
     </div>
     <%# Flag to check if any health information exists %>
     <div class="flex">
-      <div class="flex flex-wrap gap-3 bg-white flex-1">
-        <% any_health_info = false %>
+      <% any_health_info = health_fields.any? { |field| !@guest.health.send(field).nil? } %>
+      <div class="flex flex-wrap gap-3 bg-white <%= 'flex-1' unless !any_health_info %>">
         <% health_fields.each do |field| %>
           <% value = @guest.health.send(field) %>
           <% unless value.nil? %>

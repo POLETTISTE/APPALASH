@@ -63,20 +63,6 @@
     </div>
     <!-- Add other Extension input fields here similarly with Tailwind classes -->
   <% end %>
-  <!-- Health Fields -->
-  <%= form.fields_for :health do |hf| %>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="flex items-center">
-        <%= hf.check_box :diabetes, class: 'mr-2 leading-tight' %>
-        <%= hf.label :diabetes, "Diabetes", class: 'text-lg font-medium text-gray-700' %>
-      </div>
-      <div class="flex items-center">
-        <%= hf.check_box :pregnancy, class: 'mr-2 leading-tight' %>
-        <%= hf.label :pregnancy, "Pregnancy", class: 'text-lg font-medium text-gray-700' %>
-      </div>
-    </div>
-    <!-- Add other Health input fields here similarly with Tailwind classes -->
-  <% end %>
   <!-- Submit Button -->
   <div class="flex justify-center">
     <%= form.submit class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
