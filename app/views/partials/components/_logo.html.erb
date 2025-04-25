@@ -1,0 +1,7 @@
+<% logo_color ||= 'text-red-500' %> <!-- Fallback to red if no color passed -->
+<div class="flex justify-center items-center h-20">
+  <%= link_to "/#{I18n.locale}", class: "#{logo_color} font-semibold h-full" do %>
+    <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'logo.svg'))
+      .gsub('<svg', '<svg class="h-full max-w-[200px]"')) %>
+  <% end %>
+</div>
