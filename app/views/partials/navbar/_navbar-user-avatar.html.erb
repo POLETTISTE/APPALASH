@@ -1,15 +1,18 @@
 <header>
-  <div class="flex mb-[50px]">
-    <div>
-      <div class="flex justify-center items-center mb-4">
-        <div class="flex justify-center items-center pr-3">
-          <% if current_user.avatar.attached? %>
-            <%= cl_image_tag current_user.avatar.key, height: 50, width: 50, crop: :thumb, gravity: :face, radius: :max %>
-          <% else %>
-            <%= image_tag "avatar-default.jpg", class: "rounded-full", width: "50" %>
-          <% end %>
-        </div>
-        <div class="flex justify-center items-center ml-2">
-          <%= current_user.name %> <%= current_user.firstname %>
-        </div>
-      </header>
+  <div class="flex items-center space-x-4">
+    <div class="w-14 h-14 rounded-full overflow-hidden flex-shrink-0">
+      <% if current_user.avatar.attached? %>
+        <%= cl_image_tag current_user.avatar.key,
+              height: 56, width: 56,
+              crop: :thumb, gravity: :face, radius: :max,
+              class: "w-full h-full object-cover" %>
+      <% else %>
+        <%= image_tag "avatar-default.jpg",
+              class: "w-full h-full object-cover rounded-full" %>
+      <% end %>
+    </div>
+    <div class="text-lg font-semibold text-gray-800">
+      <%= current_user.name %> <%= current_user.firstname %>
+    </div>
+  </div>
+</header>
