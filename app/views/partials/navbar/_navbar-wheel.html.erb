@@ -1,0 +1,20 @@
+<div x-data="{ openDropdownWheel: false }" class="relative">
+  <button 
+        @click="openDropdownWheel = !openDropdownWheel" 
+        class="text-black hover:text-customPink hover:animate-spin-wheel flex items-center">
+    <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'parameters.svg')).gsub('<svg', '<svg class="w-6 h-6 fill-current"')) %>
+  </button>
+  <div 
+        x-show="openDropdownWheel" 
+        x-transition 
+        x-cloak 
+        class="absolute right-0 mt-2 w-48 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 bg-white z-40" 
+        style="display: none;">
+    <ul class="py-1 text-sm text-gray-700">
+      <li><%= link_to t("navbar_link_user_informations"), personal_information_path, class: "block px-4 py-2 hover:bg-gray-100" %></li>
+      <li><%= link_to t("navbar_link_subscription"), "#", class: "block px-4 py-2 hover:bg-gray-100" %></li>
+      <li><%= link_to t("navbar_link_preferences"), "#", class: "block px-4 py-2 hover:bg-gray-100" %></li>
+      <li><%= link_to t("navbar_link_logout"), destroy_user_session_path, data: { turbo_method: :delete }, class: "block px-4 py-2 hover:bg-gray-100" %></li>
+    </ul>
+  </div>
+</div>

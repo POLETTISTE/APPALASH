@@ -1,25 +1,7 @@
-<nav class="z-10 sticky top-0 bg-white h-[20px] w-full">
-  <div x-data="{ openDropdownWheel: false }" class="flex justify-end relative mr-3">
-    <!-- toothed wheel parameters with Dropdown Toggle -->
-    <button 
-      @click="openDropdownWheel = !openDropdownWheel" 
-      class="flex flex-col justify-center items-center text-black hover:text-customPink hover:animate-spin-wheel">
-      <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'parameters.svg'))
-      .gsub('<svg', '<svg class="w-6 h-6 fill-current"')) %>
-    </button>
-    <!-- Dropdown Menu -->
-    <div 
-      x-show="openDropdownWheel" 
-      x-transition 
-      x-cloak 
-      class="z-40 absolute top-[70px] right-0 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 text-sm bg-white" 
-      style="display: none;">
-      <div class="py-1">
-        <%= link_to t("navbar_link_user_informations"), personal_information_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
-        <%= link_to t("navbar_link_subscription"), "#", class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
-        <%= link_to t("navbar_link_preferences"), "#", class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
-        <%= link_to t("navbar_link_logout"), destroy_user_session_path, data: { turbo_method: :delete }, class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
-      </div>
-    </div>
+<header class="w-full bg-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+    <%= render 'partials/navbar/navbar-user-avatar' %>
+    <%= render 'partials/navbar/navbar-links' %>
+    <%= render 'partials/navbar/navbar-wheel' %>
   </div>
-</nav>
+</header>

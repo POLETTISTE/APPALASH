@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SidebarHelper
+module NavbarHelper
   def active_class(link_path)
     # Check if the current request path is the root path ("/") or the locale-prefixed root ("/en")
     if link_path == '/guests' && (request.path == '/' || request.path == "/#{I18n.locale}")

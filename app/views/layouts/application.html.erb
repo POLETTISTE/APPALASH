@@ -25,17 +25,10 @@
     <% end %>
     <% if user_signed_in? %>
       <%= render 'partials/navbar/navbar' %>
-      <main class="flex">
+      <main class="main-right flex-1  min-h-screen bg-green-50 pb-20">
         <!-- Sidebar (Fixed Left) -->
-        <div class="z-30 main-left flex flex-col h-screen fixed w-[280px] bg-white hidden lg:block">
-          <% if user_signed_in? %>
-            <%= render 'partials/sidebar/sidebar' %>
-          <% end %>
-        </div>
         <!-- Main Content (Right) -->
-        <div class="main-right flex-1 lg:ml-[290px] min-h-screen bg-green-50 pb-20">
-          <%= yield %> <!-- This will render the page content -->
-        </div>
+        <%= yield %> <!-- This will render the page content -->
       </main>
       <!-- Flash messages -->
       <%= render "shared/flashes" %>
