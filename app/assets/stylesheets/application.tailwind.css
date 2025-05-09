@@ -1,5 +1,5 @@
 /* app/assets/stylesheets/application.tailwind.css */
-
+@import "./components/custom-styles.css";
 /* Tailwind's base styles */
 @tailwind base;
 
@@ -8,71 +8,3 @@
 
 /* Tailwind's utility styles */
 @tailwind utilities;
-
-@layer base {
-  .result {
-    color: var(--pink);
-  }
-
-  @keyframes blink {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  .translation_missing {
-    background-color: red;
-    color: white;
-    font-weight: bold;
-    animation: blink 1s infinite; /* Blink every 1 second */
-  }
-
-  .alert {
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 40px;
-    font-size: 20px;
-    background-color: var(
-      --pink,
-      pink
-    ); /* Fallback to 'pink' if --pink isn't defined */
-    color: white;
-    animation: fadeOut 2s forwards;
-  }
-
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-    }
-    90% {
-      opacity: 1; /* Keep full opacity */
-    }
-    100% {
-      opacity: 0; /* End with no opacity (completely invisible) */
-      display: none;
-    }
-  }
-
-  .animate-spin-wheel {
-    animation: spin 10s linear infinite;
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-}

@@ -1,14 +1,16 @@
-<nav class="flex justify-center">
+<nav class="grid grid-cols-5 gap-2 px-4 py-2 bg-white">
   <% nav_links = [
     { path: guests_path, svg_name: 'guest', text_key: 'navbar_link_guests', active_path: '/guests' },
     { path: services_path, svg_name: 'lash', text_key: 'navbar_link_services', active_path: '/services' },
     { path: transactions_path, svg_name: 'transaction', text_key: 'navbar_link_transactions', active_path: '/transactions' },
     { path: dashboard_index_path, svg_name: 'dashboard', text_key: 'navbar_link_dashboard', active_path: '/dashboard' }
   ] %>
+
   <% nav_links.each do |link| %>
     <%= render 'partials/navbar/navbar-link', **link %>
   <% end %>
-  <% if current_user && current_user.website.present? %>
+
+  <% if current_user&.website.present? %>
     <%= render 'partials/navbar/navbar-link', path: user_profile_path(current_user.website), svg_name: 'website', text_key: 'navbar_link_website', active_path: '/home' %>
   <% end %>
 </nav>
