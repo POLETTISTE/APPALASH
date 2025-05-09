@@ -1,5 +1,6 @@
 /* app/assets/stylesheets/application.tailwind.css */
 @import "./components/custom-styles.css";
+@import "./components/helpers-styles.css";
 /* Tailwind's base styles */
 @tailwind base;
 
@@ -8,3 +9,4 @@
 
 /* Tailwind's utility styles */
 @tailwind utilities;
+/* app/assets/stylesheets/application.tailwind.css */

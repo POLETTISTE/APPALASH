@@ -6,16 +6,7 @@ module.exports = {
     "./app/**/*.{html,erb,js,jsx,ts,tsx,vue}", // Watch all the files in your app
   ],
   // for example if css in helper, it doesnt this.precompile, so thnaks to it it is precompiled
-  safelist: [
-    "border-b-8", // Safelist border-b-8 (add more dynamic classes here)
-    "border-t-8", // Safelist border-b-8 (add more dynamic classes here)
-    "border-l-8", // Safelist border-b-8 (add more dynamic classes here)
-    "border-r-8",
-    "border-8",
-    "font-semibold transition duration-200 relative group text-base md:text-lg lg:text-xl", // Safelist border-b-8 (add more dynamic classes here)
-    // You can add more dynamic classes here if needed, e.g.
-    // 'text-center', 'bg-red-500', 'border-t-4', etc.
-  ],
+  safelist: [],
   theme: {
     extend: {
       colors: {

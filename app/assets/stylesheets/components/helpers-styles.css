@@ -1,0 +1,15 @@
+.navbar-base {
+  @apply font-semibold text-base py-2 px-4 transition duration-200 relative flex;
+}
+
+.navbar-custom-active {
+  @apply text-customPink bg-customPink bg-opacity-20 border-l-8 border-customPink;
+}
+
+.navbar-custom-inactive {
+  @apply text-black border-l-8 border-white hover:text-customPink;
+}
+
+.navbar-text-large {
+  @apply text-sm lg:text-lg;
+}
