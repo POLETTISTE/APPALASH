@@ -13,6 +13,7 @@
   .result {
     color: var(--pink);
   }
+
   @keyframes blink {
     0% {
       opacity: 1;
@@ -74,6 +75,4 @@
       transform: rotate(360deg);
     }
   }
-
-  
 }

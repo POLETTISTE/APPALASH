@@ -1,4 +1,4 @@
-<%= link_to path, class: "py-2 px-4 rounded #{active_class(active_path)} flex flex-col justify-start items-center w-100" do %>
+<%= link_to path, class: "py-2 px-2 rounded #{active_class(active_path)} flex flex-col justify-start items-center w-[160px]" do %>
   <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', "#{svg_name}.svg")).gsub('<svg', '<svg class="mb-1 w-12 h-12"')) %>
   <%= t(text_key).upcase %>
 <% end %>
