@@ -26,7 +26,7 @@
     <% end %>
     <% if user_signed_in? %>
       <%= render 'partials/navbar/navbar' %>
-      <main class="main-right flex-1  min-h-screen bg-green-50 pb-20">
+      <main class="fixed min-h-screen w-screen bg-green-50 pb-20">
         <!-- Sidebar (Fixed Left) -->
         <!-- Main Content (Right) -->
         <%= yield %> <!-- This will render the page content -->

@@ -1,9 +1,9 @@
 en:
   date:
     formats:
-      default: "%m/%d/%Y" # MM/DD/YYYY (e.g., 12/21/2020)
-      short: "%e %b" # abbreviated format (e.g., "1 janv.")
-      long: "%e %B %Y" # full date format (e.g., "1 janvier 2025")
+      default: "%m/%d/%Y"
+      short: "%e %b"
+      long: "%e %B %Y"
     month_names:
       [
         ~,
@@ -36,23 +36,38 @@ en:
         "NOV",
         "DEC",
       ]
+
   currency: "£"
   currency_position: "before"
+
+  labels:
+    total: "Total"
+    total_price: "Total Price"
+    name: "Name"
+    email: "Email"
+    date: "Date"
+    guest: "Guest"
+    guest_name: "Guest Name"
+    guest_firstname: "Guest Firstname"
+    not_found: "%{model} not found"
+
   hello: "Hello %{name}"
   welcome: "Welcome to home page"
   link_go_to: "Go to %{model}"
   lash_global_info: "Lash informations"
+
   accueil_h1: "Accueil"
   dashboard_h1: "Dashboard"
   guests_h1: "Guests"
   services_h1: "Services"
   transactions_h1: "Transactions"
+
   navbar_link_dashboard: "Dashboard"
   navbar_link_guests: "Guests"
   navbar_link_services: "Services"
   navbar_link_transactions: "Transactions"
   navbar_link_website: "Website"
-  navbar_link_edit_profile_information: "Edit profil information"
+  navbar_link_edit_profile_information: "Edit profile information"
   navbar_link_login: "Login"
   navbar_link_logout: "Log out"
   navbar_link_new-user: "New user"
@@ -61,94 +76,93 @@ en:
   navbar_link_subscription: "Subscription"
   navbar_full_username_html: "Hello <strong>%{full_user_name}</strong> !"
 
-  # buttons
-  # links
   button:
-    save: Save
-    edit: Edit
-    update: Update
-    cancel: Cancel
-    delete: Delete
+    save: "Save"
+    edit: "Edit"
+    update: "Update"
+    cancel: "Cancel"
+    delete: "Delete"
     goback: "Back"
     goto: "Go to %{model}"
-    find: Find
+    find: "Find"
     new: "+ add new %{model}"
 
-  # modals
   modal:
-    delete: Delete this %{model}?
+    delete: "Delete this %{model}?"
 
-  # /offers
-  offers_and_subscription: "offers and subscription"
+  offers_and_subscription: "Offers and subscription"
 
-  #page dashboard
   dashboard:
     index:
       title: "Dashboard"
-      users: "users"
-      admin: "admin"
-      non_admin: "non admin"
-      total: "total"
+      users: "Users"
+      admin: "Admin"
+      non_admin: "Non-admin"
+      total: "Total"
       guests:
         zero: "%{count} guest"
-        one: "%{count}guest"
-        other: "%{count} Guests"
+        one: "%{count} guest"
+        other: "%{count} guests"
+
   transactions:
     transaction:
-      date: "date"
-      guest_name: "guest name"
-      guest_firstname: "guest firstname"
-      total_price: "total price"
-      not_found: "transaction not found"
+      date: "Date"
+      guest_name: "Guest Name"
+      guest_firstname: "Guest Firstname"
+      total_price: "Total Price"
+      not_found: "Transaction not found"
 
     create:
-      success: "Creation successful the transaction with %{firstname} %{name}"
+      success: "Creation successful for transaction with %{firstname} %{name}"
       error: "There was an error creating the transaction."
+
     update:
-      success: "Update successful the transaction with %{firstname} %{name}"
+      success: "Update successful for transaction with %{firstname} %{name}"
       error: "There was an error updating the transaction."
-      not_found: "transaction not found"
-    show:
-      date: "date"
-      guest: "guest"
-      guest_firstname: "guest firstname"
-      total_price: "total price"
-      not_found: "transaction not found"
+      not_found: "Transaction not found"
 
     destroy:
-      success: "Delete successful the transaction with %{firstname} %{name}"
+      success: "Successfully deleted transaction with %{firstname} %{name}"
       error: "There was an error deleting the transaction."
-      not_found: "transaction not found"
+      not_found: "Transaction not found"
+
+    show:
+      date: "Date"
+      guest: "Guest"
+      guest_firstname: "Guest Firstname"
+      total_price: "Total Price"
+      not_found: "Transaction not found"
 
     index:
       total: "Total Amount of Transactions"
-    new:
-      prohibited: "prohibited this transaction from being saved"
 
-  #  service controller create/update/delete html
+    new:
+      prohibited: "Prohibited this transaction from being saved"
+
   services:
     service:
-      name: "name"
-      price: "price"
+      name: "Name"
+      price: "Price"
+
     new:
       title: "New service"
     edit:
       title: "Edit service"
+
     create:
       success: "Creation successful for %{name}"
       error: "There was an error creating the service."
+
     update:
-      success: "Update successful for %{name} "
+      success: "Update successful for %{name}"
       error: "There was an error updating the service."
-      not_found: "service not found"
-    show:
-      not_found: "service not found"
+      not_found: "Service not found"
 
     destroy:
-      success: "Delete successful for %{name}"
+      success: "Successfully deleted %{name}"
       error: "There was an error deleting the service."
-      not_found: "service not found"
+      not_found: "Service not found"
 
   personal_information:
-    name: "name"
-    email: "email"
+    name: "Name"
+    email: "Email"

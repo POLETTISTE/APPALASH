@@ -6,9 +6,9 @@
   <% end %>
 </div>
 <div class="px-5">
-  <%= t('.total') %>
+  <%= t('transactions.transaction.total_price') %>
   <p>
-    <% 
+    <%
       total_price = '%.2f' % @transactions_total_price
       currency = t('currency')
       position = t('currency_position')

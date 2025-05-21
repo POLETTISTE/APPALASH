@@ -3,23 +3,23 @@
 module GuestsHelper
   # GUEST GENERAL
   def field(form, name, options = {})
-    label = t(".#{name}") # Translates the field label
-    value = form.object.send(name) # Gets the value dynamically
-    id = "guest_#{name}" # Generates the input ID dynamically
-    css_class = options[:class] || 'mt-2 block w-full p-2 border border-gray-300 rounded' # Default class for styling
-    x_show = options[:x_show] || 'showForm' # Add default x_show to control visibility
+  label = t("guests.show.guest_health.health_#{name}", default: name.to_s.humanize)
 
-    content_tag :div, x_show: x_show do
-      concat content_tag(:strong, label)
+  id = "guest_#{name}"
+  css_class = options[:class] || 'mt-2 block w-full p-2 border border-gray-300 rounded'
+  x_show = options[:x_show] || 'showForm'
 
-      # Use a textarea for notes, otherwise use a text field
-      if name == :notes
-        concat form.text_area(name, value: value, id: id, class: css_class, rows: 4)
-      else
-        concat form.text_field(name, value: value, id: id, class: css_class)
-      end
+  content_tag :div, x_show: x_show do
+    concat content_tag(:label, label, for: id, class: "block text-sm font-medium text-gray-700 mb-1")
+
+    if name == :notes
+      concat form.text_area(name, id: id, class: css_class, rows: 4)
+    else
+      concat form.text_field(name, id: id, class: css_class)
     end
   end
+end
+
 
   def how_do_you_know_us_options
     I18n.t('guest_options.how_do_you_know_us_options').values

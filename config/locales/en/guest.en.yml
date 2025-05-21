@@ -122,6 +122,7 @@ en:
 
       #guests/_guest_health.html.erb
       guest_health:
+        title_edit_health_informations: "Edit health informations"
         health_info: "infos"
         health_diabetes: "diabetes"
         health_pregnancy: "pregnancy"
@@ -137,6 +138,7 @@ en:
         health_lie_down: "lie down"
         health_notes: "notes"
         no_health_information: "no health information"
+
       guest_transactions:
         no_transaction: "no transaction"
         title_transaction_details: "transaction details"

@@ -12,7 +12,7 @@
                           width: 140, height: 140, class: "rounded-full border-2 border-gray-300" %>
     <% end %>
     <p>
-      <strong><%= t('.guest') %>:</strong>
+      <strong><%= t('transactions.transaction.guest_name') %>:</strong>
       <%= @transaction.guest.full_name %>
     </p>
     <!-- Services Section -->
@@ -33,7 +33,7 @@
     </ul>
     <!-- Total Price -->
     <p>
-      <%= t('.total_price') %>:
+      <strong><%= t('transactions.transaction.total_price') %>:</strong>
       <% 
           total_price = '%.2f' % @transaction.total_price 
           position = t('currency_position')  # Ensure 'position' is defined here

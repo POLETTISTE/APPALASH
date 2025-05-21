@@ -1,5 +1,7 @@
 <div class="bg-white rounded-lg shadow-lg p-6 w-1/2">
-  <h2 class="text-2xl font-bold mb-4">Edit HEALTH </h2>
+  <h2 class="text-2xl font-bold mb-4">
+    <%= t('guests.show.guest_health..title_edit_health_informations')%>
+  </h2>
   <%= form_for @guest do |form| %>
     <%= form.fields_for :health do |health_form| %>
       <div class="grid grid-cols-2 gap-4">
@@ -15,12 +17,12 @@
           :eyes_allergy,
           :itch,
           :first_application,
-          :lie_down
+          :lie_down,
         ].each do |field| %>
           <%= render 'partials/components/checkbox_toggle_button',
               form: health_form,
               field_name: field,
-              label: t(".#{field}") %>
+              label: t("guests.show.guest_health.health_#{field}")%>
         <% end %>
         <%= field(health_form, :notes) %>
       </div>
