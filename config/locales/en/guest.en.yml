@@ -74,6 +74,10 @@ en:
 
       #guests/how/_guest_general_informations.html.erb
       guest_general_informations:
+        button_more_informations: "More informations"
+        button_edit_more_informations: "Edit more informations"
+        title_edit_general_informations: "Edit general informations"
+        title_edit_more_informations: "Edit more Information "
         name: "name"
         firstname: "firstname"
         email: "email"
@@ -133,6 +137,12 @@ en:
         health_lie_down: "lie down"
         health_notes: "notes"
         no_health_information: "no health information"
+      guest_transactions:
+        no_transaction: "no transaction"
+        title_transaction_details: "transaction details"
+        transaction_date: "transaction date"
+        transaction_services: "transaction service"
+        transaction_total_price: "transaction total price"
 
     destroy:
       success: "Delete successful for %{firstname} %{name}"

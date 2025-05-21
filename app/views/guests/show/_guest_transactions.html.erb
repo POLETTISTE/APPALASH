@@ -1,5 +1,5 @@
 <% if @guest.transactions.empty? %>
-  <p>No transactions found for this guest.</p>
+  <p><%= t('.no_transaction')%></p>
 <% else %>
   <div class="space-y-4">
     <% @guest.transactions.each do |transaction| %>
@@ -22,13 +22,13 @@
           <div class="bg-white p-6 rounded-lg shadow-lg w-3/4 md:w-1/2">
             <!-- Modal Header -->
             <div class="flex justify-between items-center mb-4">
-              <h2 class="text-2xl font-semibold text-blue-600"><%= t('transaction_details') %></h2>
+              <h2 class="text-2xl font-semibold text-blue-600"><%= t('.title_transaction_details') %></h2>
               <button @click="showModal = false" class="text-gray-600 hover:text-gray-900">&times;</button>
             </div>
             <!-- Transaction Details -->
             <div>
-              <p><strong><%= t('transaction_date') %>:</strong> <%= transaction.created_at.strftime('%B %d, %Y') %></p>
-              <p><strong><%= t('transaction_services') %>:</strong></p>
+              <p><strong><%= t('.transaction_date') %>:</strong> <%= transaction.created_at.strftime('%B %d, %Y') %></p>
+              <p><strong><%= t('.transaction_services') %>:</strong></p>
               <ul>
                 <% transaction.services.each do |service| %>
                   <li><%= service['name'] %> - 
@@ -41,7 +41,7 @@
                   </li>
                 <% end %>
               </ul>
-              <p><strong><%= t('transaction_total_price') %>:</strong>
+              <p><strong><%= t('.transaction_total_price') %>:</strong>
                 <% 
                   total_price = '%.2f' % transaction.total_price
                   position = t('currency_position')

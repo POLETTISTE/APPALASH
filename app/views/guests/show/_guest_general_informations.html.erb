@@ -8,7 +8,7 @@
        selectedSection: '<%= params[:selected_section] || 'health' %>',
        showTransactionModal: false,
        editGeneralInfosModal: false, 
-       editOthersInfosModal: false, 
+       editMoreInformationsModal: false, 
        showSecondaryInfo: false, 
        setSection(section) {
          this.selectedSection = section;
@@ -42,24 +42,24 @@
     </div>
   </div>
   <button @click="showSecondaryInfo = !showSecondaryInfo" class="mt-4 bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
-    MORE INFORMATIONS
+    <%= t(".button_more_informations") %>
   </button>
   <div class="guest-secondary-info mt-4" x-show="showSecondaryInfo" x-cloak>
-    <p><strong>Address:</strong> <%= @guest.address %></p>
-    <p><strong>Zip Code:</strong> <%= @guest.zip_code %></p>
-    <p><strong>City:</strong> <%= @guest.city %></p>
-    <p><strong>Country:</strong> <%= @guest.country %></p>
-    <p><strong>Birthdate:</strong> <%= @guest.birthdate %></p>
-    <p><strong>Notes:</strong> <%= @guest.notes %></p>
-    <button type="button" @click="editOthersInfosModal = true" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-      EDIT SECONDARY INFO
+    <p><strong><%= t(".address") %></strong> <%= @guest.address %></p>
+    <p><strong><%= t(".zip_code") %></strong> <%= @guest.zip_code %></p>
+    <p><strong><%= t(".city") %></strong> <%= @guest.city %></p>
+    <p><strong><%= t(".country") %></strong> <%= @guest.country %></p>
+    <p><strong><%= t(".birthdate") %></strong> <%= @guest.birthdate %></p>
+    <p><strong><%= t(".notes") %></strong> <%= @guest.notes %></p>
+    <button type="button" @click="editMoreInformationsModal = true" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <%= t(".button_edit_more_informations") %>
     </button>
   </div>
   <div x-show="editGeneralInfosModal" 
        class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center" 
        x-cloak>
     <div class="bg-white rounded-lg shadow-lg p-6 w-1/2">
-      <h2 class="text-2xl font-bold mb-4">Edit General Information</h2>
+      <h2 class="text-2xl font-bold mb-4"><%= t('.title_edit_general_informations')%></h2>
       <%= form_for @guest, url: guest_path(@guest), method: :put, html: { multipart: true } do |form| %>
         <div class="grid grid-cols-2 gap-4">
           <div><%= field(form, :firstname) %></div>
@@ -74,11 +74,11 @@
       <% end %>
     </div>
   </div>
-  <div x-show="editOthersInfosModal" 
+  <div x-show="editMoreInformationsModal" 
        class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center" 
        x-cloak>
     <div class="bg-white rounded-lg shadow-lg p-6 w-1/2">
-      <h2 class="text-2xl font-bold mb-4">Edit Secondary Information</h2>
+      <h2 class="text-2xl font-bold mb-4"><%= t('.title_edit_more_informations')%></h2>
       <%= form_for @guest, url: guest_path(@guest), method: :put, html: { multipart: true } do |form| %>
         <div class="grid grid-cols-2 gap-4">
           <div><%= field(form, :address) %></div>
@@ -89,7 +89,7 @@
           <div class="col-span-2"><%= field(form, :notes) %></div>
         </div>
         <div class="flex justify-end space-x-4 mt-4">
-          <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" @click="editOthersInfosModal = false">Cancel</button>
+          <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" @click="editMoreInformationsModal = false">Cancel</button>
           <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Save</button>
         </div>
       <% end %>
@@ -116,12 +116,6 @@
     </div>
     <div x-show="selectedSection === 'transactions'">
       <%= render "guests/show/guest_transactions", guest: @guest %>
-      <div x-show="showTransactionModal" x-cloak>
-        <div class="modal-content">
-          <p>Here is the modal for transactions!</p>
-          <button @click="showTransactionModal = false">Close</button>
-        </div>
-      </div>
     </div>
   </div>
 </div>
