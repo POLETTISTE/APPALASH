@@ -29,7 +29,7 @@
             <%= f.email_field :email, required: true, autofocus: true, autocomplete: t('devise.registrations.new.autocomplete_email'), class: "mt-3 shadow appearance-none border rounded w-full  text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
             <% if @email_taken %>
               <div class="text-sm text-red-500 mt-1">
-                Cette adresse email est déjà utilisée. Veuillez en choisir une autre.
+                <%= t('devise.registrations.new.label_email_already_taken')%>
               </div>
             <% end %>
           </div>

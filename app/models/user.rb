@@ -14,7 +14,4 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :validatable,
           :confirmable, :timeoutable
 
-  # Validations
-  validates :website, presence: true, uniqueness: true,
-                      format: { without: /\s/, message: 'cannot contain spaces' }
 end

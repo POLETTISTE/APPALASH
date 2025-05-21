@@ -71,6 +71,8 @@ en:
       updated_not_active: "Your password has been changed successfully."
     registrations:
       edit:
+        label_error_title: "Please fix the following errors:"
+        label_error_message: "is forbidden. Please choose another one."
         label_current_password: "Current Password"
         label_avatar: "Avatar"
         label_email: "Email"
@@ -79,6 +81,7 @@ en:
         label_password: "Password"
         label_password_confirmation: "Password Confirmation"
         label_upload: "Upload your avatar"
+        label_language: "Language"
         label_website: "Website"
         title: "Edit"
         waiting_confirmation: "Currently waiting confirmation for: "
@@ -95,6 +98,7 @@ en:
       new:
         title: "Sign up"
         label_email: "Email"
+        label_email_already_taken: "Email is already taken"
         label_name: "Name"
         label_firstname: "First Name"
         label_website: "Website"
