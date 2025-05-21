@@ -1,7 +1,7 @@
 <header>
   <div class="flex items-center space-x-4">
     <div class="w-14 h-14 rounded-full overflow-hidden flex-shrink-0">
-      <% if current_user.avatar.attached? %>
+      <% if current_user && current_user.avatar.attached? %>
         <%= cl_image_tag current_user.avatar.key,
               height: 56, width: 56,
               crop: :thumb, gravity: :face, radius: :max,
@@ -11,8 +11,10 @@
               class: "w-full h-full object-cover rounded-full" %>
       <% end %>
     </div>
-    <div class="text-lg font-semibold text-gray-800">
-      <%= current_user.name %> <%= current_user.firstname %>
-    </div>
+    <% if current_user %>
+      <div class="text-lg font-semibold text-gray-800">
+        <%= current_user.name %> <%= current_user.firstname %>
+      </div>
+    <% end %>
   </div>
 </header>

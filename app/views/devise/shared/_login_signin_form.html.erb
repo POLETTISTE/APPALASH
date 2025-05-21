@@ -47,7 +47,7 @@
               <%= f.text_field :website, required: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
               <% if @website_taken %>
                 <div class="text-sm text-red-500 mt-1">
-                  Ce site Web est déjà pris. Veuillez choisir un autre site.
+                  <%= t('devise.registrations.new.label_website_already_taken')%>
                 </div>
               <% end %>
             </div>
