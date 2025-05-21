@@ -86,7 +86,7 @@ en:
         how_do_you_know_us: "how did you know us?"
         notes: "notes"
         #guests/_guest_lash.html.erb
-      guest_lash:
+      guest_diagnostic:
         lash_information: "Lash information"
         no_lash_information: " lash information"
         lash_desired_effect: "lash desired effect"
@@ -106,7 +106,7 @@ en:
         lash_density: "lash density"
 
       #guests/_guest_extension.html.erb
-      guest_extension:
+      guest_lashes:
         lash_extension_info: "lash extensions informations"
         lash_extension_brand: "lash extensions brand"
         lash_extension_curvature: "lash extensions curvature"

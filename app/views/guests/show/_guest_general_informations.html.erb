@@ -1,14 +1,12 @@
 <style>
-  /* Ensures that the modal is initially hidden until Alpine is initialized */
   [x-cloak] {
     display: none;
   }
 </style>
-
 <div id="guest_general_informations" 
      x-data="{ 
-       selectedSection: '<%= params[:selected_section] || 'health' %>',  // Default to 'health' unless specified in URL
-       showTransactionModal: false,  // To control showing the transaction modal
+       selectedSection: '<%= params[:selected_section] || 'health' %>',
+       showTransactionModal: false,
        editGeneralInfosModal: false, 
        editOthersInfosModal: false, 
        showSecondaryInfo: false, 
@@ -16,15 +14,12 @@
          this.selectedSection = section;
        },
        openTransactionModalIfNeeded() {
-         // Automatically open the modal for 'transactions' section if selected
          if (this.selectedSection === 'transactions') {
            this.showTransactionModal = true;
          }
        }
      }"
      x-init="openTransactionModalIfNeeded()" x-cloak>
-  
-  <!-- 🔹 DISPLAY GENERAL INFO -->
   <div class="guest-main-info flex flex-row mt-4">
     <div class="left mr-5">
       <% if @guest.photo.attached? %>
@@ -34,29 +29,21 @@
       <% end %>
     </div>
     <div class="right w-full">
-      <!-- First Name -->
       <p class="text-3xl font-bold"><%= @guest.full_name %></p>
-      <!-- Email -->
       <p class="flex items-center">
         <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'email.svg')).gsub('<svg', '<svg class="w-6 h-6 text-customPink mr-1"')) %>
         <%= mail_to @guest.email, @guest.email, class: "text-customPink hover:underline" %>
       </p>
-      <!-- Phone -->
       <p class="flex items-center mb-2">
         <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'phone.svg')).gsub('<svg', '<svg class="w-6 h-6 text-customPink mr-1"')) %>
         <%= link_to @guest.phone, "tel:#{@guest.phone}", class: "text-customPink hover:underline" %>
       </p>
-      <!-- EDIT BUTTON - Opens General Info Modal -->
       <%= raw(File.read(Rails.root.join('app', 'assets', 'svg', 'pencil.svg')).gsub('<svg', '<svg @click="editGeneralInfosModal = true" class="w-6 h-6 text-customPink cursor-pointer"')) %>
     </div>
   </div>
-
-  <!-- 🔹 TOGGLE BUTTON FOR MORE INFORMATION -->
   <button @click="showSecondaryInfo = !showSecondaryInfo" class="mt-4 bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
     MORE INFORMATIONS
   </button>
-
-  <!-- 🔹 DISPLAY SECONDARY INFO (Initially Hidden) -->
   <div class="guest-secondary-info mt-4" x-show="showSecondaryInfo" x-cloak>
     <p><strong>Address:</strong> <%= @guest.address %></p>
     <p><strong>Zip Code:</strong> <%= @guest.zip_code %></p>
@@ -64,13 +51,10 @@
     <p><strong>Country:</strong> <%= @guest.country %></p>
     <p><strong>Birthdate:</strong> <%= @guest.birthdate %></p>
     <p><strong>Notes:</strong> <%= @guest.notes %></p>
-    <!-- EDIT BUTTON - Opens Secondary Info Modal -->
     <button type="button" @click="editOthersInfosModal = true" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
       EDIT SECONDARY INFO
     </button>
   </div>
-
-  <!-- 🔹 MODAL - GENERAL INFO -->
   <div x-show="editGeneralInfosModal" 
        class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center" 
        x-cloak>
@@ -78,18 +62,10 @@
       <h2 class="text-2xl font-bold mb-4">Edit General Information</h2>
       <%= form_for @guest, url: guest_path(@guest), method: :put, html: { multipart: true } do |form| %>
         <div class="grid grid-cols-2 gap-4">
-          <div>
-            <%= field(form, :firstname) %>
-          </div>
-          <div>
-            <%= field(form, :name) %>
-          </div>
-          <div>
-            <%= field(form, :email) %>
-          </div>
-          <div>
-            <%= field(form, :phone) %>
-          </div>
+          <div><%= field(form, :firstname) %></div>
+          <div><%= field(form, :name) %></div>
+          <div><%= field(form, :email) %></div>
+          <div><%= field(form, :phone) %></div>
         </div>
         <div class="flex justify-end space-x-4 mt-4">
           <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" @click="editGeneralInfosModal = false">Cancel</button>
@@ -98,8 +74,6 @@
       <% end %>
     </div>
   </div>
-
-  <!-- 🔹 MODAL - SECONDARY INFO -->
   <div x-show="editOthersInfosModal" 
        class="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center" 
        x-cloak>
@@ -107,24 +81,12 @@
       <h2 class="text-2xl font-bold mb-4">Edit Secondary Information</h2>
       <%= form_for @guest, url: guest_path(@guest), method: :put, html: { multipart: true } do |form| %>
         <div class="grid grid-cols-2 gap-4">
-          <div>
-            <%= field(form, :address) %>
-          </div>
-          <div>
-            <%= field(form, :zip_code) %>
-          </div>
-          <div>
-            <%= field(form, :city) %>
-          </div>
-          <div>
-            <%= field(form, :country) %>
-          </div>
-          <div class="col-span-2">
-            <%= field(form, :birthdate) %>
-          </div>
-          <div class="col-span-2">
-            <%= field(form, :notes) %>
-          </div>
+          <div><%= field(form, :address) %></div>
+          <div><%= field(form, :zip_code) %></div>
+          <div><%= field(form, :city) %></div>
+          <div><%= field(form, :country) %></div>
+          <div class="col-span-2"><%= field(form, :birthdate) %></div>
+          <div class="col-span-2"><%= field(form, :notes) %></div>
         </div>
         <div class="flex justify-end space-x-4 mt-4">
           <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" @click="editOthersInfosModal = false">Cancel</button>
@@ -133,18 +95,13 @@
       <% end %>
     </div>
   </div>
-
-  <!-- 🔹 SECTION TO RENDER BASED ON SELECTION -->
   <ul class="flex justify-between mt-4 cursor-pointer">
     <template x-for="section in ['health', 'diagnostic', 'lashes', 'esthetic', 'transactions']" :key="section">
-      <li @click="setSection(section)" 
-        :class="{'font-bold text-customPink': selectedSection === section}">
+      <li @click="setSection(section)" :class="{'font-bold text-customPink': selectedSection === section}">
         <span x-text="section.toUpperCase()"></span>
       </li>
     </template>
   </ul>
-
-  <!-- 🔹 DISPLAY THE CONTENTS OF SELECTED SECTION -->
   <div class="technical-info h-[500px] overflow-y-auto mt-4">
     <div x-show="selectedSection === 'health'">
       <%= render "guests/show/guest_health", guest: @guest %>
@@ -156,19 +113,14 @@
       <%= render "guests/show/guest_lashes", guest: @guest %>
     </div>
     <div x-show="selectedSection === 'esthetic'">
-      <!-- Add content for Esthetic here -->
     </div>
     <div x-show="selectedSection === 'transactions'">
       <%= render "guests/show/guest_transactions", guest: @guest %>
-<%#       
-      <!-- Triggering the modal here -->
       <div x-show="showTransactionModal" x-cloak>
-        <!-- Modal for transaction content here -->
         <div class="modal-content">
           <p>Here is the modal for transactions!</p>
-          <!-- Close button for modal -->
           <button @click="showTransactionModal = false">Close</button>
-        </div> %>
+        </div>
       </div>
     </div>
   </div>
